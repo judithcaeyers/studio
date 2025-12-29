@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ONEPAGE — Websites voor zelfstandigen</title>
-  <meta name="description" content="Heldere onepage websites voor zelfstandigen. Snel, zonder gedoe. €800 excl. btw." />
+  <title>Buro Bon — Onepage websites voor zelfstandigen</title>
+  <meta name="description" content="Een heldere onepage website. Gewoon geregeld. Vaste structuur, één feedbackronde, klaar binnen 10 dagen. €800 excl. btw." />
 
   <style>
     :root {
@@ -32,9 +32,9 @@
       border-bottom: 1px solid var(--ink);
     }
 
-    /* ✅ NEW: topbar for logo */
+    /* Topbar */
     .topbar {
-      padding: 20px 24px;
+      padding: 18px 24px;
       border-bottom: 1px solid var(--line);
       background: var(--bg);
     }
@@ -52,11 +52,11 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      border-bottom: none; /* avoid underline on the brand link */
+      border-bottom: none;
     }
 
     .logo {
-      height: 28px;        /* adjust as needed */
+      height: 28px;
       width: auto;
       display: block;
     }
@@ -67,9 +67,17 @@
       text-transform: uppercase;
     }
 
-    /* Header hero */
+    .nav {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+    }
+
+    .nav a { border-bottom-color: transparent; }
+    .nav a:hover { border-bottom-color: var(--ink); }
+
     header {
-      padding: 72px 24px 72px; /* was 96px; reduced because topbar added */
+      padding: 72px 24px 72px;
       border-bottom: 1px solid var(--line);
     }
 
@@ -82,7 +90,7 @@
       font-size: clamp(36px, 6vw, 56px);
       font-weight: 500;
       letter-spacing: -0.02em;
-      margin: 0 0 24px;
+      margin: 0 0 18px;
     }
 
     h2 {
@@ -99,13 +107,14 @@
 
     p {
       margin: 0 0 16px;
-      max-width: 680px;
+      max-width: 720px;
     }
 
     .lead {
       font-size: 20px;
       color: var(--muted);
-      max-width: 720px;
+      max-width: 760px;
+      margin-bottom: 18px;
     }
 
     section {
@@ -132,23 +141,30 @@
     .price {
       font-size: 32px;
       font-weight: 500;
-      margin: 16px 0;
+      margin: 16px 0 10px;
     }
 
     .button {
       display: inline-block;
-      margin-top: 24px;
+      margin-top: 20px;
       padding: 14px 22px;
       border: 1px solid var(--ink);
       border-radius: 999px;
       font-size: 14px;
-      transition: background .2s, color .2s;
-      border-bottom: none; /* buttons shouldn't have underline */
+      transition: background .2s, color .2s, transform .12s;
+      border-bottom: none;
     }
 
     .button:hover {
       background: var(--ink);
       color: var(--bg);
+      transform: translateY(-1px);
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 12px;
     }
 
     /* FORM */
@@ -160,7 +176,7 @@
       font-family: inherit;
       font-size: 14px;
       border: 1px solid var(--line);
-      border-radius: 4px;
+      border-radius: 8px;
       background: white;
     }
 
@@ -177,227 +193,242 @@
       header { padding-top: 56px; }
       section { padding: 56px 24px; }
       .logo { height: 24px; }
+      .nav { gap: 12px; }
     }
   </style>
 </head>
 
 <body>
 
-<!-- ✅ NEW: Topbar with logo -->
-<div class="topbar">
-  <div class="topbar-inner">
-    <a class="brand" href="#top" aria-label="Home">
-      <!-- OPTIE A: afbeelding-logo (zet je file in assets/logo.svg of .png) -->
-      <img class="logo" src="assets/logo.svg" alt="Buro Bon logo"
-           onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+  <!-- Topbar with logo -->
+  <div class="topbar" id="top">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="Home">
+        <!-- Logo file: put your logo at assets/logo.svg (or change the src) -->
+        <img class="logo" src="assets/logo.svg" alt="Buro Bon logo"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';" />
+        <!-- Text fallback if no logo yet -->
+        <span class="brand-text" style="display:none;">Buro Bon</span>
+      </a>
 
-      <!-- OPTIE B: tekstfallback (verschijnt automatisch als logo niet gevonden wordt) -->
-      <span class="brand-text" style="display:none;">Buro Bon</span>
-    </a>
-
-    <!-- (optioneel) kleine navigatie rechts -->
-    <div style="display:flex; gap:16px; font-size:14px;">
-      <a href="#aanbod" style="border-bottom-color: transparent;">Aanbod</a>
-      <a href="#contact" style="border-bottom-color: transparent;">Contact</a>
+      <nav class="nav" aria-label="Navigatie">
+        <a href="#aanbod">Aanbod</a>
+        <a href="#intake">Intake</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </div>
-</div>
 
-<header id="top">
-  <div class="wrap">
-    <h1>Heldere onepage websites<br>voor zelfstandigen</h1>
-    <p class="lead">
-      Geen traject. Geen gedoe.  
-      Eén duidelijke pagina die uitlegt wat je doet en mensen toelaat je te contacteren.
-    </p>
-    <a class="button" href="#contact">Check of dit past</a>
-  </div>
-</header>
+  <!-- HERO -->
+  <header>
+    <div class="wrap">
+      <h1>Een heldere website.<br>Gewoon geregeld.</h1>
+      <p class="lead">
+        Ik maak onepage websites voor zelfstandigen die geen zin hebben in een traject,
+        maar wel in iets dat klopt en af is.
+      </p>
+      <a class="button" href="#contact">Check of dit past</a>
+    </div>
+  </header>
 
-<section>
-  <div class="wrap">
-    <h2>Wat ik maak</h2>
-    <p>
-      Veel zelfstandigen weten perfect wat ze doen,
-      maar krijgen het moeilijk helder uitgelegd online.
-    </p>
-    <p>
-      Ik maak één overzichtelijke website die:
-    </p>
-    <ul>
-      <li>— duidelijk maakt wat je aanbiedt</li>
-      <li>— vertrouwen uitstraalt</li>
-      <li>— mensen vlot laat contacteren</li>
-      <li>— en daarna gewoon werkt</li>
-    </ul>
-  </div>
-</section>
+  <!-- WHAT -->
+  <section id="wat">
+    <div class="wrap">
+      <h2>Wat ik doe</h2>
+      <p>
+        Veel zelfstandigen weten perfect wat ze doen.
+        Alleen online blijft het vaak vaag, rommelig of onaf.
+      </p>
+      <p>Ik maak één overzichtelijke pagina die:</p>
+      <ul>
+        <li>— meteen duidelijk maakt wat je aanbiedt</li>
+        <li>— vertrouwen uitstraalt zonder drukte</li>
+        <li>— mensen toelaat je te contacteren</li>
+        <li>— en daarna gewoon blijft werken</li>
+      </ul>
+    </div>
+  </section>
 
-<section id="aanbod">
-  <div class="wrap">
-    <h2>Het aanbod</h2>
+  <!-- OFFER -->
+  <section id="aanbod">
+    <div class="wrap">
+      <h2>ONEPAGE</h2>
+      <p class="lead">
+        Eén pagina. Vaste structuur.
+        Geen traject, geen eindeloze feedback.
+      </p>
 
-    <div class="grid">
-      <div>
-        <h3>ONEPAGE</h3>
+      <div class="grid">
+        <div>
+          <h3>Wat je krijgt</h3>
+          <p>
+            Een compacte website die uitlegt wat je doet
+            en mensen vlot laat doorsturen naar contact.
+          </p>
+
+          <p class="price">€800 excl. btw</p>
+          <ul>
+            <li>— 1 pagina met vaste opbouw</li>
+            <li>— mobiel & desktop geoptimaliseerd</li>
+            <li>— basis SEO</li>
+            <li>— contactformulier + mail/telefoon</li>
+            <li>— live gezet op jouw domein</li>
+            <li>— klaar binnen 10 dagen</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Zo werkt het</h3>
+          <ul>
+            <li>1. Korte intake (30 min)</li>
+            <li>2. Eerste versie binnen enkele dagen</li>
+            <li>3. Eén feedbackronde</li>
+            <li>4. Online en klaar</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Dit is het niet</h3>
+          <ul>
+            <li>— geen brandingtraject</li>
+            <li>— geen logo-ontwerp</li>
+            <li>— geen webshop</li>
+            <li>— geen meertaligheid</li>
+            <li>— geen eindeloze feedbackrondes</li>
+          </ul>
+          <p class="note">
+            Dat is geen beperking. Dat is waarom dit aanbod werkt.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR WHO -->
+  <section id="voorwie">
+    <div class="wrap">
+      <h2>Voor wie dit werkt</h2>
+      <ul>
+        <li>— je bent zelfstandig en al actief</li>
+        <li>— je aanbod is duidelijk, maar online niet</li>
+        <li>— je wil iets dat af is, geen project</li>
+        <li>— je beslist liever dan te blijven twijfelen</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="wrap">
+      <h2>Contact</h2>
+      <p>
+        Twijfel je of dit iets voor jou is? Dat is normaal.
+      </p>
+      <p>
+        Kies wat voor jou het makkelijkst is.
+      </p>
+
+      <div class="grid" style="max-width:720px; margin-top:32px;">
+        <div>
+          <h3>Mail me</h3>
+          <p>Kort bericht is genoeg. Geen pitch nodig.</p>
+          <a class="button" href="mailto:jouw@email.be">Stuur een mail</a>
+          <p class="note">Vervang <strong>jouw@email.be</strong> door je echte e-mailadres.</p>
+        </div>
+
+        <div>
+          <h3>Snelle intake</h3>
+          <p>Liever wat meer structuur? Dit helpt mij snel zien of dit een onepager kan zijn.</p>
+          <a class="button" href="#intake">Ga naar intake</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTAKE -->
+  <section id="intake">
+    <div class="wrap">
+      <h2>Snelle intake</h2>
+      <p>Beantwoord wat je kan. Beknopt is perfect.</p>
+      <p>Dit helpt mij inschatten of dit aanbod voor jou de juiste stap is.</p>
+
+      <form action="https://formspree.io/f/xxxxxx" method="POST" style="max-width:640px; margin-top:40px;">
         <p>
-          Eén pagina met vaste structuur,
-          mobiel & desktop geoptimaliseerd.
+          <label>Naam<br>
+            <input type="text" name="name" required>
+          </label>
         </p>
-        <p class="price">€800 excl. btw</p>
-        <ul>
-          <li>— vaste opbouw</li>
-          <li>— basis SEO</li>
-          <li>— contactformulier</li>
-          <li>— live gezet op jouw domein</li>
-          <li>— oplevering binnen 10 dagen</li>
-        </ul>
-      </div>
 
-      <div>
-        <h3>Zo werkt het</h3>
-        <ul>
-          <li>1. Intake (30 min)</li>
-          <li>2. Eerste versie binnen enkele dagen</li>
-          <li>3. Eén feedbackronde</li>
-          <li>4. Online & klaar</li>
-        </ul>
-      </div>
+        <p>
+          <label>E-mail<br>
+            <input type="email" name="email" required>
+          </label>
+        </p>
 
-      <div>
-        <h3>Dit is het niet</h3>
-        <ul>
-          <li>— geen brandingtraject</li>
-          <li>— geen logo-ontwerp</li>
-          <li>— geen webshop</li>
-          <li>— geen meertaligheid</li>
-          <li>— geen eindeloze feedback</li>
-        </ul>
-      </div>
+        <p>
+          <label>Wat is je activiteit?<br>
+            <textarea name="activity" rows="3" placeholder="Wat doe je concreet, in 1–2 zinnen?" required></textarea>
+          </label>
+        </p>
+
+        <p>
+          <label>Voor wie werk je?<br>
+            <textarea name="audience" rows="2" placeholder="Wie zijn je klanten?"></textarea>
+          </label>
+        </p>
+
+        <p>
+          <label>Wat moet je website vooral doen?<br>
+            <textarea name="goal" rows="3" placeholder="bv. vertrouwen wekken, helder uitleggen, contact mogelijk maken"></textarea>
+          </label>
+        </p>
+
+        <p>
+          <label>Heb je al een website?<br>
+            <select name="existing_site">
+              <option value="">— kies —</option>
+              <option>nee</option>
+              <option>ja, maar ontevreden</option>
+              <option>ja, maar verouderd</option>
+            </select>
+          </label>
+        </p>
+
+        <p>
+          <label>Timing<br>
+            <select name="timing">
+              <option value="">— kies —</option>
+              <option>zo snel mogelijk</option>
+              <option>binnen 1 maand</option>
+              <option>nog niet dringend</option>
+            </select>
+          </label>
+        </p>
+
+        <p>
+          <label>Budget<br>
+            <select name="budget">
+              <option value="">— kies —</option>
+              <option>€800 excl. btw is oké</option>
+              <option>ik wil dit nog bespreken</option>
+            </select>
+          </label>
+        </p>
+
+        <button class="button" type="submit">Verstuur intake</button>
+
+        <p class="note">
+          Tip: vervang de Formspree URL (<strong>xxxxxx</strong>) door je echte endpoint.
+        </p>
+      </form>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <div class="wrap">
-    <h2>Voor wie</h2>
-    <ul>
-      <li>— zelfstandigen met een duidelijke dienst</li>
-      <li>— mensen die al klanten hebben</li>
-      <li>— wie helderheid wil, geen complexiteit</li>
-      <li>— wie snel beslissingen durft nemen</li>
-    </ul>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="wrap">
-    <h2>Contact</h2>
-    <p>
-      Twijfel je of dit past?<br>
-      Kies wat voor jou het makkelijkst is.
-    </p>
-
-    <div class="grid" style="max-width:720px; margin-top:32px;">
-      <div>
-        <h3>Mail me</h3>
-        <p>Kort en informeel is perfect.</p>
-        <a class="button" href="mailto:jouw@email.be">Stuur een mail</a>
-      </div>
-
-      <div>
-        <h3>Snelle intake</h3>
-        <p>Liever wat meer structuur?</p>
-        <a class="button" href="#intake">Ga naar intake</a>
-      </div>
+  <footer>
+    <div class="wrap">
+      © 2025 — Buro Bon
     </div>
-  </div>
-</section>
-
-<section id="intake">
-  <div class="wrap">
-    <h2>Snelle intake</h2>
-
-    <p>
-      Dit helpt mij inschatten of het ONEPAGE-aanbod
-      voor jou de juiste stap is.
-    </p>
-
-    <form action="https://formspree.io/f/xxxxxx" method="POST" style="max-width:640px; margin-top:40px;">
-
-      <p>
-        <label>Naam<br>
-          <input type="text" name="name" required>
-        </label>
-      </p>
-
-      <p>
-        <label>E-mail<br>
-          <input type="email" name="email" required>
-        </label>
-      </p>
-
-      <p>
-        <label>Wat is je activiteit?<br>
-          <textarea name="activity" rows="3" required></textarea>
-        </label>
-      </p>
-
-      <p>
-        <label>Voor wie werk je?<br>
-          <textarea name="audience" rows="2"></textarea>
-        </label>
-      </p>
-
-      <p>
-        <label>Wat moet je website vooral doen?<br>
-          <textarea name="goal" rows="3"></textarea>
-        </label>
-      </p>
-
-      <p>
-        <label>Heb je al een website?<br>
-          <select name="existing_site">
-            <option value="">— kies —</option>
-            <option>nee</option>
-            <option>ja, maar ontevreden</option>
-            <option>ja, maar verouderd</option>
-          </select>
-        </label>
-      </p>
-
-      <p>
-        <label>Timing<br>
-          <select name="timing">
-            <option value="">— kies —</option>
-            <option>zo snel mogelijk</option>
-            <option>binnen 1 maand</option>
-            <option>nog niet dringend</option>
-          </select>
-        </label>
-      </p>
-
-      <p>
-        <label>Budget<br>
-          <select name="budget">
-            <option value="">— kies —</option>
-            <option>€800 excl. btw is oké</option>
-            <option>ik wil dit nog bespreken</option>
-          </select>
-        </label>
-      </p>
-
-      <button class="button" type="submit">Verstuur intake</button>
-
-    </form>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    © 2025 — ONEPAGE websites
-  </div>
-</footer>
+  </footer>
 
 </body>
 </html>
