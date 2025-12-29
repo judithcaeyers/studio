@@ -7,443 +7,343 @@
   <meta name="description" content="Heldere onepage websites voor zelfstandigen. Snel, zonder gedoe. €800 excl. btw." />
 
   <style>
-    :root{
-      --ink:#101010;
-      --muted:#5e5e5e;
-      --line:rgba(0,0,0,.10);
-      --maxw: 980px;
-
-      /* Color bands (subtle, “Squarespace-ish”) */
-      --bg0:#fbfaf7;   /* warm off-white */
-      --bg1:#f3f6ff;   /* pale blue */
-      --bg2:#f7f1ff;   /* pale lilac */
-      --bg3:#f1fbf6;   /* pale mint */
-      --bg4:#fff6ea;   /* pale peach */
-
-      /* Accents */
-      --accent:#1a3cff;       /* clean blue */
-      --accent-2:#111;        /* for invert hover */
-      --card:#ffffffcc;       /* translucent card */
-      --shadow: 0 10px 30px rgba(0,0,0,.06);
-      --radius: 22px;
+    :root {
+      --bg: #fafafa;
+      --ink: #111;
+      --muted: #666;
+      --line: #e5e5e5;
+      --maxw: 960px;
     }
 
     * { box-sizing: border-box; }
 
-    body{
-      margin:0;
-      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      color:var(--ink);
-      background:var(--bg0);
-      line-height:1.55;
-    }
-
-    .wrap{
-      max-width:var(--maxw);
-      margin:0 auto;
-      padding: 0 24px;
-    }
-
-    /* Typography */
-    h1{
-      font-size:clamp(38px,6vw,60px);
-      font-weight:560;
-      letter-spacing:-0.03em;
-      margin:0 0 18px;
-    }
-    h2{
-      font-size: 30px;
-      font-weight:560;
-      letter-spacing:-0.01em;
-      margin:0 0 14px;
-    }
-    h3{
-      font-size: 18px;
-      font-weight:560;
-      margin:0 0 8px;
-    }
-
-    p{
-      margin:0 0 14px;
-      max-width: 720px;
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Helvetica, Arial, sans-serif;
       color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
     }
 
-    .lead{
-      font-size: 20px;
-      color: var(--muted);
-      max-width: 760px;
-      margin-bottom: 26px;
-    }
-
-    /* Links */
-    a{
-      color: var(--accent);
+    a {
+      color: inherit;
       text-decoration: none;
-      border-bottom: 1px solid rgba(26,60,255,.35);
+      border-bottom: 1px solid var(--ink);
     }
-    a:hover{ border-bottom-color: rgba(26,60,255,.8); }
 
-    /* Sections / color bands */
-    .band{
-      padding: 84px 0;
+    header {
+      padding: 96px 24px 72px;
       border-bottom: 1px solid var(--line);
     }
-    .band.hero{ padding: 110px 0 92px; }
 
-    .bg0{ background: var(--bg0); }
-    .bg1{ background: var(--bg1); }
-    .bg2{ background: var(--bg2); }
-    .bg3{ background: var(--bg3); }
-    .bg4{ background: var(--bg4); }
-
-    /* Card container to give that premium “block” feel */
-    .panel{
-      background: var(--card);
-      border: 1px solid rgba(0,0,0,.06);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 34px;
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
     }
 
-    /* Grid */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
-      margin-top: 26px;
-    }
-
-    ul{
-      padding:0;
-      margin: 10px 0 0;
-      list-style:none;
-      color: var(--ink);
-    }
-    ul li{ margin-bottom: 8px; color: var(--ink); }
-
-    .kicker{
-      display:inline-block;
-      font-size: 12px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      color: rgba(0,0,0,.55);
-      margin-bottom: 16px;
-    }
-
-    .price{
-      font-size: 34px;
-      font-weight: 620;
+    h1 {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 500;
       letter-spacing: -0.02em;
-      margin: 16px 0 8px;
+      margin: 0 0 24px;
     }
-    .subnote{
-      font-size: 14px;
+
+    h2 {
+      font-size: 28px;
+      font-weight: 500;
+      margin: 0 0 16px;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0 0 8px;
+    }
+
+    p {
+      margin: 0 0 16px;
+      max-width: 680px;
+    }
+
+    .lead {
+      font-size: 20px;
       color: var(--muted);
-      margin-bottom: 14px;
+      max-width: 720px;
     }
 
-    /* Buttons */
-    .button{
-      display:inline-block;
-      padding: 14px 18px;
+    section {
+      padding: 72px 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+    }
+
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-size: 32px;
+      font-weight: 500;
+      margin: 16px 0;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 14px 22px;
+      border: 1px solid var(--ink);
       border-radius: 999px;
-      border: 1px solid rgba(26,60,255,.35);
-      background: rgba(26,60,255,.06);
-      color: var(--accent);
       font-size: 14px;
-      transition: transform .12s, background .2s, color .2s, border-color .2s;
-    }
-    .button:hover{
-      transform: translateY(-1px);
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
+      transition: background .2s, color .2s;
     }
 
-    .button.dark{
-      border-color: rgba(0,0,0,.18);
-      background: rgba(0,0,0,.04);
-      color: var(--ink);
-    }
-    .button.dark:hover{
-      background: var(--accent-2);
-      color: white;
-      border-color: var(--accent-2);
+    .button:hover {
+      background: var(--ink);
+      color: var(--bg);
     }
 
-    /* Form */
-    form p{ margin: 0 0 18px; }
-    label{ font-size: 14px; color: rgba(0,0,0,.78); }
+    /* FORM */
 
-    input, textarea, select{
-      width:100%;
-      padding: 12px 12px;
-      border-radius: 12px;
-      border: 1px solid rgba(0,0,0,.12);
-      background: rgba(255,255,255,.75);
+    form p {
+      margin-bottom: 20px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px;
       font-family: inherit;
       font-size: 14px;
-      outline: none;
-      transition: border-color .2s, background .2s;
-      margin-top: 8px;
-    }
-    textarea{ resize: vertical; }
-
-    input:focus, textarea:focus, select:focus{
-      border-color: rgba(26,60,255,.45);
-      background: rgba(255,255,255,.95);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: white;
     }
 
-    /* Footer */
-    footer{
-      padding: 44px 0 64px;
-      color: rgba(0,0,0,.55);
+    textarea {
+      resize: vertical;
+    }
+
+    label {
       font-size: 14px;
     }
 
-    /* Small */
-    @media (max-width: 640px){
-      .band.hero{ padding: 86px 0 70px; }
-      .band{ padding: 64px 0; }
-      .panel{ padding: 24px; }
-      h2{ font-size: 26px; }
+    footer {
+      padding: 48px 24px 72px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      header { padding-top: 72px; }
+      section { padding: 56px 24px; }
     }
   </style>
 </head>
 
 <body>
 
-<!-- HERO -->
-<section class="band hero bg0">
+<header>
   <div class="wrap">
-    <span class="kicker">ONEPAGE WEBSITES</span>
-    <h1>Helder online, zonder gedoe.</h1>
+    <h1>Heldere onepage websites<br>voor zelfstandigen</h1>
     <p class="lead">
-      Ik maak onepage websites voor zelfstandigen die geen zin hebben in een traject,
-      maar wél in een pagina die klopt: duidelijk, rustig, professioneel en meteen bruikbaar.
+      Geen traject. Geen gedoe.  
+      Eén duidelijke pagina die uitlegt wat je doet en mensen toelaat je te contacteren.
     </p>
     <a class="button" href="#contact">Check of dit past</a>
-    <a class="button dark" style="margin-left:10px;" href="#aanbod">Bekijk het aanbod</a>
   </div>
-</section>
+</header>
 
-<!-- WHAT -->
-<section class="band bg1" id="wat">
+<section>
   <div class="wrap">
-    <div class="panel">
-      <span class="kicker">WAT JE KRIJGT</span>
-      <h2>Een pagina die uitlegt wat je doet</h2>
-      <p>
-        Veel zelfstandigen kunnen hun werk perfect doen,
-        maar krijgen het moeilijk helder uitgelegd online.
-      </p>
-      <p>
-        Daarom bouwen we één overzichtelijke pagina die:
-      </p>
-      <ul>
-        <li>— meteen duidelijk maakt wat je aanbiedt</li>
-        <li>— vertrouwen uitstraalt zonder drukte</li>
-        <li>— mensen vlot laat contacteren</li>
-        <li>— en daarna gewoon werkt</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- OFFER -->
-<section class="band bg2" id="aanbod">
-  <div class="wrap">
-    <span class="kicker">HET AANBOD</span>
-    <h2>ONEPAGE</h2>
-    <p class="lead" style="max-width:780px;">
-      Snel, afgebakend en professioneel. Geen workshop, geen eindeloze feedback — wél een heldere website.
+    <h2>Wat ik maak</h2>
+    <p>
+      Veel zelfstandigen weten perfect wat ze doen,
+      maar krijgen het moeilijk helder uitgelegd online.
     </p>
+    <p>
+      Ik maak één overzichtelijke website die:
+    </p>
+    <ul>
+      <li>— duidelijk maakt wat je aanbiedt</li>
+      <li>— vertrouwen uitstraalt</li>
+      <li>— mensen vlot laat contacteren</li>
+      <li>— en daarna gewoon werkt</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Het aanbod</h2>
 
     <div class="grid">
-      <div class="panel">
-        <h3>Prijs</h3>
-        <div class="price">€800</div>
-        <div class="subnote">excl. btw — oplevering binnen 10 dagen</div>
+      <div>
+        <h3>ONEPAGE</h3>
+        <p>
+          Eén pagina met vaste structuur,
+          mobiel & desktop geoptimaliseerd.
+        </p>
+        <p class="price">€800 excl. btw</p>
         <ul>
-          <li>— 1 pagina met vaste structuur</li>
-          <li>— mobiel & desktop geoptimaliseerd</li>
-          <li>— basis SEO (vindbaar op naam/activiteit)</li>
-          <li>— contactformulier + mail/telefoon</li>
+          <li>— vaste opbouw</li>
+          <li>— basis SEO</li>
+          <li>— contactformulier</li>
           <li>— live gezet op jouw domein</li>
+          <li>— oplevering binnen 10 dagen</li>
         </ul>
       </div>
 
-      <div class="panel">
+      <div>
         <h3>Zo werkt het</h3>
         <ul>
-          <li><strong>1.</strong> Intake (30 min) — jij vertelt, ik structureer</li>
-          <li><strong>2.</strong> Eerste versie binnen enkele dagen</li>
-          <li><strong>3.</strong> Eén feedbackronde</li>
-          <li><strong>4.</strong> Online & klaar</li>
+          <li>1. Intake (30 min)</li>
+          <li>2. Eerste versie binnen enkele dagen</li>
+          <li>3. Eén feedbackronde</li>
+          <li>4. Online & klaar</li>
         </ul>
-        <a class="button" href="#intake" style="margin-top:18px;">Start met intake</a>
       </div>
 
-      <div class="panel">
+      <div>
         <h3>Dit is het niet</h3>
         <ul>
           <li>— geen brandingtraject</li>
           <li>— geen logo-ontwerp</li>
           <li>— geen webshop</li>
           <li>— geen meertaligheid</li>
-          <li>— geen eindeloze feedbackrondes</li>
+          <li>— geen eindeloze feedback</li>
         </ul>
-        <p class="subnote" style="margin-top:14px;">
-          Heb je later meer nodig? Dan kan dat — maar dit aanbod is er om snel helder online te staan.
-        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FOR WHO -->
-<section class="band bg3" id="voorwie">
+<section>
   <div class="wrap">
-    <div class="panel">
-      <span class="kicker">VOOR WIE</span>
-      <h2>Ideaal voor zelfstandigen die…</h2>
-      <div class="grid" style="margin-top:18px;">
-        <div>
-          <h3>Een duidelijke dienst aanbieden</h3>
-          <p style="color:var(--muted);">Je hoeft niet alles te doen. Één heldere propositie is genoeg.</p>
-        </div>
-        <div>
-          <h3>Al klanten hebben (maar online vaag zijn)</h3>
-          <p style="color:var(--muted);">Je wil dat mensen je sneller begrijpen en durven contacteren.</p>
-        </div>
-        <div>
-          <h3>Geen zin hebben in digitale complexiteit</h3>
-          <p style="color:var(--muted);">Je wil iets dat werkt, zonder projectmanagement erbij.</p>
-        </div>
-      </div>
-    </div>
+    <h2>Voor wie</h2>
+    <ul>
+      <li>— zelfstandigen met een duidelijke dienst</li>
+      <li>— mensen die al klanten hebben</li>
+      <li>— wie helderheid wil, geen complexiteit</li>
+      <li>— wie snel beslissingen durft nemen</li>
+    </ul>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section class="band bg4" id="contact">
+<section id="contact">
   <div class="wrap">
-    <span class="kicker">CONTACT</span>
-    <h2>Mail of intake — wat het makkelijkst is</h2>
-    <p class="lead">
-      Twijfel je of dit past bij jouw activiteit?  
-      Kies de optie die voor jou het minst gedoe geeft.
+    <h2>Contact</h2>
+    <p>
+      Twijfel je of dit past?<br>
+      Kies wat voor jou het makkelijkst is.
     </p>
 
-    <div class="grid" style="max-width:920px;">
-      <div class="panel">
-        <h3>Stuur een mail</h3>
-        <p style="color:var(--muted);">
-          Kort en informeel is perfect: wat doe je, voor wie, en waarom nu?
-        </p>
-        <a class="button" href="mailto:jouw@email.be">Mail me</a>
-        <p class="subnote" style="margin-top:14px;">
-          Vervang <strong>jouw@email.be</strong> door je echte mail.
-        </p>
+    <div class="grid" style="max-width:720px; margin-top:32px;">
+      <div>
+        <h3>Mail me</h3>
+        <p>Kort en informeel is perfect.</p>
+        <a class="button" href="mailto:jouw@email.be">Stuur een mail</a>
       </div>
 
-      <div class="panel">
-        <h3>Vul het intakeformulier in</h3>
-        <p style="color:var(--muted);">
-          Liever wat meer structuur? Dit helpt mij snel inschatten of ONEPAGE klopt voor jou.
-        </p>
+      <div>
+        <h3>Snelle intake</h3>
+        <p>Liever wat meer structuur?</p>
         <a class="button" href="#intake">Ga naar intake</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- INTAKE -->
-<section class="band bg0" id="intake">
+<section id="intake">
   <div class="wrap">
-    <div class="panel">
-      <span class="kicker">SNELLE INTAKE</span>
-      <h2>Even scherpstellen</h2>
-      <p class="lead" style="max-width:760px;">
-        Beantwoord wat je kan. Beknopt is perfect.  
-        Dit helpt mij vooral om te zien: is dit een onepager, of zit er meer complexiteit onder?
+    <h2>Snelle intake</h2>
+
+    <p>
+      Dit helpt mij inschatten of het ONEPAGE-aanbod
+      voor jou de juiste stap is.
+    </p>
+
+    <form action="https://formspree.io/f/xxxxxx" method="POST" style="max-width:640px; margin-top:40px;">
+
+      <p>
+        <label>Naam<br>
+          <input type="text" name="name" required>
+        </label>
       </p>
 
-      <form action="https://formspree.io/f/xxxxxx" method="POST" style="max-width:720px; margin-top:26px;">
-        <p>
-          <label>Naam
-            <input type="text" name="name" required />
-          </label>
-        </p>
+      <p>
+        <label>E-mail<br>
+          <input type="email" name="email" required>
+        </label>
+      </p>
 
-        <p>
-          <label>E-mail
-            <input type="email" name="email" required />
-          </label>
-        </p>
+      <p>
+        <label>Wat is je activiteit?<br>
+          <textarea name="activity" rows="3" required></textarea>
+        </label>
+      </p>
 
-        <p>
-          <label>Wat is je activiteit als zelfstandige?
-            <textarea name="activity" rows="3" placeholder="Wat doe je concreet, in 1–2 zinnen?" required></textarea>
-          </label>
-        </p>
+      <p>
+        <label>Voor wie werk je?<br>
+          <textarea name="audience" rows="2"></textarea>
+        </label>
+      </p>
 
-        <p>
-          <label>Voor wie werk je vandaag?
-            <textarea name="audience" rows="2" placeholder="Wie zijn je klanten?"></textarea>
-          </label>
-        </p>
+      <p>
+        <label>Wat moet je website vooral doen?<br>
+          <textarea name="goal" rows="3"></textarea>
+        </label>
+      </p>
 
-        <p>
-          <label>Wat moet je website vooral doen?
-            <textarea name="goal" rows="3" placeholder="bv. vertrouwen wekken, helder uitleggen, contact mogelijk maken"></textarea>
-          </label>
-        </p>
+      <p>
+        <label>Heb je al een website?<br>
+          <select name="existing_site">
+            <option value="">— kies —</option>
+            <option>nee</option>
+            <option>ja, maar ontevreden</option>
+            <option>ja, maar verouderd</option>
+          </select>
+        </label>
+      </p>
 
-        <p>
-          <label>Heb je vandaag al een website?
-            <select name="existing_site">
-              <option value="">— kies —</option>
-              <option>nee</option>
-              <option>ja, maar ontevreden</option>
-              <option>ja, maar verouderd</option>
-            </select>
-          </label>
-        </p>
+      <p>
+        <label>Timing<br>
+          <select name="timing">
+            <option value="">— kies —</option>
+            <option>zo snel mogelijk</option>
+            <option>binnen 1 maand</option>
+            <option>nog niet dringend</option>
+          </select>
+        </label>
+      </p>
 
-        <p>
-          <label>Timing
-            <select name="timing">
-              <option value="">— kies —</option>
-              <option>zo snel mogelijk</option>
-              <option>binnen 1 maand</option>
-              <option>nog niet dringend</option>
-            </select>
-          </label>
-        </p>
+      <p>
+        <label>Budget<br>
+          <select name="budget">
+            <option value="">— kies —</option>
+            <option>€800 excl. btw is oké</option>
+            <option>ik wil dit nog bespreken</option>
+          </select>
+        </label>
+      </p>
 
-        <p>
-          <label>Budget
-            <select name="budget">
-              <option value="">— kies —</option>
-              <option>€800 excl. btw is oké</option>
-              <option>ik wil dit nog bespreken</option>
-            </select>
-          </label>
-        </p>
+      <button class="button" type="submit">Verstuur intake</button>
 
-        <button class="button" type="submit">Verstuur intake</button>
-
-        <p class="subnote" style="margin-top:14px;">
-          Tip: maak een gratis Formspree-form en vervang de <strong>xxxxxx</strong> in de action-url.
-        </p>
-      </form>
-    </div>
+    </form>
   </div>
 </section>
 
-<footer class="bg0">
+<footer>
   <div class="wrap">
     © 2025 — ONEPAGE websites
   </div>
