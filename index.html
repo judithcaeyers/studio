@@ -384,18 +384,38 @@
     <div class="wrap">
       <h2>Wat ik doe</h2>
       <p>
-        Veel zelfstandigen weten perfect wat ze doen.
-        Alleen online blijft het vaak vaag, rommelig of onaf.
-      </p>
-      <p>Ik maak één overzichtelijke pagina die:</p>
-      <ul>
-        <li>— meteen duidelijk maakt wat je aanbiedt</li>
-        <li>— vertrouwen uitstraalt zonder drukte</li>
-        <li>— mensen toelaat je te contacteren</li>
-        <li>— en daarna gewoon blijft werken</li>
-      </ul>
+        <p>
+  Veel zelfstandigen weten perfect wat ze doen, maar online blijft het vaak vaag,
+  rommelig of onaf. Ik maak één overzichtelijke pagina die
+  <span class="mark">in één oogopslag duidelijk maakt wat je aanbiedt</span>,
+  <span class="mark">vertrouwen uitstraalt zonder drukte</span>,
+  <span class="mark">mensen toelaat je vlot te contacteren</span>
+  en <span class="mark">daarna gewoon blijft werken</span>,
+  zonder dat je er voortdurend naar moet omkijken.
+</p>
+
     </div>
   </section>
+
+  .mark {
+  position: relative;
+  display: inline-block;
+  padding: 0 2px;
+}
+
+.mark::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  bottom: 0.15em;
+  height: 0.6em;
+  background: #859C72;
+  opacity: 0.35;
+  z-index: -1;
+  border-radius: 3px;
+}
+
 
   <!-- OFFER -->
   <section id="aanbod">
