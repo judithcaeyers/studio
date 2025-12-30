@@ -23,11 +23,13 @@
       --line: #e5e5e5;
       --maxw: 960px;
 
+      --brand: #859C72;
+
       /* Footer */
       --footer-bg: #859C72;
---footer-ink: #ffffff;
---footer-muted: rgba(255,255,255,0.75);
-
+      --footer-ink: #ffffff;
+      --footer-muted: rgba(255,255,255,0.75);
+    }
 
     * { box-sizing: border-box; }
 
@@ -83,6 +85,7 @@
       text-transform: none;
       border-bottom: none;
       display: inline-block;
+      color: var(--ink);
     }
 
     /* Nav */
@@ -112,13 +115,8 @@
       transition: transform 0.2s ease;
     }
 
-    .nav a.active::after {
-      transform: scaleX(1);
-    }
-
-    .nav a:hover::after {
-      transform: scaleX(1);
-    }
+    .nav a.active::after { transform: scaleX(1); }
+    .nav a:hover::after  { transform: scaleX(1); }
 
     header {
       padding: 72px 24px 72px;
@@ -130,17 +128,16 @@
       margin: 0 auto;
     }
 
-    /* H1 in Kaftan */
+    /* H1 in Kaftan + brand color */
     h1 {
-  font-family: "Kaftan", serif;
-  font-size: clamp(38px, 6vw, 56px);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.1;
-  margin: 0 0 18px;
-  color: #859C72;
-}
-
+      font-family: "Kaftan", serif;
+      font-size: clamp(38px, 6vw, 56px);
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      margin: 0 0 18px;
+      color: var(--brand);
+    }
 
     h2 {
       font-size: 28px;
@@ -169,12 +166,33 @@
     section {
       padding: 72px 24px;
       border-bottom: 1px solid var(--line);
-      scroll-margin-top: 96px; /* prevents anchor hiding under sticky header */
+      scroll-margin-top: 96px;
+    }
+
+    /* Marker emphasis */
+    .mark {
+      position: relative;
+      display: inline-block;
+      padding: 0 2px;
+      z-index: 0;
+    }
+
+    .mark::before {
+      content: "";
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      bottom: 0.15em;
+      height: 0.6em;
+      background: var(--brand);
+      opacity: 0.35;
+      z-index: -1;
+      border-radius: 3px;
     }
 
     /* Aanbod background image + overlay */
     #aanbod {
-      background-image: url("assets/images/water.jpg");
+      background-image: url("assets/images/green.jpg");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -225,9 +243,7 @@
       list-style: none;
     }
 
-    ul li {
-      margin-bottom: 8px;
-    }
+    ul li { margin-bottom: 8px; }
 
     .price {
       font-size: 32px;
@@ -280,7 +296,7 @@
       background: var(--footer-bg);
       color: var(--footer-ink);
       padding: 72px 24px 96px;
-      border-top: 1px solid rgba(255,255,255,.08);
+      border-top: 1px solid rgba(255,255,255,.18);
     }
 
     footer .wrap {
@@ -303,11 +319,11 @@
     }
 
     footer a {
-      border-bottom: 1px solid rgba(255,255,255,.3);
+      border-bottom: 1px solid rgba(255,255,255,.4);
     }
 
     footer a:hover {
-      border-bottom-color: rgba(255,255,255,.8);
+      border-bottom-color: rgba(255,255,255,.9);
     }
 
     .footer-actions {
@@ -384,38 +400,16 @@
     <div class="wrap">
       <h2>Wat ik doe</h2>
       <p>
-        <p>
-  Veel zelfstandigen weten perfect wat ze doen, maar online blijft het vaak vaag,
-  rommelig of onaf. Ik maak één overzichtelijke pagina die
-  <span class="mark">in één oogopslag duidelijk maakt wat je aanbiedt</span>,
-  <span class="mark">vertrouwen uitstraalt zonder drukte</span>,
-  <span class="mark">mensen toelaat je vlot te contacteren</span>
-  en <span class="mark">daarna gewoon blijft werken</span>,
-  zonder dat je er voortdurend naar moet omkijken.
-</p>
-
+        Veel zelfstandigen weten perfect wat ze doen, maar online blijft het vaak vaag,
+        rommelig of onaf. Ik maak één overzichtelijke pagina die
+        <span class="mark">in één oogopslag duidelijk maakt wat je aanbiedt</span>,
+        <span class="mark">vertrouwen uitstraalt zonder drukte</span>,
+        <span class="mark">mensen toelaat je vlot te contacteren</span>
+        en <span class="mark">daarna gewoon blijft werken</span>,
+        zonder dat je er voortdurend naar moet omkijken.
+      </p>
     </div>
   </section>
-
-  .mark {
-  position: relative;
-  display: inline-block;
-  padding: 0 2px;
-}
-
-.mark::before {
-  content: "";
-  position: absolute;
-  left: -2px;
-  right: -2px;
-  bottom: 0.15em;
-  height: 0.6em;
-  background: #859C72;
-  opacity: 0.35;
-  z-index: -1;
-  border-radius: 3px;
-}
-
 
   <!-- OFFER -->
   <section id="aanbod">
