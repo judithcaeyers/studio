@@ -143,6 +143,21 @@
       gap: 32px;
     }
 
+    /* Equal height columns in aanbod */
+#aanbod .grid > div {
+  background: rgba(255,255,255,0.7); /* subtiel kaartgevoel */
+  padding: 28px;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#aanbod .grid > div > *:last-child {
+  margin-top: auto;
+}
+
+
     ul {
       padding: 0;
       margin: 0;
