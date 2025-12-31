@@ -239,41 +239,83 @@
     .annot.circle svg    { height: 2.2em; }
 
     /* ================= Aanbod (beeld, zonder overlay) ================= */
-    #aanbod {
-      background-image: url("assets/images/water.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      padding-top: 96px;
-      padding-bottom: 96px;
-    }
+/* --- ONEPAGE: strakker card-raster --- */
+#aanbod .grid {
+  align-items: stretch;
+}
 
-    /* Cards in aanbod */
-    #aanbod .grid > div {
-      background: rgba(255,255,255,0.88);
-      padding: 28px;
-      border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-    }
+#aanbod .grid > div {
+  background: rgba(255,255,255,0.9);
+  padding: 28px;
+  border-radius: 16px;
 
-    #aanbod .grid > div > *:last-child {
-      margin-top: auto;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 12px;              /* netjes ritme van boven naar onder */
+}
 
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
+/* Titels en tekst consistent */
+#aanbod h3 {
+  margin: 0;
+}
 
-    ul li { margin-bottom: 8px; }
+#aanbod p {
+  margin: 0;
+}
 
-    .price {
-      font-size: 32px;
-      font-weight: 500;
-      margin: 16px 0 10px;
-    }
+/* Bullet lists met bolletjes */
+#aanbod ul {
+  list-style: disc;
+  padding-left: 18px;     /* ruimte voor bolletjes */
+  margin: 0;
+}
+
+#aanbod ul li {
+  margin: 6px 0;
+}
+
+/* Prijs: kleiner, maar omcirkeld */
+.price {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 6px 0 2px;
+}
+
+/* Badge rond prijs */
+.price-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 14px;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+
+  color: var(--ink);
+  background: rgba(255,255,255,0.6);
+  width: fit-content;
+}
+
+/* Optioneel: subtiel “handgetekende” ring */
+.price-badge {
+  position: relative;
+}
+.price-badge::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border: 2px solid var(--accent);
+  border-radius: 999px;
+  transform: rotate(-2deg);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* Maak alle cards gelijk in opbouw:
+   eindig altijd met een "spacer" zodat bullets mooi uitlijnen */
+.card-spacer {
+  flex: 1;
+}
 
     /* ================= Form ================= */
     form p { margin: 0 0 20px; }
@@ -425,46 +467,59 @@
         Geen traject, geen eindeloze discussies.
       </p>
 
-      <div class="grid">
-        <div>
-          <h3>Wat je krijgt</h3>
-          <p>
-            Een compacte website die uitlegt wat je doet
-            en mensen vlot laat doorsturen naar contact.
-          </p>
-          <p class="price">€800 excl. btw</p>
-          <ul>
-            <li>— 1 pagina met vaste opbouw</li>
-            <li>— mobiel & desktop geoptimaliseerd</li>
-            <li>— basis SEO</li>
-            <li>— contactformulier + mail/telefoon</li>
-            <li>— live gezet op jouw domein</li>
-            <li>— klaar binnen 10 dagen</li>
-          </ul>
-        </div>
+ <div class="grid">
+  <div>
+    <h3>Wat je krijgt</h3>
+    <p>Een compacte onepager die helder uitlegt wat je doet en mensen vlot naar contact leidt.</p>
 
-        <div>
-          <h3>Zo werkt het</h3>
-          <ul>
-            <li>1. Korte intake (30 min)</li>
-            <li>2. Eerste versie binnen enkele dagen</li>
-            <li>3. Eén feedbackronde</li>
-            <li>4. Online en klaar</li>
-          </ul>
-        </div>
+    <div class="price-badge">
+      <span class="price">€800 excl. btw</span>
+    </div>
 
-        <div>
-          <h3>Dit is het niet</h3>
-          <ul>
-            <li>— geen brandingtraject</li>
-            <li>— geen logo-ontwerp</li>
-            <li>— geen webshop</li>
-            <li>— geen meertaligheid</li>
-            <li>— geen eindeloze feedbackrondes</li>
-          </ul>
-          <p class="note">Dat is waarom dit aanbod werkt: helder, afgebakend, klaar.</p>
-        </div>
-      </div>
+    <div class="card-spacer"></div>
+
+    <ul>
+      <li>1 pagina met vaste opbouw</li>
+      <li>Mobiel & desktop geoptimaliseerd</li>
+      <li>Basis SEO</li>
+      <li>Contactformulier + mail/telefoon</li>
+      <li>Live gezet op jouw domein</li>
+      <li>Klaar binnen 10 dagen</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3>Zo werkt het</h3>
+    <p>Kort, afgebakend, snel. Je hoeft nergens “in” te stappen.</p>
+
+    <div class="card-spacer"></div>
+
+    <ul>
+      <li>Korte intake (30 min)</li>
+      <li>Eerste versie binnen enkele dagen</li>
+      <li>Eén feedbackronde</li>
+      <li>Online & klaar</li>
+    </ul>
+  </div>
+
+  <div>
+    <h3>Dit is het niet</h3>
+    <p>Dit aanbod werkt net omdat het klein en afgelijnd blijft.</p>
+
+    <div class="card-spacer"></div>
+
+    <ul>
+      <li>Geen brandingtraject</li>
+      <li>Geen logo-ontwerp</li>
+      <li>Geen webshop</li>
+      <li>Geen meertaligheid</li>
+      <li>Geen eindeloze feedbackrondes</li>
+    </ul>
+
+    <p class="note">Als je dat wél nodig hebt, zeg het gerust — dan verwijs ik of maken we een ander voorstel.</p>
+  </div>
+</div>
+
     </div>
   </section>
 
