@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 
+
+  
   <style>
     :root{
       --bg:#fafafa;
@@ -20,6 +22,15 @@
       --maxw:960px;
 
       --accent:#6D905F;
+
+      
+@font-face {
+  font-family: "Black Mango";
+  src: url("assets/fonts/Black Mango Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
       --font-heading:"Hanken Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       --font-body:"Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
@@ -73,13 +84,14 @@
       align-items:center;
     }
 
-    .brand-text{
-      font-family:var(--font-heading);
-      font-weight:600;
-      font-size:22px;
-      letter-spacing:0.02em;
-      line-height:1;
-    }
+    .brand-text {
+  font-family: "Black Mango", serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
 
     .nav{
       display:flex;
