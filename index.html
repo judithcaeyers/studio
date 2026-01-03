@@ -4,16 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Studio Marie Josee — Onepage websites voor zelfstandigen</title>
-  <meta name="description" content="Een heldere onepage website, gewoon geregeld. Vaste structuur, één feedbackronde, klaar binnen 10 dagen." />
+  <meta name="description" content="Eenvoudige onepage website voor zelfstandigen. €800 excl. btw. Daarna hosting + domein vanaf €5/maand." />
 
-  <!-- Google Fonts -->
+  <!-- Google Fonts (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-
-  
   <style>
+    /* Local font (Headings) */
+    @font-face {
+      font-family: "Black Mango";
+      src: url("assets/fonts/Black Mango Regular.ttf") format("truetype");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root{
       --bg:#fafafa;
       --ink:#111;
@@ -23,16 +30,7 @@
 
       --accent:#6D905F;
 
-      
-@font-face {
-  font-family: "Black Mango";
-  src: url("assets/fonts/Black Mango Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-      --font-heading:"Hanken Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      --font-heading:"Black Mango", serif;
       --font-body:"Inter", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 
       --footer-bg: var(--accent);
@@ -55,7 +53,7 @@
     a{
       color:inherit;
       text-decoration:none;
-      border-bottom:1px solid var(--ink);
+      border-bottom:1px solid currentColor;
     }
 
     /* Sticky Topbar */
@@ -84,19 +82,18 @@
       align-items:center;
     }
 
-    .brand-text {
-  font-family: "Black Mango", serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 1;
-  letter-spacing: 0.02em;
-}
-
+    .brand-text{
+      font-family: var(--font-heading);
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
 
     .nav{
       display:flex;
       gap:16px;
-      font-family:var(--font-heading);
+      font-family:var(--font-body);
       font-weight:500;
       font-size:14px;
     }
@@ -142,22 +139,23 @@
       margin:0 auto;
     }
 
+    /* Headings: Black Mango everywhere */
     h1,h2,h3{
       font-family:var(--font-heading);
-      font-weight:500;
-      letter-spacing:-0.01em;
+      font-weight:400;
+      letter-spacing:0.00em;
       margin:0 0 16px;
     }
 
     h1{
-      font-size:clamp(38px, 6vw, 56px);
-      line-height:1.1;
+      font-size:clamp(44px, 6vw, 64px);
+      line-height:1.04;
       color:var(--accent);
       margin:0 0 18px;
     }
 
-    h2{ font-size:28px; }
-    h3{ font-size:18px; margin-bottom:8px; }
+    h2{ font-size:34px; line-height:1.1; }
+    h3{ font-size:22px; margin-bottom:10px; line-height:1.15; }
 
     p{
       max-width:720px;
@@ -165,7 +163,7 @@
     }
 
     .lead{
-      font-size:20px;
+      font-size:18px;
       color:var(--muted);
       max-width:760px;
       margin:0 0 18px;
@@ -185,6 +183,7 @@
       border:1px solid var(--ink);
       border-radius:999px;
       font-size:14px;
+      font-weight:600;
       border-bottom:none;
       transition: background .2s, color .2s, transform .12s;
     }
@@ -199,11 +198,24 @@
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
-      gap:32px;
+      gap:28px;
       align-items:stretch;
     }
 
-    /* MARKER (dikke stift underline/omcirkeling + scroll animatie) */
+    .card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:26px;
+      background:#fff;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .card p{ margin:0; }
+    .card ul{ margin:0; }
+
+    /* MARKER annotations */
     .annot{
       position:relative;
       display:inline-block;
@@ -238,80 +250,125 @@
       animation:draw .85s ease-out forwards;
     }
 
-    @keyframes draw{
-      to { stroke-dashoffset:0; }
-    }
+    @keyframes draw{ to { stroke-dashoffset:0; } }
 
     .annot.underline svg{ height:1.2em; top:75%; }
     .annot.circle svg{ height:2.2em; }
 
-    /* Aanbod (beeld, zonder overlay) */
+    /* Aanbod: green.JPG background + white text */
     #aanbod{
+      position:relative;
+      color:#fff;
       background-image:url("assets/images/green.JPG");
       background-size:cover;
       background-position:center;
       background-repeat:no-repeat;
       padding-top:96px;
       padding-bottom:96px;
+      border-bottom:1px solid rgba(255,255,255,0.16);
     }
 
-    #aanbod .grid > div{
-      background:rgba(255,255,255,0.92);
-      padding:28px;
-      border-radius:16px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
+    /* Optional subtle overlay for readability (still "text white on image") */
+    #aanbod::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,0.38);
+      pointer-events:none;
     }
 
-    /* Cards consistent */
-    #aanbod .grid > div p{ margin:0; }
-    #aanbod .grid > div h3{ margin:0; }
+    #aanbod .wrap{
+      position:relative;
+      z-index:1;
+    }
 
-    /* Bullets with dots */
+    #aanbod h2, #aanbod h3, #aanbod p, #aanbod li{
+      color:#fff;
+    }
+
+    #aanbod .lead{
+      color:rgba(255,255,255,0.86);
+      max-width:760px;
+    }
+
+    #aanbod a{
+      border-bottom:1px solid rgba(255,255,255,0.7);
+    }
+
+    #aanbod .offer-grid{
+      margin-top:28px;
+    }
+
+    /* Offer cards on background: transparent + white border */
+    #aanbod .card{
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.18);
+      backdrop-filter: blur(6px);
+    }
+
     #aanbod ul{
       list-style:disc;
       padding-left:18px;
-      margin:0;
     }
-    #aanbod ul li{ margin:6px 0; }
 
-    .card-spacer{ flex:1; }
+    #aanbod ul li{
+      margin:6px 0;
+      color:rgba(255,255,255,0.92);
+    }
 
-    /* Price: smaller but circled */
     .price-badge{
       display:inline-flex;
       align-items:center;
       justify-content:center;
       width:fit-content;
       padding:10px 14px;
-      border:2px solid var(--accent);
+      border:2px solid rgba(255,255,255,0.9);
       border-radius:999px;
-      background:rgba(255,255,255,0.6);
+      background:rgba(0,0,0,0.14);
       position:relative;
+      margin-top:10px;
     }
 
     .price-badge::after{
       content:"";
       position:absolute;
       inset:-6px;
-      border:2px solid var(--accent);
+      border:2px solid rgba(255,255,255,0.75);
       border-radius:999px;
       transform:rotate(-2deg);
-      opacity:0.45;
+      opacity:0.35;
       pointer-events:none;
     }
 
     .price{
-      font-family:var(--font-heading);
-      font-weight:600;
-      font-size:16px;
+      font-family:var(--font-body);
+      font-weight:700;
+      font-size:15px;
       margin:0;
+      color:#fff;
+      letter-spacing:0.01em;
+    }
+
+    #aanbod .button{
+      border-color:rgba(255,255,255,0.92);
+      color:#fff;
+      background:transparent;
+    }
+
+    #aanbod .button:hover{
+      background:#fff;
+      color:#0b0b0b;
+      transform:translateY(-1px);
+    }
+
+    /* Contact grid */
+    .contact-grid{
+      max-width:760px;
+      margin-top:32px;
     }
 
     /* Forms */
     form p{ margin:0 0 20px; }
-
     input,textarea,select{
       width:100%;
       padding:12px;
@@ -323,12 +380,10 @@
       outline:none;
       transition:border-color .15s ease, box-shadow .15s ease;
     }
-
     input:focus,textarea:focus,select:focus{
       border-color:rgba(17,17,17,0.35);
       box-shadow:0 0 0 4px rgba(109,144,95,0.18);
     }
-
     textarea{ resize:vertical; }
     label{ font-size:14px; }
 
@@ -348,11 +403,10 @@
 
     footer h3{
       font-family:var(--font-heading);
-      font-size:16px;
-      font-weight:600;
+      font-size:22px;
+      font-weight:400;
       margin:0 0 12px;
       color:var(--footer-ink);
-      letter-spacing:-0.01em;
     }
 
     footer p, footer a{
@@ -402,8 +456,9 @@
       header{ padding-top:56px; }
       section{ padding:56px 24px; }
       #aanbod{ padding-top:72px; padding-bottom:72px; }
-      .brand-text{ font-size:20px; }
+      .brand-text{ font-size:22px; }
       .nav{ gap:12px; }
+      h1{ font-size:clamp(40px, 9vw, 56px); }
     }
   </style>
 </head>
@@ -418,8 +473,8 @@
       </a>
 
       <nav class="nav" aria-label="Navigatie">
+        <a href="#wat" data-nav="wat">Wat</a>
         <a href="#aanbod" data-nav="aanbod">Aanbod</a>
-        <a href="#intake" data-nav="intake">Intake</a>
         <a href="#contact" data-nav="contact">Contact</a>
       </nav>
     </div>
@@ -428,90 +483,136 @@
   <!-- Hero -->
   <header>
     <div class="wrap">
-      <h1>Een heldere website,<br>gewoon geregeld.</h1>
+      <h1>Een website die zegt wat je doet.<br>En daarna rustig blijft.</h1>
       <p class="lead">
-        Ik maak onepage websites voor zelfstandigen die geen zin hebben in een traject,
-        maar wel in iets dat klopt en af is.
+        Ik maak eenvoudige onepage websites voor zelfstandigen die geen zin hebben in trajecten,
+        vergaderingen of digitale rommel — maar wel in een website die klopt, af is en werkt.
       </p>
-      <a class="button" href="#contact">Check of dit past</a>
+      <a class="button" href="#contact">Contacteer mij</a>
+      <p class="note">Kort bericht is genoeg. Geen pitch nodig.</p>
     </div>
   </header>
 
   <!-- Wat -->
   <section id="wat">
     <div class="wrap">
-      <h2>Wat ik doe</h2>
+      <h2>Wat ik maak</h2>
       <p>
-        Veel zelfstandigen weten perfect wat ze doen, maar online blijft het vaak vaag,
-        rommelig of onaf. Ik maak één overzichtelijke pagina die
-        <span class="annot underline">in één oogopslag duidelijk maakt wat je aanbiedt</span>,
-        <span class="annot circle">vertrouwen uitstraalt zonder drukte</span>,
-        <span class="annot underline">mensen toelaat je vlot te contacteren</span>
-        en <span class="annot circle">daarna gewoon blijft werken</span>,
-        zonder dat je er voortdurend naar moet omkijken.
+        Veel zelfstandigen zijn sterk in hun vak, maar online blijft het vaak vaag, te druk of onaf.
+        Ik maak <span class="annot underline">één overzichtelijke pagina</span> die
+        <span class="annot circle">meteen duidelijk maakt wat je doet</span>,
+        <span class="annot underline">vertrouwen uitstraalt zonder te overdrijven</span>,
+        <span class="annot circle">mensen vlot naar contact leidt</span>
+        en daarna gewoon blijft werken.
       </p>
+
+      <div class="grid" style="margin-top:28px;">
+        <div class="card">
+          <h3>Dit is voor jou als</h3>
+          <ul>
+            <li>je zelfstandig werkt (starter of al even bezig)</li>
+            <li>je geen zin hebt in een lang webtraject</li>
+            <li>je liever snel iets goed hebt dan ooit iets perfect</li>
+            <li>je vooral bereikbaar en duidelijk wil zijn</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Dit is het niet als</h3>
+          <ul>
+            <li>je een branding- of positioneringstraject zoekt</li>
+            <li>je een webshop nodig hebt</li>
+            <li>je meerdere talen wil</li>
+            <li>je graag blijft bijsturen zonder einde</li>
+          </ul>
+          <p class="note" style="margin-top:8px;">En dat is oké — dan zeg ik dat ook.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Aanbod -->
   <section id="aanbod">
     <div class="wrap">
-      <h2>ONEPAGE</h2>
+      <h2>Onepage website</h2>
       <p class="lead">
-        Eén pagina. Vaste structuur. Eén feedbackronde.
-        Geen traject, geen eindeloze discussies.
+        Eén pagina. Eén structuur. Eén feedbackronde. Geen gedoe. Wel helder.
       </p>
 
-      <div class="grid">
-        <div>
+      <div class="grid offer-grid">
+        <div class="card">
           <h3>Wat je krijgt</h3>
-          <p>Een compacte onepager die helder uitlegt wat je doet en mensen vlot naar contact leidt.</p>
+          <p>
+            Een compacte website die helder uitlegt wat je doet en mensen uitnodigt om contact op te nemen.
+          </p>
 
           <div class="price-badge" aria-label="Vaste prijs">
-            <p class="price">Vaste prijs: €800 excl. btw</p>
+            <p class="price">€800 excl. btw — vaste prijs</p>
           </div>
 
-          <div class="card-spacer"></div>
-
-          <ul>
-            <li>1 pagina met vaste opbouw</li>
+          <ul style="margin-top:14px;">
+            <li>1 onepage website met vaste opbouw</li>
             <li>Mobiel & desktop geoptimaliseerd</li>
             <li>Basis SEO</li>
-            <li>Contactformulier + mail/telefoon</li>
+            <li>Contact via mail & telefoon</li>
             <li>Live gezet op jouw domein</li>
             <li>Klaar binnen 10 dagen</li>
           </ul>
+
+          <div style="margin-top:18px;">
+            <a class="button" href="#contact">Contacteer mij om te starten</a>
+          </div>
         </div>
 
-        <div>
+        <div class="card">
+          <h3>Na oplevering</h3>
+          <p>Je kiest hoeveel ondersteuning je wil. Simpel.</p>
+
+          <div style="margin-top:10px;">
+            <p style="margin:0 0 10px;"><strong>Optie 1 — Hosting zonder service</strong></p>
+            <div class="price-badge" aria-label="Hosting zonder service">
+              <p class="price">€5 / maand excl. btw</p>
+            </div>
+            <ul style="margin-top:12px;">
+              <li>Hosting + domein</li>
+              <li>Website blijft online</li>
+              <li>Geen inhoudelijke service</li>
+              <li>Aanpassingen aan regietarief per uur</li>
+            </ul>
+          </div>
+
+          <div style="margin-top:18px;">
+            <p style="margin:0 0 10px;"><strong>Optie 2 — Hosting mét service</strong></p>
+            <div class="price-badge" aria-label="Hosting met service">
+              <p class="price">€30 / maand excl. btw</p>
+            </div>
+            <ul style="margin-top:12px;">
+              <li>Hosting + domein</li>
+              <li>Kleine aanpassingen inbegrepen</li>
+              <li>Tekst wijzigen, knop aanpassen, info toevoegen</li>
+              <li>Grotere wijzigingen altijd in overleg</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
           <h3>Zo werkt het</h3>
-          <p>Kort, afgebakend, snel. Je hoeft nergens “in” te stappen.</p>
-
-          <div class="card-spacer"></div>
-
-          <ul>
-            <li>Korte intake (30 min)</li>
+          <p>Kort, afgebakend, snel.</p>
+          <ul style="margin-top:10px;">
+            <li>Je contacteert mij</li>
+            <li>Korte intake (± 30 min)</li>
             <li>Eerste versie binnen enkele dagen</li>
             <li>Eén feedbackronde</li>
-            <li>Online & klaar</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>Dit is het niet</h3>
-          <p>Dit aanbod werkt net omdat het klein en afgelijnd blijft.</p>
-
-          <div class="card-spacer"></div>
-
-          <ul>
-            <li>Geen brandingtraject</li>
-            <li>Geen logo-ontwerp</li>
-            <li>Geen webshop</li>
-            <li>Geen meertaligheid</li>
-            <li>Geen eindeloze feedbackrondes</li>
+            <li>Website online</li>
           </ul>
 
-          <p class="note">Als je dat wél nodig hebt, zeg het gerust — dan verwijs ik door of maken we een ander voorstel.</p>
+          <p class="note" style="color:rgba(255,255,255,0.82); margin-top:12px;">
+            Liever eerst aftoetsen of dit past? Stuur me gewoon een kort bericht.
+          </p>
+
+          <div style="margin-top:18px;">
+            <a class="button" href="#contact">Contacteer mij</a>
+          </div>
         </div>
       </div>
     </div>
@@ -520,19 +621,19 @@
   <!-- Contact -->
   <section id="contact">
     <div class="wrap">
-      <h2>Contact</h2>
-      <p>Twijfel je of dit iets voor jou is? Dat is normaal.</p>
-      <p>Kies wat voor jou het makkelijkst is.</p>
+      <h2>Klaar om dit gewoon geregeld te hebben?</h2>
+      <p>Twijfel is normaal. Je hoeft het nog niet zeker te weten.</p>
+      <p>Stuur mij een kort bericht en ik zeg je eerlijk of dit aanbod past bij wat je nodig hebt.</p>
 
-      <div class="grid" style="max-width:720px; margin-top:32px;">
-        <div>
+      <div class="grid contact-grid">
+        <div class="card">
           <h3>Mail me</h3>
           <p>Kort bericht is genoeg. Geen pitch nodig.</p>
-          <a class="button" href="mailto:hi@burobon.be">Stuur een mail</a>
+          <a class="button" href="mailto:hi@burobon.be">Contacteer mij</a>
           <p class="note">Of mail rechtstreeks: <strong>hi@burobon.be</strong></p>
         </div>
 
-        <div>
+        <div class="card">
           <h3>Snelle intake</h3>
           <p>Liever wat meer structuur? Dit helpt mij snel zien of dit een onepager kan zijn.</p>
           <a class="button" href="#intake">Ga naar intake</a>
@@ -562,8 +663,8 @@
         </p>
 
         <p>
-          <label>Wat is je activiteit?<br>
-            <textarea name="activity" rows="3" placeholder="Wat doe je concreet, in 1–2 zinnen?" required></textarea>
+          <label>Wat doe je concreet?<br>
+            <textarea name="activity" rows="3" placeholder="Wat doe je, in 1–2 zinnen?" required></textarea>
           </label>
         </p>
 
@@ -625,7 +726,7 @@
     <div class="wrap">
       <div>
         <h3>Studio Marie Josee</h3>
-        <p>Heldere onepage websites voor zelfstandigen. Geen traject. Geen gedoe.</p>
+        <p>Heldere onepage websites voor zelfstandigen. Geen gedoe. Geen ruis.</p>
 
         <p style="margin-top:16px;">
           <strong>Contact</strong><br>
@@ -638,8 +739,8 @@
       <div>
         <h3>Verder</h3>
         <div class="footer-actions">
+          <a class="button" href="#wat">Wat</a>
           <a class="button" href="#aanbod">Aanbod</a>
-          <a class="button" href="#intake">Snelle intake</a>
           <a class="button" href="#contact">Contact</a>
         </div>
       </div>
