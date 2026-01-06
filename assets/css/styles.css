@@ -1,0 +1,360 @@
+/* ===============================
+   1) DESIGN TOKENS (Vitrien)
+================================ */
+:root{
+  --fg:#111;
+  --muted:#6f6f6f;
+  --line:#e9e9e9;
+  --max:1200px;
+
+  --ff-sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --ff-serif: "EB Garamond", serif;
+  --ff-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* ===============================
+   2) RESET / BASIS
+================================ */
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  color:var(--fg);
+  background:#fff;
+  font-family:var(--ff-sans);
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:geometricPrecision;
+}
+img{ display:block; max-width:100%; height:auto; }
+a{ color:inherit; text-decoration:none; }
+a:hover{ text-decoration:underline; text-underline-offset:4px; }
+
+section{ padding:80px 0; }
+.section-line{ border-top:1px solid var(--line); }
+
+.container{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:0 20px;
+}
+
+h1,h2{ font-family:var(--ff-serif); font-weight:400; margin:0 0 12px; }
+h1{ font-size:clamp(40px,6vw,72px); line-height:1.05; margin-bottom:18px; }
+h2{ font-size:clamp(26px,3.6vw,42px); line-height:1.15; }
+
+p{ margin:0 0 12px; color:var(--fg); }
+.lead{ font-size:18px; max-width:72ch; color:rgba(17,17,17,.85); margin-bottom:18px; }
+.lead-small{ font-size:16px; max-width:72ch; color:rgba(17,17,17,.85); }
+
+.meta{
+  font-family:var(--ff-mono);
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:12px;
+}
+
+.note{
+  margin-top:14px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+/* ===============================
+   3) HEADER + NAV (Vitrien)
+================================ */
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.95);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:saturate(160%) blur(8px);
+}
+
+.nav{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:16px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+}
+
+.brand{ display:flex; align-items:center; gap:10px; }
+.brand img{ height:45px; width:auto; display:block; }
+.brand-text{
+  font-family:var(--ff-serif);
+  font-size:24px;
+  letter-spacing:.02em;
+}
+
+.menu{
+  display:flex;
+  gap:22px;
+  align-items:center;
+}
+
+.menu a{
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  opacity:.9;
+}
+
+.menu a:hover{
+  text-decoration:underline;
+  text-underline-offset:4px;
+}
+
+/* ===============================
+   4) MOBILE DRAWER
+================================ */
+.drawer{ display:none; }
+
+.burger{
+  display:none;
+  border:1px solid var(--line);
+  background:transparent;
+  padding:8px 10px;
+  cursor:pointer;
+}
+.burger span{
+  display:block;
+  width:22px;
+  height:1.5px;
+  background:var(--fg);
+  margin:4px 0;
+}
+
+@media (max-width: 860px){
+  .menu{ display:none; }
+  .burger{ display:block; }
+
+  .drawer{
+    position:fixed;
+    inset:64px 16px auto 16px;
+    background:#fff;
+    border:1px solid var(--line);
+    padding:8px;
+  }
+  .drawer a{
+    display:block;
+    padding:14px 10px;
+    border-bottom:1px solid var(--line);
+    text-transform:uppercase;
+    font-size:13px;
+    letter-spacing:.11em;
+  }
+  .drawer a:last-child{ border-bottom:none; }
+  .drawer.open{ display:block; }
+}
+
+/* ===============================
+   5) BUTTONS (Vitrien-ish)
+================================ */
+.btn-row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+
+.btn{
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:10px;
+  font-family:var(--ff-mono);
+  font-size:12px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  border:1px solid var(--line);
+  background:#fff;
+  cursor:pointer;
+}
+.btn:hover{ text-decoration:underline; text-underline-offset:3px; }
+
+.btn-primary{ background:#fff; }
+.btn-outline{ background:#fff; }
+
+.mono-link{
+  font-family:var(--ff-mono);
+  font-size:12px;
+  text-transform:uppercase;
+  text-decoration:underline;
+  text-underline-offset:3px;
+}
+
+/* ===============================
+   6) LAYOUT HELPERS
+================================ */
+.grid{ display:grid; gap:40px; }
+.two-col{ grid-template-columns:1fr; }
+@media (min-width:900px){ .two-col{ grid-template-columns:1fr 1fr; } }
+
+/* ===============================
+   7) PANELS / CARDS / LISTS
+================================ */
+.panel{
+  border:1px solid var(--line);
+  padding:18px;
+  background:#fff;
+}
+
+.cards{
+  margin-top:18px;
+  display:grid;
+  gap:14px;
+  grid-template-columns:1fr;
+}
+.cards-3{ grid-template-columns:1fr; }
+@media (min-width:900px){
+  .cards-3{ grid-template-columns:1fr 1fr 1fr; }
+}
+
+.card{
+  border:1px solid var(--line);
+  padding:18px;
+  background:#fff;
+}
+
+.card-kicker{
+  font-family:var(--ff-mono);
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:rgba(17,17,17,.78);
+  margin-bottom:10px;
+}
+
+.price{
+  margin:0 0 10px;
+  font-family:var(--ff-mono);
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  color:var(--muted);
+}
+
+.list{
+  margin:12px 0 0;
+  padding-left:18px;
+  color:rgba(17,17,17,.85);
+}
+.list li{ margin:6px 0; }
+
+/* ===============================
+   8) STEPS
+================================ */
+.steps{
+  margin-top:18px;
+  display:grid;
+  gap:14px;
+  grid-template-columns:1fr;
+}
+@media (min-width:900px){
+  .steps{ grid-template-columns:1fr 1fr; }
+}
+@media (min-width:1200px){
+  .steps{ grid-template-columns:1fr 1fr 1fr 1fr; }
+}
+.step{
+  border:1px solid var(--line);
+  padding:18px;
+  background:#fff;
+}
+.step-n{
+  font-family:var(--ff-mono);
+  font-size:12px;
+  color:var(--muted);
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+.step-t{
+  font-family:var(--ff-serif);
+  font-weight:400;
+  font-size:18px;
+  margin-bottom:8px;
+}
+
+/* ===============================
+   9) WORK GRID (grote beelden + caption)
+================================ */
+.work-grid{
+  margin-top:18px;
+  display:grid;
+  gap:14px;
+  grid-template-columns:1fr;
+}
+@media (min-width:900px){
+  .work-grid{ grid-template-columns:1fr 1fr; }
+}
+@media (min-width:1200px){
+  .work-grid{ grid-template-columns:1fr 1fr 1fr; }
+}
+.work-card{
+  border:1px solid var(--line);
+  background:#fff;
+  overflow:hidden;
+}
+.work-img{
+  height:260px;
+  border-bottom:1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.06), rgba(0,0,0,0)),
+    radial-gradient(1200px 420px at 30% 30%, rgba(0,0,0,.08), rgba(0,0,0,0));
+}
+.work-body{ padding:16px; }
+.work-title{
+  font-family:var(--ff-serif);
+  font-size:20px;
+  margin:0 0 6px;
+}
+
+/* ===============================
+   10) FAQ
+================================ */
+details{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:16px 18px;
+  margin:12px 0;
+}
+summary{
+  cursor:pointer;
+  font-family:var(--ff-mono);
+  font-size:12px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(17,17,17,.86);
+  list-style:none;
+}
+summary::-webkit-details-marker{ display:none; }
+.answer{
+  margin-top:12px;
+  color:rgba(17,17,17,.85);
+  max-width:72ch;
+}
+
+/* ===============================
+   11) HERO
+================================ */
+.hero{ padding-top:92px; }
+@media (max-width:860px){
+  .hero{ padding-top:72px; }
+}
+
+/* ===============================
+   12) FOOTER
+================================ */
+footer{ border-top:1px solid var(--line); }
+.footer-inner{
+  max-width:var(--max);
+  margin:0 auto;
+  padding:22px 20px;
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  flex-wrap:wrap;
+  color:#777;
+  font-size:12px;
+}
