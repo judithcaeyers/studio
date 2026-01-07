@@ -358,3 +358,20 @@ footer{ border-top:1px solid var(--line); }
   color:#777;
   font-size:12px;
 }
+
+/* ===============================
+   Alternating section background
+================================ */
+
+section:nth-of-type(even){
+  background-image: url("../images/cardboard.jpg");
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: top left;
+}
+
+/* zorg dat borders zichtbaar blijven */
+section.section-line{
+  background-clip: padding-box;
+}
+
