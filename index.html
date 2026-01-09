@@ -1,34 +1,112 @@
+
 <!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>[Harry & Sally] — Een website, maar dan af.</title>
-  <meta name="description" content="Heldere websites voor zelfstandigen en kleine studio’s met talent, ambitie en goesting. Eén structuur. Eén feedbackronde. Duidelijk begin en einde. Afgerond en overgedragen." />
+  <meta name="description" content="Heldere websites voor ondernemers. Eén structuur. Eén feedbackronde. Duidelijk begin en einde. Afgerond en overgedragen." />
 
-  <!-- VITRIEN fonts -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/styles.css">
+
+  <!-- Mini theme overrides (voor Sally-mode) -->
+  <style>
+    /* default: Harry (normaal) */
+    body{
+      background: var(--bg, #fff);
+      color: var(--fg, #111);
+    }
+
+    /* Sally: inverted */
+    body.mode-sally{
+      background:#000;
+      color:#fff;
+    }
+    body.mode-sally a{ color:#fff; }
+    body.mode-sally .section-line{ border-color: rgba(255,255,255,.18); }
+    body.mode-sally .panel,
+    body.mode-sally .card,
+    body.mode-sally details{
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.14);
+    }
+    body.mode-sally .meta{ color: rgba(255,255,255,.75); }
+    body.mode-sally .note{ color: rgba(255,255,255,.72); }
+
+    /* swap logo/menu positions in header */
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    body.mode-sally .nav{
+      flex-direction: row-reverse; /* swap left/right */
+    }
+
+    /* simple toggle pill */
+    .hs-toggle{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+      letter-spacing: .02em;
+      white-space: nowrap;
+    }
+    .hs-toggle a{
+      text-decoration:none;
+      padding:8px 10px;
+      border:1px solid rgba(17,17,17,.18);
+      border-radius:999px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      opacity:.9;
+    }
+    .hs-toggle a[aria-current="page"]{
+      opacity:1;
+      border-color: rgba(17,17,17,.35);
+    }
+    body.mode-sally .hs-toggle a{
+      border-color: rgba(255,255,255,.22);
+    }
+    body.mode-sally .hs-toggle a[aria-current="page"]{
+      border-color: rgba(255,255,255,.45);
+    }
+
+    /* Sally intro block (hidden in Harry mode) */
+    .sally-intro{ display:none; }
+    body.mode-sally .sally-intro{ display:block; }
+
+    /* Harry hero stays visible in Harry mode; optional: keep both but swap lead text */
+    body.mode-sally .hero .meta{ opacity:.9; }
+  </style>
 </head>
 
 <body>
-  <!-- HEADER (Vitrien style) -->
+  <!-- HEADER -->
   <header>
     <nav class="nav" aria-label="Hoofdnavigatie">
-      <a href="#top" class="brand">
-        <!-- optie A: tekstlogo -->
+      <!-- Brand (clickable, but we add Harry/Sally "tabs" next to it) -->
+      <a href="#top" class="brand" onclick="setMode('harry'); return false;">
         <span class="brand-text">[Harry & Sally]</span>
-
-        <!-- optie B: beeldlogo -->
-        <!-- <img src="assets/img/logo.png" alt="[Harry & Sally] logo"> -->
       </a>
+
+      <!-- Harry / Sally toggle -->
+      <div class="hs-toggle" role="navigation" aria-label="Kies focus">
+        <a href="#top" id="btn-harry" aria-current="page" onclick="setMode('harry'); return false;">Harry</a>
+        <a href="#top" id="btn-sally" onclick="setMode('sally'); return false;">Sally</a>
+      </div>
 
       <div class="menu" role="menubar">
         <a href="#aanpak">Aanpak</a>
-        <a href="#aanbod">Aanbod</a>
+        <a href="#pricing">Aanbod</a>
         <a href="#werk">Werk</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Kennismaken</a>
@@ -41,7 +119,7 @@
 
     <div class="drawer" id="drawer" aria-hidden="true">
       <a href="#aanpak" onclick="toggleDrawer()">Aanpak</a>
-      <a href="#aanbod" onclick="toggleDrawer()">Aanbod</a>
+      <a href="#pricing" onclick="toggleDrawer()">Aanbod</a>
       <a href="#werk" onclick="toggleDrawer()">Werk</a>
       <a href="#faq" onclick="toggleDrawer()">FAQ</a>
       <a href="#contact" onclick="toggleDrawer()">Kennismaken</a>
@@ -52,13 +130,31 @@
     <!-- HERO -->
     <section class="hero">
       <div class="container">
-        <div class="meta">Voor zelfstandigen en kleine studio’s</div>
+        <div class="meta">Voor ondernemers die weten wat ze doen, maar het niet scherp krijgen online.</div>
+
         <h1>Een website,<br>maar dan af.</h1>
+
         <p class="lead">
           Ik maak heldere websites voor ondernemers met talent, ambitie en goesting.
           Helder denkwerk, vertaald naar één structuur. Eén feedbackronde. Een duidelijk begin en een duidelijk einde.
           Alles netjes afgerond en overgedragen.
         </p>
+
+        <!-- Sally intro: only shows in Sally mode -->
+        <div class="sally-intro" style="margin-top:18px;">
+          <p class="lead" style="margin-bottom:10px;">
+            Sally is het deel van de studio waar het niet over “een website maken” gaat,
+            maar over <strong>complexiteit terug helder krijgen</strong>.
+          </p>
+          <ul class="list" style="max-width:70ch;">
+            <li><strong>Reststromen</strong> → kansen zien waar anderen afval zien</li>
+            <li><strong>Systeemontwerp</strong> → processen versimpelen en laten werken</li>
+            <li><strong>Product & concept</strong> → van idee naar iets dat echt kan bestaan</li>
+          </ul>
+          <p class="note" style="margin-top:10px;">
+            Minder “marketing”, meer “design als denkwerk”.
+          </p>
+        </div>
 
         <div class="btn-row">
           <a class="btn btn-primary" href="#contact">Starten</a>
@@ -100,9 +196,7 @@
 
           <aside class="panel">
             <h2>Wat je krijgt</h2>
-            <p>
-              Een rustige, professionele website die je werk draagt — zonder drama.
-            </p>
+            <p>Een rustige, professionele website die je werk draagt — zonder drama.</p>
             <ul class="list">
               <li>Helder denkwerk → één structuur</li>
               <li>Copy en inhoud scherp gezet (met jouw stem)</li>
@@ -355,6 +449,30 @@
       const open = d.classList.toggle("open");
       d.setAttribute("aria-hidden", open ? "false" : "true");
     }
+
+    // Harry/Sally mode switching
+    function setMode(mode){
+      const isSally = mode === "sally";
+      document.body.classList.toggle("mode-sally", isSally);
+
+      const harry = document.getElementById("btn-harry");
+      const sally = document.getElementById("btn-sally");
+      harry.setAttribute("aria-current", isSally ? "false" : "page");
+      sally.setAttribute("aria-current", isSally ? "page" : "false");
+
+      // store preference
+      try { localStorage.setItem("hs-mode", mode); } catch(e){}
+    }
+
+    // restore mode on load
+    (function(){
+      let mode = "harry";
+      try {
+        mode = localStorage.getItem("hs-mode") || "harry";
+      } catch(e){}
+      setMode(mode);
+    })();
   </script>
 </body>
 </html>
+
