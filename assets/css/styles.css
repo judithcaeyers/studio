@@ -1,5 +1,5 @@
 /* ===============================
-   1) DESIGN TOKENS (Vitrien)
+   1) DESIGN TOKENS
 ================================ */
 :root{
   --fg:#111;
@@ -63,7 +63,7 @@ p{ margin:0 0 12px; color:var(--fg); }
 }
 
 /* ===============================
-   3) HEADER + NAV (Vitrien)
+   3) HEADER + NAV
 ================================ */
 header{
   position:sticky;
@@ -154,7 +154,7 @@ header{
 }
 
 /* ===============================
-   5) BUTTONS (Vitrien-ish)
+   5) BUTTONS
 ================================ */
 .btn-row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
 
@@ -277,7 +277,7 @@ header{
 }
 
 /* ===============================
-   9) WORK GRID (grote beelden + caption)
+   9) WORK GRID
 ================================ */
 .work-grid{
   margin-top:18px;
@@ -357,4 +357,237 @@ footer{ border-top:1px solid var(--line); }
   flex-wrap:wrap;
   color:#777;
   font-size:12px;
+}
+
+/* =========================================================
+   13) RHO / SIGMA TOGGLE PILL (header tabs)
+   (werkt zowel op 1-page als op 2-pagina setup)
+========================================================= */
+.hs-toggle{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  font-family:var(--ff-mono);
+  font-size:12px;
+  letter-spacing:.02em;
+  white-space: nowrap;
+}
+
+.hs-toggle a{
+  text-decoration:none;
+  padding:8px 10px;
+  border:1px solid rgba(17,17,17,.18);
+  border-radius:999px;
+  display:inline-flex;
+  align-items:center;
+  opacity:.92;
+}
+
+.hs-toggle a[aria-current="page"]{
+  opacity:1;
+  border-color: rgba(17,17,17,.35);
+}
+
+/* =========================================================
+   14) SIGMA MODE OVERRIDES (inverted + swapped header)
+   Zet op sigma.html: <body class="mode-Sigma">
+========================================================= */
+body.mode-Sigma{
+  background:#000;
+  color:#fff;
+}
+
+/* text colors */
+body.mode-Sigma p{ color: rgba(255,255,255,.92); }
+body.mode-Sigma .lead,
+body.mode-Sigma .lead-small{ color: rgba(255,255,255,.85); }
+body.mode-Sigma .meta{ color: rgba(255,255,255,.70); }
+body.mode-Sigma .note{ color: rgba(255,255,255,.68); }
+
+/* links + borders */
+body.mode-Sigma a{ color:#fff; }
+body.mode-Sigma .section-line{ border-color: rgba(255,255,255,.18); }
+body.mode-Sigma header{
+  background:rgba(0,0,0,.86);
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+body.mode-Sigma footer{ border-top:1px solid rgba(255,255,255,.14); }
+body.mode-Sigma .footer-inner{ color: rgba(255,255,255,.65); }
+
+/* swap logo/menu sides */
+body.mode-Sigma .nav{
+  flex-direction: row-reverse;
+}
+
+/* hamburger + drawer in Sigma */
+body.mode-Sigma .burger{
+  border-color: rgba(255,255,255,.18);
+}
+body.mode-Sigma .burger span{ background:#fff; }
+
+@media (max-width: 860px){
+  body.mode-Sigma .drawer{
+    background:#000;
+    border-color: rgba(255,255,255,.18);
+  }
+  body.mode-Sigma .drawer a{
+    border-bottom-color: rgba(255,255,255,.12);
+  }
+}
+
+/* panels/cards/details in Sigma */
+body.mode-Sigma .panel,
+body.mode-Sigma .card,
+body.mode-Sigma details,
+body.mode-Sigma .step,
+body.mode-Sigma .work-card{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.14);
+}
+
+body.mode-Sigma .card-kicker{ color: rgba(255,255,255,.80); }
+body.mode-Sigma .price{ color: rgba(255,255,255,.70); }
+body.mode-Sigma .list{ color: rgba(255,255,255,.85); }
+body.mode-Sigma summary{ color: rgba(255,255,255,.88); }
+body.mode-Sigma .answer{ color: rgba(255,255,255,.85); }
+
+/* toggle pill in Sigma */
+body.mode-Sigma .hs-toggle a{
+  border-color: rgba(255,255,255,.22);
+}
+body.mode-Sigma .hs-toggle a[aria-current="page"]{
+  border-color: rgba(255,255,255,.45);
+}
+
+/* =========================================================
+   15) SIGMA SECTION (hero + 2x3 cards)
+========================================================= */
+.sigma-hero{
+  padding-top:92px; /* match hero offset */
+  padding-bottom:28px;
+}
+@media (max-width:860px){
+  .sigma-hero{ padding-top:72px; }
+}
+
+.sigma-grid{
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap:14px;
+  margin-top:18px;
+}
+
+@media (max-width: 900px){
+  .sigma-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px){
+  .sigma-grid{ grid-template-columns: 1fr; }
+}
+
+.sigma-card{
+  position: relative;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,.14);
+  overflow: hidden;
+  min-height: 170px;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transform: translateY(0);
+  transition: transform .18s ease, border-color .18s ease;
+}
+
+.sigma-card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,.28);
+  text-decoration:none;
+}
+
+.sigma-card:focus-visible{
+  outline: 2px solid rgba(255,255,255,.55);
+  outline-offset: 3px;
+}
+
+.sigma-card .sigma-card-inner{
+  position:absolute;
+  inset:0;
+  padding:14px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  gap:6px;
+  background: linear-gradient(to top, rgba(0,0,0,.60), rgba(0,0,0,0));
+}
+
+.sigma-card .kicker{
+  font-family: var(--ff-mono);
+  font-size: 12px;
+  letter-spacing: .02em;
+  opacity: .92;
+  text-transform: uppercase;
+}
+
+.sigma-card .title{
+  font-family: var(--ff-serif);
+  font-size: 20px;
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+.sigma-card .desc{
+  font-size: 14px;
+  opacity: .86;
+  max-width: 44ch;
+}
+
+/* =========================================================
+   16) JAPANESE-INSPIRED GRADIENT "IMAGES"
+   (gebruik als class op .sigma-card)
+   bv: <a class="sigma-card g-japan-1" ...>
+========================================================= */
+.g-japan-1{
+  background:
+    radial-gradient(120% 120% at 20% 20%, #ff6f0e 0%, rgba(255,111,14,0) 55%),
+    radial-gradient(140% 120% at 70% 30%, #e7aaff 0%, rgba(231,170,255,0) 60%),
+    linear-gradient(135deg, #0b0b0b 0%, #000 100%);
+}
+.g-japan-2{
+  background:
+    radial-gradient(120% 120% at 30% 25%, #e3ff24 0%, rgba(227,255,36,0) 55%),
+    radial-gradient(120% 120% at 80% 60%, #cadfeb 0%, rgba(202,223,235,0) 58%),
+    linear-gradient(135deg, #0b0b0b 0%, #000 100%);
+}
+.g-japan-3{
+  background:
+    radial-gradient(110% 110% at 25% 70%, #f886fc 0%, rgba(248,134,252,0) 55%),
+    radial-gradient(130% 120% at 70% 25%, #fcdb86 0%, rgba(252,219,134,0) 60%),
+    linear-gradient(135deg, #0b0b0b 0%, #000 100%);
+}
+.g-japan-4{
+  background:
+    radial-gradient(120% 120% at 22% 25%, #cadfeb 0%, rgba(202,223,235,0) 60%),
+    radial-gradient(120% 120% at 70% 70%, #ff6f0e 0%, rgba(255,111,14,0) 55%),
+    linear-gradient(135deg, #0b0b0b 0%, #000 100%);
+}
+.g-japan-5{
+  background:
+    radial-gradient(120% 120% at 30% 30%, #fcdb86 0%, rgba(252,219,134,0) 58%),
+    radial-gradient(120% 120% at 75% 55%, #f886fc 0%, rgba(248,134,252,0) 56%),
+    linear-gradient(135deg, #0b0b0b 0%, #000 100%);
+}
+.g-japan-6{
+  background:
+    radial-gradient(120% 120% at 24% 60%, #e7aaff 0%, rgba(231,170,255,0) 55%),
+    radial-gradient(120% 120% at 78% 32%, #e3ff24 0%, rgba(227,255,36,0) 58%),
+    linear-gradient(135deg, #0b0b0b 0%, #000 100%);
+}
+
+/* =========================================================
+   17) SMALL QUALITY OF LIFE
+========================================================= */
+body.mode-Sigma .work-img{
+  border-bottom-color: rgba(255,255,255,.14);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,0)),
+    radial-gradient(1200px 420px at 30% 30%, rgba(255,255,255,.10), rgba(255,255,255,0));
 }
