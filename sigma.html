@@ -1,1 +1,255 @@
 
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rho & Sigma — Sigma</title>
+  <meta name="description" content="Sigma is het R&D-deel van Rho & Sigma: complexiteit terug helder krijgen via systeemontwerp, productdenken en reststromen." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body class="mode-Sigma">
+  <!-- HEADER -->
+  <header>
+    <nav class="nav" aria-label="Hoofdnavigatie">
+      <!-- Brand -->
+      <a href="sigma.html#top" class="brand">
+        <span class="brand-text">Rho &amp; Sigma</span>
+      </a>
+
+      <!-- Rho / Sigma toggle (2-page setup) -->
+      <div class="hs-toggle" role="navigation" aria-label="Kies focus">
+        <a href="index.html">Rho</a>
+        <a href="sigma.html" aria-current="page">Sigma</a>
+      </div>
+
+      <div class="menu" role="menubar">
+        <a href="#focus">Focus</a>
+        <a href="#projects">Projecten</a>
+        <a href="#contact">Contact</a>
+        <a href="index.html">Terug naar Rho</a>
+      </div>
+
+      <button class="burger" aria-label="Open menu" onclick="toggleDrawer()">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <a href="#focus" onclick="toggleDrawer()">Focus</a>
+      <a href="#projects" onclick="toggleDrawer()">Projecten</a>
+      <a href="#contact" onclick="toggleDrawer()">Contact</a>
+      <a href="index.html" onclick="toggleDrawer()">Terug naar Rho</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- SIGMA HERO -->
+    <section class="sigma-hero">
+      <div class="container">
+        <div class="meta">Sigma</div>
+
+        <h1>
+          Minder “marketing”, meer<br/>
+          design als denkwerk.
+        </h1>
+
+        <p class="lead">
+          Sigma is het deel van de studio waar het niet over “een website maken” gaat,
+          maar over <strong>complexiteit terug helder krijgen</strong>.
+          We zoeken naar wat werkt: helderheid, structuur, een voorstel dat kan bestaan.
+        </p>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="#contact">Kennismaken</a>
+          <a class="btn btn-outline" href="#projects">Bekijk de richtingen</a>
+          <a class="btn btn-outline" href="index.html">Terug naar Rho</a>
+        </div>
+
+        <p class="note">R&amp;D met een rustige kop.</p>
+      </div>
+    </section>
+
+    <!-- FOCUS -->
+    <section class="section-line" id="focus">
+      <div class="container">
+        <div class="meta">Focus</div>
+
+        <div class="two-col grid">
+          <div>
+            <h2>Waar Sigma over gaat</h2>
+            <p>
+              Dit is de plek voor vragen waar “meer” niet helpt.
+              Waar je net een betere vorm, een slimmer systeem, of een ander uitgangspunt nodig hebt.
+            </p>
+
+            <div class="cards">
+              <article class="card">
+                <div class="card-kicker">Reststromen</div>
+                <p>Kansen zien waar anderen afval zien. Materiaal als startpunt, niet als bijzaak.</p>
+              </article>
+
+              <article class="card">
+                <div class="card-kicker">Systeemontwerp</div>
+                <p>Processen versimpelen zodat ze blijven werken wanneer het druk wordt.</p>
+              </article>
+
+              <article class="card">
+                <div class="card-kicker">Product &amp; concept</div>
+                <p>Van idee naar een voorstel dat kan bestaan: helder, concreet, testbaar.</p>
+              </article>
+            </div>
+          </div>
+
+          <aside class="panel">
+            <h2>Hoe het werkt</h2>
+            <p>Een klein traject. Veel scherpte. Eén richting.</p>
+            <ul class="list">
+              <li>Korte intake (wat is de echte vraag?)</li>
+              <li>1–2 “moves” (substract / herstructureren / herkaderen)</li>
+              <li>Prototype, schema of plan dat je kan gebruiken</li>
+              <li>Heldere next step (of stop)</li>
+            </ul>
+
+            <div class="btn-row" style="margin-top:14px;">
+              <a class="btn btn-primary" href="#contact">Check of het klikt</a>
+              <a class="btn btn-outline" href="index.html">Rho bekijken</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS / DIRECTIONS -->
+    <section class="section-line" id="projects">
+      <div class="container">
+        <div class="meta">Richtingen</div>
+
+        <h2>Waar je op kan klikken</h2>
+        <p class="lead-small" style="max-width:72ch;">
+          Zes “kaarten” — elk een visie of projectrichting.
+          Klikken mag nu nog gewoon naar contact (of later naar detailpagina’s).
+        </p>
+
+        <div class="sigma-grid">
+          <a class="sigma-card g-japan-1" href="#contact">
+            <div class="sigma-card-inner">
+              <div class="kicker">Visie</div>
+              <div class="title">Substract als superpower</div>
+              <div class="desc">Minder stappen. Minder ruis. Meer flow.</div>
+            </div>
+          </a>
+
+          <a class="sigma-card g-japan-2" href="#contact">
+            <div class="sigma-card-inner">
+              <div class="kicker">Project</div>
+              <div class="title">Reststroom → toepassing</div>
+              <div class="desc">Offsetplaten, hijsbanden, … materiaal als vertrekpunt.</div>
+            </div>
+          </a>
+
+          <a class="sigma-card g-japan-3" href="#contact">
+            <div class="sigma-card-inner">
+              <div class="kicker">Visie</div>
+              <div class="title">Systeem dat blijft werken</div>
+              <div class="desc">Niet perfect. Wel robuust.</div>
+            </div>
+          </a>
+
+          <a class="sigma-card g-japan-4" href="#contact">
+            <div class="sigma-card-inner">
+              <div class="kicker">Project</div>
+              <div class="title">Meubel als drager</div>
+              <div class="desc">Van experiment naar schaalbaar concept.</div>
+            </div>
+          </a>
+
+          <a class="sigma-card g-japan-5" href="#contact">
+            <div class="sigma-card-inner">
+              <div class="kicker">Visie</div>
+              <div class="title">Heldere keuze-architectuur</div>
+              <div class="desc">Zodat mensen sneller het juiste doen.</div>
+            </div>
+          </a>
+
+          <a class="sigma-card g-japan-6" href="#contact">
+            <div class="sigma-card-inner">
+              <div class="kicker">Project</div>
+              <div class="title">Tooling &amp; workflow design</div>
+              <div class="desc">Automatiseren waar het frictie wegneemt.</div>
+            </div>
+          </a>
+        </div>
+
+        <p class="note" style="margin-top:14px;">
+          Later kan elke kaart linken naar een eigen pagina (sigma-1.html, sigma-2.html, …).
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section-line" id="contact">
+      <div class="container">
+        <div class="meta">Contact</div>
+
+        <div class="two-col grid">
+          <div>
+            <h2>Kennismaken</h2>
+            <p>
+              Stuur me in 5 regels: wat je bouwt, waar je vastzit, en wat “af” zou betekenen.
+              Dan antwoord ik met een helder voorstel (of een eenvoudige next step).
+            </p>
+
+            <div class="btn-row" style="margin-top:14px;">
+              <a class="btn btn-primary" href="mailto:hello@[jouwdomein].be?subject=Sigma%20%E2%80%94%20kennismaken">Mail me</a>
+              <a class="btn btn-outline" href="#projects">Eerst kijken</a>
+              <a class="btn btn-outline" href="index.html">Terug naar Rho</a>
+            </div>
+
+            <p class="note">
+              Mail: <a class="mono-link" href="mailto:hello@[jouwdomein].be">hi@rhoandsigma.be</a><br/>
+              Instagram: <a class="mono-link" href="#">@[account]</a>
+            </p>
+          </div>
+
+          <aside class="panel">
+            <h2>Startinfo</h2>
+            <ul class="list">
+              <li>Wat is de context (1 zin)?</li>
+              <li>Wat is de frictie?</li>
+              <li>Wat heb je al geprobeerd?</li>
+              <li>Wat zou “succes” zijn?</li>
+              <li>Deadline of ritme?</li>
+            </ul>
+            <p class="note">Ik antwoord met 1 richting (en 1 volgende stap).</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> Rho &amp; Sigma</div>
+      <a href="#top">Naar boven</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function toggleDrawer(){
+      const d = document.getElementById("drawer");
+      const open = d.classList.toggle("open");
+      d.setAttribute("aria-hidden", open ? "false" : "true");
+    }
+  </script>
+</body>
+</html>
