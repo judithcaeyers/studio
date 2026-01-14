@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="nl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>[Rho & Sigma] — Een website, maar dan af.</title>
+  <title>Rho & Sigma — Een website, maar dan af.</title>
   <meta name="description" content="Heldere websites voor ondernemers. Eén structuur. Eén feedbackronde. Duidelijk begin en einde. Afgerond en overgedragen." />
 
   <!-- Fonts -->
@@ -13,95 +12,21 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="assets/css/styles.css">
-
-  <!-- Mini theme overrides (voor Sigma-mode) -->
-  <style>
-    /* default: Rho (normaal) */
-    body{
-      background: var(--bg, #fff);
-      color: var(--fg, #111);
-    }
-
-    /* Sigma: inverted */
-    body.mode-Sigma{
-      background:#000;
-      color:#fff;
-    }
-    body.mode-Sigma a{ color:#fff; }
-    body.mode-Sigma .section-line{ border-color: rgba(255,255,255,.18); }
-    body.mode-Sigma .panel,
-    body.mode-Sigma .card,
-    body.mode-Sigma details{
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.14);
-    }
-    body.mode-Sigma .meta{ color: rgba(255,255,255,.75); }
-    body.mode-Sigma .note{ color: rgba(255,255,255,.72); }
-
-    /* swap logo/menu positions in header */
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-    }
-    body.mode-Sigma .nav{
-      flex-direction: row-reverse; /* swap left/right */
-    }
-
-    /* simple toggle pill */
-    .hs-toggle{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      font-family: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      font-size: 12px;
-      letter-spacing: .02em;
-      white-space: nowrap;
-    }
-    .hs-toggle a{
-      text-decoration:none;
-      padding:8px 10px;
-      border:1px solid rgba(17,17,17,.18);
-      border-radius:999px;
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      opacity:.9;
-    }
-    .hs-toggle a[aria-current="page"]{
-      opacity:1;
-      border-color: rgba(17,17,17,.35);
-    }
-    body.mode-Sigma .hs-toggle a{
-      border-color: rgba(255,255,255,.22);
-    }
-    body.mode-Sigma .hs-toggle a[aria-current="page"]{
-      border-color: rgba(255,255,255,.45);
-    }
-
-    /* Sigma intro block (hidden in Rho mode) */
-    .Sigma-intro{ display:none; }
-    body.mode-Sigma .Sigma-intro{ display:block; }
-
-    /* Rho hero stays visible in Rho mode; optional: keep both but swap lead text */
-    body.mode-Sigma .hero .meta{ opacity:.9; }
-  </style>
 </head>
 
 <body>
   <!-- HEADER -->
   <header>
     <nav class="nav" aria-label="Hoofdnavigatie">
-      <!-- Brand (clickable, but we add Rho/Sigma "tabs" next to it) -->
-      <a href="#top" class="brand" onclick="setMode('Rho'); return false;">
-        <span class="brand-text">[Rho & Sigma]</span>
+      <!-- Brand -->
+      <a href="#top" class="brand">
+        <span class="brand-text">Rho &amp; Sigma</span>
       </a>
 
-      <!-- Rho / Sigma toggle -->
+      <!-- Rho / Sigma toggle (2-page setup) -->
       <div class="hs-toggle" role="navigation" aria-label="Kies focus">
-        <a href="#top" id="btn-Rho" aria-current="page" onclick="setMode('Rho'); return false;">Rho</a>
-        <a href="#top" id="btn-Sigma" onclick="setMode('Sigma'); return false;">Sigma</a>
+        <a href="index.html" aria-current="page">Rho</a>
+        <a href="sigma.html">Sigma</a>
       </div>
 
       <div class="menu" role="menubar">
@@ -132,28 +57,12 @@
       <div class="container">
         <div class="meta">Voor ondernemers die weten wat ze doen, maar het niet scherp krijgen online.</div>
 
-        <h1>Heldere websites voor ondernemers met ambitie en goesting.
-          Jouw ijzersterk werk, vertaald naar één structuur. Eén feedbackronde. Een duidelijk begin en einde.</h1>
+        <h1>
+          Heldere websites voor ondernemers met ambitie en goesting.
+          Jouw ijzersterk werk, vertaald naar één structuur. Eén feedbackronde. Een duidelijk begin en einde.
+        </h1>
 
-        <p class="lead">
-          Een website, maar dan af.
-        </p>
-
-        <!-- Sigma intro: only shows in Sigma mode -->
-        <div class="Sigma-intro" style="margin-top:18px;">
-          <p class="lead" style="margin-bottom:10px;">
-            Sigma is het deel van de studio waar het niet over “een website maken” gaat,
-            maar over <strong>complexiteit terug helder krijgen</strong>.
-          </p>
-          <ul class="list" style="max-width:70ch;">
-            <li><strong>Reststromen</strong> → kansen zien waar anderen afval zien</li>
-            <li><strong>Systeemontwerp</strong> → processen versimpelen en laten werken</li>
-            <li><strong>Product & concept</strong> → van idee naar iets dat echt kan bestaan</li>
-          </ul>
-          <p class="note" style="margin-top:10px;">
-            Minder “marketing”, meer “design als denkwerk”.
-          </p>
-        </div>
+        <p class="lead">Een website, maar dan af.</p>
 
         <div class="btn-row">
           <a class="btn btn-primary" href="#contact">Starten</a>
@@ -278,7 +187,7 @@
             <ul class="list">
               <li>helder denkwerk</li>
               <li>één duidelijke structuur</li>
-              <li>copy & design</li>
+              <li>copy &amp; design</li>
               <li>1 feedbackronde</li>
               <li>oplevering + overdracht</li>
             </ul>
@@ -291,7 +200,7 @@
             <ul class="list">
               <li>3–5 pagina’s</li>
               <li>één samenhangend verhaal</li>
-              <li>rust & structuur bewaken</li>
+              <li>rust &amp; structuur bewaken</li>
               <li>duidelijke afronding</li>
             </ul>
           </article>
@@ -307,7 +216,9 @@
           </article>
         </div>
 
-        <p class="note">Een website is hier geen doorlopend traject. Het is iets dat staat — en daarna weer ruimte maakt.</p>
+        <p class="note">
+          Een website is hier geen doorlopend traject. Het is iets dat staat — en daarna weer ruimte maakt.
+        </p>
       </div>
     </section>
 
@@ -412,7 +323,7 @@
             </div>
 
             <p class="note">
-              Mail: <a class="mono-link" href="mailto:hello@[jouwdomein].be">hi@Rho&Sigma.be</a><br/>
+              Mail: <a class="mono-link" href="mailto:hello@[jouwdomein].be">hi@rhoandsigma.be</a><br/>
               Instagram: <a class="mono-link" href="#">@[account]</a>
             </p>
           </div>
@@ -435,7 +346,7 @@
 
   <footer>
     <div class="footer-inner">
-      <div>© <span id="year"></span> [Rho & Sigma]</div>
+      <div>© <span id="year"></span> Rho &amp; Sigma</div>
       <a href="#top">Naar boven</a>
     </div>
   </footer>
@@ -448,30 +359,6 @@
       const open = d.classList.toggle("open");
       d.setAttribute("aria-hidden", open ? "false" : "true");
     }
-
-    // Rho/Sigma mode switching
-    function setMode(mode){
-      const isSigma = mode === "Sigma";
-      document.body.classList.toggle("mode-Sigma", isSigma);
-
-      const Rho = document.getElementById("btn-Rho");
-      const Sigma = document.getElementById("btn-Sigma");
-      Rho.setAttribute("aria-current", isSigma ? "false" : "page");
-      Sigma.setAttribute("aria-current", isSigma ? "page" : "false");
-
-      // store preference
-      try { localStorage.setItem("hs-mode", mode); } catch(e){}
-    }
-
-    // restore mode on load
-    (function(){
-      let mode = "Rho";
-      try {
-        mode = localStorage.getItem("hs-mode") || "Rho";
-      } catch(e){}
-      setMode(mode);
-    })();
   </script>
 </body>
 </html>
-
