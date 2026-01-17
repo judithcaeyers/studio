@@ -180,7 +180,7 @@ header{
 .brand-tab,
 .brand-sep{
   font-family: var(--ff-sans);
-  font-size: 14px;          /* of 19px als je iets meer presence wil */
+  font-size: 16px;          /* of 19px als je iets meer presence wil */
   letter-spacing: .01em;
   font-weight: 500;
   text-transform: none;
