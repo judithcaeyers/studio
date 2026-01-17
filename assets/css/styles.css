@@ -173,6 +173,30 @@ header{
   text-underline-offset:4px;
 }
 
+/* Forceer het logo-font op de klikbare delen */
+.brand,
+.brand-text,
+.brand-switch,
+.brand-tab,
+.brand-sep{
+  font-family: var(--ff-serif);
+  font-size: 24px;
+  letter-spacing: .02em;
+  text-transform: none;
+}
+
+/* Zorg dat de links niet “link-achtig” gaan renderen */
+.brand-tab{
+  text-decoration: none;
+  font-weight: 400;
+}
+.brand-tab:hover{
+  text-decoration: none;
+}
+
+.brand-switch{ gap: 7px; }
+.brand-sep{ opacity: .55; }
+
 /* ===============================
    4) MOBILE DRAWER
 ================================ */
