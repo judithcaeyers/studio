@@ -173,15 +173,16 @@ header{
   text-underline-offset:4px;
 }
 
-/* Forceer het logo-font op de klikbare delen */
+/* Logo = sans serif (bewust afwijkend van headings) */
 .brand,
 .brand-text,
 .brand-switch,
 .brand-tab,
 .brand-sep{
-  font-family: var(--ff-serif);
-  font-size: 24px;
-  letter-spacing: .02em;
+  font-family: var(--ff-sans);
+  font-size: 18px;          /* of 19px als je iets meer presence wil */
+  letter-spacing: .01em;
+  font-weight: 500;
   text-transform: none;
 }
 
