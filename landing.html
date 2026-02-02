@@ -5,63 +5,56 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Rho & Sigma</title>
 
-  <!-- Fonts (pas aan als je ze al lokaal host) -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --bg: #000;
-      --fg: #fff;
-      --ease: cubic-bezier(.2,.9,.2,1);
-      --dur: 700ms;
+      --bg:#000;
+      --fg:#fff;
+      --ease:cubic-bezier(.2,.9,.2,1);
+      --dur:700ms;
 
-      --title-size: clamp(44px, 6vw, 96px);
-      --content-max: 980px;
-      --pad: clamp(18px, 3vw, 36px);
+      --title-size:clamp(44px,6vw,96px);
+      --pad:clamp(18px,3vw,36px);
+      --gap:18px;
     }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
     body{
       margin:0;
-      background: var(--bg);
-      color: var(--fg);
-      font-family: "EB Garamond", serif;
-      overflow-x: hidden;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:"EB Garamond", serif;
+      overflow:hidden; /* landing is full-screen only */
     }
 
-    /* ====== HERO (2 videos) ====== */
+    /* ===== HERO ===== */
     .heroWrap{
-      height: 100svh;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      background: #000;
+      height:100svh;
+      width:100%;
+      position:relative;
+      overflow:hidden;
+      background:#000;
     }
 
     .hero{
-      height: 100%;
-      width: 100%;
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      will-change: transform;
-      transition: transform var(--dur) var(--ease);
-    }
-
-    /* Slide up to reveal content */
-    body.revealed .hero{
-      transform: translateY(-100svh);
+      height:100%;
+      width:100%;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      will-change:transform;
     }
 
     .panel{
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      user-select: none;
-      height: 100%;
+      position:relative;
+      overflow:hidden;
+      cursor:pointer;
+      user-select:none;
+      height:100%;
     }
 
     .panel video{
@@ -69,268 +62,157 @@
       inset:0;
       width:100%;
       height:100%;
-      object-fit: cover;
-      filter: contrast(1.05) brightness(.9);
-      transform: scale(1.03);
+      object-fit:cover;
+      transform:scale(1.03);
+      filter:contrast(1.05) brightness(.9);
     }
 
     .panel::after{
       content:"";
       position:absolute;
       inset:0;
-      background: linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.55));
+      background:linear-gradient(to bottom, rgba(0,0,0,.12), rgba(0,0,0,.55));
       pointer-events:none;
     }
 
-    /* Subtle hint on hover */
-    .panel:hover .hint{
-      opacity: 1;
-      transform: translateY(0);
-    }
-
+    /* hover hint */
     .hint{
       position:absolute;
-      left: var(--pad);
-      right: var(--pad);
-      bottom: var(--pad);
+      left:var(--pad);
+      right:var(--pad);
+      bottom:var(--pad);
       display:flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 16px;
-      opacity: .0;
-      transform: translateY(8px);
-      transition: opacity 300ms var(--ease), transform 300ms var(--ease);
+      justify-content:space-between;
+      align-items:end;
+      gap:16px;
+      opacity:0;
+      transform:translateY(8px);
+      transition:opacity 300ms var(--ease), transform 300ms var(--ease);
       pointer-events:none;
     }
-
+    .panel:hover .hint{ opacity:1; transform:translateY(0); }
     .hint span{
-      font-family: "Roboto", sans-serif;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      font-size: 12px;
-      opacity: .85;
+      font-family:"Roboto", sans-serif;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:12px;
+      opacity:.85;
     }
 
-    /* ====== CENTER TITLE ====== */
+    /* ===== CENTER TITLE ===== */
     .centerTitle{
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%,-50%);
-      z-index: 5;
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      z-index:5;
       display:flex;
-      align-items: baseline;
-      gap: 18px;
-      pointer-events: auto;
-      text-align:center;
-      white-space: nowrap;
+      align-items:baseline;
+      gap:var(--gap);
+      white-space:nowrap;
     }
 
     .wordBtn{
-      background: transparent;
-      border: none;
-      color: var(--fg);
-      font-family: "Roboto", sans-serif;
-      font-weight: 700;
-      letter-spacing: .02em;
-      text-transform: uppercase;
-      font-size: var(--title-size);
-      line-height: 1;
-      padding: 0;
-      cursor: pointer;
-      transition: opacity 240ms var(--ease), transform 240ms var(--ease);
-      text-shadow: 0 10px 30px rgba(0,0,0,.35);
+      background:transparent;
+      border:none;
+      color:var(--fg);
+      font-family:"Roboto", sans-serif;
+      font-weight:700;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      font-size:var(--title-size);
+      line-height:1;
+      padding:0;
+      cursor:pointer;
+      transition:opacity 240ms var(--ease), transform 240ms var(--ease);
+      text-shadow:0 10px 30px rgba(0,0,0,.35);
     }
     .wordBtn:focus-visible{
-      outline: 2px solid rgba(255,255,255,.9);
-      outline-offset: 6px;
+      outline:2px solid rgba(255,255,255,.9);
+      outline-offset:6px;
     }
 
-    /* The ampersand sits exactly on the border between panels */
+    /* ampersand sits on seam */
     .amp{
-      font-family: "Roboto", sans-serif;
-      font-weight: 700;
-      font-size: var(--title-size);
-      line-height: 1;
+      font-family:"Roboto", sans-serif;
+      font-weight:700;
+      font-size:var(--title-size);
+      line-height:1;
       display:block;
-      transform: translateX(-9px); /* half of gap, to sit on the seam */
-      text-shadow: 0 10px 30px rgba(0,0,0,.35);
-      pointer-events:none; /* clicks go to Rho/Sigma buttons */
+      transform:translateX(calc(-1 * (var(--gap) / 2)));
+      text-shadow:0 10px 30px rgba(0,0,0,.35);
+      pointer-events:none;
     }
 
-    /* Optional: little instruction */
     .subline{
       position:absolute;
       left:50%;
-      top: calc(50% + (var(--title-size) * 0.62));
-      transform: translateX(-50%);
-      z-index: 5;
-      font-size: 16px;
-      opacity: .8;
-      padding: 6px 12px;
-      border: 1px solid rgba(255,255,255,.25);
-      border-radius: 999px;
-      backdrop-filter: blur(6px);
-      background: rgba(0,0,0,.25);
+      top:calc(50% + (var(--title-size) * 0.62));
+      transform:translateX(-50%);
+      z-index:5;
+      font-size:16px;
+      opacity:.8;
+      padding:6px 12px;
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:999px;
+      backdrop-filter:blur(6px);
+      background:rgba(0,0,0,.25);
     }
 
-    /* ====== EXPAND ANIMATIONS ====== */
-    /* We animate with transforms so it's smooth and GPU-friendly */
-    .panelLeft, .panelRight{
-      will-change: transform;
-      transition: transform var(--dur) var(--ease);
+    /* ===== EXPAND ANIM ===== */
+    .panelLeft,.panelRight{
+      will-change:transform;
+      transition:transform var(--dur) var(--ease);
     }
 
-    /* Clicking RHO: left stays, right gets pushed out to the right */
-    body.choice-rho .panelRight{ transform: translateX(100%); }
-    body.choice-rho .panelLeft{ transform: translateX(0%); }
+    /* RHO: push right away */
+    body.choice-rho .panelRight{ transform:translateX(100%); }
+    body.choice-rho .panelLeft{ transform:translateX(0); }
 
-    /* Clicking SIGMA: right stays, left gets pushed out to the left */
-    body.choice-sigma .panelLeft{ transform: translateX(-100%); }
-    body.choice-sigma .panelRight{ transform: translateX(0%); }
+    /* SIGMA: push left away */
+    body.choice-sigma .panelLeft{ transform:translateX(-100%); }
+    body.choice-sigma .panelRight{ transform:translateX(0); }
 
-    /* When a choice is made, stop hover hints and make title feel "locked" */
     body.choice-rho .hint,
     body.choice-sigma .hint{
-      opacity: 0 !important;
-      transform: translateY(8px) !important;
+      opacity:0 !important;
+      transform:translateY(8px) !important;
     }
 
     body.choice-rho .wordBtn[data-side="sigma"],
     body.choice-sigma .wordBtn[data-side="rho"]{
-      opacity: .35;
-      transform: scale(.98);
+      opacity:.35;
+      transform:scale(.98);
     }
 
-    /* ====== CONTENT (revealed after slide-up) ====== */
-    .contentWrap{
-      min-height: 100svh;
-      background: #0b0b0b;
-      padding: calc(var(--pad) * 2) var(--pad);
-    }
-
-    .content{
-      max-width: var(--content-max);
-      margin: 0 auto;
-    }
-
-    .kicker{
-      font-family: "Roboto", sans-serif;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      font-size: 12px;
-      opacity: .75;
-      margin: 0 0 10px 0;
-    }
-
-    h1{
-      font-family: "Roboto", sans-serif;
-      text-transform: uppercase;
-      letter-spacing: .02em;
-      font-size: clamp(28px, 3.2vw, 44px);
-      margin: 0 0 14px 0;
-      line-height: 1.1;
-    }
-
-    p{
-      font-size: 20px;
-      line-height: 1.55;
-      margin: 0 0 16px 0;
-      opacity: .92;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 28px;
-    }
-
-    .card{
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      padding: 18px;
-      background: rgba(255,255,255,.03);
-    }
-
-    .card h2{
-      font-family: "Roboto", sans-serif;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      font-size: 14px;
-      margin: 0 0 8px 0;
-      opacity: .85;
-    }
-
-    .card p{
-      font-size: 18px;
-      margin: 0;
-      opacity: .9;
-    }
-
-    .ctaRow{
-      margin-top: 26px;
-      display:flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .btn{
-      font-family: "EB Garamond", serif;
-      font-size: 18px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.22);
-      background: rgba(255,255,255,.06);
-      color: var(--fg);
-      cursor:pointer;
-      transition: transform 160ms var(--ease), background 160ms var(--ease), border-color 160ms var(--ease);
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.32); }
-    .btn:focus-visible{ outline: 2px solid rgba(255,255,255,.9); outline-offset: 4px; }
-
-    /* Show only the chosen page */
-    .page{ display:none; }
-    body.page-rho .page-rho{ display:block; }
-    body.page-sigma .page-sigma{ display:block; }
-
-    /* Mobile */
-    @media (max-width: 860px){
+    /* Mobile: stacked panels => push vertical */
+    @media (max-width:860px){
       .hero{
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr;
+        grid-template-columns:1fr;
+        grid-template-rows:1fr 1fr;
       }
-      .centerTitle{
-        gap: 12px;
-      }
-      .amp{
-        transform: translateX(0); /* seam is not vertical on mobile */
-      }
+      .amp{ transform:translateX(0); }
       .subline{
-        top: calc(50% + (var(--title-size) * 0.75));
-        font-size: 14px;
+        top:calc(50% + (var(--title-size) * 0.75));
+        font-size:14px;
       }
-      .grid{ grid-template-columns: 1fr; }
-      /* Expand on mobile: push vertically instead of horizontally */
-      body.choice-rho .panelRight{ transform: translateY(100%); }
-      body.choice-sigma .panelLeft{ transform: translateY(-100%); }
+
+      body.choice-rho .panelRight{ transform:translateY(100%); }
+      body.choice-sigma .panelLeft{ transform:translateY(-100%); }
     }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion: reduce){
-      .hero, .panelLeft, .panelRight, .hint, .wordBtn { transition: none !important; }
+      .panelLeft,.panelRight,.hint,.wordBtn{ transition:none !important; }
     }
   </style>
 </head>
 
 <body>
-  <!-- HERO -->
-  <div class="heroWrap" id="heroWrap">
-    <div class="hero" id="hero">
+  <div class="heroWrap">
+    <div class="hero">
       <div class="panel panelLeft" id="panelLeft" data-choice="rho" aria-label="Ga naar Rho">
         <video autoplay muted loop playsinline preload="auto">
-          <!-- VERVANG door jouw bestand -->
-          <source src="rho.mp4" type="video/mp4" />
+          <source src="assets/video/rho.mp4" type="video/mp4" />
         </video>
         <div class="hint">
           <span>Rho</span>
@@ -340,8 +222,8 @@
 
       <div class="panel panelRight" id="panelRight" data-choice="sigma" aria-label="Ga naar Sigma">
         <video autoplay muted loop playsinline preload="auto">
-          <!-- VERVANG door jouw bestand -->
-          <source src="sigma.mp4" type="video/mp4" />
+          <!-- pas dit pad aan naar jouw sigma video -->
+          <source src="assets/video/sigma.mp4" type="video/mp4" />
         </video>
         <div class="hint">
           <span>Klik om binnen te gaan</span>
@@ -350,7 +232,6 @@
       </div>
     </div>
 
-    <!-- Center overlay -->
     <div class="centerTitle" aria-label="Rho en Sigma keuze">
       <button class="wordBtn" data-side="rho" id="btnRho" type="button">Rho</button>
       <span class="amp">&</span>
@@ -360,135 +241,37 @@
     <div class="subline">Klik op Rho of Sigma</div>
   </div>
 
-  <!-- CONTENT (revealed after slide-up) -->
-  <main class="contentWrap" id="contentWrap" tabindex="-1">
-    <div class="content">
-      <!-- RHO PAGE -->
-      <section class="page page-rho">
-        <p class="kicker">Rho</p>
-        <h1>Heldere websites beginnen bij structuur.</h1>
-        <p>
-          Van chaos naar één scherp verhaal. Je aanbod, je visie, je pagina — helder genoeg om te blijven staan
-          zonder dat je website een tweede job wordt.
-        </p>
-
-        <div class="grid">
-          <div class="card">
-            <h2>Wat je krijgt</h2>
-            <p>Een landingpage of compacte site die klopt: structuur, copy, design en oplevering.</p>
-          </div>
-          <div class="card">
-            <h2>Hoe we werken</h2>
-            <p>Luisteren → ontrafelen → kiezen → bouwen. Eén richting, geen eindeloze varianten.</p>
-          </div>
-        </div>
-
-        <div class="ctaRow">
-          <button class="btn" type="button">Kennismaken</button>
-          <button class="btn" type="button">Werk bekijken</button>
-          <button class="btn" type="button" id="backFromRho">Terug naar keuze</button>
-        </div>
-      </section>
-
-      <!-- SIGMA PAGE -->
-      <section class="page page-sigma">
-        <p class="kicker">Sigma</p>
-        <h1>Systeemdenken dat doorwerkt in de echte wereld.</h1>
-        <p>
-          Onderzoek, formats en tooling die processen lichter maken. Minder ruis, meer grip — zodat teams
-          sneller beslissen en beter uitvoeren.
-        </p>
-
-        <div class="grid">
-          <div class="card">
-            <h2>Wat je krijgt</h2>
-            <p>Analyse + model + concrete interventies (tools, templates, workflows) die je team kan dragen.</p>
-          </div>
-          <div class="card">
-            <h2>Hoe we werken</h2>
-            <p>Inzoomen op frictie → kaders zetten → proof-of-work → overdracht zodat het blijft lopen.</p>
-          </div>
-        </div>
-
-        <div class="ctaRow">
-          <button class="btn" type="button">Vraagstuk delen</button>
-          <button class="btn" type="button">Cases</button>
-          <button class="btn" type="button" id="backFromSigma">Terug naar keuze</button>
-        </div>
-      </section>
-    </div>
-  </main>
-
   <script>
     (function(){
       const body = document.body;
-      const heroWrap = document.getElementById("heroWrap");
-      const contentWrap = document.getElementById("contentWrap");
       const btnRho = document.getElementById("btnRho");
       const btnSigma = document.getElementById("btnSigma");
       const panelLeft = document.getElementById("panelLeft");
       const panelRight = document.getElementById("panelRight");
 
-      const backFromRho = document.getElementById("backFromRho");
-      const backFromSigma = document.getElementById("backFromSigma");
-
       let isLocked = false;
-
-      function clearStates(){
-        body.classList.remove("choice-rho","choice-sigma","revealed","page-rho","page-sigma");
-        isLocked = false;
-      }
 
       function choose(side){
         if (isLocked) return;
         isLocked = true;
 
-        // stage 1: push other panel away
         body.classList.add(side === "rho" ? "choice-rho" : "choice-sigma");
 
-        // stage 2: after push animation, slide hero up + show content
         const dur = getComputedStyle(document.documentElement).getPropertyValue("--dur").trim();
         const ms = dur.endsWith("ms") ? parseFloat(dur) : (dur.endsWith("s") ? parseFloat(dur)*1000 : 700);
 
+        // after push animation: go to correct page
         window.setTimeout(() => {
-          body.classList.add("revealed");
-          body.classList.add(side === "rho" ? "page-rho" : "page-sigma");
-
-          // focus content for accessibility / keyboard
-          window.setTimeout(() => {
-            contentWrap.focus({ preventScroll: true });
-            // keep scroll at top (sometimes mobile jumps)
-            window.scrollTo({ top: 0, behavior: "instant" });
-          }, 50);
-
+          window.location.href = (side === "rho") ? "index.html" : "sigma.html";
         }, ms);
       }
 
-      // Click targets
       btnRho.addEventListener("click", () => choose("rho"));
       btnSigma.addEventListener("click", () => choose("sigma"));
-
-      // Also allow clicking the panels themselves
       panelLeft.addEventListener("click", () => choose("rho"));
       panelRight.addEventListener("click", () => choose("sigma"));
 
-      // Back buttons: reset to hero
-      function backToChoice(){
-        // If already scrolled, jump to top so reset feels clean
-        window.scrollTo({ top: 0, behavior: "instant" });
-        clearStates();
-      }
-      backFromRho.addEventListener("click", backToChoice);
-      backFromSigma.addEventListener("click", backToChoice);
-
-      // Optional: ESC returns to choice (handig tijdens testen)
-      window.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") backToChoice();
-      });
-
-      // If the user refreshes while on a page state (e.g. via hash), you could restore.
-      // For now: always start clean.
-      clearStates();
+      // ESC does nothing here (kept simple)
     })();
   </script>
 </body>
