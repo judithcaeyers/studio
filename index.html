@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Rho & Sigma</title>
+  <title>Rho / Sigma</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,10 +18,8 @@
       --dur:700ms;
 
       --title-size:clamp(44px,6vw,96px);
+      --tagline-size:clamp(14px,1.4vw,18px);
       --pad:clamp(18px,3vw,36px);
-      --gap:18px;
-
-      --tagline-size:clamp(14px,1.35vw,18px);
       --tagline-max:44ch;
     }
 
@@ -32,7 +30,7 @@
       background:var(--bg);
       color:var(--fg);
       font-family:"EB Garamond", serif;
-      overflow:hidden; /* landing is full-screen only */
+      overflow:hidden;
     }
 
     /* ===== HERO ===== */
@@ -41,7 +39,6 @@
       width:100%;
       position:relative;
       overflow:hidden;
-      background:#000;
     }
 
     .hero{
@@ -49,15 +46,12 @@
       width:100%;
       display:grid;
       grid-template-columns:1fr 1fr;
-      will-change:transform;
     }
 
     .panel{
       position:relative;
       overflow:hidden;
       cursor:pointer;
-      user-select:none;
-      height:100%;
     }
 
     .panel video{
@@ -74,119 +68,80 @@
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(to bottom, rgba(0,0,0,.12), rgba(0,0,0,.55));
+      background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.1),
+        rgba(0,0,0,.55)
+      );
       pointer-events:none;
     }
 
-    /* hover hint */
-    .hint{
-      position:absolute;
-      left:var(--pad);
-      right:var(--pad);
-      bottom:var(--pad);
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      gap:16px;
-      opacity:0;
-      transform:translateY(8px);
-      transition:opacity 300ms var(--ease), transform 300ms var(--ease);
-      pointer-events:none;
-    }
-    .panel:hover .hint{ opacity:1; transform:translateY(0); }
-    .hint span{
-      font-family:"Roboto", sans-serif;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      font-size:12px;
-      opacity:.85;
-    }
-
-    /* ===== HALF TITLES + TAGLINES ===== */
+    /* ===== TITLES ===== */
     .halfTitle{
       position:absolute;
       top:50%;
       transform:translateY(-50%);
-      z-index:6;
       width:50%;
+      z-index:5;
       display:flex;
       flex-direction:column;
       align-items:center;
       text-align:center;
       gap:14px;
       padding:0 var(--pad);
-      pointer-events:none; /* clicks go to panels */
+      pointer-events:none;
     }
     .halfTitle.left{ left:0; }
     .halfTitle.right{ right:0; }
 
     .wordBtn{
-      pointer-events:auto; /* buttons clickable */
-      background:transparent;
+      pointer-events:auto;
+      background:none;
       border:none;
       color:var(--fg);
       font-family:"Roboto", sans-serif;
       font-weight:700;
-      letter-spacing:.02em;
       text-transform:uppercase;
       font-size:var(--title-size);
       line-height:1;
-      padding:0;
       cursor:pointer;
-      transition:opacity 240ms var(--ease), transform 240ms var(--ease);
       text-shadow:0 10px 30px rgba(0,0,0,.35);
-    }
-    .wordBtn:focus-visible{
-      outline:2px solid rgba(255,255,255,.9);
-      outline-offset:6px;
+      transition:opacity 240ms var(--ease), transform 240ms var(--ease);
     }
 
     .tagline{
       max-width:var(--tagline-max);
       font-size:var(--tagline-size);
       line-height:1.35;
-      opacity:.85;
-      padding:6px 14px;
-      border:1px solid rgba(255,255,255,.22);
-      border-radius:999px;
-      backdrop-filter:blur(6px);
-      background:rgba(0,0,0,.18);
-    }
-
-    /* ampersand on seam */
-    .amp{
-      position:absolute;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-      z-index:7;
-      font-family:"Roboto", sans-serif;
-      font-weight:700;
-      font-size:var(--title-size);
-      line-height:1;
-      text-shadow:0 10px 30px rgba(0,0,0,.35);
+      opacity:0;
+      transform:translateY(6px);
+      transition:
+        opacity 300ms var(--ease),
+        transform 300ms var(--ease);
       pointer-events:none;
     }
 
-    /* ===== EXPAND ANIM ===== */
+    /* ===== HOVER LOGIC ===== */
+    .panelLeft:hover ~ .halfTitle.left .tagline,
+    .halfTitle.left:hover .tagline{
+      opacity:.85;
+      transform:translateY(0);
+    }
+
+    .panelRight:hover ~ .halfTitle.right .tagline,
+    .halfTitle.right:hover .tagline{
+      opacity:.85;
+      transform:translateY(0);
+    }
+
+    /* ===== EXPAND ANIMATION ===== */
     .panelLeft,.panelRight{
-      will-change:transform;
       transition:transform var(--dur) var(--ease);
+      will-change:transform;
     }
 
-    /* RHO: push right away */
     body.choice-rho .panelRight{ transform:translateX(100%); }
-    body.choice-rho .panelLeft{ transform:translateX(0); }
-
-    /* SIGMA: push left away */
     body.choice-sigma .panelLeft{ transform:translateX(-100%); }
-    body.choice-sigma .panelRight{ transform:translateX(0); }
-
-    body.choice-rho .hint,
-    body.choice-sigma .hint{
-      opacity:0 !important;
-      transform:translateY(8px) !important;
-    }
 
     body.choice-rho .wordBtn[data-side="sigma"],
     body.choice-sigma .wordBtn[data-side="rho"]{
@@ -194,7 +149,13 @@
       transform:scale(.98);
     }
 
-    /* Mobile: stacked panels => titles sit on their panel */
+    body.choice-rho .halfTitle.left .tagline,
+    body.choice-sigma .halfTitle.right .tagline{
+      opacity:.85;
+      transform:translateY(0);
+    }
+
+    /* ===== MOBILE ===== */
     @media (max-width:860px){
       .hero{
         grid-template-columns:1fr;
@@ -205,29 +166,16 @@
         width:100%;
         top:auto;
         transform:none;
-        padding:0 var(--pad);
       }
-      .halfTitle.left{
-        left:0;
-        top:25%;
-      }
-      .halfTitle.right{
-        right:0;
-        top:75%;
-      }
-
-      .amp{
-        left:50%;
-        top:50%;
-        transform:translate(-50%,-50%);
-      }
+      .halfTitle.left{ top:25%; }
+      .halfTitle.right{ top:75%; }
 
       body.choice-rho .panelRight{ transform:translateY(100%); }
       body.choice-sigma .panelLeft{ transform:translateY(-100%); }
     }
 
     @media (prefers-reduced-motion: reduce){
-      .panelLeft,.panelRight,.hint,.wordBtn{ transition:none !important; }
+      *{ transition:none !important; }
     }
   </style>
 </head>
@@ -235,41 +183,32 @@
 <body>
   <div class="heroWrap">
     <div class="hero">
-      <div class="panel panelLeft" id="panelLeft" data-choice="rho" aria-label="Ga naar Rho">
-        <video autoplay muted loop playsinline preload="auto">
+      <div class="panel panelLeft" id="panelLeft">
+        <video autoplay muted loop playsinline>
           <source src="assets/video/rho.mp4" type="video/mp4" />
         </video>
-        <div class="hint">
-          <span>Rho</span>
-          <span>Klik om binnen te gaan</span>
-        </div>
       </div>
 
-      <div class="panel panelRight" id="panelRight" data-choice="sigma" aria-label="Ga naar Sigma">
-        <video autoplay muted loop playsinline preload="auto">
+      <div class="panel panelRight" id="panelRight">
+        <video autoplay muted loop playsinline>
           <source src="assets/video/sigma.mp4" type="video/mp4" />
         </video>
-        <div class="hint">
-          <span>Klik om binnen te gaan</span>
-          <span>Sigma</span>
-        </div>
       </div>
     </div>
 
-    <!-- Left half title -->
-    <div class="halfTitle left" aria-label="Rho">
-      <button class="wordBtn" data-side="rho" id="btnRho" type="button">Rho</button>
-      <div class="tagline">Heldere websites die jouw aanbod scherp en simpel maken.</div>
+    <div class="halfTitle left">
+      <button class="wordBtn" data-side="rho" id="btnRho">Rho</button>
+      <div class="tagline">
+        Heldere websites die jouw werk structureren en scherp maken.
+      </div>
     </div>
 
-    <!-- Right half title -->
-    <div class="halfTitle right" aria-label="Sigma">
-      <button class="wordBtn" data-side="sigma" id="btnSigma" type="button">Sigma</button>
-      <div class="tagline">Systemisch denken, onderzoek en experiment voor wat hierna komt.</div>
+    <div class="halfTitle right">
+      <button class="wordBtn" data-side="sigma" id="btnSigma">Sigma</button>
+      <div class="tagline">
+        Systemisch denken, onderzoek en experiment voor wat hierna komt.
+      </div>
     </div>
-
-    <!-- Ampersand on the seam -->
-    <span class="amp" aria-hidden="true">&</span>
   </div>
 
   <script>
@@ -280,28 +219,30 @@
       const panelLeft = document.getElementById("panelLeft");
       const panelRight = document.getElementById("panelRight");
 
-      let isLocked = false;
+      let locked = false;
 
       function choose(side){
-        if (isLocked) return;
-        isLocked = true;
+        if (locked) return;
+        locked = true;
 
         body.classList.add(side === "rho" ? "choice-rho" : "choice-sigma");
 
-        const dur = getComputedStyle(document.documentElement).getPropertyValue("--dur").trim();
-        const ms = dur.endsWith("ms") ? parseFloat(dur) : (dur.endsWith("s") ? parseFloat(dur)*1000 : 700);
+        const dur = getComputedStyle(document.documentElement)
+          .getPropertyValue("--dur").trim();
+        const ms = dur.endsWith("ms")
+          ? parseFloat(dur)
+          : parseFloat(dur) * 1000;
 
-        window.setTimeout(() => {
-          window.location.href = (side === "rho") ? "index.html" : "sigma.html";
+        setTimeout(() => {
+          location.href = side === "rho" ? "index.html" : "sigma.html";
         }, ms);
       }
 
-      btnRho.addEventListener("click", () => choose("rho"));
-      btnSigma.addEventListener("click", () => choose("sigma"));
-      panelLeft.addEventListener("click", () => choose("rho"));
-      panelRight.addEventListener("click", () => choose("sigma"));
+      btnRho.onclick = () => choose("rho");
+      btnSigma.onclick = () => choose("sigma");
+      panelLeft.onclick = () => choose("rho");
+      panelRight.onclick = () => choose("sigma");
     })();
   </script>
 </body>
 </html>
-
