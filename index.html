@@ -18,9 +18,13 @@
       --dur:700ms;
 
       --title-size:clamp(44px,6vw,96px);
-      --tagline-size:clamp(14px,1.4vw,18px);
+      --tagline-size:clamp(16px,1.6vw,22px); /* groter dan nu */
       --pad:clamp(18px,3vw,36px);
       --tagline-max:44ch;
+
+      --intro-dur:850ms;
+      --intro-delay-title:120ms;
+      --intro-delay-tag:240ms;
     }
 
     *{ box-sizing:border-box; }
@@ -94,6 +98,28 @@
     .halfTitle.left{ left:0; }
     .halfTitle.right{ right:0; }
 
+    /* intro animation: slide up + fade in */
+    .introIn{
+      opacity:0;
+      transform:translateY(26px);
+      will-change:opacity, transform;
+    }
+    body.is-ready .introIn{
+      opacity:1;
+      transform:translateY(0);
+      transition:
+        opacity var(--intro-dur) var(--ease),
+        transform var(--intro-dur) var(--ease);
+    }
+
+    /* stagger */
+    body.is-ready .halfTitle .wordBtn.introIn{
+      transition-delay: var(--intro-delay-title);
+    }
+    body.is-ready .halfTitle .tagline.introIn{
+      transition-delay: var(--intro-delay-tag);
+    }
+
     .wordBtn{
       pointer-events:auto;
       background:none;
@@ -109,11 +135,13 @@
       transition:opacity 240ms var(--ease), transform 240ms var(--ease);
     }
 
+    /* Tagline: sans serif + groter */
     .tagline{
       max-width:var(--tagline-max);
+      font-family:"Roboto", sans-serif; /* zonder schreef */
       font-size:var(--tagline-size);
       line-height:1.35;
-      opacity:0;
+      opacity:0;              /* desktop default: hidden */
       transform:translateY(6px);
       transition:
         opacity 300ms var(--ease),
@@ -121,16 +149,23 @@
       pointer-events:none;
     }
 
-    /* ===== HOVER LOGIC ===== */
+    /* ===== HOVER LOGIC (desktop) ===== */
     .panelLeft:hover ~ .halfTitle.left .tagline,
     .halfTitle.left:hover .tagline{
-      opacity:.85;
+      opacity:.88;
       transform:translateY(0);
     }
 
     .panelRight:hover ~ .halfTitle.right .tagline,
     .halfTitle.right:hover .tagline{
-      opacity:.85;
+      opacity:.88;
+      transform:translateY(0);
+    }
+
+    /* When chosen, keep the chosen tagline visible */
+    body.choice-rho .halfTitle.left .tagline,
+    body.choice-sigma .halfTitle.right .tagline{
+      opacity:.88;
       transform:translateY(0);
     }
 
@@ -149,12 +184,6 @@
       transform:scale(.98);
     }
 
-    body.choice-rho .halfTitle.left .tagline,
-    body.choice-sigma .halfTitle.right .tagline{
-      opacity:.85;
-      transform:translateY(0);
-    }
-
     /* ===== MOBILE ===== */
     @media (max-width:860px){
       .hero{
@@ -170,12 +199,19 @@
       .halfTitle.left{ top:25%; }
       .halfTitle.right{ top:75%; }
 
+      /* On mobile: tagline always visible (no hover) */
+      .tagline{
+        opacity:.9;
+        transform:translateY(0);
+      }
+
       body.choice-rho .panelRight{ transform:translateY(100%); }
       body.choice-sigma .panelLeft{ transform:translateY(-100%); }
     }
 
     @media (prefers-reduced-motion: reduce){
       *{ transition:none !important; }
+      .introIn{ opacity:1 !important; transform:none !important; }
     }
   </style>
 </head>
@@ -183,13 +219,13 @@
 <body>
   <div class="heroWrap">
     <div class="hero">
-      <div class="panel panelLeft" id="panelLeft">
+      <div class="panel panelLeft panelLeft" id="panelLeft">
         <video autoplay muted loop playsinline>
           <source src="assets/video/rho.mp4" type="video/mp4" />
         </video>
       </div>
 
-      <div class="panel panelRight" id="panelRight">
+      <div class="panel panelRight panelRight" id="panelRight">
         <video autoplay muted loop playsinline>
           <source src="assets/video/sigma.mp4" type="video/mp4" />
         </video>
@@ -197,15 +233,15 @@
     </div>
 
     <div class="halfTitle left">
-      <button class="wordBtn" data-side="rho" id="btnRho">Rho</button>
-      <div class="tagline">
+      <button class="wordBtn introIn" data-side="rho" id="btnRho">Rho</button>
+      <div class="tagline introIn">
         Heldere websites die jouw werk structureren en scherp maken.
       </div>
     </div>
 
     <div class="halfTitle right">
-      <button class="wordBtn" data-side="sigma" id="btnSigma">Sigma</button>
-      <div class="tagline">
+      <button class="wordBtn introIn" data-side="sigma" id="btnSigma">Sigma</button>
+      <div class="tagline introIn">
         Systemisch denken, onderzoek en experiment voor wat hierna komt.
       </div>
     </div>
@@ -218,6 +254,11 @@
       const btnSigma = document.getElementById("btnSigma");
       const panelLeft = document.getElementById("panelLeft");
       const panelRight = document.getElementById("panelRight");
+
+      // trigger intro animation on load (next frame so transitions apply)
+      requestAnimationFrame(() => {
+        body.classList.add("is-ready");
+      });
 
       let locked = false;
 
