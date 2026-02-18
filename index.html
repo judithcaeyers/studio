@@ -39,6 +39,7 @@
       overflow:hidden;
     }
 
+    /* ===== HERO ===== */
     .heroWrap{
       height:100svh;
       width:100%;
@@ -78,6 +79,7 @@
       pointer-events:none;
     }
 
+    /* ===== TITLES ===== */
     .halfTitle{
       position:absolute;
       top:50%;
@@ -96,18 +98,18 @@
     /* Rho iets hoger */
     .halfTitle.left{
       left:0;
-      top:44%;
+      top:38%;
     }
     .halfTitle.right{
       right:0;
     }
 
+    /* intro animation */
     .introIn{
       opacity:0;
       transform:translateY(26px);
       will-change:opacity, transform;
     }
-
     body.is-ready .introIn{
       opacity:1;
       transform:translateY(0);
@@ -115,7 +117,6 @@
         opacity var(--intro-dur) var(--ease),
         transform var(--intro-dur) var(--ease);
     }
-
     body.is-ready .halfTitle .wordBtn.introIn{ transition-delay: var(--intro-delay-title); }
     body.is-ready .halfTitle .tagline.introIn{ transition-delay: var(--intro-delay-tag); }
     body.is-ready .halfTitle .enterBtn.introIn{ transition-delay: calc(var(--intro-delay-tag) + 160ms); }
@@ -135,6 +136,7 @@
       transition:opacity 240ms var(--ease), transform 240ms var(--ease);
     }
 
+    /* Taglines */
     .tagline{
       max-width:var(--tagline-max);
       font-size:var(--tagline-size);
@@ -143,21 +145,14 @@
       transform:translateY(6px);
       transition:opacity 300ms var(--ease), transform 300ms var(--ease);
       pointer-events:none;
-    }
 
-    /* Rho = sans serif */
-    .halfTitle.left .tagline{
-      font-family:"Roboto", sans-serif;
-      font-weight:300;
-    }
-    .tagline .line1{ display:block; margin-bottom:8px; }
-    .tagline .line2{ display:block; opacity:.75; }
-
-    /* Sigma = serif */
-    .sigmaTagline{
+      /* terug met schreef voor Rho én Sigma */
       font-family:"EB Garamond", serif;
       font-weight:400;
     }
+
+    .tagline .line1{ display:block; margin-bottom:8px; }
+    .tagline .line2{ display:block; opacity:.78; }
 
     /* Hover desktop */
     .panelLeft:hover ~ .halfTitle.left .tagline,
@@ -171,12 +166,24 @@
       transform:translateY(0);
     }
 
-    body.choice-rho .panelRight{ transform:translateX(100%); }
-    body.choice-sigma .panelLeft{ transform:translateX(-100%); }
-
+    /* Expand */
     .panelLeft,.panelRight{
       transition:transform var(--dur) var(--ease);
       will-change:transform;
+    }
+    body.choice-rho .panelRight{ transform:translateX(100%); }
+    body.choice-sigma .panelLeft{ transform:translateX(-100%); }
+
+    body.choice-rho .wordBtn[data-side="sigma"],
+    body.choice-sigma .wordBtn[data-side="rho"]{
+      opacity:.35;
+      transform:scale(.98);
+    }
+
+    body.choice-rho .halfTitle.left .tagline,
+    body.choice-sigma .halfTitle.right .tagline{
+      opacity:.88;
+      transform:translateY(0);
     }
 
     /* ===== MOBILE ===== */
@@ -186,6 +193,7 @@
         grid-template-rows:1fr 1fr;
       }
 
+      /* we tonen op mobile niet de grote Rho/Sigma knoppen */
       .wordBtn{ display:none; }
 
       .halfTitle{
@@ -195,9 +203,10 @@
         gap:12px;
       }
 
-      .halfTitle.left{ top:16%; text-align:left; }
+      .halfTitle.left{ top:12%; text-align:left; }
       .halfTitle.right{ top:66%; text-align:right; }
 
+      /* Tagline groot + altijd zichtbaar */
       .tagline{
         opacity:1;
         transform:none;
@@ -206,6 +215,7 @@
         line-height:1.1;
       }
 
+      /* klein label Rho/Sigma */
       .miniLabel{
         display:block;
         font-family:"Roboto", sans-serif;
@@ -216,50 +226,68 @@
       }
       .halfTitle.right .miniLabel{ text-align:right; }
 
-      /* elegante binnengaan knop */
+      /* Enter buttons (wit, geen iOS blauw) */
       .enterBtn{
         pointer-events:auto;
         display:inline-flex;
         align-items:center;
         gap:10px;
+
         font-family:"Roboto", sans-serif;
         font-weight:500;
         font-size:14px;
         letter-spacing:.10em;
         text-transform:uppercase;
-        opacity:.85;
-        padding:10px 12px;
-        border-radius:999px;
-        border:1px solid rgba(255,255,255,.22);
+
+        color:#fff;
         background:rgba(0,0,0,.18);
-        backdrop-filter:blur(6px);
-        width:max-content;
+        border:1px solid rgba(255,255,255,.35);
+        padding:10px 14px;
+        border-radius:999px;
         cursor:pointer;
+        backdrop-filter:blur(6px);
+
+        -webkit-appearance:none;
+        appearance:none;
+        outline:none;
 
         /* intro anim start */
         opacity:0;
         transform:translateY(10px);
       }
       body.is-ready .enterBtn{
-        opacity:.9;
+        opacity:.92;
         transform:translateY(0);
         transition:
           opacity var(--intro-dur) var(--ease),
           transform var(--intro-dur) var(--ease);
       }
 
-      .enterBtn:active{ transform:translateY(1px); }
-      .enterBtn .arrow{ font-size:16px; line-height:1; opacity:.9; }
+      .enterBtn:visited,
+      .enterBtn:focus,
+      .enterBtn:active{
+        color:#fff;
+        outline:none;
+        box-shadow:none;
+      }
 
-      /* left arrow for Rho, right arrow for Sigma */
-      .enterBtn.rho .arrow{ content:"←"; }
-      .enterBtn.sigma .arrow{ content:"→"; }
+      .enterBtn .arrow{
+        font-size:16px;
+        line-height:1;
+        opacity:.95;
+      }
 
-      .halfTitle.left .enterBtn{ justify-self:start; }
-      .halfTitle.right .enterBtn{ justify-self:end; margin-left:auto; }
+      .halfTitle.left .enterBtn{ justify-self:start; width:max-content; }
+      .halfTitle.right .enterBtn{ justify-self:end; width:max-content; margin-left:auto; }
 
+      /* Mobile push vertical */
       body.choice-rho .panelRight{ transform:translateY(100%); }
       body.choice-sigma .panelLeft{ transform:translateY(-100%); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{ transition:none !important; }
+      .introIn{ opacity:1 !important; transform:none !important; }
     }
   </style>
 </head>
@@ -290,7 +318,7 @@
       </div>
 
       <!-- Mobile enter -->
-      <button class="enterBtn rho introIn" type="button" id="enterRho">
+      <button class="enterBtn introIn" type="button" id="enterRho">
         <span class="arrow">←</span><span>Enter</span>
       </button>
     </div>
@@ -299,12 +327,12 @@
       <button class="wordBtn introIn" data-side="sigma" id="btnSigma">Sigma</button>
       <span class="miniLabel introIn">Sigma</span>
 
-      <div class="tagline introIn sigmaTagline">
+      <div class="tagline introIn">
         Our laboratory for ideas that aren’t fully defined — yet.
       </div>
 
       <!-- Mobile enter -->
-      <button class="enterBtn sigma introIn" type="button" id="enterSigma">
+      <button class="enterBtn introIn" type="button" id="enterSigma">
         <span>Enter</span><span class="arrow">→</span>
       </button>
     </div>
@@ -327,13 +355,14 @@
 
       requestAnimationFrame(() => body.classList.add("is-ready"));
 
+      // MOBILE: probeer videos meteen te starten bij load
       function forcePlay(video){
         if(!video) return;
         try{
           video.muted = true;
           video.playsInline = true;
           const p = video.play();
-          if(p && p.catch) p.catch(()=>{});
+          if(p && typeof p.catch === "function") p.catch(()=>{});
         }catch(e){}
       }
 
@@ -349,24 +378,24 @@
         if(locked) return;
         locked=true;
 
-        body.classList.add(side==="rho"?"choice-rho":"choice-sigma");
+        body.classList.add(side==="rho" ? "choice-rho" : "choice-sigma");
 
         const dur = getComputedStyle(document.documentElement)
           .getPropertyValue("--dur").trim();
-        const ms = dur.endsWith("ms")
-          ? parseFloat(dur)
-          : parseFloat(dur) * 1000;
+        const ms = dur.endsWith("ms") ? parseFloat(dur) : parseFloat(dur) * 1000;
 
         setTimeout(()=>{
           location.href = side==="rho" ? "rho.html" : "sigma.html";
         }, ms);
       }
 
-      // desktop + panels
-      if(btnRho) btnRho.onclick=()=>choose("rho");
-      if(btnSigma) btnSigma.onclick=()=>choose("sigma");
-      panelLeft.onclick=()=>choose("rho");
-      panelRight.onclick=()=>choose("sigma");
+      // desktop buttons (hidden on mobile)
+      if(btnRho) btnRho.onclick = () => choose("rho");
+      if(btnSigma) btnSigma.onclick = () => choose("sigma");
+
+      // panels
+      panelLeft.onclick = () => choose("rho");
+      panelRight.onclick = () => choose("sigma");
 
       // mobile enter buttons
       if(enterRho) enterRho.onclick = () => choose("rho");
