@@ -8,7 +8,6 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Roboto 300 toegevoegd voor dunnere tagline -->
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
 
   <style>
@@ -20,13 +19,11 @@
 
       --title-size:clamp(44px,6vw,96px);
 
-      /* desktop tagline */
       --tagline-size:clamp(16px,1.6vw,22px);
       --tagline-max:32ch;
 
       --pad:clamp(18px,3vw,36px);
 
-      /* intro animation (trager) */
       --intro-dur:1400ms;
       --intro-delay-title:160ms;
       --intro-delay-tag:420ms;
@@ -42,7 +39,6 @@
       overflow:hidden;
     }
 
-    /* ===== HERO ===== */
     .heroWrap{
       height:100svh;
       width:100%;
@@ -71,7 +67,6 @@
       object-fit:cover;
       transform:scale(1.03);
       filter:contrast(1.05) brightness(.9);
-      /* helpt op iOS om sneller te starten */
       -webkit-transform:translateZ(0) scale(1.03);
     }
 
@@ -83,7 +78,6 @@
       pointer-events:none;
     }
 
-    /* ===== TITLES ===== */
     .halfTitle{
       position:absolute;
       top:50%;
@@ -98,15 +92,22 @@
       padding:0 var(--pad);
       pointer-events:none;
     }
-    .halfTitle.left{ left:0; }
-    .halfTitle.right{ right:0; }
 
-    /* intro animation: slide up + fade in */
+    /* Rho iets hoger */
+    .halfTitle.left{
+      left:0;
+      top:44%;
+    }
+    .halfTitle.right{
+      right:0;
+    }
+
     .introIn{
       opacity:0;
       transform:translateY(26px);
       will-change:opacity, transform;
     }
+
     body.is-ready .introIn{
       opacity:1;
       transform:translateY(0);
@@ -114,8 +115,10 @@
         opacity var(--intro-dur) var(--ease),
         transform var(--intro-dur) var(--ease);
     }
+
     body.is-ready .halfTitle .wordBtn.introIn{ transition-delay: var(--intro-delay-title); }
     body.is-ready .halfTitle .tagline.introIn{ transition-delay: var(--intro-delay-tag); }
+    body.is-ready .halfTitle .enterBtn.introIn{ transition-delay: calc(var(--intro-delay-tag) + 160ms); }
 
     .wordBtn{
       pointer-events:auto;
@@ -134,56 +137,46 @@
 
     .tagline{
       max-width:var(--tagline-max);
-      font-family:"Roboto", sans-serif;
       font-size:var(--tagline-size);
-      font-weight:300; /* dunner */
       line-height:1.35;
-      opacity:0;              /* desktop default: hidden */
+      opacity:0;
       transform:translateY(6px);
       transition:opacity 300ms var(--ease), transform 300ms var(--ease);
       pointer-events:none;
     }
 
-    /* Rho tagline styling */
+    /* Rho = sans serif */
+    .halfTitle.left .tagline{
+      font-family:"Roboto", sans-serif;
+      font-weight:300;
+    }
     .tagline .line1{ display:block; margin-bottom:8px; }
     .tagline .line2{ display:block; opacity:.75; }
 
-    /* Sigma tagline styling (2 lines) */
-    .tagline .lineA{ display:block; margin-bottom:8px; }
-    .tagline .lineB{ display:block; opacity:.85; }
+    /* Sigma = serif */
+    .sigmaTagline{
+      font-family:"EB Garamond", serif;
+      font-weight:400;
+    }
 
-    /* ===== HOVER LOGIC (desktop) ===== */
+    /* Hover desktop */
     .panelLeft:hover ~ .halfTitle.left .tagline,
     .halfTitle.left:hover .tagline{
       opacity:.88;
       transform:translateY(0);
     }
-
     .panelRight:hover ~ .halfTitle.right .tagline,
     .halfTitle.right:hover .tagline{
       opacity:.88;
       transform:translateY(0);
     }
 
-    /* When chosen, keep the chosen tagline visible */
-    body.choice-rho .halfTitle.left .tagline,
-    body.choice-sigma .halfTitle.right .tagline{
-      opacity:.88;
-      transform:translateY(0);
-    }
-
-    /* ===== EXPAND ANIMATION ===== */
-    .panelLeft,.panelRight{
-      transition:transform var(--dur) var(--ease);
-      will-change:transform;
-    }
     body.choice-rho .panelRight{ transform:translateX(100%); }
     body.choice-sigma .panelLeft{ transform:translateX(-100%); }
 
-    body.choice-rho .wordBtn[data-side="sigma"],
-    body.choice-sigma .wordBtn[data-side="rho"]{
-      opacity:.35;
-      transform:scale(.98);
+    .panelLeft,.panelRight{
+      transition:transform var(--dur) var(--ease);
+      will-change:transform;
     }
 
     /* ===== MOBILE ===== */
@@ -193,55 +186,80 @@
         grid-template-rows:1fr 1fr;
       }
 
-      /* we tonen op mobile niet de grote Rho/Sigma knoppen, maar enkel klein label */
-      .wordBtn{
-        display:none;
-      }
+      .wordBtn{ display:none; }
 
       .halfTitle{
         width:100%;
-        top:auto;
         transform:none;
         align-items:stretch;
-        text-align:left; /* default; rechts overriden we */
-        gap:10px;
+        gap:12px;
       }
-      .halfTitle.left{ top:18%; }
-      .halfTitle.right{ top:68%; }
 
-      /* Tagline groot + altijd zichtbaar */
+      .halfTitle.left{ top:16%; text-align:left; }
+      .halfTitle.right{ top:66%; text-align:right; }
+
       .tagline{
         opacity:1;
         transform:none;
         max-width:none;
-        font-size:clamp(28px,6.2vw,44px);
-        line-height:1.12;
-        letter-spacing:-0.01em;
+        font-size:clamp(28px,6vw,44px);
+        line-height:1.1;
       }
 
-      .halfTitle.left .tagline{ text-align:left; }
-      .halfTitle.right .tagline{ text-align:right; }
-
-      /* klein label Rho/Sigma erbij */
       .miniLabel{
         display:block;
         font-family:"Roboto", sans-serif;
-        font-weight:500;
-        text-transform:uppercase;
-        letter-spacing:.10em;
         font-size:12px;
-        opacity:.78;
+        letter-spacing:.12em;
+        text-transform:uppercase;
+        opacity:.7;
       }
       .halfTitle.right .miniLabel{ text-align:right; }
 
-      /* On mobile: panels push vertical */
+      /* elegante binnengaan knop */
+      .enterBtn{
+        pointer-events:auto;
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        font-family:"Roboto", sans-serif;
+        font-weight:500;
+        font-size:14px;
+        letter-spacing:.10em;
+        text-transform:uppercase;
+        opacity:.85;
+        padding:10px 12px;
+        border-radius:999px;
+        border:1px solid rgba(255,255,255,.22);
+        background:rgba(0,0,0,.18);
+        backdrop-filter:blur(6px);
+        width:max-content;
+        cursor:pointer;
+
+        /* intro anim start */
+        opacity:0;
+        transform:translateY(10px);
+      }
+      body.is-ready .enterBtn{
+        opacity:.9;
+        transform:translateY(0);
+        transition:
+          opacity var(--intro-dur) var(--ease),
+          transform var(--intro-dur) var(--ease);
+      }
+
+      .enterBtn:active{ transform:translateY(1px); }
+      .enterBtn .arrow{ font-size:16px; line-height:1; opacity:.9; }
+
+      /* left arrow for Rho, right arrow for Sigma */
+      .enterBtn.rho .arrow{ content:"←"; }
+      .enterBtn.sigma .arrow{ content:"→"; }
+
+      .halfTitle.left .enterBtn{ justify-self:start; }
+      .halfTitle.right .enterBtn{ justify-self:end; margin-left:auto; }
+
       body.choice-rho .panelRight{ transform:translateY(100%); }
       body.choice-sigma .panelLeft{ transform:translateY(-100%); }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      *{ transition:none !important; }
-      .introIn{ opacity:1 !important; transform:none !important; }
     }
   </style>
 </head>
@@ -270,16 +288,25 @@
         <span class="line1">We make what you do unmistakably clear.</span>
         <span class="line2">No endless pages. Just a website that says exactly what you do.</span>
       </div>
+
+      <!-- Mobile enter -->
+      <button class="enterBtn rho introIn" type="button" id="enterRho">
+        <span class="arrow">←</span><span>Enter</span>
+      </button>
     </div>
 
     <div class="halfTitle right">
       <button class="wordBtn introIn" data-side="sigma" id="btnSigma">Sigma</button>
       <span class="miniLabel introIn">Sigma</span>
 
-      <div class="tagline introIn">
-        <span class="lineA">Not a service.</span>
-        <span class="lineB">A space to explore what’s next.</span>
+      <div class="tagline introIn sigmaTagline">
+        Our laboratory for ideas that aren’t fully defined — yet.
       </div>
+
+      <!-- Mobile enter -->
+      <button class="enterBtn sigma introIn" type="button" id="enterSigma">
+        <span>Enter</span><span class="arrow">→</span>
+      </button>
     </div>
   </div>
 
@@ -292,37 +319,37 @@
       const panelLeft = document.getElementById("panelLeft");
       const panelRight = document.getElementById("panelRight");
 
+      const enterRho = document.getElementById("enterRho");
+      const enterSigma = document.getElementById("enterSigma");
+
       const videoRho = document.getElementById("videoRho");
       const videoSigma = document.getElementById("videoSigma");
 
-      // Trigger intro animation on load
       requestAnimationFrame(() => body.classList.add("is-ready"));
 
-      // MOBILE: probeer videos meteen te starten bij laden (iOS kan nog steeds blokkeren zonder user gesture)
       function forcePlay(video){
-        if (!video) return;
+        if(!video) return;
         try{
           video.muted = true;
           video.playsInline = true;
           const p = video.play();
-          if (p && typeof p.catch === "function") p.catch(()=>{});
+          if(p && p.catch) p.catch(()=>{});
         }catch(e){}
       }
+
       window.addEventListener("load", () => {
-        const isMobile = window.matchMedia("(max-width: 860px)").matches;
-        if (isMobile){
+        if(window.matchMedia("(max-width:860px)").matches){
           forcePlay(videoRho);
           forcePlay(videoSigma);
         }
       });
 
-      let locked = false;
-
+      let locked=false;
       function choose(side){
-        if (locked) return;
-        locked = true;
+        if(locked) return;
+        locked=true;
 
-        body.classList.add(side === "rho" ? "choice-rho" : "choice-sigma");
+        body.classList.add(side==="rho"?"choice-rho":"choice-sigma");
 
         const dur = getComputedStyle(document.documentElement)
           .getPropertyValue("--dur").trim();
@@ -330,15 +357,20 @@
           ? parseFloat(dur)
           : parseFloat(dur) * 1000;
 
-        setTimeout(() => {
-          location.href = side === "rho" ? "rho.html" : "sigma.html";
+        setTimeout(()=>{
+          location.href = side==="rho" ? "rho.html" : "sigma.html";
         }, ms);
       }
 
-      if (btnRho) btnRho.onclick = () => choose("rho");
-      if (btnSigma) btnSigma.onclick = () => choose("sigma");
-      panelLeft.onclick = () => choose("rho");
-      panelRight.onclick = () => choose("sigma");
+      // desktop + panels
+      if(btnRho) btnRho.onclick=()=>choose("rho");
+      if(btnSigma) btnSigma.onclick=()=>choose("sigma");
+      panelLeft.onclick=()=>choose("rho");
+      panelRight.onclick=()=>choose("sigma");
+
+      // mobile enter buttons
+      if(enterRho) enterRho.onclick = () => choose("rho");
+      if(enterSigma) enterSigma.onclick = () => choose("sigma");
     })();
   </script>
 </body>
