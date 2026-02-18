@@ -8,7 +8,8 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Roboto 300 toegevoegd voor dunnere tagline -->
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -18,13 +19,17 @@
       --dur:700ms;
 
       --title-size:clamp(44px,6vw,96px);
-      --tagline-size:clamp(16px,1.6vw,22px); /* groter dan nu */
-      --pad:clamp(18px,3vw,36px);
-      --tagline-max:44ch;
 
-      --intro-dur:850ms;
-      --intro-delay-title:120ms;
-      --intro-delay-tag:240ms;
+      /* desktop tagline */
+      --tagline-size:clamp(16px,1.6vw,22px);
+      --tagline-max:32ch;
+
+      --pad:clamp(18px,3vw,36px);
+
+      /* intro animation (trager) */
+      --intro-dur:1400ms;
+      --intro-delay-title:160ms;
+      --intro-delay-tag:420ms;
     }
 
     *{ box-sizing:border-box; }
@@ -66,17 +71,15 @@
       object-fit:cover;
       transform:scale(1.03);
       filter:contrast(1.05) brightness(.9);
+      /* helpt op iOS om sneller te starten */
+      -webkit-transform:translateZ(0) scale(1.03);
     }
 
     .panel::after{
       content:"";
       position:absolute;
       inset:0;
-      background:linear-gradient(
-        to bottom,
-        rgba(0,0,0,.1),
-        rgba(0,0,0,.55)
-      );
+      background:linear-gradient(to bottom, rgba(0,0,0,.10), rgba(0,0,0,.55));
       pointer-events:none;
     }
 
@@ -111,14 +114,8 @@
         opacity var(--intro-dur) var(--ease),
         transform var(--intro-dur) var(--ease);
     }
-
-    /* stagger */
-    body.is-ready .halfTitle .wordBtn.introIn{
-      transition-delay: var(--intro-delay-title);
-    }
-    body.is-ready .halfTitle .tagline.introIn{
-      transition-delay: var(--intro-delay-tag);
-    }
+    body.is-ready .halfTitle .wordBtn.introIn{ transition-delay: var(--intro-delay-title); }
+    body.is-ready .halfTitle .tagline.introIn{ transition-delay: var(--intro-delay-tag); }
 
     .wordBtn{
       pointer-events:auto;
@@ -135,19 +132,25 @@
       transition:opacity 240ms var(--ease), transform 240ms var(--ease);
     }
 
-    /* Tagline: sans serif + groter */
     .tagline{
       max-width:var(--tagline-max);
-      font-family:"Roboto", sans-serif; /* zonder schreef */
+      font-family:"Roboto", sans-serif;
       font-size:var(--tagline-size);
+      font-weight:300; /* dunner */
       line-height:1.35;
       opacity:0;              /* desktop default: hidden */
       transform:translateY(6px);
-      transition:
-        opacity 300ms var(--ease),
-        transform 300ms var(--ease);
+      transition:opacity 300ms var(--ease), transform 300ms var(--ease);
       pointer-events:none;
     }
+
+    /* Rho tagline styling */
+    .tagline .line1{ display:block; margin-bottom:8px; }
+    .tagline .line2{ display:block; opacity:.75; }
+
+    /* Sigma tagline styling (2 lines) */
+    .tagline .lineA{ display:block; margin-bottom:8px; }
+    .tagline .lineB{ display:block; opacity:.85; }
 
     /* ===== HOVER LOGIC (desktop) ===== */
     .panelLeft:hover ~ .halfTitle.left .tagline,
@@ -174,7 +177,6 @@
       transition:transform var(--dur) var(--ease);
       will-change:transform;
     }
-
     body.choice-rho .panelRight{ transform:translateX(100%); }
     body.choice-sigma .panelLeft{ transform:translateX(-100%); }
 
@@ -191,20 +193,48 @@
         grid-template-rows:1fr 1fr;
       }
 
+      /* we tonen op mobile niet de grote Rho/Sigma knoppen, maar enkel klein label */
+      .wordBtn{
+        display:none;
+      }
+
       .halfTitle{
         width:100%;
         top:auto;
         transform:none;
+        align-items:stretch;
+        text-align:left; /* default; rechts overriden we */
+        gap:10px;
       }
-      .halfTitle.left{ top:25%; }
-      .halfTitle.right{ top:75%; }
+      .halfTitle.left{ top:18%; }
+      .halfTitle.right{ top:68%; }
 
-      /* On mobile: tagline always visible (no hover) */
+      /* Tagline groot + altijd zichtbaar */
       .tagline{
-        opacity:.9;
-        transform:translateY(0);
+        opacity:1;
+        transform:none;
+        max-width:none;
+        font-size:clamp(28px,6.2vw,44px);
+        line-height:1.12;
+        letter-spacing:-0.01em;
       }
 
+      .halfTitle.left .tagline{ text-align:left; }
+      .halfTitle.right .tagline{ text-align:right; }
+
+      /* klein label Rho/Sigma erbij */
+      .miniLabel{
+        display:block;
+        font-family:"Roboto", sans-serif;
+        font-weight:500;
+        text-transform:uppercase;
+        letter-spacing:.10em;
+        font-size:12px;
+        opacity:.78;
+      }
+      .halfTitle.right .miniLabel{ text-align:right; }
+
+      /* On mobile: panels push vertical */
       body.choice-rho .panelRight{ transform:translateY(100%); }
       body.choice-sigma .panelLeft{ transform:translateY(-100%); }
     }
@@ -219,14 +249,14 @@
 <body>
   <div class="heroWrap">
     <div class="hero">
-      <div class="panel panelLeft panelLeft" id="panelLeft">
-        <video autoplay muted loop playsinline>
+      <div class="panel panelLeft" id="panelLeft">
+        <video id="videoRho" autoplay muted loop playsinline preload="auto">
           <source src="assets/video/rho.mp4" type="video/mp4" />
         </video>
       </div>
 
-      <div class="panel panelRight panelRight" id="panelRight">
-        <video autoplay muted loop playsinline>
+      <div class="panel panelRight" id="panelRight">
+        <video id="videoSigma" autoplay muted loop playsinline preload="auto">
           <source src="assets/video/sigma.mp4" type="video/mp4" />
         </video>
       </div>
@@ -234,15 +264,21 @@
 
     <div class="halfTitle left">
       <button class="wordBtn introIn" data-side="rho" id="btnRho">Rho</button>
+      <span class="miniLabel introIn">Rho</span>
+
       <div class="tagline introIn">
-        Heldere websites die jouw werk structureren en scherp maken.
+        <span class="line1">We make what you do unmistakably clear.</span>
+        <span class="line2">No endless pages. Just a website that says exactly what you do.</span>
       </div>
     </div>
 
     <div class="halfTitle right">
       <button class="wordBtn introIn" data-side="sigma" id="btnSigma">Sigma</button>
+      <span class="miniLabel introIn">Sigma</span>
+
       <div class="tagline introIn">
-        Systemisch denken, onderzoek en experiment voor wat hierna komt.
+        <span class="lineA">Not a service.</span>
+        <span class="lineB">A space to explore what’s next.</span>
       </div>
     </div>
   </div>
@@ -250,14 +286,34 @@
   <script>
     (function(){
       const body = document.body;
+
       const btnRho = document.getElementById("btnRho");
       const btnSigma = document.getElementById("btnSigma");
       const panelLeft = document.getElementById("panelLeft");
       const panelRight = document.getElementById("panelRight");
 
-      // trigger intro animation on load (next frame so transitions apply)
-      requestAnimationFrame(() => {
-        body.classList.add("is-ready");
+      const videoRho = document.getElementById("videoRho");
+      const videoSigma = document.getElementById("videoSigma");
+
+      // Trigger intro animation on load
+      requestAnimationFrame(() => body.classList.add("is-ready"));
+
+      // MOBILE: probeer videos meteen te starten bij laden (iOS kan nog steeds blokkeren zonder user gesture)
+      function forcePlay(video){
+        if (!video) return;
+        try{
+          video.muted = true;
+          video.playsInline = true;
+          const p = video.play();
+          if (p && typeof p.catch === "function") p.catch(()=>{});
+        }catch(e){}
+      }
+      window.addEventListener("load", () => {
+        const isMobile = window.matchMedia("(max-width: 860px)").matches;
+        if (isMobile){
+          forcePlay(videoRho);
+          forcePlay(videoSigma);
+        }
       });
 
       let locked = false;
@@ -279,8 +335,8 @@
         }, ms);
       }
 
-      btnRho.onclick = () => choose("rho");
-      btnSigma.onclick = () => choose("sigma");
+      if (btnRho) btnRho.onclick = () => choose("rho");
+      if (btnSigma) btnSigma.onclick = () => choose("sigma");
       panelLeft.onclick = () => choose("rho");
       panelRight.onclick = () => choose("sigma");
     })();
