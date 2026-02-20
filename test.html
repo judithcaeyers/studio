@@ -1,441 +1,141 @@
-<!doctype html>
-<html lang="nl">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rho scrollstack test — smooth + hysteresis</title>
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  /* =========================================================
+     SCROLLSTACK (smooth + hysteresis + edge snapping)
+     Probleem dat we oplossen:
+     - 1→2 duurt te lang  => startBias lager (progress begint eerder)
+     - terugscrollen: item 1 opent nooit meer => snap-zone bovenaan
+     - jitter vermijden => smoothing + hysteresis blijven behouden
+  ========================================================== */
+  (function(){
+    const section = document.getElementById("stack");
+    const list = document.getElementById("scrollstack");
+    if(!section || !list) return;
 
-  <style>
-    :root{
-      --fg:#111;
-      --muted:#6f6f6f;
-      --line:#e9e9e9;
-      --max:1200px;
+    const items = Array.from(list.querySelectorAll(".stack-item"));
+    const n = items.length;
 
-      --ff-sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      --ff-serif: "EB Garamond", serif;
-      --ff-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-    }
+    const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
-    *,*::before,*::after{ box-sizing:border-box; }
-    html{ scroll-behavior:smooth; }
-    body{
-      margin:0;
-      color:var(--fg);
-      background:#fff;
-      font-family:var(--ff-sans);
-      line-height:1.55;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:geometricPrecision;
-    }
-    a{ color:inherit; text-decoration:none; }
-    a:hover{ text-decoration:underline; text-underline-offset:4px; }
-
-    section{ padding:80px 0; }
-    .section-line{ border-top:1px solid var(--line); }
-    .container{ max-width:var(--max); margin:0 auto; padding:0 20px; }
-
-    h1,h2{ font-family:var(--ff-serif); font-weight:400; margin:0 0 12px; }
-    h1{ font-size:clamp(40px,6vw,72px); line-height:1.05; margin-bottom:18px; }
-    h2{ font-size:clamp(26px,3.6vw,42px); line-height:1.15; }
-    p{ margin:0 0 12px; }
-    .lead{ font-size:18px; max-width:72ch; color:rgba(17,17,17,.85); margin-bottom:18px; }
-    .lead-small{ font-size:16px; max-width:72ch; color:rgba(17,17,17,.85); }
-
-    .meta{
-      font-family:var(--ff-mono);
-      font-size:12px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:var(--muted);
-      margin-bottom:12px;
+    function setActive(activeIndex){
+      items.forEach((el, i) => {
+        el.classList.toggle("is-active", i === activeIndex);
+        el.classList.toggle("is-past", i < activeIndex);
+      });
     }
 
-    header{
-      position:sticky;
-      top:0;
-      z-index:50;
-      background:rgba(255,255,255,.95);
-      border-bottom:1px solid var(--line);
-      backdrop-filter:saturate(160%) blur(8px);
-    }
-    .nav{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:16px 20px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:18px;
-    }
-    .brand{
-      font-family: var(--ff-sans);
-      font-size: 16px;
-      letter-spacing: .01em;
-      font-weight: 500;
-      white-space: nowrap;
-    }
-    .menu{ display:flex; gap:22px; align-items:center; }
-    .menu a{
-      font-size:13px;
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      opacity:.9;
-    }
-    @media (max-width: 860px){ .menu{ display:none; } }
+    // ---- State ----
+    let currentIndex = 0;  // “locked” actieve stap
+    let smoothedP = 0;     // gesmoothde progress (0..1)
+    setActive(currentIndex);
 
-    /* ===============================
-       SCROLLSTACK LAYOUT
-    ================================ */
-    .scrollstack{
-      display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 40px;
-      align-items:start;
-    }
-    @media (max-width: 900px){
-      .scrollstack{ grid-template-columns: 1fr; }
+    /* ---------------------------------------------------------
+       TUNING KNOBS
+       - startBias lager  => sneller van 1 naar 2
+       - hysteresis hoger => minder gevoelig, maar later switchen
+       - smoothing lager  => zwaarder/luxer maar meer delay
+       - snapTop/snapBottom => forceer eerste/laatste bij randen
+    ---------------------------------------------------------- */
+    const startBias = 0.18;     // was ~0.28; lager = eerder starten
+    const endBias   = 0.62;     // mag blijven
+
+    const hysteresis = 0.60;    // 0.50..0.75
+    const smoothing  = 0.10;    // 0.06..0.14
+
+    const snapTop    = 0.03;    // als rawP < 3% => force index 0
+    const snapBottom = 0.97;    // als rawP > 97% => force last
+
+    /* ---------------------------------------------------------
+       rawProgress():
+       - berekent waar je zit in de sectie (0..1)
+       - startBias & endBias bepalen het “venster” in je viewport
+    ---------------------------------------------------------- */
+    function rawProgress(){
+      const rect = section.getBoundingClientRect();
+
+      const startLine = window.innerHeight * startBias;
+      const endLine   = window.innerHeight * (1 - endBias);
+
+      const total = rect.height - (startLine + endLine);
+      const progressed = (startLine - rect.top);
+
+      return total > 0 ? clamp(progressed / total, 0, 1) : 0;
     }
 
-    .scrollstack-sticky{
-      position: sticky;
-      top: 92px;
-      padding: 10px 0;
-    }
-    @media (max-width: 860px){
-      .scrollstack-sticky{ top: 72px; }
-    }
+    /* ---------------------------------------------------------
+       update():
+       1) compute raw progress
+       2) edge snapping (super belangrijk voor terugscroll)
+       3) smooth progress (lerp)
+       4) map naar pos (0..n-1) en bepaal target index
+       5) hysteresis check om pas te switchen als je “echt” voorbij bent
+    ---------------------------------------------------------- */
+    function update(){
+      const rp = rawProgress();
 
-    /* Track = pacing timeline (hoogte = steps * stepvh) */
-    .scrollstack-track{
-      padding-top: 10px;
-      height: calc(var(--steps, 4) * var(--stepvh, 55vh));
-      border-left: 1px solid var(--line);
-      margin-left: 12px;
-      opacity:.35;
-    }
-    @media (max-width: 900px){
-      .scrollstack-track{
-        height: calc(var(--steps, 4) * var(--stepvh-mobile, 42vh));
+      // 2) EDGE SNAPPING
+      // -> Als je bijna aan het begin/einde bent, forceer state.
+      // -> Dit voorkomt “ik kom nooit meer terug op stap 1”.
+      if (rp <= snapTop) {
+        smoothedP = 0;          // reset smoothing zodat het meteen klopt
+        currentIndex = 0;
+        setActive(0);
+        return;
       }
-    }
-
-    /* ===============================
-       ITEMS: short line always visible + detail expands
-       (no blur for smoothness)
-    ================================ */
-    .stack{
-      list-style:none;
-      padding:0;
-      margin: 18px 0 0;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-      max-width: 72ch;
-    }
-
-    .stack-item{
-      border: 1px solid var(--line);
-      background:#fff;
-      border-radius: 14px;
-      padding: 14px 14px;
-      overflow:hidden;
-
-      opacity: .84;
-      transform: translateY(0);
-      transition: opacity .25s ease, border-color .25s ease, transform .25s ease;
-      will-change: transform, opacity;
-    }
-
-    .stack-head{
-      display:flex;
-      gap: 12px;
-      align-items: baseline;
-    }
-
-    .stack-n{
-      font-family: var(--ff-mono);
-      font-size: 12px;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--muted);
-      width: 34px;
-      flex: 0 0 auto;
-    }
-
-    .stack-title{
-      font-family: var(--ff-serif);
-      font-size: 22px;
-      line-height: 1.15;
-      font-weight: 400;
-      margin:0;
-    }
-
-    .stack-detail{
-      max-height: 0;
-      opacity: 0;
-      transform: translateY(8px);
-      transition:
-        max-height .55s ease,
-        opacity .28s ease,
-        transform .28s ease;
-      padding-left: 46px; /* align with title */
-      will-change: opacity, transform;
-    }
-
-    .stack-detail p{
-      margin: 10px 0 0;
-      color: rgba(17,17,17,.82);
-      max-width: 64ch;
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    .stack-item.is-active{
-      opacity: 1;
-      border-color: rgba(17,17,17,.22);
-      transform: translateY(-1px);
-    }
-    .stack-item.is-active .stack-detail{
-      max-height: 280px;
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .stack-item.is-past{
-      opacity: .70;
-      transform: translateY(0);
-    }
-
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto; }
-      .stack-item, .stack-detail{ transition:none; transform:none; }
-      .stack-detail{ max-height:none; opacity:1; }
-      .scrollstack-track{ display:none; }
-    }
-
-    footer{ border-top:1px solid var(--line); }
-    .footer-inner{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:22px 20px;
-      display:flex;
-      justify-content:space-between;
-      gap:16px;
-      flex-wrap:wrap;
-      color:#777;
-      font-size:12px;
-    }
-
-    /* helper */
-    code{ font-family:var(--ff-mono); font-size:12px; }
-  </style>
-</head>
-
-<body>
-  <header>
-    <nav class="nav" aria-label="Hoofdnavigatie">
-      <div class="brand">Rho — smooth scrollstack test</div>
-      <div class="menu" role="menubar">
-        <a href="#hero">Hero</a>
-        <a href="#stack">Stack</a>
-        <a href="#end">Einde</a>
-      </div>
-    </nav>
-  </header>
-
-  <main id="top">
-    <section id="hero">
-      <div class="container">
-        <div class="meta">Test</div>
-        <h1>Zoals Apple/Framer: minder twitchy, meer “massa”</h1>
-        <p class="lead">
-          De timing is scroll-progress based én gesmoothd (lerp) met hysteresis.
-          Daardoor krijg je geen micro-flips op trackpad en voelt het veel stabieler.
-        </p>
-        <p class="lead-small" style="color:var(--muted);">
-          Tunen doe je met de variabelen op de sectie: <code>--stepvh</code> en <code>--stepvh-mobile</code>.
-          Meer vh = trager en minder gevoelig.
-        </p>
-      </div>
-    </section>
-
-    <!-- Pacing knobs per design: tweak only these -->
-    <section class="section-line" id="stack" style="--steps:4; --stepvh:55vh; --stepvh-mobile:42vh;">
-      <div class="container scrollstack">
-        <div class="scrollstack-sticky">
-          <div class="meta">Rho in 4 lijnen</div>
-          <h2>Een site die staat. Niet een project dat blijft leven.</h2>
-
-          <ol class="stack" id="scrollstack">
-            <li class="stack-item is-active">
-              <div class="stack-head">
-                <span class="stack-n">01</span>
-                <h3 class="stack-title">We maken je aanbod messcherp.</h3>
-              </div>
-              <div class="stack-detail">
-                <p>
-                  We gaan in gesprek tot we je aanbod kunnen opzeggen in onze slaap.
-                  We onderzoeken wat nu écht jouw ding is en schrappen randactiviteiten,
-                  zodat we naar je klanten duidelijk kunnen communiceren.
-                </p>
-              </div>
-            </li>
-
-            <li class="stack-item">
-              <div class="stack-head">
-                <span class="stack-n">02</span>
-                <h3 class="stack-title">We zetten dat om in één duidelijke structuur.</h3>
-              </div>
-              <div class="stack-detail">
-                <p>
-                  Geen 10 pagina’s, geen “ook dat nog”.
-                  Eén pagina: helder je aanbod, je voorwaarden,
-                  en de volgorde die iemand vanzelf naar “oké, ik wil dit” brengt.
-                </p>
-              </div>
-            </li>
-
-            <li class="stack-item">
-              <div class="stack-head">
-                <span class="stack-n">03</span>
-                <h3 class="stack-title">We bouwen rustig, met witruimte en ritme.</h3>
-              </div>
-              <div class="stack-detail">
-                <p>
-                  Ruimte is luxe. We schreeuwen niet, we kiezen precies wat we wél én niet toevoegen.
-                  Typografie en ritme dragen je werk — zonder drukte.
-                </p>
-              </div>
-            </li>
-
-            <li class="stack-item">
-              <div class="stack-head">
-                <span class="stack-n">04</span>
-                <h3 class="stack-title">We leveren op en dragen over. Klaar.</h3>
-              </div>
-              <div class="stack-detail">
-                <p>
-                  De website die we afleveren staat er. Last-minute updates?
-                  Daar zijn nieuwsbrief of sociale media geschikter voor.
-                  Je website is af — zodat jij verder kan met wat er echt toe doet: je core business.
-                </p>
-              </div>
-            </li>
-          </ol>
-        </div>
-
-        <div class="scrollstack-track" aria-hidden="true"></div>
-      </div>
-    </section>
-
-    <section class="section-line" id="end">
-      <div class="container">
-        <div class="meta">Einde</div>
-        <h2>Klaar.</h2>
-        <p class="lead">
-          Als je nog mini-flips ziet: verhoog <code>--stepvh</code> (bv 65vh) of verhoog in de JS <code>hysteresis</code> (bv 0.65).
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <div>© <span id="year"></span> Rho</div>
-      <a href="#top">Naar boven</a>
-    </div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // ===== Smooth + hysteresis scrollstack (Framer-ish feel) =====
-    (function(){
-      const section = document.getElementById("stack");
-      const list = document.getElementById("scrollstack");
-      if(!section || !list) return;
-
-      const items = Array.from(list.querySelectorAll(".stack-item"));
-      const n = items.length;
-
-      const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-
-      const setActive = (activeIndex) => {
-        items.forEach((el, i) => {
-          el.classList.toggle("is-active", i === activeIndex);
-          el.classList.toggle("is-past", i < activeIndex);
-        });
-      };
-
-      let currentIndex = 0;
-      setActive(currentIndex);
-
-      let smoothedP = 0;
-
-      // Tweaks:
-      // - hysteresis hoger = minder gevoelig (maar switch later)
-      // - smoothing lager = "zwaarder/luxer" (maar meer delay)
-      const hysteresis = 0.60;
-      const smoothing  = 0.10;
-
-      function rawProgress(){
-        const rect = section.getBoundingClientRect();
-
-        // Start/end zones (midden-gedreven)
-        const startBias = 0.28; // lager = sneller naar 2e
-        const endBias   = 0.62;
-
-        const start = window.innerHeight * startBias;
-        const end   = window.innerHeight * (1 - endBias);
-
-        const total = rect.height - (start + end);
-        const progressed = (start - rect.top);
-
-        return total > 0 ? clamp(progressed / total, 0, 1) : 0;
+      if (rp >= snapBottom) {
+        smoothedP = 1;
+        currentIndex = n - 1;
+        setActive(n - 1);
+        return;
       }
 
-      function update(){
-        const rp = rawProgress();
-        smoothedP = smoothedP + (rp - smoothedP) * smoothing;
+      // 3) SMOOTHING (lerp)
+      // smoothedP volgt rp met vertraging -> minder trackpad jitter
+      smoothedP = smoothedP + (rp - smoothedP) * smoothing;
 
-        const pos = smoothedP * (n - 1);
-        const target = Math.round(pos);
+      // 4) CONTINUE POSITIE IN STAPPEN
+      // n=4 => indices 0..3 => pos loopt 0..3
+      const pos = smoothedP * (n - 1);
 
-        if (target !== currentIndex) {
-          const boundary = (currentIndex + target) / 2;
-          const dist = pos - boundary;
-          const goingForward = target > currentIndex;
+      // target is de dichtstbijzijnde stap
+      const target = clamp(Math.round(pos), 0, n - 1);
 
-          if (goingForward && dist > (hysteresis / 2)) {
-            currentIndex = clamp(target, 0, n - 1);
-            setActive(currentIndex);
-          } else if (!goingForward && dist < -(hysteresis / 2)) {
-            currentIndex = clamp(target, 0, n - 1);
-            setActive(currentIndex);
-          }
+      // 5) HYSTERESIS: vermijd micro-flips rond de grens
+      if (target !== currentIndex) {
+        const boundary = (currentIndex + target) / 2; // bv tussen 1 en 2 => 1.5
+        const dist = pos - boundary;
+        const goingForward = target > currentIndex;
+
+        if (goingForward && dist > (hysteresis / 2)) {
+          currentIndex = target;
+          setActive(currentIndex);
+        } else if (!goingForward && dist < -(hysteresis / 2)) {
+          currentIndex = target;
+          setActive(currentIndex);
         }
       }
+    }
 
-      let ticking = false;
-      function onScroll(){
-        if(ticking) return;
-        ticking = true;
-        requestAnimationFrame(() => {
-          update();
-          ticking = false;
-        });
-      }
+    /* ---------------------------------------------------------
+       RAF throttle:
+       - update max 1x per frame
+       - voelt merkbaar smoother
+    ---------------------------------------------------------- */
+    let ticking = false;
+    function onScroll(){
+      if(ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    }
 
-      window.addEventListener("scroll", onScroll, { passive:true });
-      window.addEventListener("resize", onScroll);
-      update();
-    })();
-  </script>
-</body>
-</html>
+    window.addEventListener("scroll", onScroll, { passive:true });
+    window.addEventListener("resize", onScroll);
+
+    // init
+    update();
+  })();
+</script>
