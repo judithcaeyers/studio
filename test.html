@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Scroll-expand test — Rho</title>
+  <title>Rho scrollstack test — gelijkmatige pacing</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,6 +32,9 @@
       -webkit-font-smoothing:antialiased;
       text-rendering:geometricPrecision;
     }
+    a{ color:inherit; text-decoration:none; }
+    a:hover{ text-decoration:underline; text-underline-offset:4px; }
+
     section{ padding:80px 0; }
     .section-line{ border-top:1px solid var(--line); }
     .container{ max-width:var(--max); margin:0 auto; padding:0 20px; }
@@ -78,20 +81,19 @@
     }
     .menu{ display:flex; gap:22px; align-items:center; }
     .menu a{
-      color:inherit;
-      text-decoration:none;
       font-size:13px;
       text-transform:uppercase;
       letter-spacing:.14em;
       opacity:.9;
     }
-    .menu a:hover{ text-decoration:underline; text-underline-offset:4px; }
     @media (max-width: 860px){ .menu{ display:none; } }
 
-    /* ============ Scroll-expand layout ============ */
+    /* ===============================
+       SCROLLSTACK LAYOUT
+    ================================ */
     .scrollstack{
       display:grid;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.25fr .75fr;
       gap: 40px;
       align-items:start;
     }
@@ -108,19 +110,23 @@
       .scrollstack-sticky{ top: 72px; }
     }
 
-    /* Track rechts: zorgt voor een “scroll timeline” */
-    .scrollstack-track{ padding-top: 10px; }
-    .scrollstack-spacer{
-      height: 52vh;
+    /* Track = pacing timeline (hoogte = steps * stepvh) */
+    .scrollstack-track{
+      padding-top: 10px;
+      height: calc(var(--steps, 4) * var(--stepvh, 38vh));
       border-left: 1px solid var(--line);
       margin-left: 12px;
       opacity:.35;
     }
     @media (max-width: 900px){
-      .scrollstack-spacer{ height: 42vh; }
+      .scrollstack-track{
+        height: calc(var(--steps, 4) * var(--stepvh-mobile, 30vh));
+      }
     }
 
-    /* Items: korte titel altijd zichtbaar, detail klapt open */
+    /* ===============================
+       ITEMS: short line always visible + detail expands
+    ================================ */
     .stack{
       list-style:none;
       padding:0;
@@ -128,7 +134,7 @@
       display:flex;
       flex-direction:column;
       gap: 10px;
-      max-width: 68ch;
+      max-width: 72ch;
     }
 
     .stack-item{
@@ -138,8 +144,7 @@
       padding: 14px 14px;
       overflow:hidden;
 
-      /* default: iets stiller */
-      opacity: .8;
+      opacity: .86;
       transition: opacity .28s ease, border-color .28s ease, transform .28s ease;
       will-change: transform, opacity;
     }
@@ -168,7 +173,6 @@
       margin:0;
     }
 
-    /* detail: standaard “dicht” */
     .stack-detail{
       max-height: 0;
       opacity: 0;
@@ -179,7 +183,7 @@
         opacity .35s ease,
         transform .35s ease,
         filter .35s ease;
-      padding-left: 46px; /* align met titel */
+      padding-left: 46px; /* align with title */
     }
 
     .stack-detail p{
@@ -190,22 +194,20 @@
       line-height: 1.6;
     }
 
-    /* active = spring open */
     .stack-item.is-active{
       opacity: 1;
       border-color: rgba(17,17,17,.22);
       transform: translateY(-1px);
     }
     .stack-item.is-active .stack-detail{
-      max-height: 220px; /* genoeg voor 2–4 zinnen */
+      max-height: 240px;
       opacity: 1;
       transform: translateY(0);
       filter: blur(0);
     }
 
-    /* past = terug rustiger, maar open blijft NIET (als je wil dat open blijft: zeg het) */
     .stack-item.is-past{
-      opacity: .7;
+      opacity: .72;
       transform: translateY(0);
     }
 
@@ -217,7 +219,6 @@
       .scrollstack-track{ display:none; }
     }
 
-    /* Kleine demo footer */
     footer{ border-top:1px solid var(--line); }
     .footer-inner{
       max-width:var(--max);
@@ -236,7 +237,7 @@
 <body>
   <header>
     <nav class="nav" aria-label="Hoofdnavigatie">
-      <div class="brand">Rho — scroll-expand test</div>
+      <div class="brand">Rho — scrollstack pacing test</div>
       <div class="menu" role="menubar">
         <a href="#hero">Hero</a>
         <a href="#stack">Stack</a>
@@ -249,17 +250,26 @@
     <section id="hero">
       <div class="container">
         <div class="meta">Test</div>
-        <h1>Korte titels altijd. Details springen open op scroll.</h1>
+        <h1>Gelijkmatige pacing + “openklappen” per stap</h1>
         <p class="lead">
-          Dit is exact wat je beschrijft: je ziet de 4 lijnen, en bij scroll “opent” één lijn met extra uitleg.
+          De 4 titels staan er altijd. Tijdens scroll opent telkens één item met de langere uitleg.
+          De timing is nu niet afhankelijk van intersection-ratios maar van scroll-progress over de hele sectie.
         </p>
         <p class="lead-small" style="color:var(--muted);">
-          Tip: wil je dat de detail-tekst open blijft als je verder scrolt? Dat kan ook (andere state logica).
+          Tuning: pas op de stack-sectie de variabelen aan:
+          <span style="font-family:var(--ff-mono); font-size:12px;">--stepvh</span> (desktop) en
+          <span style="font-family:var(--ff-mono); font-size:12px;">--stepvh-mobile</span> (mobiel).
         </p>
       </div>
     </section>
 
-    <section class="section-line" id="stack">
+    <!--
+      Pacing knobs:
+      - --steps: aantal items (moet matchen met je lijst)
+      - --stepvh: scroll-lengte per stap op desktop
+      - --stepvh-mobile: scroll-lengte per stap op mobiel
+    -->
+    <section class="section-line" id="stack" style="--steps:4; --stepvh:38vh; --stepvh-mobile:30vh;">
       <div class="container scrollstack">
         <div class="scrollstack-sticky">
           <div class="meta">Rho in 4 lijnen</div>
@@ -275,7 +285,7 @@
                 <p>
                   We gaan in gesprek tot we je aanbod kunnen opzeggen in onze slaap.
                   We onderzoeken wat nu écht jouw ding is en schrappen randactiviteiten,
-                  zodat je klanten in één oogopslag snappen waarom jij de juiste keuze bent.
+                  zodat we naar je klanten duidelijk kunnen communiceren.
                 </p>
               </div>
             </li>
@@ -288,8 +298,8 @@
               <div class="stack-detail">
                 <p>
                   Geen 10 pagina’s, geen “ook dat nog”.
-                  Eén pagina met een helder verhaal: je aanbod, je voorwaarden,
-                  en de juiste volgorde — zodat mensen moeiteloos tot actie komen.
+                  Eén pagina: helder je aanbod, je voorwaarden,
+                  en de volgorde die iemand vanzelf naar “oké, ik wil dit” brengt.
                 </p>
               </div>
             </li>
@@ -302,7 +312,7 @@
               <div class="stack-detail">
                 <p>
                   Ruimte is luxe. We schreeuwen niet, we kiezen precies wat we wél én niet toevoegen.
-                  Typografie, ritme en focus dragen je werk — zonder visuele stress.
+                  Zo voelt je site professioneel en precies, zonder drukte.
                 </p>
               </div>
             </li>
@@ -315,30 +325,26 @@
               <div class="stack-detail">
                 <p>
                   De website die we afleveren staat er. Last-minute updates?
-                  Daar zijn nieuwsbrief of socials geschikter voor.
-                  Je site blijft je visitekaartje: iets dat je met trots deelt,
-                  waar je je geen zorgen over maakt — en jij kan verder met je core business.
+                  Daar zijn nieuwsbrief of sociale media veel geschikter voor.
+                  Je website is een visitekaartje dat je met trots deelt — af — zodat jij verder kan met je core business.
                 </p>
               </div>
             </li>
           </ol>
         </div>
 
-        <div class="scrollstack-track" aria-hidden="true">
-          <div class="scrollstack-spacer"></div>
-          <div class="scrollstack-spacer"></div>
-          <div class="scrollstack-spacer"></div>
-          <div class="scrollstack-spacer"></div>
-        </div>
+        <!-- Track bepaalt pacing: hoogte = steps * stepvh -->
+        <div class="scrollstack-track" aria-hidden="true"></div>
       </div>
     </section>
 
     <section class="section-line" id="end">
       <div class="container">
         <div class="meta">Einde</div>
-        <h2>Oké.</h2>
+        <h2>Klaar.</h2>
         <p class="lead">
-          Als dit gevoel klopt: copy/paste het section-blok + de CSS + de JS naar je Rho pagina.
+          Als de pacing nog net niet klopt: tweak enkel <strong>--stepvh</strong> en <strong>--stepvh-mobile</strong>.
+          Wil je dat je eerste switch vroeger start? Pas in de JS <strong>startBias</strong> aan.
         </p>
       </div>
     </section>
@@ -354,11 +360,16 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
+    // ===== Scroll-progress based pacing (consistent) =====
     (function(){
+      const section = document.getElementById("stack");
       const list = document.getElementById("scrollstack");
-      if(!list) return;
+      if(!section || !list) return;
 
       const items = Array.from(list.querySelectorAll(".stack-item"));
+      const n = items.length;
+
+      const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
       const setActive = (activeIndex) => {
         items.forEach((el, i) => {
@@ -369,27 +380,40 @@
 
       setActive(0);
 
-      // Observe headers (zodat de switch stabiel is)
-      const targets = items;
+      function update(){
+        const rect = section.getBoundingClientRect();
 
-      const io = new IntersectionObserver((entries) => {
-        // kies wat het meest “in view” is rond het midden
-        const visible = entries
-          .filter(e => e.isIntersecting)
-          .sort((a,b) => (b.intersectionRatio - a.intersectionRatio))[0];
+        // Bias knobs:
+        // - startBias: wanneer de animatie begint (hoger = later starten)
+        // - endBias: wanneer de animatie eindigt (hoger = vroeger eindigen)
+        const startBias = 0.22; // 0.18 = sneller naar 2e, 0.30 = trager
+        const endBias   = 0.58; // 0.50 = later eindigen, 0.65 = vroeger
 
-        if(!visible) return;
+        const start = window.innerHeight * startBias;
+        const end   = window.innerHeight * (1 - endBias);
 
-        const idx = targets.indexOf(visible.target);
-        if(idx >= 0) setActive(idx);
-      }, {
-        root: null,
-        // midden focus (tune voor sneller/trager)
-        rootMargin: "-45% 0px -45% 0px",
-        threshold: [0.05, 0.15, 0.25, 0.35, 0.5, 0.65, 0.8]
-      });
+        // beschikbaar scroll-gebied binnen de sectie
+        const total = rect.height - (start + end);
+        const progressed = (start - rect.top);
+        const p = total > 0 ? clamp(progressed / total, 0, 1) : 0;
 
-      targets.forEach(t => io.observe(t));
+        const idx = clamp(Math.floor(p * n), 0, n - 1);
+        setActive(idx);
+      }
+
+      let ticking = false;
+      function onScroll(){
+        if(ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          update();
+          ticking = false;
+        });
+      }
+
+      window.addEventListener("scroll", onScroll, { passive:true });
+      window.addEventListener("resize", onScroll);
+      update();
     })();
   </script>
 </body>
