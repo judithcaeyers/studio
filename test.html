@@ -3,18 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Scrollstack test — Framer vibe</title>
-  <meta name="description" content="Testpagina: sticky subtitle stack die één voor één active wordt op scroll (Framer vibe), zonder libraries." />
+  <title>Scroll-expand test — Rho</title>
 
-  <!-- Fonts (zelfde als jouw site) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
-    /* ===============================
-       1) DESIGN TOKENS
-    ================================ */
     :root{
       --fg:#111;
       --muted:#6f6f6f;
@@ -26,9 +21,6 @@
       --ff-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     }
 
-    /* ===============================
-       2) RESET / BASIS
-    ================================ */
     *,*::before,*::after{ box-sizing:border-box; }
     html{ scroll-behavior:smooth; }
     body{
@@ -40,23 +32,14 @@
       -webkit-font-smoothing:antialiased;
       text-rendering:geometricPrecision;
     }
-    a{ color:inherit; text-decoration:none; }
-    a:hover{ text-decoration:underline; text-underline-offset:4px; }
-
     section{ padding:80px 0; }
     .section-line{ border-top:1px solid var(--line); }
-
-    .container{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:0 20px;
-    }
+    .container{ max-width:var(--max); margin:0 auto; padding:0 20px; }
 
     h1,h2{ font-family:var(--ff-serif); font-weight:400; margin:0 0 12px; }
     h1{ font-size:clamp(40px,6vw,72px); line-height:1.05; margin-bottom:18px; }
     h2{ font-size:clamp(26px,3.6vw,42px); line-height:1.15; }
-
-    p{ margin:0 0 12px; color:var(--fg); }
+    p{ margin:0 0 12px; }
     .lead{ font-size:18px; max-width:72ch; color:rgba(17,17,17,.85); margin-bottom:18px; }
     .lead-small{ font-size:16px; max-width:72ch; color:rgba(17,17,17,.85); }
 
@@ -69,16 +52,6 @@
       margin-bottom:12px;
     }
 
-    .note{
-      margin-top:14px;
-      font-size:14px;
-      color:var(--muted);
-      max-width:72ch;
-    }
-
-    /* ===============================
-       3) HEADER + NAV (simpel voor test)
-    ================================ */
     header{
       position:sticky;
       top:0;
@@ -105,55 +78,25 @@
     }
     .menu{ display:flex; gap:22px; align-items:center; }
     .menu a{
+      color:inherit;
+      text-decoration:none;
       font-size:13px;
       text-transform:uppercase;
       letter-spacing:.14em;
       opacity:.9;
     }
+    .menu a:hover{ text-decoration:underline; text-underline-offset:4px; }
+    @media (max-width: 860px){ .menu{ display:none; } }
 
-    @media (max-width: 860px){
-      .menu{ display:none; }
-    }
-
-    /* ===============================
-       4) BUTTONS (voor demo)
-    ================================ */
-    .btn-row{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:10px; }
-    .btn{
-      display:inline-block;
-      padding:8px 12px;
-      border-radius:10px;
-      font-family:var(--ff-mono);
-      font-size:12px;
-      letter-spacing:.06em;
-      text-transform:uppercase;
-      border:1px solid var(--line);
-      background:#fff;
-      cursor:pointer;
-    }
-    .btn:hover{ text-decoration:underline; text-underline-offset:3px; }
-
-    /* ===============================
-       5) HERO
-    ================================ */
-    .hero{ padding-top:92px; }
-    @media (max-width:860px){
-      .hero{ padding-top:72px; }
-    }
-
-    /* ===============================
-       6) FRAMER-STYLE SCROLLSTACK
-    ================================ */
+    /* ============ Scroll-expand layout ============ */
     .scrollstack{
       display:grid;
       grid-template-columns: 1.2fr .8fr;
       gap: 40px;
       align-items:start;
     }
-
     @media (max-width: 900px){
       .scrollstack{ grid-template-columns: 1fr; }
-      .scrollstack-track{ display:none; }
     }
 
     .scrollstack-sticky{
@@ -165,75 +108,116 @@
       .scrollstack-sticky{ top: 72px; }
     }
 
-    .scrollstack-list{
+    /* Track rechts: zorgt voor een “scroll timeline” */
+    .scrollstack-track{ padding-top: 10px; }
+    .scrollstack-spacer{
+      height: 52vh;
+      border-left: 1px solid var(--line);
+      margin-left: 12px;
+      opacity:.35;
+    }
+    @media (max-width: 900px){
+      .scrollstack-spacer{ height: 42vh; }
+    }
+
+    /* Items: korte titel altijd zichtbaar, detail klapt open */
+    .stack{
       list-style:none;
       padding:0;
       margin: 18px 0 0;
       display:flex;
       flex-direction:column;
       gap: 10px;
-      max-width: 58ch;
+      max-width: 68ch;
     }
 
-    .scrollstack-item{
+    .stack-item{
+      border: 1px solid var(--line);
+      background:#fff;
+      border-radius: 14px;
+      padding: 14px 14px;
+      overflow:hidden;
+
+      /* default: iets stiller */
+      opacity: .8;
+      transition: opacity .28s ease, border-color .28s ease, transform .28s ease;
+      will-change: transform, opacity;
+    }
+
+    .stack-head{
       display:flex;
       gap: 12px;
       align-items: baseline;
-      border: 1px solid var(--line);
-      background:#fff;
-      padding: 14px 14px;
-      border-radius: 14px;
-
-      opacity: .35;
-      transform: translateY(8px);
-      filter: blur(1.5px);
-      transition: opacity .35s ease, transform .35s ease, filter .35s ease, border-color .35s ease;
-      will-change: transform, opacity, filter;
     }
 
-    .scrollstack-item .k{
+    .stack-n{
       font-family: var(--ff-mono);
       font-size: 12px;
       letter-spacing: .12em;
       text-transform: uppercase;
       color: var(--muted);
-      flex: 0 0 auto;
       width: 34px;
+      flex: 0 0 auto;
     }
 
-    .scrollstack-item .t{
+    .stack-title{
       font-family: var(--ff-serif);
-      font-size: 20px;
+      font-size: 22px;
       line-height: 1.15;
       font-weight: 400;
+      margin:0;
     }
 
-    .scrollstack-item.is-active{
+    /* detail: standaard “dicht” */
+    .stack-detail{
+      max-height: 0;
+      opacity: 0;
+      transform: translateY(6px);
+      filter: blur(1.5px);
+      transition:
+        max-height .45s ease,
+        opacity .35s ease,
+        transform .35s ease,
+        filter .35s ease;
+      padding-left: 46px; /* align met titel */
+    }
+
+    .stack-detail p{
+      margin: 10px 0 0;
+      color: rgba(17,17,17,.82);
+      max-width: 64ch;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* active = spring open */
+    .stack-item.is-active{
+      opacity: 1;
+      border-color: rgba(17,17,17,.22);
+      transform: translateY(-1px);
+    }
+    .stack-item.is-active .stack-detail{
+      max-height: 220px; /* genoeg voor 2–4 zinnen */
       opacity: 1;
       transform: translateY(0);
       filter: blur(0);
-      border-color: rgba(17,17,17,.22);
     }
 
-    .scrollstack-item.is-past{
-      opacity: .65;
+    /* past = terug rustiger, maar open blijft NIET (als je wil dat open blijft: zeg het) */
+    .stack-item.is-past{
+      opacity: .7;
       transform: translateY(0);
-      filter: blur(0);
     }
 
-    .scrollstack-track{
-      padding-top: 10px;
-    }
-    .scrollstack-spacer{
-      height: 52vh; /* tune: groter = trager/luxer */
-      border-left: 1px solid var(--line);
-      margin-left: 12px;
-      opacity:.35;
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      html{ scroll-behavior:auto; }
+      .stack-item, .stack-detail{ transition:none; filter:none; transform:none; }
+      .stack-detail{ max-height:none; opacity:1; }
+      .scrollstack-track{ display:none; }
     }
 
-    /* ===============================
-       7) FOOTER
-    ================================ */
+    /* Kleine demo footer */
     footer{ border-top:1px solid var(--line); }
     .footer-inner{
       max-width:var(--max);
@@ -246,90 +230,100 @@
       color:#777;
       font-size:12px;
     }
-
-    /* ===============================
-       8) REDUCED MOTION
-    ================================ */
-    @media (prefers-reduced-motion: reduce){
-      html{ scroll-behavior:auto; }
-      .scrollstack-item{
-        transition:none;
-        filter:none;
-        transform:none;
-        opacity:1;
-      }
-      .scrollstack-track{ display:none; }
-    }
   </style>
 </head>
 
 <body>
   <header>
     <nav class="nav" aria-label="Hoofdnavigatie">
-      <div class="brand">Rho &amp; Sigma — test</div>
+      <div class="brand">Rho — scroll-expand test</div>
       <div class="menu" role="menubar">
         <a href="#hero">Hero</a>
-        <a href="#stack">Scrollstack</a>
+        <a href="#stack">Stack</a>
         <a href="#end">Einde</a>
       </div>
     </nav>
   </header>
 
   <main id="top">
-    <!-- HERO -->
-    <section class="hero" id="hero">
+    <section id="hero">
       <div class="container">
         <div class="meta">Test</div>
-        <h1>Framer-achtige “subtitle stack” op scroll</h1>
+        <h1>Korte titels altijd. Details springen open op scroll.</h1>
         <p class="lead">
-          Sticky tekstkolom + items die één voor één “openspringen” terwijl je scrollt.
-          Zonder libraries, met IntersectionObserver.
+          Dit is exact wat je beschrijft: je ziet de 4 lijnen, en bij scroll “opent” één lijn met extra uitleg.
         </p>
-        <div class="btn-row">
-          <a class="btn" href="#stack">Scroll naar demo</a>
-          <a class="btn" href="#end">Skip</a>
-        </div>
-        <p class="note">Tip: tune de “luxe” via de spacer-height (52vh → 60vh = trager).</p>
+        <p class="lead-small" style="color:var(--muted);">
+          Tip: wil je dat de detail-tekst open blijft als je verder scrolt? Dat kan ook (andere state logica).
+        </p>
       </div>
     </section>
 
-    <!-- SCROLLSTACK -->
     <section class="section-line" id="stack">
       <div class="container scrollstack">
         <div class="scrollstack-sticky">
           <div class="meta">Rho in 4 lijnen</div>
           <h2>Een site die staat. Niet een project dat blijft leven.</h2>
-          <p class="lead-small">
-            Elk punt wordt actief rond het midden van je viewport.
-            Daardoor voelt het heel “Framer”: rustig, leesbaar, één focus tegelijk.
-          </p>
 
-          <ol class="scrollstack-list" id="scrollstack">
-            <li class="scrollstack-item is-active">
-              <span class="k">01</span>
-              <span class="t">We maken je aanbod messcherp.</span>
+          <ol class="stack" id="scrollstack">
+            <li class="stack-item is-active">
+              <div class="stack-head">
+                <span class="stack-n">01</span>
+                <h3 class="stack-title">We maken je aanbod messcherp.</h3>
+              </div>
+              <div class="stack-detail">
+                <p>
+                  We gaan in gesprek tot we je aanbod kunnen opzeggen in onze slaap.
+                  We onderzoeken wat nu écht jouw ding is en schrappen randactiviteiten,
+                  zodat je klanten in één oogopslag snappen waarom jij de juiste keuze bent.
+                </p>
+              </div>
             </li>
-            <li class="scrollstack-item">
-              <span class="k">02</span>
-              <span class="t">We zetten dat om in één duidelijke structuur.</span>
+
+            <li class="stack-item">
+              <div class="stack-head">
+                <span class="stack-n">02</span>
+                <h3 class="stack-title">We zetten dat om in één duidelijke structuur.</h3>
+              </div>
+              <div class="stack-detail">
+                <p>
+                  Geen 10 pagina’s, geen “ook dat nog”.
+                  Eén pagina met een helder verhaal: je aanbod, je voorwaarden,
+                  en de juiste volgorde — zodat mensen moeiteloos tot actie komen.
+                </p>
+              </div>
             </li>
-            <li class="scrollstack-item">
-              <span class="k">03</span>
-              <span class="t">We bouwen rustig, met witruimte en ritme.</span>
+
+            <li class="stack-item">
+              <div class="stack-head">
+                <span class="stack-n">03</span>
+                <h3 class="stack-title">We bouwen rustig, met witruimte en ritme.</h3>
+              </div>
+              <div class="stack-detail">
+                <p>
+                  Ruimte is luxe. We schreeuwen niet, we kiezen precies wat we wél én niet toevoegen.
+                  Typografie, ritme en focus dragen je werk — zonder visuele stress.
+                </p>
+              </div>
             </li>
-            <li class="scrollstack-item">
-              <span class="k">04</span>
-              <span class="t">We leveren op en dragen over. Klaar.</span>
+
+            <li class="stack-item">
+              <div class="stack-head">
+                <span class="stack-n">04</span>
+                <h3 class="stack-title">We leveren op en dragen over. Klaar.</h3>
+              </div>
+              <div class="stack-detail">
+                <p>
+                  De website die we afleveren staat er. Last-minute updates?
+                  Daar zijn nieuwsbrief of socials geschikter voor.
+                  Je site blijft je visitekaartje: iets dat je met trots deelt,
+                  waar je je geen zorgen over maakt — en jij kan verder met je core business.
+                </p>
+              </div>
             </li>
           </ol>
-
-          <div class="btn-row" style="margin-top:14px;">
-            <a class="btn" href="#end">Verder</a>
-            <a class="btn" href="#top">Naar boven</a>
-          </div>
         </div>
 
-        <!-- Scrollruimte die het sticky blok laat “doorlopen” -->
         <div class="scrollstack-track" aria-hidden="true">
           <div class="scrollstack-spacer"></div>
           <div class="scrollstack-spacer"></div>
@@ -339,17 +333,12 @@
       </div>
     </section>
 
-    <!-- EXTRA CONTENT (zodat je voelt dat je eruit “valt”) -->
     <section class="section-line" id="end">
       <div class="container">
         <div class="meta">Einde</div>
-        <h2>Done.</h2>
+        <h2>Oké.</h2>
         <p class="lead">
-          Als dit goed voelt, kopieer je enkel het section-blok + de CSS/JS naar je echte pagina.
-        </p>
-        <p class="note">
-          Wil je dat items ook “clickable” worden (zoals Framer cards)? Dan kan je van elke
-          <code>&lt;li&gt;</code> een <code>&lt;a&gt;</code> maken, met dezelfde classes.
+          Als dit gevoel klopt: copy/paste het section-blok + de CSS + de JS naar je Rho pagina.
         </p>
       </div>
     </section>
@@ -357,7 +346,7 @@
 
   <footer>
     <div class="footer-inner">
-      <div>© <span id="year"></span> Rho &amp; Sigma</div>
+      <div>© <span id="year"></span> Rho</div>
       <a href="#top">Naar boven</a>
     </div>
   </footer>
@@ -365,39 +354,42 @@
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // ===== Framer-style scrollstack =====
     (function(){
       const list = document.getElementById("scrollstack");
       if(!list) return;
 
-      const items = Array.from(list.querySelectorAll(".scrollstack-item"));
+      const items = Array.from(list.querySelectorAll(".stack-item"));
 
-      // Mobile: toon alles “open” (leesbaarheid)
-      if (window.matchMedia("(max-width: 900px)").matches) {
-        items.forEach(el => el.classList.add("is-active"));
-        return;
-      }
+      const setActive = (activeIndex) => {
+        items.forEach((el, i) => {
+          el.classList.toggle("is-active", i === activeIndex);
+          el.classList.toggle("is-past", i < activeIndex);
+        });
+      };
+
+      setActive(0);
+
+      // Observe headers (zodat de switch stabiel is)
+      const targets = items;
 
       const io = new IntersectionObserver((entries) => {
+        // kies wat het meest “in view” is rond het midden
         const visible = entries
           .filter(e => e.isIntersecting)
           .sort((a,b) => (b.intersectionRatio - a.intersectionRatio))[0];
 
         if(!visible) return;
 
-        const activeIndex = items.indexOf(visible.target);
-
-        items.forEach((el, i) => {
-          el.classList.toggle("is-active", i === activeIndex);
-          el.classList.toggle("is-past", i < activeIndex);
-        });
+        const idx = targets.indexOf(visible.target);
+        if(idx >= 0) setActive(idx);
       }, {
         root: null,
-        rootMargin: "-45% 0px -45% 0px", // focus op midden
-        threshold: [0.05, 0.2, 0.35, 0.5, 0.65, 0.8]
+        // midden focus (tune voor sneller/trager)
+        rootMargin: "-45% 0px -45% 0px",
+        threshold: [0.05, 0.15, 0.25, 0.35, 0.5, 0.65, 0.8]
       });
 
-      items.forEach(el => io.observe(el));
+      targets.forEach(t => io.observe(t));
     })();
   </script>
 </body>
