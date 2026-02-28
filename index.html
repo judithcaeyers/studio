@@ -5,245 +5,344 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Rho / Sigma</title>
 
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --bg:#000;
-  --fg:#fff;
+  :root{
+    --bg:#000;
+    --fg:#fff;
 
-  /* Framer-ish easing */
-  --ease:cubic-bezier(.16,1,.3,1);
-  --dur:900ms;
+    /* smoother */
+    --ease:cubic-bezier(.16,1,.3,1);
+    --dur:900ms;
 
-  --pad:clamp(18px,3vw,36px);
-  --label:12px;
-  --tag:clamp(26px,2.9vw,44px);
+    --pad:clamp(18px,3vw,36px);
+    --label:12px;
+    --tag:clamp(26px,2.9vw,44px);
 
-  --m-tag:clamp(30px,7vw,54px);
-  --m-body:clamp(16px,3.8vw,18px);
-}
+    /* hover-expand */
+    --split-dur:560ms;
 
-*{box-sizing:border-box;}
-html,body{height:100%;}
-body{
-  margin:0;
-  background:var(--bg);
-  color:var(--fg);
-  font-family:"EB Garamond",serif;
-  overflow:hidden;
-}
+    /* dim */
+    --dim:rgba(0,0,0,.42);
+    --dim-strong:rgba(0,0,0,.52);
 
-/* ======================
-   DESKTOP
-====================== */
+    /* intro */
+    --intro:900ms;
 
-.desktopStage{
-  position:relative;
-  height:100svh;
-  width:100%;
-  overflow:hidden;
-}
+    /* mobile type */
+    --m-tag:clamp(30px,7vw,54px);
+    --m-body:clamp(16px,3.8vw,18px);
+  }
 
-.media{
-  position:absolute;
-  inset:0;
-  display:grid;
-  grid-template-columns:var(--left,1fr) var(--right,1fr);
-  transition:grid-template-columns 520ms var(--ease);
-}
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--fg);
+    font-family:"EB Garamond", serif;
+    overflow:hidden; /* desktop */
+  }
 
-.pane{
-  position:relative;
-  overflow:hidden;
-  cursor:pointer;
-  transition:transform var(--dur) var(--ease);
-  will-change:transform;
-}
+  /* =========================
+     DESKTOP (Framer vibe split)
+     ========================= */
+  .desktopStage{
+    position:relative;
+    height:100svh;
+    width:100%;
+    overflow:hidden;
+    background:#000;
+    cursor:default;
+  }
 
-.pane video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform:scale(1.05);
-  filter:contrast(1.05) brightness(.92);
-}
+  .media{
+    position:absolute;
+    inset:0;
+    display:grid;
+    grid-template-columns: var(--left, 1fr) var(--right, 1fr);
+    transition: grid-template-columns var(--split-dur) var(--ease);
+    will-change:grid-template-columns;
+  }
 
-/* Always-on vignette */
-.pane::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(to bottom,rgba(0,0,0,.08),rgba(0,0,0,.65));
-  pointer-events:none;
-}
+  .pane{
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
 
-/* Dynamic dim overlay */
-.pane::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,0);
-  transition:background 600ms var(--ease);
-  pointer-events:none;
-}
+    transition: transform var(--dur) var(--ease);
+    will-change: transform;
+    backface-visibility:hidden;
+    transform: translateZ(0);
+  }
 
-/* Hover dim logic */
-.desktopStage.is-hover-left .pane.sigma::before{
-  background:rgba(0,0,0,.42);
-}
-.desktopStage.is-hover-right .pane.rho::before{
-  background:rgba(0,0,0,.42);
-}
+  .pane video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:scale(1.05);
+    filter:contrast(1.05) brightness(.92);
+    -webkit-transform:translateZ(0) scale(1.05);
+  }
 
-/* Click dim persists */
-body.choice-rho .pane.sigma::before{
-  background:rgba(0,0,0,.5);
-}
-body.choice-sigma .pane.rho::before{
-  background:rgba(0,0,0,.5);
-}
+  /* Always-on vignette */
+  .pane::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to bottom, rgba(0,0,0,.08), rgba(0,0,0,.65));
+    pointer-events:none;
+  }
 
-/* Overlay copy */
-.overlay{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-}
+  /* Dynamic dim overlay (for the non-active pane) */
+  .pane::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0);
+    transition: background var(--split-dur) var(--ease);
+    pointer-events:none;
+    will-change:background;
+  }
 
-.block{
-  position:absolute;
-  top:50%;
-  transform:translateY(-50%);
-  width:min(44vw,560px);
-  padding:0 var(--pad);
-  display:flex;
-  flex-direction:column;
-  gap:14px;
-  opacity:0;
-  transition:opacity 900ms var(--ease);
-}
+  /* hover: expand + dim the other half */
+  .desktopStage.is-hover-left{ --left:1.22fr; --right:0.78fr; }
+  .desktopStage.is-hover-right{ --left:0.78fr; --right:1.22fr; }
 
-body.is-ready .block{opacity:1;}
+  .desktopStage.is-hover-left .pane.sigma::before{ background:var(--dim); }
+  .desktopStage.is-hover-right .pane.rho::before{ background:var(--dim); }
 
-.block.rho{left:0;text-align:left;}
-.block.sigma{right:0;text-align:right;align-items:flex-end;}
+  /* click: keep dim while animating away */
+  body.choice-rho .pane.sigma::before{ background:var(--dim-strong); }
+  body.choice-sigma .pane.rho::before{ background:var(--dim-strong); }
 
-.label{
-  font-family:"Roboto",sans-serif;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  font-size:var(--label);
-  opacity:.8;
-}
+  /* click: push away (like before) */
+  body.choice-rho .pane.sigma{ transform:translateX(104%); }
+  body.choice-sigma .pane.rho{ transform:translateX(-104%); }
 
-.tagline{
-  font-size:var(--tag);
-  line-height:1.08;
-  opacity:.9;
-  transition:opacity 520ms var(--ease);
-}
+  /* overlay copy */
+  .overlay{
+    position:absolute;
+    inset:0;
+    z-index:5;
+    pointer-events:none;
+  }
 
-/* Copy dim */
-.desktopStage.is-hover-left .block.sigma,
-.desktopStage.is-hover-right .block.rho{
-  opacity:.65;
-}
+  .block{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:min(44vw, 560px);
+    padding:0 var(--pad);
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    opacity:0;
+    transition: opacity var(--intro) var(--ease);
+  }
+  body.is-ready .block{ opacity:1; }
 
-/* Expand animation */
-body.choice-rho .pane.sigma{transform:translateX(104%);}
-body.choice-sigma .pane.rho{transform:translateX(-104%);}
+  .block.rho{ left:0; text-align:left; }
+  .block.sigma{ right:0; text-align:right; align-items:flex-end; }
 
-/* ======================
-   MOBILE (COMPLETELY DIFFERENT)
-====================== */
+  .label{
+    font-family:"Roboto", sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:var(--label);
+    opacity:.80;
+  }
 
-.mobileStage{
-  display:none;
-  min-height:100svh;
-  overflow:hidden;
-}
+  /* ✅ taglines now sans-serif */
+  .tagline{
+    font-family:"Roboto", sans-serif;
+    font-weight:300;
+    font-size:var(--tag);
+    line-height:1.08;
+    letter-spacing:-0.01em;
+    margin:0;
+    opacity:.92;
+    transition: opacity var(--split-dur) var(--ease);
+  }
+  .tagline .sub{
+    display:block;
+    opacity:.75;
+    margin-top:10px;
+    font-weight:300;
+  }
 
-.mSection{
-  position:relative;
-  height:100svh;
-  overflow:hidden;
-}
+  /* copy dim (non-active) */
+  .desktopStage.is-hover-left .block.sigma,
+  .desktopStage.is-hover-right .block.rho{
+    opacity:.65;
+  }
 
-.mVideo{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  transform:scale(1.06);
-  filter:contrast(1.05) brightness(.88);
-}
+  /* subtle "enter" pill appears on hover (visual only on desktop) */
+  .enterPill{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:"Roboto", sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:12px;
+    color:#fff;
 
-.mSection::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:radial-gradient(80% 60% at 50% 35%,rgba(0,0,0,.15),rgba(0,0,0,.8));
-}
+    opacity:0;
+    transform:translateY(6px);
+    transition: opacity 360ms var(--ease), transform 360ms var(--ease);
 
-.mCopy{
-  position:absolute;
-  left:var(--pad);
-  right:var(--pad);
-  top:12%;
-  display:flex;
-  flex-direction:column;
-  gap:16px;
-}
+    width:max-content;
+    padding:10px 14px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.28);
+    background:rgba(0,0,0,.18);
+    backdrop-filter:blur(6px);
+  }
+  .enterPill .arrow{ font-size:16px; opacity:.95; }
 
-.mLabel{
-  font-family:"Roboto",sans-serif;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  font-size:12px;
-  opacity:.8;
-}
+  .desktopStage.is-hover-left .block.rho .enterPill,
+  .desktopStage.is-hover-right .block.sigma .enterPill{
+    opacity:.92;
+    transform:translateY(0);
+  }
 
-.mTag{
-  font-size:var(--m-tag);
-  line-height:1.02;
-}
+  /* =========================
+     MOBILE (completely different, strong)
+     ========================= */
+  .mobileStage{
+    display:none;
+    min-height:100svh;
+    background:#000;
+    color:#fff;
+    overflow:hidden;
+  }
 
-.mBody{
-  font-size:var(--m-body);
-  opacity:.85;
-}
+  .mSection{
+    position:relative;
+    height:100svh;
+    width:100%;
+    overflow:hidden;
+    background:#000;
+  }
 
-.mEnter{
-  margin-top:8px;
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  font-family:"Roboto",sans-serif;
-  font-weight:700;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  font-size:12px;
-  color:#fff;
-  background:rgba(0,0,0,.25);
-  border:1px solid rgba(255,255,255,.3);
-  padding:12px 16px;
-  border-radius:999px;
-  cursor:pointer;
-}
+  .mVideo{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:scale(1.06);
+    filter:contrast(1.05) brightness(.88);
+    -webkit-transform:translateZ(0) scale(1.06);
+  }
 
-@media(max-width:860px){
-  body{overflow:auto;}
-  .desktopStage{display:none;}
-  .mobileStage{display:block;}
-}
+  .mSection::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(80% 60% at 50% 35%, rgba(0,0,0,.15), rgba(0,0,0,.80)),
+      linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,.75));
+    pointer-events:none;
+  }
+
+  .mCopy{
+    position:absolute;
+    left:var(--pad);
+    right:var(--pad);
+    top:12%;
+    z-index:3;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+
+    opacity:0;
+    transform:translateY(18px);
+    transition: opacity 900ms var(--ease), transform 900ms var(--ease);
+  }
+  body.is-ready .mCopy{ opacity:1; transform:translateY(0); }
+
+  .mLabel{
+    font-family:"Roboto", sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:12px;
+    opacity:.8;
+  }
+
+  .mTag{
+    font-family:"Roboto", sans-serif;     /* ✅ tagline sans-serif on mobile too */
+    font-weight:300;
+    font-size:var(--m-tag);
+    line-height:1.02;
+    letter-spacing:-0.015em;
+    margin:0;
+  }
+
+  .mBody{
+    font-family:"Roboto", sans-serif;
+    font-weight:300;
+    font-size:var(--m-body);
+    line-height:1.45;
+    margin:0;
+    opacity:.86;
+    max-width:46ch;
+  }
+
+  .mEnter{
+    margin-top:6px;
+    pointer-events:auto;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+
+    font-family:"Roboto", sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    font-size:12px;
+
+    color:#fff;
+    background:rgba(0,0,0,.25);
+    border:1px solid rgba(255,255,255,.32);
+    padding:12px 16px;
+    border-radius:999px;
+    cursor:pointer;
+
+    -webkit-appearance:none;
+    appearance:none;
+    outline:none;
+  }
+  .mEnter:active{ transform:translateY(1px); }
+  .mEnter .arrow{ font-size:16px; opacity:.95; }
+
+  /* sigma aligns right on mobile */
+  .mSection.sigma .mCopy{
+    align-items:flex-end;
+    text-align:right;
+  }
+  .mSection.sigma .mBody{ text-align:right; }
+
+  /* Responsive switch */
+  @media (max-width:860px){
+    body{ overflow:auto; }
+    .desktopStage{ display:none; }
+    .mobileStage{ display:block; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; animation:none !important; }
+  }
 </style>
 </head>
 
@@ -252,13 +351,14 @@ body.choice-sigma .pane.rho{transform:translateX(-104%);}
 <!-- DESKTOP -->
 <div class="desktopStage" id="desktopStage">
   <div class="media">
-    <div class="pane rho" id="paneRho">
-      <video autoplay muted loop playsinline>
+    <div class="pane rho" id="paneRho" aria-label="Ga naar Rho">
+      <video autoplay muted loop playsinline preload="auto">
         <source src="assets/video/rho.mp4" type="video/mp4"/>
       </video>
     </div>
-    <div class="pane sigma" id="paneSigma">
-      <video autoplay muted loop playsinline>
+
+    <div class="pane sigma" id="paneSigma" aria-label="Ga naar Sigma">
+      <video autoplay muted loop playsinline preload="auto">
         <source src="assets/video/sigma.mp4" type="video/mp4"/>
       </video>
     </div>
@@ -267,62 +367,129 @@ body.choice-sigma .pane.rho{transform:translateX(-104%);}
   <div class="overlay">
     <div class="block rho">
       <div class="label">Rho</div>
-      <div class="tagline">
-        We make what you do unmistakably clear.<br/>
-        <span style="opacity:.8;">No endless pages. Just a website that says exactly what you do.</span>
+      <p class="tagline">
+        We make what you do unmistakably clear.
+        <span class="sub">No endless pages. Just a website that says exactly what you do.</span>
+      </p>
+      <div class="enterPill" aria-hidden="true">
+        <span class="arrow">←</span><span>Enter</span>
       </div>
     </div>
 
     <div class="block sigma">
       <div class="label">Sigma</div>
-      <div class="tagline">
+      <p class="tagline">
         Our laboratory for ideas that aren’t fully defined — yet.
+      </p>
+      <div class="enterPill" aria-hidden="true">
+        <span>Enter</span><span class="arrow">→</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- MOBILE -->
-<main class="mobileStage">
-  <section class="mSection">
-    <video class="mVideo" autoplay muted loop playsinline>
+<!-- MOBILE (different) -->
+<main class="mobileStage" id="mobileStage">
+  <section class="mSection rho" aria-label="Rho">
+    <video class="mVideo" id="videoRhoM" autoplay muted loop playsinline preload="auto">
       <source src="assets/video/rho.mp4" type="video/mp4"/>
     </video>
+
     <div class="mCopy">
       <div class="mLabel">Rho</div>
-      <div class="mTag">We make what you do unmistakably clear.</div>
-      <div class="mBody">No endless pages. Just a website that says exactly what you do.</div>
-      <button class="mEnter">← Enter</button>
+      <h1 class="mTag">We make what you do unmistakably clear.</h1>
+      <p class="mBody">No endless pages. Just a website that says exactly what you do.</p>
+      <button class="mEnter" type="button" id="enterRhoM"><span class="arrow">←</span><span>Enter</span></button>
     </div>
   </section>
 
-  <section class="mSection">
-    <video class="mVideo" autoplay muted loop playsinline>
+  <section class="mSection sigma" aria-label="Sigma">
+    <video class="mVideo" id="videoSigmaM" autoplay muted loop playsinline preload="auto">
       <source src="assets/video/sigma.mp4" type="video/mp4"/>
     </video>
-    <div class="mCopy" style="text-align:right;align-items:flex-end;">
+
+    <div class="mCopy">
       <div class="mLabel">Sigma</div>
-      <div class="mTag">Our laboratory for ideas that aren’t fully defined — yet.</div>
-      <div class="mBody">A place to explore and sharpen what comes next.</div>
-      <button class="mEnter">Enter →</button>
+      <h1 class="mTag">Our laboratory for ideas that aren’t fully defined — yet.</h1>
+      <p class="mBody">A place to explore, test, and sharpen what comes next — before it becomes a project.</p>
+      <button class="mEnter" type="button" id="enterSigmaM"><span>Enter</span><span class="arrow">→</span></button>
     </div>
   </section>
 </main>
 
 <script>
-const stage = document.getElementById("desktopStage");
-document.body.classList.add("is-ready");
+(function(){
+  const body = document.body;
+  const stage = document.getElementById("desktopStage");
+  const paneRho = document.getElementById("paneRho");
+  const paneSigma = document.getElementById("paneSigma");
 
-stage.addEventListener("mousemove", e=>{
-  const rect = stage.getBoundingClientRect();
-  const mid = rect.left + rect.width/2;
-  stage.classList.toggle("is-hover-left", e.clientX < mid);
-  stage.classList.toggle("is-hover-right", e.clientX >= mid);
-});
+  const enterRhoM = document.getElementById("enterRhoM");
+  const enterSigmaM = document.getElementById("enterSigmaM");
 
-stage.addEventListener("mouseleave", ()=>{
-  stage.classList.remove("is-hover-left","is-hover-right");
-});
+  const videoRhoM = document.getElementById("videoRhoM");
+  const videoSigmaM = document.getElementById("videoSigmaM");
+
+  requestAnimationFrame(() => body.classList.add("is-ready"));
+
+  function isMobile(){
+    return window.matchMedia("(max-width:860px)").matches;
+  }
+
+  // hover logic (desktop)
+  if(stage){
+    stage.addEventListener("mousemove", (e) => {
+      if (isMobile()) return;
+      const rect = stage.getBoundingClientRect();
+      const mid = rect.left + rect.width / 2;
+      stage.classList.toggle("is-hover-left", e.clientX < mid);
+      stage.classList.toggle("is-hover-right", e.clientX >= mid);
+    });
+
+    stage.addEventListener("mouseleave", () => {
+      stage.classList.remove("is-hover-left", "is-hover-right");
+    });
+  }
+
+  // click -> push away -> navigate (restored)
+  let locked = false;
+  function choose(side){
+    if(locked) return;
+    locked = true;
+
+    body.classList.add(side === "rho" ? "choice-rho" : "choice-sigma");
+
+    const dur = getComputedStyle(document.documentElement).getPropertyValue("--dur").trim();
+    const ms = dur.endsWith("ms") ? parseFloat(dur) : (parseFloat(dur) * 1000 || 900);
+
+    setTimeout(() => {
+      location.href = side === "rho" ? "rho.html" : "sigma.html";
+    }, ms);
+  }
+
+  if(paneRho) paneRho.addEventListener("click", () => choose("rho"));
+  if(paneSigma) paneSigma.addEventListener("click", () => choose("sigma"));
+
+  if(enterRhoM) enterRhoM.addEventListener("click", () => choose("rho"));
+  if(enterSigmaM) enterSigmaM.addEventListener("click", () => choose("sigma"));
+
+  // mobile autoplay best-effort
+  function forcePlay(video){
+    if(!video) return;
+    try{
+      video.muted = true;
+      video.playsInline = true;
+      const p = video.play();
+      if(p && typeof p.catch === "function") p.catch(()=>{});
+    }catch(e){}
+  }
+
+  window.addEventListener("load", () => {
+    if(!isMobile()) return;
+    forcePlay(videoRhoM);
+    forcePlay(videoSigmaM);
+  });
+})();
 </script>
 
 </body>
