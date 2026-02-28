@@ -8,7 +8,7 @@
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Roboto:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root{
@@ -23,14 +23,9 @@
     --label:12px;
     --tag:clamp(26px,2.9vw,44px);
 
-    /* hover-expand */
-    --split-dur:560ms;
-
-    /* dim */
     --dim:rgba(0,0,0,.42);
     --dim-strong:rgba(0,0,0,.52);
 
-    /* intro */
     --intro:900ms;
 
     /* mobile type */
@@ -49,7 +44,7 @@
   }
 
   /* =========================
-     DESKTOP (Framer vibe split)
+     DESKTOP (no layout-anim; ultra smooth)
      ========================= */
   .desktopStage{
     position:relative;
@@ -57,27 +52,23 @@
     width:100%;
     overflow:hidden;
     background:#000;
-    cursor:default;
   }
 
   .media{
     position:absolute;
     inset:0;
     display:grid;
-    grid-template-columns: var(--left, 1fr) var(--right, 1fr);
-    transition: grid-template-columns var(--split-dur) var(--ease);
-    will-change:grid-template-columns;
+    grid-template-columns: 1fr 1fr; /* fixed: no layout-jank */
   }
 
   .pane{
     position:relative;
     overflow:hidden;
     cursor:pointer;
-
+    will-change:transform;
+    transform:translateZ(0);
     transition: transform var(--dur) var(--ease);
-    will-change: transform;
-    backface-visibility:hidden;
-    transform: translateZ(0);
+    contain: paint;
   }
 
   .pane video{
@@ -86,9 +77,13 @@
     width:100%;
     height:100%;
     object-fit:cover;
-    transform:scale(1.05);
+
+    /* base state */
+    transform:scale(1.06);
     filter:contrast(1.05) brightness(.92);
-    -webkit-transform:translateZ(0) scale(1.05);
+    will-change: transform, filter;
+    transition: transform 700ms var(--ease), filter 700ms var(--ease);
+    -webkit-transform:translateZ(0) scale(1.06);
   }
 
   /* Always-on vignette */
@@ -100,31 +95,37 @@
     pointer-events:none;
   }
 
-  /* Dynamic dim overlay (for the non-active pane) */
+  /* Dynamic dim overlay */
   .pane::before{
     content:"";
     position:absolute;
     inset:0;
     background:rgba(0,0,0,0);
-    transition: background var(--split-dur) var(--ease);
+    transition: background 520ms var(--ease);
     pointer-events:none;
-    will-change:background;
+    will-change: background;
   }
 
-  /* hover: expand + dim the other half */
-  .desktopStage.is-hover-left{ --left:1.22fr; --right:0.78fr; }
-  .desktopStage.is-hover-right{ --left:0.78fr; --right:1.22fr; }
+  /* Hover focus (no resize, only dim + subtle zoom) */
+  .desktopStage.is-hover-left .pane.rho video{
+    transform:scale(1.10);
+    filter:contrast(1.08) brightness(.98);
+  }
+  .desktopStage.is-hover-right .pane.sigma video{
+    transform:scale(1.10);
+    filter:contrast(1.08) brightness(.98);
+  }
 
   .desktopStage.is-hover-left .pane.sigma::before{ background:var(--dim); }
   .desktopStage.is-hover-right .pane.rho::before{ background:var(--dim); }
 
-  /* click: keep dim while animating away */
+  /* Click focus persists */
   body.choice-rho .pane.sigma::before{ background:var(--dim-strong); }
   body.choice-sigma .pane.rho::before{ background:var(--dim-strong); }
 
-  /* click: push away (like before) */
-  body.choice-rho .pane.sigma{ transform:translateX(104%); }
-  body.choice-sigma .pane.rho{ transform:translateX(-104%); }
+  /* Click push away (restored) */
+  body.choice-rho .pane.sigma{ transform:translate3d(104%,0,0); }
+  body.choice-sigma .pane.rho{ transform:translate3d(-104%,0,0); }
 
   /* overlay copy */
   .overlay{
@@ -152,47 +153,50 @@
   .block.sigma{ right:0; text-align:right; align-items:flex-end; }
 
   .label{
-    font-family:"Roboto", sans-serif;
-    font-weight:700;
+    font-family:"Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight:600;
     text-transform:uppercase;
-    letter-spacing:.12em;
+    letter-spacing:.14em;
     font-size:var(--label);
     opacity:.80;
   }
 
-  /* ✅ taglines now sans-serif */
+  /* ✅ better sans */
   .tagline{
-    font-family:"Roboto", sans-serif;
-    font-weight:300;
+    font-family:"Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight:500;
     font-size:var(--tag);
     line-height:1.08;
-    letter-spacing:-0.01em;
+    letter-spacing:-0.015em;
     margin:0;
     opacity:.92;
-    transition: opacity var(--split-dur) var(--ease);
+    transition: opacity 520ms var(--ease);
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
   }
   .tagline .sub{
     display:block;
-    opacity:.75;
-    margin-top:10px;
-    font-weight:300;
+    opacity:.72;
+    margin-top:12px;
+    font-weight:400;
+    letter-spacing:-0.01em;
   }
 
-  /* copy dim (non-active) */
+  /* copy dim non-active */
   .desktopStage.is-hover-left .block.sigma,
   .desktopStage.is-hover-right .block.rho{
-    opacity:.65;
+    opacity:.62;
   }
 
-  /* subtle "enter" pill appears on hover (visual only on desktop) */
+  /* Enter pill (visual only desktop) */
   .enterPill{
     display:inline-flex;
     align-items:center;
     gap:10px;
-    font-family:"Roboto", sans-serif;
-    font-weight:700;
+    font-family:"Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight:600;
     text-transform:uppercase;
-    letter-spacing:.12em;
+    letter-spacing:.14em;
     font-size:12px;
     color:#fff;
 
@@ -216,7 +220,7 @@
   }
 
   /* =========================
-     MOBILE (completely different, strong)
+     MOBILE (strong, separate)
      ========================= */
   .mobileStage{
     display:none;
@@ -240,9 +244,9 @@
     width:100%;
     height:100%;
     object-fit:cover;
-    transform:scale(1.06);
+    transform:scale(1.08);
     filter:contrast(1.05) brightness(.88);
-    -webkit-transform:translateZ(0) scale(1.06);
+    -webkit-transform:translateZ(0) scale(1.08);
   }
 
   .mSection::after{
@@ -250,8 +254,8 @@
     position:absolute;
     inset:0;
     background:
-      radial-gradient(80% 60% at 50% 35%, rgba(0,0,0,.15), rgba(0,0,0,.80)),
-      linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,.75));
+      radial-gradient(85% 65% at 50% 35%, rgba(0,0,0,.10), rgba(0,0,0,.82)),
+      linear-gradient(to bottom, rgba(0,0,0,.05), rgba(0,0,0,.78));
     pointer-events:none;
   }
 
@@ -272,30 +276,30 @@
   body.is-ready .mCopy{ opacity:1; transform:translateY(0); }
 
   .mLabel{
-    font-family:"Roboto", sans-serif;
-    font-weight:700;
+    font-family:"Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight:600;
     text-transform:uppercase;
-    letter-spacing:.12em;
+    letter-spacing:.14em;
     font-size:12px;
-    opacity:.8;
+    opacity:.82;
   }
 
   .mTag{
-    font-family:"Roboto", sans-serif;     /* ✅ tagline sans-serif on mobile too */
-    font-weight:300;
+    font-family:"Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight:500;
     font-size:var(--m-tag);
     line-height:1.02;
-    letter-spacing:-0.015em;
+    letter-spacing:-0.02em;
     margin:0;
   }
 
   .mBody{
-    font-family:"Roboto", sans-serif;
-    font-weight:300;
+    font-family:"Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight:400;
     font-size:var(--m-body);
-    line-height:1.45;
+    line-height:1.5;
     margin:0;
-    opacity:.86;
+    opacity:.84;
     max-width:46ch;
   }
 
@@ -306,14 +310,14 @@
     align-items:center;
     gap:10px;
 
-    font-family:"Roboto", sans-serif;
-    font-weight:700;
+    font-family:"Space Grotesk", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight:600;
     text-transform:uppercase;
-    letter-spacing:.12em;
+    letter-spacing:.14em;
     font-size:12px;
 
     color:#fff;
-    background:rgba(0,0,0,.25);
+    background:rgba(0,0,0,.26);
     border:1px solid rgba(255,255,255,.32);
     padding:12px 16px;
     border-radius:999px;
@@ -326,14 +330,12 @@
   .mEnter:active{ transform:translateY(1px); }
   .mEnter .arrow{ font-size:16px; opacity:.95; }
 
-  /* sigma aligns right on mobile */
   .mSection.sigma .mCopy{
     align-items:flex-end;
     text-align:right;
   }
   .mSection.sigma .mBody{ text-align:right; }
 
-  /* Responsive switch */
   @media (max-width:860px){
     body{ overflow:auto; }
     .desktopStage{ display:none; }
@@ -378,9 +380,7 @@
 
     <div class="block sigma">
       <div class="label">Sigma</div>
-      <p class="tagline">
-        Our laboratory for ideas that aren’t fully defined — yet.
-      </p>
+      <p class="tagline">Our laboratory for ideas that aren’t fully defined — yet.</p>
       <div class="enterPill" aria-hidden="true">
         <span>Enter</span><span class="arrow">→</span>
       </div>
@@ -388,7 +388,7 @@
   </div>
 </div>
 
-<!-- MOBILE (different) -->
+<!-- MOBILE -->
 <main class="mobileStage" id="mobileStage">
   <section class="mSection rho" aria-label="Rho">
     <video class="mVideo" id="videoRhoM" autoplay muted loop playsinline preload="auto">
@@ -423,10 +423,8 @@
   const stage = document.getElementById("desktopStage");
   const paneRho = document.getElementById("paneRho");
   const paneSigma = document.getElementById("paneSigma");
-
   const enterRhoM = document.getElementById("enterRhoM");
   const enterSigmaM = document.getElementById("enterSigmaM");
-
   const videoRhoM = document.getElementById("videoRhoM");
   const videoSigmaM = document.getElementById("videoSigmaM");
 
@@ -436,27 +434,31 @@
     return window.matchMedia("(max-width:860px)").matches;
   }
 
-  // hover logic (desktop)
+  // Desktop hover focus: only toggle on side change (reduces jitter)
+  let hoverSide = null;
   if(stage){
     stage.addEventListener("mousemove", (e) => {
       if (isMobile()) return;
       const rect = stage.getBoundingClientRect();
       const mid = rect.left + rect.width / 2;
-      stage.classList.toggle("is-hover-left", e.clientX < mid);
-      stage.classList.toggle("is-hover-right", e.clientX >= mid);
+      const next = (e.clientX < mid) ? "left" : "right";
+      if (next === hoverSide) return;
+      hoverSide = next;
+      stage.classList.toggle("is-hover-left", next === "left");
+      stage.classList.toggle("is-hover-right", next === "right");
     });
 
     stage.addEventListener("mouseleave", () => {
+      hoverSide = null;
       stage.classList.remove("is-hover-left", "is-hover-right");
     });
   }
 
-  // click -> push away -> navigate (restored)
+  // click -> push away -> navigate
   let locked = false;
   function choose(side){
     if(locked) return;
     locked = true;
-
     body.classList.add(side === "rho" ? "choice-rho" : "choice-sigma");
 
     const dur = getComputedStyle(document.documentElement).getPropertyValue("--dur").trim();
@@ -469,7 +471,6 @@
 
   if(paneRho) paneRho.addEventListener("click", () => choose("rho"));
   if(paneSigma) paneSigma.addEventListener("click", () => choose("sigma"));
-
   if(enterRhoM) enterRhoM.addEventListener("click", () => choose("rho"));
   if(enterSigmaM) enterSigmaM.addEventListener("click", () => choose("sigma"));
 
@@ -483,7 +484,6 @@
       if(p && typeof p.catch === "function") p.catch(()=>{});
     }catch(e){}
   }
-
   window.addEventListener("load", () => {
     if(!isMobile()) return;
     forcePlay(videoRhoM);
