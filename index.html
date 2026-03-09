@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rho & Sigma — Een website, maar dan af.</title>
+  <meta name="description" content="Heldere websites voor ondernemers. Eén structuur. Eén feedbackronde. Duidelijk begin en einde. Afgerond en overgedragen." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+<!-- HEADER -->
+<header>
+  <nav class="nav" aria-label="Hoofdnavigatie">
+    <div class="brand" aria-label="Rho & Sigma">
+      <span class="brand-text">
+        <span class="brand-switch">
+          <a class="brand-tab is-active" href="index.html">Rho</a>
+          <span class="brand-sep">&amp;</span>
+          <a class="brand-tab" href="sigma.html">Sigma</a>
+        </span>
+      </span>
+    </div>
+
+    <div class="menu" role="menubar">
+      <a href="#aanpak">Aanpak</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#werk">Werk</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Kennismaken</a>
+    </div>
+
+    <button class="burger" aria-label="Open menu" onclick="toggleDrawer()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <a href="#aanpak" onclick="toggleDrawer()">Aanpak</a>
+    <a href="#pricing" onclick="toggleDrawer()">Aanbod</a>
+    <a href="#werk" onclick="toggleDrawer()">Werk</a>
+    <a href="#faq" onclick="toggleDrawer()">FAQ</a>
+    <a href="#contact" onclick="toggleDrawer()">Kennismaken</a>
+  </div>
+</header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        
+
+        <h1>
+          Heldere websites beginnen niet met design, maar met denken.
+Rho vertaalt jouw werk naar één scherp verhaal: jouw visie en aanbod in een duidelijke structuur. Online, zonder dat het een tweede (of derde) job wordt.
+        </h1>
+
+        <p class="lead">Meer?</p>
+
+      </div>
+    </section>
+
+    <!-- FOR WHO / VALUE -->
+    <section class="section-line" id="waarom">
+      <div class="container">
+        <div class="meta">Waarom</div>
+        <div class="two-col grid">
+          <div>
+            <h2>Voor wie dit klopt</h2>
+            <p>
+              Voor ambitieuze ondernemers en kleine studio’s die vooruit willen.
+              Je wil online staan zonder dat je website een tweede job wordt.
+            </p>
+
+            <div class="cards">
+              <article class="card">
+                <div class="card-kicker">Zelfstandigen</div>
+                <p>Je wil iets dat klopt en blijft staan.</p>
+              </article>
+              <article class="card">
+                <div class="card-kicker">Kleine studio’s</div>
+                <p>Je wil één helder verhaal, geen eindeloze varianten.</p>
+              </article>
+              <article class="card">
+                <div class="card-kicker">Makers met goesting</div>
+                <p>Je wil momentum. Niet blijven bijschaven.</p>
+              </article>
+            </div>
+          </div>
+
+          <aside class="panel">
+            <h2>Wat je krijgt</h2>
+            <p>Een rustige, professionele website die je werk draagt — zonder drama.</p>
+            <ul class="list">
+              <li>Helder denkwerk → één structuur</li>
+              <li>Copy en inhoud scherp gezet (met jouw stem)</li>
+              <li>Design dat ademt (typografie, ritme, witruimte)</li>
+              <li>Oplevering + overdracht: alles op jouw naam</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section-line" id="aanpak">
+      <div class="container">
+    <div class="meta">Aanpak</div>
+
+    <h2>Aanpak</h2>
+    <p class="lead-small">
+      Duidelijk begin. Duidelijk einde. We houden het klein, scherp en af.
+    </p>
+
+    <!-- STAPPEN – FULL WIDTH -->
+    <div class="steps steps-wide">
+      <article class="step">
+        <div class="step-n">Stap 1</div>
+        <div class="step-t">Kennismaking</div>
+        <p>Kort gesprek: wat doe je, voor wie, en wat moet je site doen?</p>
+      </article>
+      <article class="step">
+        <div class="step-n">Stap 2</div>
+        <div class="step-t">Structuur</div>
+        <p>Ik maak één voorstel: inhoud, volgorde, toon.</p>
+      </article>
+      <article class="step">
+        <div class="step-n">Stap 3</div>
+        <div class="step-t">Bouw</div>
+        <p>Eerste versie die al “staat”. Rustig finetunen richting af.</p>
+      </article>
+      <article class="step">
+        <div class="step-n">Stap 4</div>
+        <div class="step-t">1 feedbackronde</div>
+        <p>Finale versie, live, en alles netjes overgedragen.</p>
+      </article>
+    </div>
+
+    <!-- RANDVOORWAARDEN – ONDER -->
+    <aside class="panel panel-centered">
+      <h2>Randvoorwaarden</h2>
+      <p>Zodat het licht blijft (voor jou én voor mij).</p>
+      <ul class="list">
+        <li>Eén aanspreekpunt</li>
+        <li>Feedback gebundeld (1 ronde)</li>
+        <li>Inhoud vooraf of ik schrijf mee</li>
+        <li>Na overdracht: beheer bij jou</li>
+      </ul>
+
+      <div class="btn-row" style="margin-top:14px;">
+        <a class="btn btn-primary" href="#contact">Check of het klikt</a>
+        <a class="btn btn-outline" href="#faq">Praktisch</a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+
+    <!-- PRICING -->
+    <section class="section-line" id="pricing">
+      <div class="container">
+        <div class="meta">Prijs</div>
+        <h2>Pricing</h2>
+        <p class="lead-small" style="max-width:68ch;">
+          Ik werk met vaste prijzen. Niet omdat alles hetzelfde is,
+          maar omdat je vooraf mag weten waar je aan toe bent.
+          Zo blijft het helder — ook aan het einde.
+        </p>
+
+        <div class="cards cards-3">
+          <article class="card">
+            <div class="card-kicker">Onepage website</div>
+            <p class="price">€1.650 excl. btw</p>
+            <p>Voor zelfstandigen en makers die online willen staan zonder er een project van te maken.</p>
+            <ul class="list">
+              <li>helder denkwerk</li>
+              <li>één duidelijke structuur</li>
+              <li>copy &amp; design</li>
+              <li>1 feedbackronde</li>
+              <li>oplevering + overdracht</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-kicker">Kleine website</div>
+            <p class="price">± €2.500 excl. btw</p>
+            <p>Voor kleine studio’s of ondernemers met iets meer ruimte — zonder complexiteit.</p>
+            <ul class="list">
+              <li>3–5 pagina’s</li>
+              <li>één samenhangend verhaal</li>
+              <li>rust &amp; structuur bewaken</li>
+              <li>duidelijke afronding</li>
+            </ul>
+          </article>
+
+          <article class="card">
+  <div class="card-kicker">Hosting & updates</div>
+  <p>
+    Domein en hosting kan je eenvoudig via mij laten lopen.
+    Updates en aanpassingen gebeuren per keer, zonder vast contract.
+  </p>
+  <ul class="list">
+    <li>domein & hosting: €50 / maand (excl. btw)</li>
+    <li>updates & aanpassingen: €85 / uur (excl. btw)</li>
+    <li>vraag gerust vooraf een inschatting van de uren, zodat je weet waar je aan toe bent</li>
+    <li>grotere wijzigingen → nieuw mini-project</li>
+  </ul>
+</article>
+
+        </div>
+
+        <p class="note">
+          Een website is hier geen doorlopend traject. Het is iets dat staat — en daarna weer ruimte maakt.
+        </p>
+      </div>
+    </section>
+
+   
+    <!-- FAQ -->
+    <section class="section-line" id="faq">
+      <div class="container">
+        <div class="meta">FAQ</div>
+        <h2>FAQ</h2>
+
+        <details>
+  <summary>Werk je met abonnementen voor hosting en domein?</summary>
+  <div class="answer">
+    Je bent daar helemaal vrij in. Je kan domein en hosting zelf regelen,
+    of het gemakshalve aan mij overlaten.
+    De prijs vind je bij <a href="#pricing">Pricing</a>.
+    Kleine updates of aanpassingen gebeuren altijd apart, op aanvraag.
+  </div>
+</details>
+
+
+        <details>
+          <summary>Wat gebeurt er na oplevering?</summary>
+          <div class="answer">
+            Het project is afgerond: je site staat live en je hebt alle toegangen. Kleine updates kunnen later per keer op aanvraag.
+          </div>
+        </details>
+
+        <details>
+          <summary>Hoeveel feedbackrondes zijn inbegrepen?</summary>
+          <div class="answer">
+            Eén. Dat houdt het helder en zorgt dat we echt afronden.
+          </div>
+        </details>
+
+        <details>
+          <summary>Kan je ook helpen met teksten?</summary>
+          <div class="answer">
+            Ja. Of je levert teksten aan, of we zetten ze samen scherp zodat je stem klopt en de site leest als één geheel.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section-line" id="contact">
+      <div class="container">
+        <div class="meta">Contact</div>
+
+        <div class="two-col grid">
+          <div>
+            <h2>Kennismaken</h2>
+            <p>Stuur me in 5 regels: wat je doet, voor wie, en wat je nodig hebt (onepage of kleine site).</p>
+
+            <div class="btn-row" style="margin-top:14px;">
+              <a class="btn btn-primary" href="mailto:hello@[jouwdomein].be?subject=Website%20maar%20dan%20af">Mail me</a>
+              <a class="btn btn-outline" href="#aanpak">Eerst lezen</a>
+            </div>
+
+            <p class="note">
+              Mail: <a class="mono-link" href="mailto:hello@[jouwdomein].be">hi@rhoandsigma.be</a><br/>
+              Instagram: <a class="mono-link" href="#">@[account]</a>
+            </p>
+          </div>
+
+          <aside class="panel">
+            <h2>Startinfo</h2>
+            <ul class="list">
+              <li>Wat doe je (1 zin)?</li>
+              <li>Voor wie?</li>
+              <li>Wat moet de website doen?</li>
+              <li>Heb je al teksten/beelden?</li>
+              <li>Wanneer wil je live?</li>
+            </ul>
+            <p class="note">Ik antwoord met een helder voorstel (en de volgende stap).</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>© <span id="year"></span> Rho &amp; Sigma</div>
+      <a href="#top">Naar boven</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function toggleDrawer(){
+      const d = document.getElementById("drawer");
+      const open = d.classList.toggle("open");
+      d.setAttribute("aria-hidden", open ? "false" : "true");
+    }
+  </script>
+</body>
+</html>
