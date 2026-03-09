@@ -3,35 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rho & Sigma — Websites die niet blijven hangen in concept.</title>
+  <title>Rho & Sigma — Heldere websites voor ondernemers</title>
   <meta
     name="description"
-    content="Rho maakt heldere websites voor ondernemers. Intake, structuur, moodboard, build en launch. Hosting kan via mij. Updates gebeuren apart."
+    content="Rho maakt heldere websites voor ondernemers. Intake, structuur + moodboard, build en launch."
   />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet"
   >
 
   <style>
     :root {
-      --bg: #f6f3ee;
-      --paper: #fffdf9;
-      --ink: #171717;
-      --muted: #67635c;
-      --line: rgba(23, 23, 23, 0.1);
-      --soft-line: rgba(23, 23, 23, 0.06);
-      --accent: #171717;
-      --accent-2: #ffffff;
-      --card: rgba(255, 255, 255, 0.72);
-      --shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-      --radius-xl: 32px;
-      --radius-lg: 24px;
-      --radius-md: 18px;
-      --container: 1120px;
+      --bg: #050505;
+      --panel: #0c0c0c;
+      --panel-2: #101010;
+      --text: #f4f4f1;
+      --muted: #9d9d98;
+      --line: rgba(255,255,255,0.1);
+      --line-soft: rgba(255,255,255,0.06);
+      --container: 1240px;
+      --radius: 24px;
+      --radius-lg: 32px;
+      --shadow: 0 0 0 1px rgba(255,255,255,0.04);
+      --ease: cubic-bezier(.2,.8,.2,1);
     }
 
     * {
@@ -44,10 +42,8 @@
 
     body {
       margin: 0;
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.85), transparent 36%),
-        linear-gradient(to bottom, #f8f5f0 0%, #f4f0e9 100%);
-      color: var(--ink);
+      background: var(--bg);
+      color: var(--text);
       font-family: "Inter", sans-serif;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
@@ -56,11 +52,6 @@
     a {
       color: inherit;
       text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
     }
 
     .container {
@@ -72,16 +63,16 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      background: rgba(246, 243, 238, 0.72);
-      border-bottom: 1px solid rgba(23, 23, 23, 0.06);
+      background: rgba(5, 5, 5, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
     }
 
     .nav {
       width: min(var(--container), calc(100% - 32px));
       margin: 0 auto;
-      min-height: 78px;
+      min-height: 84px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -89,36 +80,10 @@
     }
 
     .brand {
-      min-width: 0;
-    }
-
-    .brand-switch {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-family: "EB Garamond", serif;
-      font-size: 1.5rem;
-      letter-spacing: -0.02em;
-    }
-
-    .brand-tab {
-      position: relative;
-      padding-bottom: 2px;
-    }
-
-    .brand-tab.is-active::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -4px;
-      height: 1px;
-      background: currentColor;
-      opacity: 0.5;
-    }
-
-    .brand-sep {
-      opacity: 0.5;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      white-space: nowrap;
     }
 
     .menu {
@@ -128,22 +93,22 @@
     }
 
     .menu a {
-      font-size: 0.95rem;
       color: var(--muted);
+      font-size: 0.95rem;
       transition: color 0.2s ease;
     }
 
     .menu a:hover {
-      color: var(--ink);
+      color: var(--text);
     }
 
     .burger {
       display: none;
+      width: 42px;
+      height: 42px;
       border: 0;
       background: transparent;
       padding: 0;
-      width: 42px;
-      height: 42px;
       cursor: pointer;
       align-items: center;
       justify-content: center;
@@ -153,9 +118,9 @@
 
     .burger span {
       display: block;
-      width: 19px;
+      width: 18px;
       height: 1.5px;
-      background: var(--ink);
+      background: var(--text);
       border-radius: 999px;
     }
 
@@ -164,170 +129,50 @@
     }
 
     .hero {
-      padding: 96px 0 84px;
+      padding: 108px 0 72px;
     }
 
-    .meta {
+    .eyebrow,
+    .section-label,
+    .card-kicker {
       display: inline-block;
-      margin-bottom: 18px;
       font-family: "IBM Plex Mono", monospace;
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       line-height: 1.3;
-      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(23, 23, 23, 0.56);
+      letter-spacing: 0.08em;
+      color: var(--muted);
     }
 
-    h1, h2 {
+    .eyebrow {
+      margin-bottom: 22px;
+    }
+
+    h1, h2, h3, p {
       margin: 0;
-      font-family: "Inter", sans-serif;
-      font-weight: 600;
-      letter-spacing: -0.055em;
-      color: var(--ink);
     }
 
     h1 {
       max-width: 11ch;
-      font-size: clamp(3.2rem, 9vw, 7.25rem);
-      line-height: 0.93;
-    }
-
-    h2 {
-      max-width: 12ch;
-      font-size: clamp(2rem, 4.4vw, 4rem);
-      line-height: 0.96;
-    }
-
-    p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.02rem;
-      line-height: 1.62;
+      font-size: clamp(3.5rem, 9vw, 8.2rem);
+      line-height: 0.92;
+      letter-spacing: -0.08em;
+      font-weight: 800;
     }
 
     .lead {
-      margin-top: 24px;
-      max-width: 39ch;
-      font-size: 1.16rem;
-      line-height: 1.5;
-      color: #2f2c28;
-    }
-
-    .lead-small {
-      margin-top: 18px;
-      max-width: 44ch;
-      font-size: 1.04rem;
-    }
-
-    .section-line {
-      padding: 84px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .two-col.grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
-      gap: 24px;
-      align-items: start;
-    }
-
-    .cards,
-    .steps {
-      display: grid;
-      gap: 18px;
-    }
-
-    .cards.cards-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 34px;
-    }
-
-    .steps.steps-wide {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      margin-top: 34px;
-    }
-
-    .card,
-    .panel,
-    .step {
-      background: var(--card);
-      border: 1px solid var(--soft-line);
-      border-radius: var(--radius-lg);
-      padding: 28px;
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .card-kicker,
-    .step-n {
-      margin-bottom: 12px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.76rem;
-      line-height: 1.3;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(23, 23, 23, 0.56);
-    }
-
-    .step-t {
-      margin-bottom: 10px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-    }
-
-    .price {
-      margin-bottom: 12px;
-      color: var(--ink);
-      font-size: 1.55rem;
-      line-height: 1.1;
-      letter-spacing: -0.04em;
-      font-weight: 600;
-    }
-
-    .list {
-      margin: 16px 0 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 10px;
-    }
-
-    .list li {
-      position: relative;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .list li::before {
-      content: "•";
-      position: absolute;
-      left: 0;
-      top: 0;
-      color: rgba(23, 23, 23, 0.5);
-    }
-
-    .panel h2,
-    .card h2,
-    .step h2 {
-      max-width: none;
-      font-size: clamp(1.45rem, 2.2vw, 2rem);
-      line-height: 1.02;
-      margin-bottom: 10px;
-    }
-
-    .panel-centered {
-      margin-top: 22px;
-      text-align: left;
+      margin-top: 28px;
+      max-width: 34ch;
+      font-size: 1.14rem;
+      line-height: 1.52;
+      color: #d2d2cd;
     }
 
     .btn-row {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
+      margin-top: 30px;
     }
 
     .btn {
@@ -337,10 +182,10 @@
       min-height: 48px;
       padding: 0 18px;
       border-radius: 999px;
-      font-size: 0.96rem;
+      font-size: 0.95rem;
       font-weight: 500;
-      transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
-      border: 1px solid transparent;
+      border: 1px solid var(--line);
+      transition: transform 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
     }
 
     .btn:hover {
@@ -348,78 +193,192 @@
     }
 
     .btn-primary {
-      background: var(--accent);
-      color: var(--accent-2);
-      border-color: var(--accent);
+      background: var(--text);
+      color: var(--bg);
+      border-color: var(--text);
     }
 
     .btn-primary:hover {
-      background: #2a2a2a;
-      border-color: #2a2a2a;
+      background: #ffffff;
+      border-color: #ffffff;
     }
 
-    .btn-outline {
-      background: rgba(255,255,255,0.4);
-      color: var(--ink);
-      border-color: var(--line);
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
     }
 
-    .btn-outline:hover {
-      background: rgba(255,255,255,0.75);
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .section {
+      padding: 78px 0;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .section-head {
+      margin-bottom: 30px;
+    }
+
+    .section-label {
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      max-width: 13ch;
+      font-size: clamp(2.2rem, 5vw, 4.8rem);
+      line-height: 0.93;
+      letter-spacing: -0.075em;
+      font-weight: 800;
+    }
+
+    .sub {
+      margin-top: 16px;
+      max-width: 42ch;
+      font-size: 1.04rem;
+      line-height: 1.56;
+      color: var(--muted);
+    }
+
+    .cards-4,
+    .cards-3,
+    .grid-2 {
+      display: grid;
+      gap: 16px;
+    }
+
+    .cards-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .cards-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-2 {
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: start;
+    }
+
+    .card,
+    .contact-box {
+      background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card-kicker {
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.08rem;
+      line-height: 1.12;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .card p,
+    .contact-box p {
+      color: var(--muted);
+      font-size: 0.98rem;
+      line-height: 1.54;
+    }
+
+    .price {
+      margin-bottom: 12px;
+      font-size: 1.65rem;
+      line-height: 1;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      color: var(--text);
+    }
+
+    .list {
+      list-style: none;
+      margin: 14px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+    }
+
+    .list li {
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.48;
+    }
+
+    .list li::before {
+      content: "— ";
+      color: var(--text);
     }
 
     .note {
-      margin-top: 16px;
-      font-size: 0.95rem;
-      line-height: 1.55;
-      color: rgba(23, 23, 23, 0.62);
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.52;
     }
 
-    .mono-link {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.92rem;
-      letter-spacing: -0.01em;
+    .contact-box {
+      border-radius: var(--radius-lg);
     }
 
     footer {
-      padding: 26px 0 34px;
-      border-top: 1px solid var(--line);
+      padding: 24px 0 32px;
+      border-top: 1px solid var(--line-soft);
     }
 
     .footer-inner {
       width: min(var(--container), calc(100% - 32px));
       margin: 0 auto;
       display: flex;
-      align-items: center;
       justify-content: space-between;
       gap: 16px;
+      color: var(--muted);
       font-size: 0.92rem;
-      color: rgba(23, 23, 23, 0.6);
     }
 
     .footer-inner a:hover {
-      color: var(--ink);
+      color: var(--text);
     }
 
-    @media (max-width: 1080px) {
-      .cards.cards-3 {
-        grid-template-columns: 1fr;
-      }
+    /* Smooth reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 0.9s var(--ease),
+        transform 0.9s var(--ease);
+      will-change: opacity, transform;
+    }
 
-      .steps.steps-wide {
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 { transition-delay: 0.06s; }
+    .delay-2 { transition-delay: 0.12s; }
+    .delay-3 { transition-delay: 0.18s; }
+    .delay-4 { transition-delay: 0.24s; }
+
+    @media (max-width: 1080px) {
+      .cards-4 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      h1 {
-        max-width: 12ch;
-      }
-
-      h2 {
-        max-width: 14ch;
+      .cards-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
       }
     }
 
-    @media (max-width: 780px) {
+    @media (max-width: 760px) {
       .menu {
         display: none;
       }
@@ -429,23 +388,20 @@
       }
 
       .drawer {
-        display: grid;
-        gap: 14px;
-        padding: 0 16px 18px;
         width: min(var(--container), calc(100% - 32px));
         margin: 0 auto;
+        display: grid;
+        gap: 12px;
         max-height: 0;
         overflow: hidden;
         opacity: 0;
-        pointer-events: none;
-        transition: max-height 0.25s ease, opacity 0.22s ease, padding-top 0.22s ease;
+        transition: max-height 0.25s ease, opacity 0.2s ease, padding-bottom 0.2s ease;
       }
 
       .drawer.open {
-        max-height: 240px;
+        max-height: 220px;
         opacity: 1;
-        pointer-events: auto;
-        padding-top: 6px;
+        padding-bottom: 18px;
       }
 
       .drawer a {
@@ -453,65 +409,55 @@
       }
 
       .hero {
-        padding: 72px 0 64px;
+        padding: 78px 0 56px;
       }
 
-      .section-line {
-        padding: 64px 0;
+      .section {
+        padding: 58px 0;
       }
 
-      .two-col.grid,
-      .steps.steps-wide {
+      .cards-4,
+      .cards-3 {
         grid-template-columns: 1fr;
       }
 
-      .card,
-      .panel,
-      .step {
-        padding: 22px;
-        border-radius: 22px;
-      }
-
       h1 {
-        max-width: 10ch;
-        font-size: clamp(2.8rem, 14vw, 4.6rem);
+        max-width: 9.5ch;
+        font-size: clamp(2.9rem, 15vw, 5.4rem);
       }
 
       h2 {
         max-width: 100%;
-        font-size: clamp(1.9rem, 9vw, 3rem);
-      }
-
-      .lead {
-        font-size: 1.06rem;
-      }
-
-      .nav {
-        min-height: 72px;
+        font-size: clamp(2rem, 10vw, 3.2rem);
       }
 
       .footer-inner {
         flex-direction: column;
-        align-items: flex-start;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .reveal,
+      .reveal.is-visible,
+      .btn,
+      .drawer {
+        transition: none !important;
+        transform: none !important;
+        opacity: 1 !important;
       }
     }
   </style>
 </head>
-
 <body>
   <header>
     <nav class="nav" aria-label="Hoofdnavigatie">
-      <div class="brand" aria-label="Rho & Sigma">
-        <span class="brand-text">
-          <span class="brand-switch">
-            <a class="brand-tab is-active" href="index.html">Rho</a>
-            <span class="brand-sep">&amp;</span>
-            <a class="brand-tab" href="sigma.html">Sigma</a>
-          </span>
-        </span>
-      </div>
+      <div class="brand">Rho &amp; Sigma</div>
 
-      <div class="menu" role="menubar">
+      <div class="menu">
         <a href="#aanpak">Aanpak</a>
         <a href="#pricing">Prijzen</a>
         <a href="#contact">Contact</a>
@@ -532,158 +478,76 @@
   <main id="top">
     <section class="hero">
       <div class="container">
-        <div class="meta">Rho / websites voor ondernemers</div>
+        <div class="eyebrow reveal">Rho / websites voor ondernemers</div>
 
-        <h1>
-          Websites die niet blijven hangen<br>
-          in “we zouden hier ooit eens aan moeten beginnen”.
+        <h1 class="reveal delay-1">
+          Websites voor mensen die liever hun werk doen dan aan hun website beginnen.
         </h1>
 
-        <p class="lead">
-          Rho maakt heldere websites voor ondernemers.
-          Minder gedoe, minder getalm, minder tabbladen open.
-          Gewoon: een duidelijke site die je werk goed toont en ook echt live gaat.
+        <p class="lead reveal delay-2">
+          Rho maakt heldere websites. Minder gedoe, minder twijfel, minder “we moeten daar echt eens aan beginnen”.
         </p>
 
-        <div class="btn-row" style="margin-top: 18px;">
+        <div class="btn-row reveal delay-3">
           <a class="btn btn-primary" href="#contact">Zeg hallo</a>
-          <a class="btn btn-outline" href="#aanpak">Hoe het werkt</a>
+          <a class="btn btn-secondary" href="#pricing">Bekijk prijzen</a>
         </div>
       </div>
     </section>
 
-    <section class="section-line" id="waarom">
+    <section class="section" id="aanpak">
       <div class="container">
-        <div class="two-col grid">
-          <div>
-            <div class="meta">Waarom Rho</div>
-            <h2>
-              Omdat de meeste websites niet mislukken op design.<br>
-              Maar op twijfel.
-            </h2>
+        <div class="section-head reveal">
+          <div class="section-label">Aanpak</div>
+          <h2>Vier stappen. Meer hoeft dat niet te zijn.</h2>
+          <p class="sub">
+            Eerst helder krijgen wat je site moet doen. Daarna bouwen. Geen theater.
+          </p>
+        </div>
 
-            <p>
-              Te veel ideeën. Te veel richtingen. Te veel “we kijken nog wel”.
-            </p>
+        <div class="cards-4">
+          <article class="card reveal">
+            <div class="card-kicker">01</div>
+            <h3>Intake</h3>
+            <p>Gesprek of formulier. Wat doe je, voor wie, en wat moet je website eigenlijk doen?</p>
+          </article>
 
-            <p style="margin-top: 14px;">
-              Daarom hou ik het liever helder.
-              Eerst scherp krijgen wat je doet, voor wie, en wat je site moet doen.
-              Daarna bouwen.
-            </p>
+          <article class="card reveal delay-1">
+            <div class="card-kicker">02</div>
+            <h3>Structuur + moodboard</h3>
+            <p>Ik zet de richting uit. Inhoud, opbouw en visuele sfeer. Zodat we niet zomaar beginnen klikken.</p>
+          </article>
 
-            <p style="margin-top: 14px;">
-              Geen eindeloze workshopmarathon.
-              Geen 46 versies van een homepage.
-              Geen website die na zes maanden nog altijd “bijna af” is.
-            </p>
-          </div>
+          <article class="card reveal delay-2">
+            <div class="card-kicker">03</div>
+            <h3>Build</h3>
+            <p>Ik bouw de website uit tot een eerste versie die al staat. Geen rommel. Wel iets dat klopt.</p>
+          </article>
 
-          <aside class="panel">
-            <h2>Wat je krijgt</h2>
-            <ul class="list">
-              <li>een duidelijke structuur</li>
-              <li>een moodboard voor de visuele richting</li>
-              <li>een website die rustig en sterk aanvoelt</li>
-              <li>een launch zonder circus</li>
-            </ul>
-          </aside>
+          <article class="card reveal delay-3">
+            <div class="card-kicker">04</div>
+            <h3>Launch</h3>
+            <p>Eén feedbackronde. Dan gaat de site live. Revolutionair concept: een website die af geraakt.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section-line" id="aanpak">
+    <section class="section" id="pricing">
       <div class="container">
-        <div class="meta">Aanpak</div>
-
-        <h2>
-          Vier stappen.<br>
-          Dat is genoeg.
-        </h2>
-
-        <p class="lead-small">
-          We houden het simpel. Niet omdat simpel weinig is,
-          maar omdat simpel meestal beter werkt.
-        </p>
-
-        <div class="steps steps-wide">
-          <article class="step">
-            <div class="step-n">01</div>
-            <div class="step-t">Intake</div>
-            <p>
-              We starten met een gesprek of intakeformulier.
-              Wat doe je? Voor wie? Wat moet je website eigenlijk doen?
-            </p>
-          </article>
-
-          <article class="step">
-            <div class="step-n">02</div>
-            <div class="step-t">Structuur + moodboard</div>
-            <p>
-              Ik werk de richting uit.
-              Inhoud, opbouw en sfeer.
-              Zodat we niet blind beginnen bouwen en hopen op het beste.
-            </p>
-          </article>
-
-          <article class="step">
-            <div class="step-n">03</div>
-            <div class="step-t">Build</div>
-            <p>
-              Ik bouw de website uit tot een eerste versie die al staat.
-              Geen losse flodders. Wel iets waar je jezelf al in herkent.
-            </p>
-          </article>
-
-          <article class="step">
-            <div class="step-n">04</div>
-            <div class="step-t">Launch</div>
-            <p>
-              Eén feedbackronde.
-              Dan gaat de site live.
-              Omdat websites daar verrassend goed in zijn: live gaan.
-            </p>
-          </article>
+        <div class="section-head reveal">
+          <div class="section-label">Prijzen</div>
+          <h2>Duidelijke prijzen. Ook aangenaam.</h2>
+          <p class="sub">
+            Je hoeft hier niet te gokken wat iets ongeveer misschien zou kunnen kosten.
+          </p>
         </div>
 
-        <aside class="panel panel-centered">
-          <h2>Praktisch, zodat het ook praktisch blijft</h2>
-          <ul class="list">
-            <li>1 feedbackronde inbegrepen</li>
-            <li>duidelijke afbakening van wat we maken</li>
-            <li>kleine updates later mogelijk</li>
-            <li>na launch krijg jij alles netjes in handen</li>
-          </ul>
-
-          <div class="btn-row" style="margin-top: 14px;">
-            <a class="btn btn-primary" href="#contact">Project bespreken</a>
-            <a class="btn btn-outline" href="#pricing">Bekijk prijzen</a>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section-line" id="pricing">
-      <div class="container">
-        <div class="meta">Prijzen</div>
-
-        <h2>
-          Duidelijke prijzen.<br>
-          Ook leuk.
-        </h2>
-
-        <p class="lead-small">
-          Je hoeft hier niet te raden wat iets ongeveer misschien zou kunnen kosten.
-        </p>
-
-        <div class="cards cards-3">
-          <article class="card">
+        <div class="cards-3">
+          <article class="card reveal">
             <div class="card-kicker">Onepage website</div>
-            <p class="price">€1.650 excl. btw</p>
-            <p>
-              Voor ondernemers die online willen staan
-              zonder daar een tweede job van te maken.
-            </p>
+            <div class="price">€1.650 excl. btw</div>
+            <p>Voor ondernemers die helder online willen staan zonder daar een compleet zijproject van te maken.</p>
             <ul class="list">
               <li>intake</li>
               <li>structuur + moodboard</li>
@@ -693,13 +557,10 @@
             </ul>
           </article>
 
-          <article class="card">
+          <article class="card reveal delay-1">
             <div class="card-kicker">Kleine website</div>
-            <p class="price">± €2.500 excl. btw</p>
-            <p>
-              Voor wie net wat meer ruimte nodig heeft.
-              Nog altijd helder. Gewoon iets meer pagina’s.
-            </p>
+            <div class="price">± €2.500 excl. btw</div>
+            <p>Voor ondernemers of kleine studio’s die net wat meer ruimte nodig hebben. Nog altijd helder. Gewoon meer pagina’s.</p>
             <ul class="list">
               <li>3–5 pagina’s</li>
               <li>intake</li>
@@ -710,69 +571,50 @@
             </ul>
           </article>
 
-          <article class="card">
+          <article class="card reveal delay-2">
             <div class="card-kicker">Hosting + domein</div>
-            <p>
-              Kan via mij lopen.
-              Dan hoef jij niet uit te zoeken waar je DNS naartoe is verdwenen.
-            </p>
+            <div class="price">€50 / maand</div>
+            <p>Of €500 per jaar, excl. btw. Inclusief domein en hosting. Handig voor wie geen zin heeft in technisch gepruts.</p>
             <ul class="list">
               <li>€50 / maand excl. btw</li>
-              <li>of €500 / jaar excl. btw</li>
+              <li>€500 / jaar excl. btw</li>
               <li>inclusief domein + hosting</li>
             </ul>
-
-            <p class="note" style="margin-top: 10px;">
-              Inhoudelijke updates aan de website zijn daar niet bij inbegrepen.
+            <p class="note">
+              Inhoudelijke updates zijn niet inbegrepen en gebeuren apart aan €75 per uur excl. btw.
             </p>
-
-            <ul class="list">
-              <li>updates: €75 / uur excl. btw</li>
-            </ul>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="section-line" id="contact">
+    <section class="section" id="contact">
       <div class="container">
-        <div class="two-col grid">
-          <div>
-            <div class="meta">Contact</div>
-            <h2>
-              Heb je een website nodig?<br>
-              Of een betere?
-            </h2>
-
-            <p>
-              Mail me kort wat je doet, voor wie je werkt,
-              en wat je website moet doen.
+        <div class="grid-2">
+          <div class="reveal">
+            <div class="section-label">Contact</div>
+            <h2>Heb je een website nodig? Of een betere?</h2>
+            <p class="sub">
+              Mail me kort wat je doet, voor wie je werkt, en wat je website moet doen.
             </p>
 
-            <div class="btn-row" style="margin-top: 14px;">
+            <div class="btn-row">
               <a class="btn btn-primary" href="mailto:hi@rhoandsigma.be?subject=Kennismaking%20Rho">Mail me</a>
             </div>
 
-            <p class="note" style="margin-top: 14px;">
-              <a class="mono-link" href="mailto:hi@rhoandsigma.be">hi@rhoandsigma.be</a>
-            </p>
+            <p class="note">hi@rhoandsigma.be</p>
           </div>
 
-          <aside class="panel">
-            <h2>Wat zet je best in je mail?</h2>
+          <div class="contact-box reveal delay-1">
+            <div class="card-kicker">Wat zet je best in je mail?</div>
             <ul class="list">
               <li>wat je doet</li>
               <li>voor wie je werkt</li>
-              <li>wat de site moet doen</li>
+              <li>wat de website moet doen</li>
               <li>of je al tekst of beelden hebt</li>
               <li>of je een onepage of kleine website zoekt</li>
             </ul>
-
-            <p class="note">
-              Ik antwoord met een heldere volgende stap.
-              Geen mysterie. Geen sales-fuif.
-            </p>
-          </aside>
+          </div>
         </div>
       </div>
     </section>
@@ -793,6 +635,25 @@
       const open = d.classList.toggle("open");
       d.setAttribute("aria-hidden", open ? "false" : "true");
     }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.14,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
+
+    document.querySelectorAll(".reveal").forEach((el) => {
+      observer.observe(el);
+    });
   </script>
 </body>
 </html>
