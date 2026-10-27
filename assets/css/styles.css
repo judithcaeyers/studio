@@ -232,6 +232,7 @@ header{
   .drawer a{
     display:block;
     padding:14px 10px;
+    color:#000;
     border-bottom:1px solid var(--line);
     text-transform:uppercase;
     font-size:13px;
@@ -488,11 +489,12 @@ body.mode-Sigma .burger span{ background:#fff; }
 
 @media (max-width: 860px){
   body.mode-Sigma .drawer{
-    background:#000;
-    border-color: rgba(255,255,255,.18);
+    background:#fff;
+    border-color: rgba(0,0,0,.12);
   }
   body.mode-Sigma .drawer a{
-    border-bottom-color: rgba(255,255,255,.12);
+    color:#000;
+    border-bottom-color: rgba(0,0,0,.12);
   }
 }
 
