@@ -395,17 +395,22 @@
         max-height: 0;
         overflow: hidden;
         opacity: 0;
+        background: #fff;
+        color: #000;
+        border-radius: 12px;
+        padding-inline: 16px;
         transition: max-height 0.25s ease, opacity 0.2s ease, padding-bottom 0.2s ease;
       }
 
       .drawer.open {
         max-height: 220px;
         opacity: 1;
+        padding-top: 16px;
         padding-bottom: 18px;
       }
 
       .drawer a {
-        color: var(--muted);
+        color: #000;
       }
 
       .hero {
