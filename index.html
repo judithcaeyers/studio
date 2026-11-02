@@ -1,162 +1,408 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="nl-BE">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#090a09">
-<title>Rho &amp; Sigma | Minder herhaalwerk. Meer ruimte voor je werk.</title>
-<meta name="description" content="Rho & Sigma helpt kleine ondernemingen om repetitieve administratie, offertes, technische documenten en projectopvolging slimmer te organiseren. Praktisch, op maat en zonder AI-hype.">
-<link rel="canonical" href="https://www.rhoandsigma.com/">
-<meta property="og:title" content="Rho & Sigma | Minder herhaalwerk">
-<meta property="og:description" content="We onderzoeken hoe je werkt, schrappen onnodige stappen en automatiseren wat zich blijft herhalen. AI als het helpt, eenvoud als het beter werkt.">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#090a09;--panel:#111411;--panel2:#181c18;--text:#f5f6f1;--muted:#b2bbb0;--line:#343b34;--accent:#d7e5c8;--container:1160px}
-*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}h1,h2,h3,p{margin:0}p{line-height:1.7}.container{width:min(var(--container),calc(100% - 40px));margin:auto}.skip{position:absolute;top:-100px;left:12px;background:#fff;color:#000;padding:10px;z-index:200}.skip:focus{top:12px}
-header{position:sticky;top:0;z-index:50;background:rgba(9,10,9,.96);border-bottom:1px solid #242a24;backdrop-filter:blur(16px)}.nav{width:min(var(--container),calc(100% - 40px));margin:auto;min-height:78px;display:flex;justify-content:space-between;align-items:center;gap:24px}.brand{font-size:1.12rem;letter-spacing:-.06em;font-weight:800;white-space:nowrap}.menu{display:flex;align-items:center;gap:28px}.menu a{font-size:.91rem;color:#c4ccc2}.menu a:hover,.menu a:focus-visible{color:#fff}.menu .navcta{border:1px solid #6f7b6d;border-radius:100px;padding:12px 18px;color:#fff}.burger{display:none;width:44px;height:44px;align-items:center;justify-content:center;flex-direction:column;gap:5px;background:transparent;border:1px solid #545e54;border-radius:12px;cursor:pointer}.burger span{width:18px;height:2px;background:#fff;border-radius:3px}.drawer{display:none}
-.hero{padding:112px 0 110px;position:relative;overflow:hidden}.hero::before{content:"";position:absolute;top:5%;right:-7%;width:clamp(180px,35vw,540px);height:clamp(180px,35vw,540px);border:1px solid #3e493c;border-radius:50%;opacity:.48;pointer-events:none}.eyebrow,.kicker,.section-label,.stepnumber{font-family:"IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.11em;font-size:.72rem;color:var(--accent)}.hero .eyebrow{margin-bottom:22px}.hero h1{font-size:clamp(3.15rem,8.6vw,7.7rem);line-height:.96;letter-spacing:-.087em;font-weight:800;max-width:1050px}.hero h1 em{font-style:normal;color:var(--accent)}.lead{font-size:clamp(1.06rem,1.65vw,1.3rem);line-height:1.7;color:#d2d8cd;max-width:650px;margin-top:30px}.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{display:inline-flex;min-height:50px;padding:13px 20px;border:1px solid #6e776b;border-radius:100px;align-items:center;justify-content:center;font-size:.94rem;font-weight:600;transition:background .2s ease,transform .2s ease}.btn:hover{transform:translateY(-2px)}.btn.primary{background:var(--accent);border-color:var(--accent);color:#121812}.btn.secondary:hover{background:#222722}.hero-note{font-size:.81rem;color:var(--muted);margin-top:24px}
-.section{padding:88px 0;border-top:1px solid #262c26}.section-label{display:block;margin-bottom:19px}h2{font-size:clamp(2.25rem,5vw,4.8rem);line-height:1.03;letter-spacing:-.07em;max-width:850px}.section-intro{margin:20px 0 38px;max-width:690px;color:var(--muted);font-size:1.05rem}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:linear-gradient(150deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:22px;padding:27px;min-width:0}.card .kicker{margin-bottom:18px}.card h3{font-size:1.3rem;line-height:1.25;letter-spacing:-.035em;margin-bottom:12px}.card p,.card li{color:#b7c0b5;font-size:.94rem;line-height:1.7}.card ul{padding-left:18px;margin:14px 0 0}.card li+li{margin-top:5px}.case{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:38px;border:1px solid #4a5746;border-radius:24px;background:#151b15}.case .kicker{margin-bottom:18px}.case h3{font-size:clamp(1.75rem,3.4vw,3rem);line-height:1.12;letter-spacing:-.05em;margin-bottom:18px}.case p{color:#c9d3c7}.case .details{display:grid;gap:14px}.case .detail{padding:20px 22px;background:#0d110d;border:1px solid #333e32;border-radius:14px}.detail strong{display:block;margin-bottom:6px;font-size:.91rem}.detail p{font-size:.92rem}.smallnote{margin-top:14px;color:var(--muted);font-size:.82rem}.process{counter-reset:step;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.step{border-top:1px solid #6e8169;padding:24px 12px 0 0}.stepnumber{margin-bottom:22px}.step h3{font-size:1.13rem;margin-bottom:12px}.step p{font-size:.93rem;color:var(--muted)}.offer{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;padding:32px;border:1px solid #556550;border-radius:24px;background:#172017}.offer h3{font-size:2rem;letter-spacing:-.05em;line-height:1.1;margin:12px 0 16px}.offer p{color:#ced6ca}.price{font-size:2.6rem;font-weight:800;letter-spacing:-.07em;line-height:1.1}.price small{font-weight:400;font-size:.8rem;letter-spacing:0;color:#b6c5b2}.offerlist{margin:0;padding-left:18px;color:#d1dbce;font-size:.92rem;line-height:1.8}.offerlist li+li{margin-top:5px}.contact{display:grid;grid-template-columns:1.3fr .7fr;gap:35px;align-items:start}.contact h2{margin-bottom:24px}.contact p{max-width:600px;color:var(--muted)}.contact .card p{color:#b7c0b5}.contact .btnrow{margin-top:26px}footer{border-top:1px solid #262c26;padding:26px 0;color:var(--muted);font-size:.86rem}.footer{display:flex;justify-content:space-between;gap:15px}.footer a:hover{color:white}
-:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-@media(max-width:900px){.grid3{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr 1fr}.case,.offer,.contact{grid-template-columns:1fr}}
-@media(max-width:700px){.container,.nav{width:calc(100% - 32px)}.nav{min-height:68px}.menu{display:none}.burger{display:flex}.drawer{display:grid;max-height:0;overflow:hidden;visibility:hidden;opacity:0;transition:max-height .2s ease,opacity .2s ease,visibility .2s;padding:0 14px;background:white;color:black;border-radius:0 0 14px 14px;margin:0 16px;gap:0}.drawer.open{max-height:280px;visibility:visible;opacity:1;padding:8px 14px 14px}.drawer a{color:black;padding:12px 8px;font-size:1rem;font-weight:600;border-bottom:1px solid #eaeaea}.drawer a:last-child{border-bottom:0}.hero{padding:78px 0 76px}.hero h1{font-size:clamp(3rem,13.2vw,5.5rem)}.hero::before{top:15%;right:-35%;opacity:.25}.section{padding:64px 0}.grid3,.grid2,.process{grid-template-columns:1fr}.case,.offer{padding:22px;gap:16px}.card{padding:23px}.step{padding-top:18px}.stepnumber{margin-bottom:12px}.footer{flex-direction:column}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.drawer{transition:none}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f4ef">
+  <meta name="description" content="Rho & Sigma maakt repetitief werk lichter. We analyseren bedrijfsprocessen, schrappen onnodige stappen en automatiseren waar dat zinvol is. Van offertes tot technische documenten en projectopvolging.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rho & Sigma — Minder ruis. Meer ruimte.">
+  <meta property="og:description" content="Slimmere bedrijfsprocessen, met of zonder AI. Praktische verbeteringen voor kleine ondernemingen.">
+  <meta name="color-scheme" content="light">
+  <link rel="canonical" href="https://www.rhoandsigma.com/">
+  <title>Rho & Sigma — Minder ruis. Meer ruimte.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <style>
+    :root {
+      --paper: #f5f4ef;
+      --paper2: #eceee6;
+      --ink: #20302b;
+      --ink2: #354a45;
+      --muted: #65736d;
+      --rule: #c9d0c5;
+      --citrus: #e9ee91;
+      --serif: "Times New Roman", Times, serif;
+      --sans: "Lato", Arial, sans-serif;
+      --wide: 1380px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; }
+    h1, h2, h3, p { margin: 0; }
+    .container { width: min(var(--wide), calc(100% - 84px)); margin: 0 auto; }
+    .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+    .skip { position: absolute; top: -100px; left: 18px; z-index: 200; padding: 12px 18px; background: var(--ink); color: #fff; }
+    .skip:focus { top: 18px; }
+    :focus-visible { outline: 2px solid #536649; outline-offset: 4px; }
+    .serif, h1, h2, h3 { font-family: var(--serif); font-weight: 400; }
+    .micro { font-family: var(--sans); font-size: 11px; font-weight: 700; line-height: 1.35; letter-spacing: .16em; text-transform: uppercase; }
+    .thin-rule { border-top: 1px solid var(--rule); }
+    header { position: relative; z-index: 20; background: var(--paper); }
+    .nav { min-height: 90px; display: flex; align-items: center; justify-content: space-between; gap: 36px; border-bottom: 1px solid var(--ink); }
+    .brand { display:inline-block; font-family: var(--serif); font-size: 29px; letter-spacing: -.052em; line-height: 1; white-space: nowrap; }
+    .menu { display: flex; align-items: center; gap: 38px; }
+    .menu a { font-size: 12px; font-weight: 700; letter-spacing: .11em; text-transform: uppercase; }
+    .menu a:hover, .menu a:focus-visible { text-decoration: underline; text-underline-offset: 7px; }
+    .menu .contact-link { padding: 12px 0; border-bottom: 1px solid var(--ink); }
+    .burger { display:none; width:42px; height:42px; border:1px solid var(--ink); background:transparent; cursor:pointer; align-items:center; justify-content:center; flex-direction:column; gap:5px; }
+    .burger span { width:18px; height:1px; background:var(--ink); }
+    .drawer { display:none; }
+
+    /* Editorial hero */
+    .hero { padding: 47px 0 90px; }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr); align-items: stretch; gap: 52px; min-height: 675px; }
+    .hero-copy { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; padding: 50px 0 55px; }
+    .hero-copy .micro { margin-bottom: 42px; }
+    h1 { font-size: clamp(83px, 9.8vw, 152px); line-height: .87; letter-spacing: -.086em; max-width: 950px; white-space: nowrap; }
+    h1 i { font-weight: 400; letter-spacing: -.095em; }
+    .hero-lead { max-width: 460px; font-size: clamp(16px, 1.55vw, 19px); font-weight: 400; line-height: 1.7; margin: 44px 0 26px; color: var(--ink2); }
+    .cta-link { display:inline-flex; align-items:center; gap: 28px; border-bottom: 1px solid var(--ink); padding: 10px 0 9px; font-size: 12px; text-transform: uppercase; letter-spacing: .105em; font-weight: 900; }
+    .cta-link .arrow { font-size: 20px; line-height: 1; font-family: var(--serif); font-weight: 400; transition: transform .18s ease; }
+    .cta-link:hover .arrow { transform: translateX(5px); }
+    .hero-figure { position:relative; margin:0; min-height: 600px; background: linear-gradient(140deg, #bccbd1, #93adb5 60%, #9ca89a); overflow:hidden; }
+    .hero-figure img { height:100%; width:100%; object-fit: cover; object-position: center; filter:saturate(.82) contrast(.95); }
+    .fig-label { position:absolute; bottom:19px; left:23px; color:#fff; font-size:10px; font-weight:900; text-transform:uppercase; letter-spacing:.18em; text-shadow:0 1px 8px rgba(0,0,0,.6); }
+    .hero-footer { display:flex; justify-content:space-between; align-items:center; gap:24px; padding-top:19px; margin-top:12px; border-top:1px solid var(--rule); font-size:11px; letter-spacing:.1em; text-transform:uppercase; }
+    .hero-footer span:last-child { color:var(--muted); }
+
+    /* Statement, quiet rather than techy */
+    .statement { padding: 104px 0 112px; background: var(--citrus); }
+    .statement .micro { margin-bottom:30px; }
+    .statement h2 { font-size: clamp(47px, 6.75vw, 106px); line-height: .99; letter-spacing: -.069em; max-width: 1160px; }
+    .statement h2 i { font-weight:400; }
+    .statement .statement-foot { display:flex; align-items:flex-end; justify-content:space-between; gap:30px; margin-top: 37px; }
+    .statement-foot p { max-width:550px; line-height:1.68; color:#304139; font-size:16px; }
+    .statement-foot .num { font: 20px var(--serif); white-space:nowrap; }
+
+    /* Service menu */
+    .services { padding: 120px 0 140px; }
+    .section-header { display:grid; grid-template-columns: minmax(0,1fr) minmax(280px,.55fr); gap:36px; align-items:end; padding-bottom:55px; }
+    .section-header h2 { font-size: clamp(55px, 7vw, 105px); line-height:.94; letter-spacing:-.075em; max-width: 840px; margin-top:18px; }
+    .section-header p { max-width:430px; font-size:17px; line-height:1.7; padding-bottom:7px; color:var(--ink2); }
+    .service { display:grid; grid-template-columns: 70px minmax(0,1.07fr) minmax(0,.93fr); gap:38px; padding:37px 0 43px; border-top:1px solid var(--ink); align-items:start; }
+    .service:last-child { border-bottom:1px solid var(--ink); }
+    .service .nr { font: 25px var(--serif); line-height:1; }
+    .service h3 { font-size: clamp(34px, 4.4vw, 64px); line-height:1.02; letter-spacing:-.065em; }
+    .service p { color:var(--ink2); line-height:1.72; max-width:490px; padding-top:5px; font-size:16px; }
+    .service .examples { display:block; margin-top:16px; font-size:12px; line-height:1.65; color:var(--muted); letter-spacing:.02em; }
+
+    /* Sea photographic pause */
+    .sea-break { position:relative; height: min(78vw, 740px); min-height:440px; overflow:hidden; background:#bac6c8; }
+    .sea-break img { width:100%; height:100%; object-fit:cover; object-position:center 48%; filter:saturate(.79) contrast(.92); }
+    .sea-break::after { content:""; position:absolute; inset:0; background:linear-gradient(90deg, rgba(18,40,42,.45), rgba(22,45,51,.06) 82%); }
+    .sea-content { position:absolute; z-index:1; inset:0; display:flex; align-items:center; }
+    .sea-content .container { width:min(var(--wide),calc(100% - 84px)); }
+    .sea-content .micro { color:#fff; margin-bottom:24px; text-shadow:0 1px 14px #20302b; }
+    .sea-content p { font-family:var(--serif); font-size:clamp(53px,7.3vw,112px); line-height:.98; letter-spacing:-.07em; color:#fff; max-width:900px; text-shadow:0 2px 24px rgba(19,43,51,.25); }
+
+    /* Method */
+    .approach { padding:130px 0 138px; }
+    .approach-top { display:grid; grid-template-columns: 1.2fr .8fr; gap:100px; align-items:start; margin-bottom:84px; }
+    .approach-top h2 { font-size:clamp(56px,6.3vw,98px); line-height:.96; letter-spacing:-.078em; margin-top:24px; max-width:730px; }
+    .approach-top p { max-width:400px; font-size:17px; line-height:1.8; color:var(--ink2); padding-top:64px; }
+    .steps { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:25px; }
+    .step { border-top:1px solid var(--ink); padding-top:24px; }
+    .step .index { font:28px var(--serif); }
+    .step h3 { font-size:35px; letter-spacing:-.05em; margin:25px 0 13px; }
+    .step p { color:var(--ink2); font-size:15px; line-height:1.7; max-width:290px; }
+
+    /* Case */
+    .case { background: var(--paper2); padding:120px 0; }
+    .case-grid { display:grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap:85px; }
+    .case h2 { margin-top:24px; font-size:clamp(50px,6vw,92px); letter-spacing:-.075em; line-height:.96; max-width:600px; }
+    .case-intro { color:var(--ink2); font-size:17px; max-width:530px; margin-top:33px; }
+    .case .disclaimer { color:var(--muted); font-size:12px; margin-top:23px; }
+    .case-details { border-top: 1px solid var(--ink); }
+    .case-row { display:grid; grid-template-columns:130px 1fr; gap:25px; padding:28px 0; border-bottom:1px solid var(--rule); }
+    .case-row strong { font-size:11px; line-height:1.45; text-transform:uppercase; letter-spacing:.1em; }
+    .case-row p { font-size:16px; line-height:1.7; color:var(--ink2); }
+
+    /* Third image, photo and quote */
+    .photo-note { display:grid; grid-template-columns: .95fr 1.05fr; min-height: 590px; }
+    .photo-note .photo { min-height:590px; background:#b3d9dd; overflow:hidden; }
+    .photo-note .photo img { height:100%; width:100%; object-fit:cover; object-position:center; filter:saturate(.84); }
+    .photo-note .note { background:#253b36; color:#f7f6ef; padding:clamp(45px,7vw,110px); display:flex; justify-content:center; align-items:flex-start; flex-direction:column; }
+    .photo-note .micro { color:#cbd6c8; margin-bottom:32px; }
+    .photo-note blockquote { font:400 clamp(47px,5.3vw,82px)/1.03 var(--serif); letter-spacing:-.07em; margin:0 0 36px; }
+    .photo-note p { color:#d4ddd8; font-size:16px; max-width:470px; }
+
+    /* Offer */
+    .offer { padding:135px 0 145px; }
+    .offer-grid { display:grid; grid-template-columns: 1.2fr .8fr; gap:80px; align-items:start; }
+    .offer h2 { margin:21px 0 30px; font-size: clamp(58px,7vw,108px); line-height:.93; letter-spacing:-.085em; }
+    .offer p { font-size:17px; line-height:1.75; color:var(--ink2); max-width:590px; }
+    .offer .cta-link { margin-top:33px; }
+    .offer-ticket { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); padding:28px 0 33px; }
+    .offer-ticket .price { font-family:var(--serif); font-size: clamp(70px,7.5vw,112px); letter-spacing:-.095em; line-height:1; margin:28px 0 5px; }
+    .offer-ticket .tax { font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.09em; margin-bottom:28px; }
+    .offer-ticket ul { padding-left:18px; margin:24px 0 0; color:var(--ink2); font-size:15px; line-height:1.75; }
+    .offer-ticket li+li { margin-top:8px; }
+    .offer-ticket .small { margin-top:22px; font-size:12px; color:var(--muted); }
+
+    /* Direct contact */
+    .contact { background:var(--citrus); padding:116px 0 135px; }
+    .contact-head { display:flex; justify-content:space-between; align-items:start; gap:25px; margin-bottom:28px; }
+    .contact h2 { font-size:clamp(64px,9.6vw,145px); line-height:.89; letter-spacing:-.088em; max-width:1100px; }
+    .contact h2 i { font-weight:400; }
+    .contact-footer { display:flex; align-items:end; justify-content:space-between; gap:40px; margin-top:55px; }
+    .contact-footer p { max-width:530px; line-height:1.7; font-size:17px; }
+    .contact-footer .cta-link { font-size:14px; white-space:nowrap; }
+    footer { background:var(--paper); padding:29px 0; }
+    .foot { display:flex; justify-content:space-between; gap:24px; align-items:center; }
+    .foot .name { font: 27px var(--serif); letter-spacing:-.045em; }
+    .foot p,.foot a { font-size:11px; line-height:1.6; letter-spacing:.03em; color:var(--muted); }
+    .foot a:hover { text-decoration:underline; }
+    @media (max-width:1120px) {
+      .hero-grid { gap:28px; grid-template-columns:1fr .9fr; min-height:580px; }
+      h1 { font-size:clamp(72px,9vw,114px); }
+      .hero-figure{ min-height:560px; }
+      .service { grid-template-columns:50px 1fr 1fr; gap:20px; }
+      .case-grid,.offer-grid { gap:35px; }
+      .photo-note .note { padding:65px; }
+    }
+    @media (max-width:780px) {
+      .container { width:calc(100% - 36px); }
+      .nav { min-height:72px; }
+      .brand { font-size:26px; }
+      .menu { display:none; }
+      .burger { display:flex; }
+      .drawer { width:calc(100% - 36px); margin:auto; background:white; color:#141e19; display:grid; gap:0; max-height:0; visibility:hidden; opacity:0; overflow:hidden; transition:max-height .24s ease,opacity .24s ease, visibility .24s; }
+      .drawer.open { max-height:270px; visibility:visible; opacity:1; padding:13px 16px; border:1px solid #dce0d8; border-top:0; }
+      .drawer a { display:block; padding:14px 0; font-size:13px; text-transform:uppercase; font-weight:700; letter-spacing:.12em; border-bottom:1px solid #eceee8; }
+      .drawer a:last-child { border-bottom:0; }
+      .hero { padding:24px 0 56px; }
+      .hero-grid { display:flex; flex-direction:column; gap:0; min-height:0; }
+      .hero-copy { padding:38px 0 37px; }
+      .hero-copy .micro { margin-bottom:26px; }
+      h1 { font-size:clamp(65px,12.5vw,98px); white-space:normal; }
+      .hero-lead { margin:28px 0 14px; font-size:16px; }
+      .hero-figure { min-height:0; height:450px; }
+      .hero-footer { margin-top:18px; }
+      .statement { padding:75px 0 84px; }
+      .statement h2 { font-size:clamp(52px,9vw,80px); }
+      .statement .statement-foot { align-items:start; flex-direction:column; }
+      .services,.approach,.case,.offer { padding:80px 0 90px; }
+      .section-header { grid-template-columns:1fr; gap:22px; padding-bottom:35px; }
+      .section-header h2 { font-size:clamp(54px,10vw,80px); }
+      .section-header p { padding:0; }
+      .service { grid-template-columns:40px 1fr; gap:14px; padding:28px 0; }
+      .service h3 { font-size:clamp(37px,6vw,56px); }
+      .service p { grid-column:2; }
+      .sea-break { min-height:520px; height:75vh; max-height:720px; }
+      .sea-content .container { width:calc(100% - 40px); }
+      .sea-content p { font-size:clamp(55px,10vw,86px); }
+      .approach-top { grid-template-columns:1fr; gap:23px; margin-bottom:48px; }
+      .approach-top h2 { font-size:clamp(54px,9vw,82px); }
+      .approach-top p { padding:0; }
+      .steps { grid-template-columns:repeat(2,1fr); gap:32px; }
+      .case-grid,.offer-grid { grid-template-columns:1fr; gap:46px; }
+      .case h2 { font-size:clamp(55px,9vw,86px); }
+      .photo-note { grid-template-columns:1fr; }
+      .photo-note .photo { min-height:420px; height:53vw; }
+      .photo-note .note { padding:72px 35px; }
+      .photo-note blockquote { font-size:clamp(60px,10vw,85px); }
+      .offer h2 { font-size:clamp(70px,12vw,106px); }
+      .contact { padding:83px 0 95px; }
+      .contact h2 { font-size:clamp(65px,12vw,104px); }
+      .contact-footer { align-items:start; flex-direction:column; }
+    }
+    @media (max-width:480px) {
+      h1 { font-size:clamp(58px,13.3vw,77px); }
+      .hero-figure { height:385px; }
+      .hero-footer { font-size:9px; }
+      .statement h2 { font-size:clamp(50px,12vw,66px); }
+      .service { grid-template-columns:30px 1fr; }
+      .service .nr { font-size:22px; }
+      .steps { grid-template-columns:1fr; gap:27px; }
+      .step h3 { margin-top:18px; }
+      .case-row { grid-template-columns:1fr; gap:7px; }
+      .sea-content p { font-size:clamp(51px,11vw,76px); }
+      .contact h2 { font-size:clamp(61px,13.5vw,90px); }
+      .foot { flex-wrap:wrap; }
+      .foot .name { width:100%; }
+    }
+    @media (prefers-reduced-motion:reduce){ html{scroll-behavior:auto} .drawer,.cta-link .arrow{transition:none} }
+  </style>
 </head>
 <body>
-<a class="skip" href="#inhoud">Ga naar inhoud</a>
+<a class="skip" href="#inhoud">Ga naar de inhoud</a>
 <header>
-  <nav class="nav" aria-label="Hoofdnavigatie">
-    <a href="#top" class="brand" aria-label="Rho & Sigma, naar boven">Rho &amp; Sigma</a>
+  <nav class="nav container" aria-label="Hoofdnavigatie">
+    <a class="brand" href="#top" aria-label="Rho en Sigma, naar boven">Rho &amp; Sigma.</a>
     <div class="menu">
-      <a href="#wat">Wat we verbeteren</a>
-      <a href="#aanpak">Aanpak</a>
-      <a href="#starten">Starten</a>
-      <a class="navcta" href="#contact">Kennismaken</a>
+      <a href="#diensten">Wat we doen</a>
+      <a href="#werkwijze">Werkwijze</a>
+      <a href="#sprint">De sprint</a>
+      <a href="#contact" class="contact-link">Kennismaken</a>
     </div>
-    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+    <button type="button" id="burger" class="burger" aria-expanded="false" aria-controls="drawer" aria-label="Open het menu">
       <span></span><span></span><span></span>
     </button>
   </nav>
   <div class="drawer" id="drawer" aria-hidden="true">
-    <a href="#wat">Wat we verbeteren</a>
-    <a href="#aanpak">Aanpak</a>
-    <a href="#starten">Starten</a>
+    <a href="#diensten">Wat we doen</a>
+    <a href="#werkwijze">Werkwijze</a>
+    <a href="#sprint">De sprint</a>
     <a href="#contact">Kennismaken</a>
   </div>
 </header>
 <main id="inhoud">
-<section class="hero" id="top">
-<div class="container">
-  <div class="eyebrow">Operational design voor kleine ondernemingen</div>
-  <h1>Minder <em>herhaalwerk.</em><br>Meer ruimte voor je echte werk.</h1>
-  <p class="lead">Nog eens dezelfde informatie overtypen. Een offerte die blijft liggen. Een document dat voor de derde keer aangepast moet worden. Wij zoeken uit waar je werking vastloopt, maken het proces eenvoudiger en automatiseren wat zich blijft herhalen.</p>
-  <div class="btnrow">
-    <a class="btn primary" href="mailto:hi@rhoandsigma.be?subject=Kennismaking%20Rho%20%26%20Sigma">Bespreek je proces</a>
-    <a class="btn secondary" href="#wat">Bekijk voorbeelden</a>
-  </div>
-  <p class="hero-note">Geen AI om de AI. Eerst begrijpen wat beter kan.</p>
-</div>
-</section>
-<section class="section" id="wat">
-<div class="container">
-  <div class="section-label">Herken je dit?</div>
-  <h2>Het zijn vaak de kleine handelingen die het meeste tijd kosten.</h2>
-  <p class="section-intro">We beginnen niet met een tool. We beginnen met het werk dat vandaag gebeurt, en zoeken uit welke stappen eenvoudiger, sneller of overbodig kunnen.</p>
-  <div class="grid3">
-    <article class="card"><div class="kicker">01 / Klanten</div><h3>Een mailbox vol aanvragen</h3><p>Dezelfde vragen, ontbrekende gegevens, offertes op basis van verschillende documenten en opvolging die tussen de mazen van het net valt.</p><ul><li>Informatie bij de eerste aanvraag verzamelen</li><li>Antwoorden en offertes voorbereiden</li><li>Opvolging overzichtelijk organiseren</li></ul></article>
-    <article class="card"><div class="kicker">02 / Documenten</div><h3>Steeds opnieuw dezelfde gegevens</h3><p>Technische fiches, lijsten, rapporten en formulieren waarvoor iemand telkens gegevens moet zoeken, kopiëren of controleren.</p><ul><li>Documentgegevens structureren</li><li>Fiches en rapporten voorbereiden</li><li>Verschillen en ontbrekende informatie signaleren</li></ul></article>
-    <article class="card"><div class="kicker">03 / Projecten</div><h3>Geen grip op versies en opvolging</h3><p>Plannen, revisies, deadlines en statussen verspreid over verschillende bestanden en systemen.</p><ul><li>Plantracking en revisieoverzichten</li><li>Terugkerende rapportage vereenvoudigen</li><li>Controles en meldingen automatiseren</li></ul></article>
-  </div>
-</div>
-</section>
-<section class="section" id="voorbeeld">
-<div class="container">
-  <div class="section-label">Voorbeeld / Aanvraag naar offerte</div>
-  <div class="case">
-    <div>
-      <h3>Een offerte zou geen zoektocht door vijf bestanden moeten zijn.</h3>
-      <p>Een klant vraagt catering voor 60 gasten. De datum staat in de mail, dieetwensen komen later, prijzen zitten in een aparte lijst en de offerte wordt handmatig samengesteld. Dat proces kun je eerst helder maken en dan gericht verbeteren.</p>
-      <p class="smallnote">Illustratief voorbeeld. De juiste oplossing hangt af van de bestaande werkwijze en gegevens.</p>
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="micro">Rho &amp; Sigma / Operational design studio</span>
+          <h1 id="hero-title">Minder ruis.<br><i>Meer ruimte.</i></h1>
+          <p class="hero-lead">Voor ondernemers die te veel tijd verliezen aan dingen die eigenlijk eenvoudiger kunnen. We analyseren processen, schrappen onnodig werk en automatiseren wat zich blijft herhalen.</p>
+          <a class="cta-link" href="#diensten">Ontdek wat we doen <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <figure class="hero-figure">
+          <img
+            src="https://images.unsplash.com/photo-1747401648976-38f47ee4b9a5?auto=format&amp;fit=crop&amp;w=1100&amp;q=82"
+            alt="Zonlicht door de ramen van een schip, met uitzicht op het water."
+            width="880" height="1120" fetchpriority="high">
+          <figcaption class="fig-label">A little more room to breathe.</figcaption>
+        </figure>
+      </div>
+      <div class="hero-footer"><span>Leuven — België</span><span>Ruimte om beter te werken</span></div>
     </div>
-    <div class="details">
-      <div class="detail"><strong>Vandaag</strong><p>Informatie verzamelen, dubbel overtypen, prijzen nakijken en handmatig opvolgen.</p></div>
-      <div class="detail"><strong>Wat we kunnen verbeteren</strong><p>Eén eventfiche, een duidelijke prijslijst als bron, consistente offertes en zichtbare opvolgacties.</p></div>
-      <div class="detail"><strong>Waar AI eventueel helpt</strong><p>Een aanvraag begrijpen of een antwoord voorbereiden, terwijl prijzen en kritieke gegevens uit gecontroleerde bronnen komen.</p></div>
+  </section>
+
+  <section class="statement" aria-labelledby="statement-title">
+    <div class="container">
+      <div class="micro">Een eenvoudige gedachte</div>
+      <h2 id="statement-title">Niet alles heeft <i>AI</i> nodig.<br>Wel een betere manier van werken.</h2>
+      <div class="statement-foot"><p>Soms volstaat een duidelijk formulier. Soms een slimme koppeling. Soms een stukje software of AI. We vertrekken nooit vanuit de tool, altijd vanuit het probleem.</p><span class="num">01 / 04</span></div>
     </div>
-  </div>
-</div>
-</section>
-<section class="section" id="aanpak">
-<div class="container">
-  <div class="section-label">Aanpak</div>
-  <h2>Eerst begrijpen. Dan verbeteren. Daarna pas automatiseren.</h2>
-  <p class="section-intro">Soms is de oplossing een beter formulier. Soms een dashboard, script of workflow. Soms AI. We kiezen wat het probleem echt oplost, met een menselijke controle waar dat nodig is.</p>
-  <div class="process">
-    <article class="step"><div class="stepnumber">Stap 01</div><h3>We kijken mee</h3><p>We volgen een bestaand proces: wat gebeurt er, wie doet wat en welke informatie is nodig?</p></article>
-    <article class="step"><div class="stepnumber">Stap 02</div><h3>We schrappen frictie</h3><p>We maken zichtbaar waar het dubbel, onduidelijk of foutgevoelig wordt.</p></article>
-    <article class="step"><div class="stepnumber">Stap 03</div><h3>We maken iets werkends</h3><p>We kiezen één haalbare ingreep en bouwen of configureren die.</p></article>
-    <article class="step"><div class="stepnumber">Stap 04</div><h3>We testen samen</h3><p>We controleren het resultaat op echte voorbeelden en spreken af wie het opvolgt.</p></article>
-  </div>
-</div>
-</section>
-<section class="section" id="starten">
-<div class="container">
-  <div class="section-label">Een concreet begin</div>
-  <div class="offer">
-    <div>
-      <div class="kicker">Pilot / Eén proces beter</div>
-      <h3>De Process Sprint</h3>
-      <p>Voor kleine ondernemingen die niet op zoek zijn naar nóg een softwarepakket, maar naar een praktische oplossing voor één terugkerend probleem.</p>
-      <div class="btnrow"><a class="btn primary" href="mailto:hi@rhoandsigma.be?subject=Process%20Sprint%20-%20kennismaking">Bespreek een pilot</a></div>
+  </section>
+
+  <section class="services" id="diensten" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-header">
+        <div><span class="micro">Waar we kunnen helpen</span><h2 id="services-title">Kleine fricties.<br>Grote tijdvreters.</h2></div>
+        <p>Herhalend werk zit overal. Wij maken zichtbaar waar het foutgevoelig, omslachtig of onnodig tijdrovend wordt en zoeken een oplossing die past bij hoe je écht werkt.</p>
+      </div>
+      <div class="service">
+        <span class="nr">01.</span><h3>Klanten &amp; offertes</h3>
+        <p>Een mailbox vol aanvragen. Telkens opnieuw gegevens opvragen. Offertes die uit verschillende bestanden samengesteld worden. We maken de klantflow eenvoudiger en overzichtelijker.<span class="examples">Denk aan: aanvraagformulieren, offertevoorbereiding, standaardantwoorden en opvolging.</span></p>
+      </div>
+      <div class="service">
+        <span class="nr">02.</span><h3>Documenten &amp; data</h3>
+        <p>Gegevens overnemen, technische fiches verwerken of steeds dezelfde rapporten samenstellen. We onderzoeken welke stappen veilig gestructureerd of geautomatiseerd kunnen worden.<span class="examples">Denk aan: technische fiches, Excel-overzichten, documentcontrole en rapportage.</span></p>
+      </div>
+      <div class="service">
+        <span class="nr">03.</span><h3>Projecten &amp; planning</h3>
+        <p>Verspreide planningen, revisies en statussen die manueel bijgehouden worden. We bouwen helderheid in informatie en opvolging, met controle waar het nodig blijft.<span class="examples">Denk aan: plantracking, revisiebeheer, deadlines en procesdashboards.</span></p>
+      </div>
     </div>
-    <div>
-      <div class="price">€990 <small>excl. btw / pilottarief</small></div>
-      <p class="smallnote" style="margin-bottom:18px">Afgebakende opdracht, doorlooptijd in overleg. Tot 12 uitvoeringsuren. Alleen voor processen die binnen deze scope passen.</p>
-      <ul class="offerlist">
-        <li>Korte intake en analyse van één proces</li>
-        <li>Eén prioritaire verbetering uitwerken</li>
-        <li>Testen op voorbeelden en overdracht</li>
-        <li>Grotere ontwikkeling: aparte offerte</li>
-      </ul>
+  </section>
+
+  <section class="sea-break" aria-label="Een moment van ruimte">
+    <img
+      src="https://images.unsplash.com/photo-1742636488569-a590d9cd4a3f?auto=format&amp;fit=crop&amp;w=2200&amp;q=83"
+      alt="Twee kleine boten op een kalme zee, met een mistige horizon."
+      width="2200" height="1100" loading="lazy">
+    <div class="sea-content"><div class="container">
+      <div class="micro">Ruimte creëren door eenvoud</div>
+      <p>Meer tijd voor het werk dat er <i>echt</i> toe doet.</p>
+    </div></div>
+  </section>
+
+  <section class="approach" id="werkwijze" aria-labelledby="approach-title">
+    <div class="container">
+      <div class="approach-top">
+        <div><div class="micro">Hoe we werken</div><h2 id="approach-title">Eerst begrijpen.<br>Dan verbeteren.</h2></div>
+        <p>Geen eindeloze audits en geen software omdat het kan. We beginnen bij één bestaand proces, ontdekken wat wringt en maken een eerste verbetering die in het dagelijkse werk past.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="index">01</span><h3>Observeren</h3><p>We kijken mee. Welke stappen zet je vandaag? Welke informatie, mensen en tools zijn betrokken?</p></div>
+        <div class="step"><span class="index">02</span><h3>Vereenvoudigen</h3><p>We zoeken dubbel werk, onduidelijke overdrachten en terugkerende fouten. Wat kan weg of slimmer?</p></div>
+        <div class="step"><span class="index">03</span><h3>Realiseren</h3><p>We werken een gerichte verbetering uit. Dat kan een workflow, dashboard, formulier, script of AI-toepassing zijn.</p></div>
+        <div class="step"><span class="index">04</span><h3>Testen</h3><p>We testen op echte voorbeelden, corrigeren waar nodig en zorgen dat iemand het systeem kan blijven gebruiken.</p></div>
+      </div>
     </div>
-  </div>
-</div>
-</section>
-<section class="section" id="contact">
-<div class="container">
-  <div class="contact">
-    <div>
-      <div class="section-label">Kennismaken</div>
-      <h2>Welk klusje blijft bij jullie maar terugkomen?</h2>
-      <p>Vertel kort wat jullie doen en welke taak of werkwijze onnodig veel tijd vraagt. We bekijken samen of een kleine verbetering zinvol is. Geen verkooppraatje over AI, wel een eerlijk gesprek over je werking.</p>
-      <div class="btnrow"><a class="btn primary" href="mailto:hi@rhoandsigma.be?subject=Mijn%20proces%20-%20Rho%20%26%20Sigma">Mail je proces</a></div>
-      <p class="smallnote">hi@rhoandsigma.be · Leuven, België</p>
+  </section>
+
+  <section class="case" aria-labelledby="case-title">
+    <div class="container case-grid">
+      <div>
+        <span class="micro">Een concreet voorbeeld</span>
+        <h2 id="case-title">Van aanvraag naar <i>offerte.</i></h2>
+        <p class="case-intro">Stel: een cateraar krijgt een aanvraag voor zestig gasten. De datum staat in één mail, dieetwensen volgen later en prijzen zitten nog ergens anders. Hoe maken we van die losse puzzelstukken één vlot proces?</p>
+        <p class="disclaimer">Illustratief voorbeeld, geen geclaimd klantenresultaat.</p>
+      </div>
+      <div class="case-details">
+        <div class="case-row"><strong>Vandaag</strong><p>Informatie bij elkaar zoeken, dubbel overtypen, prijzen nakijken en handmatig herinneringen bijhouden.</p></div>
+        <div class="case-row"><strong>Morgen</strong><p>Een centrale eventfiche, duidelijke productgegevens, consistente offertes en zichtbaar wie nog antwoord moet krijgen.</p></div>
+        <div class="case-row"><strong>Waar AI kan helpen</strong><p>Een aanvraag structureren of een antwoord voorbereiden. Prijzen en voorwaarden blijven uit een gecontroleerde bron komen en kunnen nagekeken worden.</p></div>
+      </div>
     </div>
-    <aside class="card">
-      <div class="kicker">Wat vertel je ons?</div>
-      <h3>Vier zinnen zijn genoeg.</h3>
-      <ul>
-        <li>Wat doet je onderneming?</li>
-        <li>Welke taak keert telkens terug?</li>
-        <li>Wat maakt die taak tijdrovend of foutgevoelig?</li>
-        <li>Wat zou er veranderen als ze eenvoudiger werd?</li>
-      </ul>
-    </aside>
-  </div>
-</div>
-</section>
+  </section>
+
+  <section class="photo-note" aria-labelledby="photo-note-title">
+    <div class="photo"><img src="https://images.unsplash.com/photo-1539596553443-07010f5c6f36?auto=format&amp;fit=crop&amp;w=1500&amp;q=80" alt="Lichtblauw, helder zeewater onder een rustige horizon." width="1500" height="1200" loading="lazy"></div>
+    <div class="note">
+      <div class="micro">Onze overtuiging</div>
+      <blockquote id="photo-note-title">The best solution is not always the most <i>complicated.</i></blockquote>
+      <p>We kiezen technologie op basis van wat ze oplost. Niet andersom.</p>
+    </div>
+  </section>
+
+  <section class="offer" id="sprint" aria-labelledby="offer-title">
+    <div class="container offer-grid">
+      <div>
+        <div class="micro">Eén gerichte eerste stap</div>
+        <h2 id="offer-title">Klein beginnen.<br><i>Echt verbeteren.</i></h2>
+        <p>Je hoeft niet meteen je hele bedrijf om te gooien. Met onze Process Sprint bekijken we één tijdrovend proces en voeren we een afgebakende, haalbare verbetering door.</p>
+        <a class="cta-link" href="mailto:hi@rhoandsigma.be?subject=Kennismaking%20Process%20Sprint">Bespreek een Process Sprint <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+      <div class="offer-ticket">
+        <div class="micro">Process Sprint / Pilottarief</div>
+        <div class="price">€990</div>
+        <div class="tax">Exclusief btw</div>
+        <div class="thin-rule"></div>
+        <ul>
+          <li>Intake en analyse van één afgebakend proces</li>
+          <li>Eén gerichte verbetering uitwerken</li>
+          <li>Testen op voorbeelden en overdracht</li>
+          <li>Maximaal 12 uitvoeringsuren</li>
+        </ul>
+        <p class="small">Niet ieder proces past binnen een sprint. Voor grotere ontwikkeling maken we eerst een aparte offerte.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="contact-head"><span class="micro">Een eerste gesprek</span><span class="micro">Leuven / Overal waar het nodig is</span></div>
+      <h2 id="contact-title">Wat mag bij jou <i>eenvoudiger?</i></h2>
+      <div class="contact-footer">
+        <p>Vertel me waar je tijd aan verliest. We kijken samen of er een betere manier is. Praktisch, nieuwsgierig en zonder AI-hype.</p>
+        <a class="cta-link" href="mailto:hi@rhoandsigma.be?subject=Kennismaking%20Rho%20%26%20Sigma">Hi@rhoandsigma.be <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
 </main>
-<footer><div class="container footer"><span>© <span id="year"></span> Rho &amp; Sigma</span><a href="#top">Naar boven</a></div></footer>
+<footer><div class="container foot"><span class="name">Rho &amp; Sigma.</span><p>© <span id="year"></span> · Independent practice, Leuven</p><a href="#top">Naar boven ↑</a></div></footer>
 <script>
-document.getElementById("year").textContent=new Date().getFullYear();
-const burger=document.getElementById("burger"),drawer=document.getElementById("drawer");
-function closeDrawer(){drawer.classList.remove("open");drawer.setAttribute("aria-hidden","true");burger.setAttribute("aria-expanded","false");burger.setAttribute("aria-label","Open menu")}
-burger.addEventListener("click",()=>{const open=!drawer.classList.contains("open");drawer.classList.toggle("open",open);drawer.setAttribute("aria-hidden",String(!open));burger.setAttribute("aria-expanded",String(open));burger.setAttribute("aria-label",open?"Sluit menu":"Open menu")});
-drawer.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeDrawer));
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDrawer()});
+  document.getElementById("year").textContent = new Date().getFullYear();
+  const burger = document.getElementById("burger");
+  const drawer = document.getElementById("drawer");
+  function setMenu(open) {
+    drawer.classList.toggle("open", open);
+    drawer.setAttribute("aria-hidden", String(!open));
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Sluit het menu" : "Open het menu");
+  }
+  burger.addEventListener("click", () => setMenu(!drawer.classList.contains("open")));
+  drawer.querySelectorAll("a").forEach(link => link.addEventListener("click", () => setMenu(false)));
+  document.addEventListener("keydown", event => { if (event.key === "Escape") setMenu(false); });
 </script>
 </body>
 </html>
