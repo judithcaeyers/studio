@@ -319,6 +319,93 @@
       .sea-content p { font-size: clamp(42px, 9vw, 58px); }
       .contact h2 { font-size: clamp(48px, 11vw, 68px); }
     }
+
+    /* Homepage opening, adapted directly from the First things first strategy slide. */
+    .intro-framework {
+      padding: 48px 0 76px;
+      background: #f5f4ef;
+      color: #193d38;
+    }
+    .intro-framework__head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 69px;
+    }
+    .intro-framework__head h1 {
+      margin: 0;
+      max-width: none;
+      font-family: var(--serif);
+      font-size: clamp(42px, 4.2vw, 64px);
+      line-height: 1.08;
+      font-weight: 400;
+      letter-spacing: -.045em;
+      white-space: normal;
+    }
+    .intro-framework__label {
+      font-family: var(--serif);
+      font-size: clamp(36px, 3.8vw, 57px);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+    }
+    .intro-framework__grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: start;
+      gap: clamp(30px, 4.6vw, 78px);
+    }
+    .intro-framework__item h2 {
+      margin: 0 0 28px;
+      max-width: none;
+      font-family: var(--sans);
+      font-weight: 900;
+      font-size: clamp(17px, 1.5vw, 23px);
+      line-height: 1.18;
+      letter-spacing: -.015em;
+      color: inherit;
+    }
+    .intro-framework__item p {
+      max-width: 100%;
+      margin: 0 0 26px;
+      font-family: var(--sans);
+      font-size: clamp(19px, 1.85vw, 29px);
+      font-weight: 400;
+      line-height: 1.43;
+      letter-spacing: -.014em;
+      color: inherit;
+    }
+    .intro-framework__item p:last-child { margin-bottom: 0; }
+    @media (max-width: 900px) {
+      .intro-framework { padding: 37px 0 54px; }
+      .intro-framework__head {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 42px;
+      }
+      .intro-framework__head h1 { font-size: clamp(42px, 7.6vw, 58px); }
+      .intro-framework__label { font-size: clamp(33px, 6.6vw, 49px); }
+      .intro-framework__grid { grid-template-columns: 1fr; gap: 31px; }
+      .intro-framework__item:not(:last-child) {
+        padding-bottom: 26px;
+        border-bottom: 1px solid #c9d0c5;
+      }
+      .intro-framework__item h2 { font-size: 17px; margin-bottom: 14px; }
+      .intro-framework__item p {
+        max-width: 650px;
+        font-size: clamp(18px, 3.3vw, 22px);
+        line-height: 1.47;
+        margin-bottom: 16px;
+      }
+    }
+    @media (max-width: 480px) {
+      .intro-framework { padding-top: 30px; }
+      .intro-framework__head { margin-bottom: 34px; }
+      .intro-framework__head h1 { font-size: 43px; }
+      .intro-framework__label { font-size: 35px; }
+      .intro-framework__item p { font-size: 18px; }
+    }
   </style>
 </head>
 <body>
@@ -344,24 +431,32 @@
   </div>
 </header>
 <main id="inhoud">
-  <section class="hero" id="top" aria-labelledby="hero-title">
+  <section class="intro-framework" id="top" aria-labelledby="strategy-heading">
     <div class="container">
-      <div class="hero-grid">
-        <div class="hero-copy">
-          <span class="micro">Rho &amp; Sigma / voor het werk dat slimmer kan</span>
-          <h1 id="hero-title">Kan dat niet<br><i>slimmer?</i></h1>
-          <p class="hero-lead">Die offerte die je wéér van nul begint. Dat Excelbestand dat alleen één collega begrijpt. Die technische fiches die iemand voor de derde keer overtypt. Er is vast een betere manier. Ik zoek uit welke, en bouw ze ook.</p>
-          <a class="cta-link" href="#diensten">Waar zit het gedoe? <span class="arrow" aria-hidden="true">↗</span></a>
-        </div>
-        <figure class="hero-figure">
-          <img
-            src="https://images.unsplash.com/photo-1747401648976-38f47ee4b9a5?auto=format&amp;fit=crop&amp;w=1100&amp;q=82"
-            alt="Zonlicht door de ramen van een schip, met uitzicht op het water."
-            width="880" height="1120" fetchpriority="high">
-          <figcaption class="fig-label">Even uit die eindeloze to-dolijst.</figcaption>
-        </figure>
+      <div class="intro-framework__head">
+        <h1 id="strategy-heading">First things first</h1>
+        <span class="intro-framework__label">Strategie</span>
       </div>
-      <div class="hero-footer"><span>Leuven — België</span><span>Minder omwegen. Meer gedaan.</span></div>
+
+      <div class="intro-framework__grid">
+        <div class="intro-framework__item">
+          <h2>OBSERVEREN</h2>
+          <p>Zoveel mogelijk kijken, luisteren en becijferen.</p>
+          <p>Begrijpen hoe de organisatie vandaag écht werkt en waar de grootste kansen, frustraties en bottlenecks zich bevinden.</p>
+        </div>
+
+        <div class="intro-framework__item">
+          <h2>VOORAL DOEN</h2>
+          <p>Zo snel mogelijk naar actie. Ideeën vertalen naar concrete experimenten en testen wat werkt in de praktijk.</p>
+          <p>Geen eindeloze rapporten, maar leren door te doen.</p>
+        </div>
+
+        <div class="intro-framework__item">
+          <h2>REFLECTEREN</h2>
+          <p>Resultaten evalueren, cijfers bekijken, inzichten verzamelen en bijsturen waar nodig.</p>
+          <p>Schrappen wat niet werkt, verder bouwen op wat wel werkt en nieuwe mogelijkheden identificeren.</p>
+        </div>
+      </div>
     </div>
   </section>
 
