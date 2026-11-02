@@ -320,93 +320,126 @@
       .contact h2 { font-size: clamp(48px, 11vw, 68px); }
     }
 
-    /* Homepage opening, adapted directly from the First things first strategy slide. */
-    .intro-framework {
-      padding: 48px 0 76px;
-      background: #f5f4ef;
-      color: #193d38;
+    /* Editorial opening inspired by the proposal's principles, not a literal slide. */
+    .intro-story {
+      background: var(--paper);
+      padding: 31px 0 48px;
+      color: var(--ink);
     }
-    .intro-framework__head {
+    .intro-story__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.13fr) minmax(0, .87fr);
+      gap: clamp(30px, 4.2vw, 65px);
+      align-items: stretch;
+    }
+    .intro-story__copy {
       display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 24px;
-      margin-bottom: 69px;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 25px 0 30px;
+      min-width: 0;
     }
-    .intro-framework__head h1 {
-      margin: 0;
-      max-width: none;
+    .intro-story__eyebrow {
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-bottom: 29px;
+      font: 700 11px/1.4 var(--sans);
+      text-transform: uppercase;
+      letter-spacing: .145em;
+      color: #61736b;
+    }
+    .intro-story h1 {
       font-family: var(--serif);
-      font-size: clamp(42px, 4.2vw, 64px);
-      line-height: 1.08;
       font-weight: 400;
-      letter-spacing: -.045em;
+      font-size: clamp(51px, 5.65vw, 84px);
+      line-height: .98;
+      letter-spacing: -.065em;
+      max-width: 760px;
       white-space: normal;
     }
-    .intro-framework__label {
-      font-family: var(--serif);
-      font-size: clamp(36px, 3.8vw, 57px);
-      line-height: 1.08;
-      letter-spacing: -.045em;
+    .intro-story h1 i { font-weight:400; }
+    .intro-story__lead {
+      max-width: 585px;
+      margin-top: 30px;
+      font: 400 clamp(16px, 1.35vw, 18px)/1.68 var(--sans);
+      color: var(--ink2);
     }
-    .intro-framework__grid {
+    .intro-story__aside {
+      margin-top: 18px;
+      font: 400 22px/1.35 var(--serif);
+      letter-spacing: -.025em;
+    }
+    .intro-story__cta { margin-top: 22px; }
+    .intro-story__figure {
+      position: relative;
+      min-height: 465px;
+      margin: 0;
+      overflow: hidden;
+      background: #abbec0;
+    }
+    .intro-story__figure img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(.80) contrast(.96);
+    }
+    .intro-story__figure figcaption {
+      position: absolute;
+      right: 17px;
+      bottom: 16px;
+      max-width: 260px;
+      padding: 8px 11px;
+      background: rgba(245,244,239,.94);
+      color: var(--ink);
+      font: 700 10px/1.4 var(--sans);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      text-align: right;
+    }
+    .intro-story__rhythm {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      align-items: start;
-      gap: clamp(30px, 4.6vw, 78px);
+      gap: 24px;
+      margin-top: 27px;
+      padding-top: 18px;
+      border-top: 1px solid var(--ink);
+      font: 400 clamp(18px, 1.8vw, 25px)/1.2 var(--serif);
+      letter-spacing: -.025em;
     }
-    .intro-framework__item h2 {
-      margin: 0 0 28px;
-      max-width: none;
-      font-family: var(--sans);
-      font-weight: 900;
-      font-size: clamp(17px, 1.5vw, 23px);
-      line-height: 1.18;
-      letter-spacing: -.015em;
-      color: inherit;
+    .intro-story__rhythm span { display: flex; align-items: baseline; gap: 12px; }
+    .intro-story__rhythm b {
+      font: 700 10px/1 var(--sans);
+      letter-spacing: .13em;
+      color: #63756b;
     }
-    .intro-framework__item p {
-      max-width: 100%;
-      margin: 0 0 26px;
-      font-family: var(--sans);
-      font-size: clamp(19px, 1.85vw, 29px);
-      font-weight: 400;
-      line-height: 1.43;
-      letter-spacing: -.014em;
-      color: inherit;
+    @media (max-width: 1050px) {
+      .intro-story { padding-top: 22px; }
+      .intro-story__grid { gap: 28px; grid-template-columns: 1.05fr .95fr; }
+      .intro-story h1 { font-size: clamp(47px, 5.8vw, 67px); }
+      .intro-story__figure { min-height: 430px; }
     }
-    .intro-framework__item p:last-child { margin-bottom: 0; }
-    @media (max-width: 900px) {
-      .intro-framework { padding: 37px 0 54px; }
-      .intro-framework__head {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-        margin-bottom: 42px;
-      }
-      .intro-framework__head h1 { font-size: clamp(42px, 7.6vw, 58px); }
-      .intro-framework__label { font-size: clamp(33px, 6.6vw, 49px); }
-      .intro-framework__grid { grid-template-columns: 1fr; gap: 31px; }
-      .intro-framework__item:not(:last-child) {
-        padding-bottom: 26px;
-        border-bottom: 1px solid #c9d0c5;
-      }
-      .intro-framework__item h2 { font-size: 17px; margin-bottom: 14px; }
-      .intro-framework__item p {
-        max-width: 650px;
-        font-size: clamp(18px, 3.3vw, 22px);
-        line-height: 1.47;
-        margin-bottom: 16px;
-      }
+    @media (max-width: 780px) {
+      .intro-story { padding: 16px 0 38px; }
+      .intro-story__grid { grid-template-columns: 1fr; gap: 22px; }
+      .intro-story__copy { padding: 22px 0 9px; }
+      .intro-story__eyebrow { margin-bottom: 22px; }
+      .intro-story h1 { font-size: clamp(50px, 9.5vw, 72px); }
+      .intro-story__lead { margin-top: 22px; }
+      .intro-story__aside { margin-top: 13px; font-size: 21px; }
+      .intro-story__figure { height: 340px; min-height: 0; }
+      .intro-story__rhythm { margin-top: 19px; padding-top: 15px; gap: 11px; font-size: 20px; }
+      .intro-story__rhythm span { gap: 7px; }
     }
     @media (max-width: 480px) {
-      .intro-framework { padding-top: 30px; }
-      .intro-framework__head { margin-bottom: 34px; }
-      .intro-framework__head h1 { font-size: 43px; }
-      .intro-framework__label { font-size: 35px; }
-      .intro-framework__item p { font-size: 18px; }
+      .intro-story h1 { font-size: clamp(48px, 11vw, 60px); }
+      .intro-story__figure { height: 285px; }
+      .intro-story__rhythm { font-size: 18px; gap: 7px; }
+      .intro-story__rhythm span { flex-direction: column; align-items: flex-start; gap: 5px; }
     }
-  </style>
+      </style>
 </head>
 <body>
 <a class="skip" href="#inhoud">Ga naar de inhoud</a>
@@ -431,31 +464,25 @@
   </div>
 </header>
 <main id="inhoud">
-  <section class="intro-framework" id="top" aria-labelledby="strategy-heading">
+  <section class="intro-story" id="top" aria-labelledby="story-title">
     <div class="container">
-      <div class="intro-framework__head">
-        <h1 id="strategy-heading">First things first</h1>
-        <span class="intro-framework__label">Strategie</span>
+      <div class="intro-story__grid">
+        <div class="intro-story__copy">
+          <div class="intro-story__eyebrow"><span>Rho &amp; Sigma</span><span>First things first</span></div>
+          <h1 id="story-title">Wat als we het eens <i>anders proberen?</i></h1>
+          <p class="intro-story__lead">Ik kijk graag hoe een onderneming écht werkt. Waar verdwijnt de tijd? Wat kan slimmer? Welke kansen blijven liggen? En dan: ideeën uitproberen, iets bouwen, kijken wat werkt en bijsturen waar nodig.</p>
+          <p class="intro-story__aside">Geen eindeloze rapporten. Wel leren door te doen.</p>
+          <a class="cta-link intro-story__cta" href="#contact">Vertel me wat er speelt <span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <figure class="intro-story__figure">
+          <img src="https://images.unsplash.com/photo-1747401648976-38f47ee4b9a5?auto=format&amp;fit=crop&amp;w=1150&amp;q=83" alt="Zacht licht en een uitzicht op het water vanuit een schip." width="920" height="1160" fetchpriority="high">
+          <figcaption>Van een frisse blik naar iets dat werkt.</figcaption>
+        </figure>
       </div>
-
-      <div class="intro-framework__grid">
-        <div class="intro-framework__item">
-          <h2>OBSERVEREN</h2>
-          <p>Zoveel mogelijk kijken, luisteren en becijferen.</p>
-          <p>Begrijpen hoe de organisatie vandaag écht werkt en waar de grootste kansen, frustraties en bottlenecks zich bevinden.</p>
-        </div>
-
-        <div class="intro-framework__item">
-          <h2>VOORAL DOEN</h2>
-          <p>Zo snel mogelijk naar actie. Ideeën vertalen naar concrete experimenten en testen wat werkt in de praktijk.</p>
-          <p>Geen eindeloze rapporten, maar leren door te doen.</p>
-        </div>
-
-        <div class="intro-framework__item">
-          <h2>REFLECTEREN</h2>
-          <p>Resultaten evalueren, cijfers bekijken, inzichten verzamelen en bijsturen waar nodig.</p>
-          <p>Schrappen wat niet werkt, verder bouwen op wat wel werkt en nieuwe mogelijkheden identificeren.</p>
-        </div>
+      <div class="intro-story__rhythm" aria-label="De werkwijze in drie woorden">
+        <span><b>01</b> Observeren</span>
+        <span><b>02</b> Vooral doen</span>
+        <span><b>03</b> Reflecteren</span>
       </div>
     </div>
   </section>
