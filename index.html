@@ -1,664 +1,162 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl-BE">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Rho & Sigma — Heldere websites voor ondernemers</title>
-  <meta
-    name="description"
-    content="Rho maakt heldere websites voor ondernemers. Intake, structuur + moodboard, build en launch."
-  />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap"
-    rel="stylesheet"
-  >
-
-  <style>
-    :root {
-      --bg: #050505;
-      --panel: #0c0c0c;
-      --panel-2: #101010;
-      --text: #f4f4f1;
-      --muted: #9d9d98;
-      --line: rgba(255,255,255,0.1);
-      --line-soft: rgba(255,255,255,0.06);
-      --container: 1240px;
-      --radius: 24px;
-      --radius-lg: 32px;
-      --shadow: 0 0 0 1px rgba(255,255,255,0.04);
-      --ease: cubic-bezier(.2,.8,.2,1);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Inter", sans-serif;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(var(--container), calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(5, 5, 5, 0.82);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid transparent;
-    }
-
-    .nav {
-      width: min(var(--container), calc(100% - 32px));
-      margin: 0 auto;
-      min-height: 84px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: -0.04em;
-      white-space: nowrap;
-    }
-
-    .menu {
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-
-    .menu a {
-      color: var(--muted);
-      font-size: 0.95rem;
-      transition: color 0.2s ease;
-    }
-
-    .menu a:hover {
-      color: var(--text);
-    }
-
-    .burger {
-      display: none;
-      width: 42px;
-      height: 42px;
-      border: 0;
-      background: transparent;
-      padding: 0;
-      cursor: pointer;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 5px;
-    }
-
-    .burger span {
-      display: block;
-      width: 18px;
-      height: 1.5px;
-      background: var(--text);
-      border-radius: 999px;
-    }
-
-    .drawer {
-      display: none;
-    }
-
-    .hero {
-      padding: 108px 0 72px;
-    }
-
-    .eyebrow,
-    .section-label,
-    .card-kicker {
-      display: inline-block;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 0.75rem;
-      line-height: 1.3;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-    }
-
-    .eyebrow {
-      margin-bottom: 22px;
-    }
-
-    h1, h2, h3, p {
-      margin: 0;
-    }
-
-    h1 {
-      max-width: 11ch;
-      font-size: clamp(3.5rem, 9vw, 8.2rem);
-      line-height: 0.92;
-      letter-spacing: -0.08em;
-      font-weight: 800;
-    }
-
-    .lead {
-      margin-top: 28px;
-      max-width: 34ch;
-      font-size: 1.14rem;
-      line-height: 1.52;
-      color: #d2d2cd;
-    }
-
-    .btn-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 18px;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 500;
-      border: 1px solid var(--line);
-      transition: transform 0.2s var(--ease), background 0.2s var(--ease), color 0.2s var(--ease), border-color 0.2s var(--ease);
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .btn-primary {
-      background: var(--text);
-      color: var(--bg);
-      border-color: var(--text);
-    }
-
-    .btn-primary:hover {
-      background: #ffffff;
-      border-color: #ffffff;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: var(--text);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.06);
-    }
-
-    .section {
-      padding: 78px 0;
-      border-top: 1px solid var(--line-soft);
-    }
-
-    .section-head {
-      margin-bottom: 30px;
-    }
-
-    .section-label {
-      margin-bottom: 14px;
-    }
-
-    h2 {
-      max-width: 13ch;
-      font-size: clamp(2.2rem, 5vw, 4.8rem);
-      line-height: 0.93;
-      letter-spacing: -0.075em;
-      font-weight: 800;
-    }
-
-    .sub {
-      margin-top: 16px;
-      max-width: 42ch;
-      font-size: 1.04rem;
-      line-height: 1.56;
-      color: var(--muted);
-    }
-
-    .cards-4,
-    .cards-3,
-    .grid-2 {
-      display: grid;
-      gap: 16px;
-    }
-
-    .cards-4 {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-    }
-
-    .cards-3 {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-
-    .grid-2 {
-      grid-template-columns: 1.05fr 0.95fr;
-      align-items: start;
-    }
-
-    .card,
-    .contact-box {
-      background: linear-gradient(180deg, var(--panel) 0%, var(--panel-2) 100%);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .card-kicker {
-      margin-bottom: 12px;
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.08rem;
-      line-height: 1.12;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .card p,
-    .contact-box p {
-      color: var(--muted);
-      font-size: 0.98rem;
-      line-height: 1.54;
-    }
-
-    .price {
-      margin-bottom: 12px;
-      font-size: 1.65rem;
-      line-height: 1;
-      font-weight: 800;
-      letter-spacing: -0.06em;
-      color: var(--text);
-    }
-
-    .list {
-      list-style: none;
-      margin: 14px 0 0;
-      padding: 0;
-      display: grid;
-      gap: 8px;
-    }
-
-    .list li {
-      color: var(--muted);
-      font-size: 0.96rem;
-      line-height: 1.48;
-    }
-
-    .list li::before {
-      content: "— ";
-      color: var(--text);
-    }
-
-    .note {
-      margin-top: 14px;
-      color: var(--muted);
-      font-size: 0.94rem;
-      line-height: 1.52;
-    }
-
-    .contact-box {
-      border-radius: var(--radius-lg);
-    }
-
-    footer {
-      padding: 24px 0 32px;
-      border-top: 1px solid var(--line-soft);
-    }
-
-    .footer-inner {
-      width: min(var(--container), calc(100% - 32px));
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .footer-inner a:hover {
-      color: var(--text);
-    }
-
-    /* Smooth reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px);
-      transition:
-        opacity 0.9s var(--ease),
-        transform 0.9s var(--ease);
-      will-change: opacity, transform;
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .delay-1 { transition-delay: 0.06s; }
-    .delay-2 { transition-delay: 0.12s; }
-    .delay-3 { transition-delay: 0.18s; }
-    .delay-4 { transition-delay: 0.24s; }
-
-    @media (max-width: 1080px) {
-      .cards-4 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .cards-3,
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .menu {
-        display: none;
-      }
-
-      .burger {
-        display: inline-flex;
-      }
-
-      .drawer {
-        width: min(var(--container), calc(100% - 32px));
-        margin: 0 auto;
-        display: grid;
-        gap: 12px;
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        background: #fff;
-        color: #000;
-        border-radius: 12px;
-        padding-inline: 16px;
-        transition: max-height 0.25s ease, opacity 0.2s ease, padding-bottom 0.2s ease;
-      }
-
-      .drawer.open {
-        max-height: 220px;
-        opacity: 1;
-        padding-top: 16px;
-        padding-bottom: 18px;
-      }
-
-      .drawer a {
-        color: #000;
-      }
-
-      .hero {
-        padding: 78px 0 56px;
-      }
-
-      .section {
-        padding: 58px 0;
-      }
-
-      .cards-4,
-      .cards-3 {
-        grid-template-columns: 1fr;
-      }
-
-      h1 {
-        max-width: 9.5ch;
-        font-size: clamp(2.9rem, 15vw, 5.4rem);
-      }
-
-      h2 {
-        max-width: 100%;
-        font-size: clamp(2rem, 10vw, 3.2rem);
-      }
-
-      .footer-inner {
-        flex-direction: column;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      .reveal,
-      .reveal.is-visible,
-      .btn,
-      .drawer {
-        transition: none !important;
-        transform: none !important;
-        opacity: 1 !important;
-      }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090a09">
+<title>Rho &amp; Sigma | Minder herhaalwerk. Meer ruimte voor je werk.</title>
+<meta name="description" content="Rho & Sigma helpt kleine ondernemingen om repetitieve administratie, offertes, technische documenten en projectopvolging slimmer te organiseren. Praktisch, op maat en zonder AI-hype.">
+<link rel="canonical" href="https://www.rhoandsigma.com/">
+<meta property="og:title" content="Rho & Sigma | Minder herhaalwerk">
+<meta property="og:description" content="We onderzoeken hoe je werkt, schrappen onnodige stappen en automatiseren wat zich blijft herhalen. AI als het helpt, eenvoud als het beter werkt.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#090a09;--panel:#111411;--panel2:#181c18;--text:#f5f6f1;--muted:#b2bbb0;--line:#343b34;--accent:#d7e5c8;--container:1160px}
+*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}h1,h2,h3,p{margin:0}p{line-height:1.7}.container{width:min(var(--container),calc(100% - 40px));margin:auto}.skip{position:absolute;top:-100px;left:12px;background:#fff;color:#000;padding:10px;z-index:200}.skip:focus{top:12px}
+header{position:sticky;top:0;z-index:50;background:rgba(9,10,9,.96);border-bottom:1px solid #242a24;backdrop-filter:blur(16px)}.nav{width:min(var(--container),calc(100% - 40px));margin:auto;min-height:78px;display:flex;justify-content:space-between;align-items:center;gap:24px}.brand{font-size:1.12rem;letter-spacing:-.06em;font-weight:800;white-space:nowrap}.menu{display:flex;align-items:center;gap:28px}.menu a{font-size:.91rem;color:#c4ccc2}.menu a:hover,.menu a:focus-visible{color:#fff}.menu .navcta{border:1px solid #6f7b6d;border-radius:100px;padding:12px 18px;color:#fff}.burger{display:none;width:44px;height:44px;align-items:center;justify-content:center;flex-direction:column;gap:5px;background:transparent;border:1px solid #545e54;border-radius:12px;cursor:pointer}.burger span{width:18px;height:2px;background:#fff;border-radius:3px}.drawer{display:none}
+.hero{padding:112px 0 110px;position:relative;overflow:hidden}.hero::before{content:"";position:absolute;top:5%;right:-7%;width:clamp(180px,35vw,540px);height:clamp(180px,35vw,540px);border:1px solid #3e493c;border-radius:50%;opacity:.48;pointer-events:none}.eyebrow,.kicker,.section-label,.stepnumber{font-family:"IBM Plex Mono",monospace;text-transform:uppercase;letter-spacing:.11em;font-size:.72rem;color:var(--accent)}.hero .eyebrow{margin-bottom:22px}.hero h1{font-size:clamp(3.15rem,8.6vw,7.7rem);line-height:.96;letter-spacing:-.087em;font-weight:800;max-width:1050px}.hero h1 em{font-style:normal;color:var(--accent)}.lead{font-size:clamp(1.06rem,1.65vw,1.3rem);line-height:1.7;color:#d2d8cd;max-width:650px;margin-top:30px}.btnrow{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}.btn{display:inline-flex;min-height:50px;padding:13px 20px;border:1px solid #6e776b;border-radius:100px;align-items:center;justify-content:center;font-size:.94rem;font-weight:600;transition:background .2s ease,transform .2s ease}.btn:hover{transform:translateY(-2px)}.btn.primary{background:var(--accent);border-color:var(--accent);color:#121812}.btn.secondary:hover{background:#222722}.hero-note{font-size:.81rem;color:var(--muted);margin-top:24px}
+.section{padding:88px 0;border-top:1px solid #262c26}.section-label{display:block;margin-bottom:19px}h2{font-size:clamp(2.25rem,5vw,4.8rem);line-height:1.03;letter-spacing:-.07em;max-width:850px}.section-intro{margin:20px 0 38px;max-width:690px;color:var(--muted);font-size:1.05rem}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:linear-gradient(150deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:22px;padding:27px;min-width:0}.card .kicker{margin-bottom:18px}.card h3{font-size:1.3rem;line-height:1.25;letter-spacing:-.035em;margin-bottom:12px}.card p,.card li{color:#b7c0b5;font-size:.94rem;line-height:1.7}.card ul{padding-left:18px;margin:14px 0 0}.card li+li{margin-top:5px}.case{display:grid;grid-template-columns:1fr 1fr;gap:28px;padding:38px;border:1px solid #4a5746;border-radius:24px;background:#151b15}.case .kicker{margin-bottom:18px}.case h3{font-size:clamp(1.75rem,3.4vw,3rem);line-height:1.12;letter-spacing:-.05em;margin-bottom:18px}.case p{color:#c9d3c7}.case .details{display:grid;gap:14px}.case .detail{padding:20px 22px;background:#0d110d;border:1px solid #333e32;border-radius:14px}.detail strong{display:block;margin-bottom:6px;font-size:.91rem}.detail p{font-size:.92rem}.smallnote{margin-top:14px;color:var(--muted);font-size:.82rem}.process{counter-reset:step;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.step{border-top:1px solid #6e8169;padding:24px 12px 0 0}.stepnumber{margin-bottom:22px}.step h3{font-size:1.13rem;margin-bottom:12px}.step p{font-size:.93rem;color:var(--muted)}.offer{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;padding:32px;border:1px solid #556550;border-radius:24px;background:#172017}.offer h3{font-size:2rem;letter-spacing:-.05em;line-height:1.1;margin:12px 0 16px}.offer p{color:#ced6ca}.price{font-size:2.6rem;font-weight:800;letter-spacing:-.07em;line-height:1.1}.price small{font-weight:400;font-size:.8rem;letter-spacing:0;color:#b6c5b2}.offerlist{margin:0;padding-left:18px;color:#d1dbce;font-size:.92rem;line-height:1.8}.offerlist li+li{margin-top:5px}.contact{display:grid;grid-template-columns:1.3fr .7fr;gap:35px;align-items:start}.contact h2{margin-bottom:24px}.contact p{max-width:600px;color:var(--muted)}.contact .card p{color:#b7c0b5}.contact .btnrow{margin-top:26px}footer{border-top:1px solid #262c26;padding:26px 0;color:var(--muted);font-size:.86rem}.footer{display:flex;justify-content:space-between;gap:15px}.footer a:hover{color:white}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+@media(max-width:900px){.grid3{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr 1fr}.case,.offer,.contact{grid-template-columns:1fr}}
+@media(max-width:700px){.container,.nav{width:calc(100% - 32px)}.nav{min-height:68px}.menu{display:none}.burger{display:flex}.drawer{display:grid;max-height:0;overflow:hidden;visibility:hidden;opacity:0;transition:max-height .2s ease,opacity .2s ease,visibility .2s;padding:0 14px;background:white;color:black;border-radius:0 0 14px 14px;margin:0 16px;gap:0}.drawer.open{max-height:280px;visibility:visible;opacity:1;padding:8px 14px 14px}.drawer a{color:black;padding:12px 8px;font-size:1rem;font-weight:600;border-bottom:1px solid #eaeaea}.drawer a:last-child{border-bottom:0}.hero{padding:78px 0 76px}.hero h1{font-size:clamp(3rem,13.2vw,5.5rem)}.hero::before{top:15%;right:-35%;opacity:.25}.section{padding:64px 0}.grid3,.grid2,.process{grid-template-columns:1fr}.case,.offer{padding:22px;gap:16px}.card{padding:23px}.step{padding-top:18px}.stepnumber{margin-bottom:12px}.footer{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.drawer{transition:none}}
+</style>
 </head>
 <body>
-  <header>
-    <nav class="nav" aria-label="Hoofdnavigatie">
-      <div class="brand">Rho &amp; Sigma</div>
-
-      <div class="menu">
-        <a href="#aanpak">Aanpak</a>
-        <a href="#pricing">Prijzen</a>
-        <a href="#contact">Contact</a>
-      </div>
-
-      <button class="burger" aria-label="Open menu" onclick="toggleDrawer()">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-
-    <div class="drawer" id="drawer" aria-hidden="true">
-      <a href="#aanpak" onclick="toggleDrawer()">Aanpak</a>
-      <a href="#pricing" onclick="toggleDrawer()">Prijzen</a>
-      <a href="#contact" onclick="toggleDrawer()">Contact</a>
+<a class="skip" href="#inhoud">Ga naar inhoud</a>
+<header>
+  <nav class="nav" aria-label="Hoofdnavigatie">
+    <a href="#top" class="brand" aria-label="Rho & Sigma, naar boven">Rho &amp; Sigma</a>
+    <div class="menu">
+      <a href="#wat">Wat we verbeteren</a>
+      <a href="#aanpak">Aanpak</a>
+      <a href="#starten">Starten</a>
+      <a class="navcta" href="#contact">Kennismaken</a>
     </div>
-  </header>
-
-  <main id="top">
-    <section class="hero">
-      <div class="container">
-        <div class="eyebrow reveal">Rho / websites voor ondernemers</div>
-
-        <h1 class="reveal delay-1">
-          Websites voor mensen die liever hun werk doen dan aan hun website beginnen.
-        </h1>
-
-        <p class="lead reveal delay-2">
-          Rho maakt heldere websites. Minder gedoe, minder twijfel, minder “we moeten daar echt eens aan beginnen”.
-        </p>
-
-        <div class="btn-row reveal delay-3">
-          <a class="btn btn-primary" href="#contact">Zeg hallo</a>
-          <a class="btn btn-secondary" href="#pricing">Bekijk prijzen</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="aanpak">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="section-label">Aanpak</div>
-          <h2>Vier stappen. Meer hoeft dat niet te zijn.</h2>
-          <p class="sub">
-            Eerst helder krijgen wat je site moet doen. Daarna bouwen. Geen theater.
-          </p>
-        </div>
-
-        <div class="cards-4">
-          <article class="card reveal">
-            <div class="card-kicker">01</div>
-            <h3>Intake</h3>
-            <p>Gesprek of formulier. Wat doe je, voor wie, en wat moet je website eigenlijk doen?</p>
-          </article>
-
-          <article class="card reveal delay-1">
-            <div class="card-kicker">02</div>
-            <h3>Structuur + moodboard</h3>
-            <p>Ik zet de richting uit. Inhoud, opbouw en visuele sfeer. Zodat we niet zomaar beginnen klikken.</p>
-          </article>
-
-          <article class="card reveal delay-2">
-            <div class="card-kicker">03</div>
-            <h3>Build</h3>
-            <p>Ik bouw de website uit tot een eerste versie die al staat. Geen rommel. Wel iets dat klopt.</p>
-          </article>
-
-          <article class="card reveal delay-3">
-            <div class="card-kicker">04</div>
-            <h3>Launch</h3>
-            <p>Eén feedbackronde. Dan gaat de site live. Revolutionair concept: een website die af geraakt.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="pricing">
-      <div class="container">
-        <div class="section-head reveal">
-          <div class="section-label">Prijzen</div>
-          <h2>Duidelijke prijzen. Ook aangenaam.</h2>
-          <p class="sub">
-            Je hoeft hier niet te gokken wat iets ongeveer misschien zou kunnen kosten.
-          </p>
-        </div>
-
-        <div class="cards-3">
-          <article class="card reveal">
-            <div class="card-kicker">Onepage website</div>
-            <div class="price">€1.650 excl. btw</div>
-            <p>Voor ondernemers die helder online willen staan zonder daar een compleet zijproject van te maken.</p>
-            <ul class="list">
-              <li>intake</li>
-              <li>structuur + moodboard</li>
-              <li>design &amp; build</li>
-              <li>1 feedbackronde</li>
-              <li>launch + overdracht</li>
-            </ul>
-          </article>
-
-          <article class="card reveal delay-1">
-            <div class="card-kicker">Kleine website</div>
-            <div class="price">± €2.500 excl. btw</div>
-            <p>Voor ondernemers of kleine studio’s die net wat meer ruimte nodig hebben. Nog altijd helder. Gewoon meer pagina’s.</p>
-            <ul class="list">
-              <li>3–5 pagina’s</li>
-              <li>intake</li>
-              <li>structuur + moodboard</li>
-              <li>design &amp; build</li>
-              <li>1 feedbackronde</li>
-              <li>launch + overdracht</li>
-            </ul>
-          </article>
-
-          <article class="card reveal delay-2">
-            <div class="card-kicker">Hosting + domein</div>
-            <div class="price">€50 / maand</div>
-            <p>Of €500 per jaar, excl. btw. Inclusief domein en hosting. Handig voor wie geen zin heeft in technisch gepruts.</p>
-            <ul class="list">
-              <li>€50 / maand excl. btw</li>
-              <li>€500 / jaar excl. btw</li>
-              <li>inclusief domein + hosting</li>
-            </ul>
-            <p class="note">
-              Inhoudelijke updates zijn niet inbegrepen en gebeuren apart aan €75 per uur excl. btw.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="grid-2">
-          <div class="reveal">
-            <div class="section-label">Contact</div>
-            <h2>Heb je een website nodig? Of een betere?</h2>
-            <p class="sub">
-              Mail me kort wat je doet, voor wie je werkt, en wat je website moet doen.
-            </p>
-
-            <div class="btn-row">
-              <a class="btn btn-primary" href="mailto:hi@rhoandsigma.be?subject=Kennismaking%20Rho">Mail me</a>
-            </div>
-
-            <p class="note">hi@rhoandsigma.be</p>
-          </div>
-
-          <div class="contact-box reveal delay-1">
-            <div class="card-kicker">Wat zet je best in je mail?</div>
-            <ul class="list">
-              <li>wat je doet</li>
-              <li>voor wie je werkt</li>
-              <li>wat de website moet doen</li>
-              <li>of je al tekst of beelden hebt</li>
-              <li>of je een onepage of kleine website zoekt</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-inner">
-      <div>© <span id="year"></span> Rho &amp; Sigma</div>
-      <a href="#top">Naar boven</a>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="drawer" id="drawer" aria-hidden="true">
+    <a href="#wat">Wat we verbeteren</a>
+    <a href="#aanpak">Aanpak</a>
+    <a href="#starten">Starten</a>
+    <a href="#contact">Kennismaken</a>
+  </div>
+</header>
+<main id="inhoud">
+<section class="hero" id="top">
+<div class="container">
+  <div class="eyebrow">Operational design voor kleine ondernemingen</div>
+  <h1>Minder <em>herhaalwerk.</em><br>Meer ruimte voor je echte werk.</h1>
+  <p class="lead">Nog eens dezelfde informatie overtypen. Een offerte die blijft liggen. Een document dat voor de derde keer aangepast moet worden. Wij zoeken uit waar je werking vastloopt, maken het proces eenvoudiger en automatiseren wat zich blijft herhalen.</p>
+  <div class="btnrow">
+    <a class="btn primary" href="mailto:hi@rhoandsigma.be?subject=Kennismaking%20Rho%20%26%20Sigma">Bespreek je proces</a>
+    <a class="btn secondary" href="#wat">Bekijk voorbeelden</a>
+  </div>
+  <p class="hero-note">Geen AI om de AI. Eerst begrijpen wat beter kan.</p>
+</div>
+</section>
+<section class="section" id="wat">
+<div class="container">
+  <div class="section-label">Herken je dit?</div>
+  <h2>Het zijn vaak de kleine handelingen die het meeste tijd kosten.</h2>
+  <p class="section-intro">We beginnen niet met een tool. We beginnen met het werk dat vandaag gebeurt, en zoeken uit welke stappen eenvoudiger, sneller of overbodig kunnen.</p>
+  <div class="grid3">
+    <article class="card"><div class="kicker">01 / Klanten</div><h3>Een mailbox vol aanvragen</h3><p>Dezelfde vragen, ontbrekende gegevens, offertes op basis van verschillende documenten en opvolging die tussen de mazen van het net valt.</p><ul><li>Informatie bij de eerste aanvraag verzamelen</li><li>Antwoorden en offertes voorbereiden</li><li>Opvolging overzichtelijk organiseren</li></ul></article>
+    <article class="card"><div class="kicker">02 / Documenten</div><h3>Steeds opnieuw dezelfde gegevens</h3><p>Technische fiches, lijsten, rapporten en formulieren waarvoor iemand telkens gegevens moet zoeken, kopiëren of controleren.</p><ul><li>Documentgegevens structureren</li><li>Fiches en rapporten voorbereiden</li><li>Verschillen en ontbrekende informatie signaleren</li></ul></article>
+    <article class="card"><div class="kicker">03 / Projecten</div><h3>Geen grip op versies en opvolging</h3><p>Plannen, revisies, deadlines en statussen verspreid over verschillende bestanden en systemen.</p><ul><li>Plantracking en revisieoverzichten</li><li>Terugkerende rapportage vereenvoudigen</li><li>Controles en meldingen automatiseren</li></ul></article>
+  </div>
+</div>
+</section>
+<section class="section" id="voorbeeld">
+<div class="container">
+  <div class="section-label">Voorbeeld / Aanvraag naar offerte</div>
+  <div class="case">
+    <div>
+      <h3>Een offerte zou geen zoektocht door vijf bestanden moeten zijn.</h3>
+      <p>Een klant vraagt catering voor 60 gasten. De datum staat in de mail, dieetwensen komen later, prijzen zitten in een aparte lijst en de offerte wordt handmatig samengesteld. Dat proces kun je eerst helder maken en dan gericht verbeteren.</p>
+      <p class="smallnote">Illustratief voorbeeld. De juiste oplossing hangt af van de bestaande werkwijze en gegevens.</p>
     </div>
-  </footer>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    function toggleDrawer() {
-      const d = document.getElementById("drawer");
-      const open = d.classList.toggle("open");
-      d.setAttribute("aria-hidden", open ? "false" : "true");
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.14,
-        rootMargin: "0px 0px -40px 0px"
-      }
-    );
-
-    document.querySelectorAll(".reveal").forEach((el) => {
-      observer.observe(el);
-    });
-  </script>
+    <div class="details">
+      <div class="detail"><strong>Vandaag</strong><p>Informatie verzamelen, dubbel overtypen, prijzen nakijken en handmatig opvolgen.</p></div>
+      <div class="detail"><strong>Wat we kunnen verbeteren</strong><p>Eén eventfiche, een duidelijke prijslijst als bron, consistente offertes en zichtbare opvolgacties.</p></div>
+      <div class="detail"><strong>Waar AI eventueel helpt</strong><p>Een aanvraag begrijpen of een antwoord voorbereiden, terwijl prijzen en kritieke gegevens uit gecontroleerde bronnen komen.</p></div>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="aanpak">
+<div class="container">
+  <div class="section-label">Aanpak</div>
+  <h2>Eerst begrijpen. Dan verbeteren. Daarna pas automatiseren.</h2>
+  <p class="section-intro">Soms is de oplossing een beter formulier. Soms een dashboard, script of workflow. Soms AI. We kiezen wat het probleem echt oplost, met een menselijke controle waar dat nodig is.</p>
+  <div class="process">
+    <article class="step"><div class="stepnumber">Stap 01</div><h3>We kijken mee</h3><p>We volgen een bestaand proces: wat gebeurt er, wie doet wat en welke informatie is nodig?</p></article>
+    <article class="step"><div class="stepnumber">Stap 02</div><h3>We schrappen frictie</h3><p>We maken zichtbaar waar het dubbel, onduidelijk of foutgevoelig wordt.</p></article>
+    <article class="step"><div class="stepnumber">Stap 03</div><h3>We maken iets werkends</h3><p>We kiezen één haalbare ingreep en bouwen of configureren die.</p></article>
+    <article class="step"><div class="stepnumber">Stap 04</div><h3>We testen samen</h3><p>We controleren het resultaat op echte voorbeelden en spreken af wie het opvolgt.</p></article>
+  </div>
+</div>
+</section>
+<section class="section" id="starten">
+<div class="container">
+  <div class="section-label">Een concreet begin</div>
+  <div class="offer">
+    <div>
+      <div class="kicker">Pilot / Eén proces beter</div>
+      <h3>De Process Sprint</h3>
+      <p>Voor kleine ondernemingen die niet op zoek zijn naar nóg een softwarepakket, maar naar een praktische oplossing voor één terugkerend probleem.</p>
+      <div class="btnrow"><a class="btn primary" href="mailto:hi@rhoandsigma.be?subject=Process%20Sprint%20-%20kennismaking">Bespreek een pilot</a></div>
+    </div>
+    <div>
+      <div class="price">€990 <small>excl. btw / pilottarief</small></div>
+      <p class="smallnote" style="margin-bottom:18px">Afgebakende opdracht, doorlooptijd in overleg. Tot 12 uitvoeringsuren. Alleen voor processen die binnen deze scope passen.</p>
+      <ul class="offerlist">
+        <li>Korte intake en analyse van één proces</li>
+        <li>Eén prioritaire verbetering uitwerken</li>
+        <li>Testen op voorbeelden en overdracht</li>
+        <li>Grotere ontwikkeling: aparte offerte</li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+<section class="section" id="contact">
+<div class="container">
+  <div class="contact">
+    <div>
+      <div class="section-label">Kennismaken</div>
+      <h2>Welk klusje blijft bij jullie maar terugkomen?</h2>
+      <p>Vertel kort wat jullie doen en welke taak of werkwijze onnodig veel tijd vraagt. We bekijken samen of een kleine verbetering zinvol is. Geen verkooppraatje over AI, wel een eerlijk gesprek over je werking.</p>
+      <div class="btnrow"><a class="btn primary" href="mailto:hi@rhoandsigma.be?subject=Mijn%20proces%20-%20Rho%20%26%20Sigma">Mail je proces</a></div>
+      <p class="smallnote">hi@rhoandsigma.be · Leuven, België</p>
+    </div>
+    <aside class="card">
+      <div class="kicker">Wat vertel je ons?</div>
+      <h3>Vier zinnen zijn genoeg.</h3>
+      <ul>
+        <li>Wat doet je onderneming?</li>
+        <li>Welke taak keert telkens terug?</li>
+        <li>Wat maakt die taak tijdrovend of foutgevoelig?</li>
+        <li>Wat zou er veranderen als ze eenvoudiger werd?</li>
+      </ul>
+    </aside>
+  </div>
+</div>
+</section>
+</main>
+<footer><div class="container footer"><span>© <span id="year"></span> Rho &amp; Sigma</span><a href="#top">Naar boven</a></div></footer>
+<script>
+document.getElementById("year").textContent=new Date().getFullYear();
+const burger=document.getElementById("burger"),drawer=document.getElementById("drawer");
+function closeDrawer(){drawer.classList.remove("open");drawer.setAttribute("aria-hidden","true");burger.setAttribute("aria-expanded","false");burger.setAttribute("aria-label","Open menu")}
+burger.addEventListener("click",()=>{const open=!drawer.classList.contains("open");drawer.classList.toggle("open",open);drawer.setAttribute("aria-hidden",String(!open));burger.setAttribute("aria-expanded",String(open));burger.setAttribute("aria-label",open?"Sluit menu":"Open menu")});
+drawer.querySelectorAll("a").forEach(a=>a.addEventListener("click",closeDrawer));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeDrawer()});
+</script>
 </body>
 </html>
