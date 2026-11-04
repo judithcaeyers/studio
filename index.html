@@ -74,9 +74,8 @@
     .hero-note{font-size:11px;letter-spacing:.02em;margin-top:26px;color:var(--muted)}
     .hero-art{position:relative;min-height:580px;align-self:stretch;padding-top:52px}
     .hero-photo{position:absolute;inset:52px 0 0 2%;overflow:hidden;background:#bdc7bd}
-    .hero-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(.28) saturate(.68) contrast(.95);transition:transform .9s}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;transition:transform .9s}
     .hero-art:hover .hero-photo img{transform:scale(1.035)}
-    .hero-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.2))}
     .art-card{position:absolute;bottom:36px;left:-35px;background:var(--paper);border:1px solid var(--ink);width:clamp(190px,18vw,260px);padding:22px 24px 24px;box-shadow:12px 12px 0 rgba(255,255,255,.3)}
     .art-card strong{font:400 clamp(38px,4vw,56px)/.92 var(--serif);letter-spacing:-.065em;display:block;margin:28px 0 25px}
     .art-card-bottom{border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;font-size:9px;text-transform:uppercase;letter-spacing:.12em;font-weight:900}
@@ -90,9 +89,7 @@
     .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.3vw,34px)}
     .project{min-width:0}
     .project-visual{display:block;position:relative;overflow:hidden;aspect-ratio:1.22;background:#d2d0c9}
-    .project-visual img{width:100%;height:100%;object-fit:cover;transition:transform .7s;filter:saturate(.76)}
-    .project:hover .project-visual img{transform:scale(1.035)}
-    .project-tag{position:absolute;top:19px;left:20px;background:var(--paper);padding:10px 12px;text-transform:uppercase;font-size:9px;letter-spacing:.12em;font-weight:900}
+    .project-visual img{width:100%;height:100%;object-fit:cover;transition:transform .7s;top:19px;left:20px;background:var(--paper);padding:10px 12px;text-transform:uppercase;font-size:9px;letter-spacing:.12em;font-weight:900}
     .project-open{position:absolute;right:20px;bottom:18px;width:42px;height:42px;border-radius:50%;background:var(--paper);display:grid;place-items:center;font:400 24px/1 var(--serif)}
     .project-visual--dinner{background:#3e2e29;display:flex;align-items:center;justify-content:center;isolation:isolate}
     .project-visual--dinner:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 70% 10%,#806c59,transparent 40%),linear-gradient(135deg,#46332b,#211a18);z-index:-1}
@@ -160,7 +157,7 @@
     .about{padding:clamp(92px,11vw,165px) 0}
     .about-layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(50px,10vw,150px);align-items:center}
     .about-image{position:relative;aspect-ratio:.95;background:#d4d8cf;overflow:hidden}
-    .about-image img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5);transition:transform .7s}
+    .about-image img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
     .about-image:hover img{transform:scale(1.03)}
     .about-image .image-stamp{position:absolute;bottom:22px;left:20px;padding:11px 13px;background:var(--paper);font-size:10px;text-transform:uppercase;letter-spacing:.13em;font-weight:900}
     .about h2{font-size:clamp(59px,7vw,106px);line-height:.94;letter-spacing:-.082em;margin:24px 0 32px}
@@ -287,7 +284,54 @@
     @media(prefers-reduced-motion:reduce){
       *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
     }
-  </style>
+  
+/* Clean editorial presentation — readable on every screen. */
+body{font-size:17px;line-height:1.65}
+:root{--muted:#535550}
+.eyebrow{font-size:11px}
+.nav-menu a:not(.nav-cta),.nav-cta,.locale{font-size:11px}
+.action,.underlink{font-size:12px}
+.hero-lead{font-size:clamp(18px,1.5vw,21px);line-height:1.72}
+.hero-note{font-size:14px;line-height:1.65}
+.section-intro,.reasons-top p,.process-heading p,.about p:not(.eyebrow),.contact-bottom p{font-size:clamp(17px,1.35vw,19px);line-height:1.75}
+.offer-intro{font-size:clamp(17px,1.35vw,19px);line-height:1.75}
+.offer-label,.offer-small,.offer-side p,.offer-contents li,.reason p,.step p,.faqs details p{font-size:16px!important;line-height:1.75!important}
+.offer-price small{font-size:14px}
+.faqs summary{font-size:18px}
+.ticker{font-size:11px}
+.project-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(25px,3vw,52px);row-gap:clamp(52px,6vw,90px)}
+.project-visual{aspect-ratio:1.34;background:var(--soft);border:1px solid var(--line);overflow:hidden}
+.homepage-capture img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:none;filter:none}
+.project:hover .homepage-capture img{transform:none}
+.homepage-capture:hover{border-color:#81837e}
+.homepage-capture .capture-fallback{display:none}
+.homepage-capture.capture-failed{display:flex;align-items:center;justify-content:center}
+.homepage-capture.capture-failed .capture-fallback{display:block;font:400 clamp(35px,4vw,70px)/1.1 var(--serif);padding:20px;text-align:center}
+.project-meta{gap:18px;align-items:center;margin-top:15px;padding-top:17px}
+.project-meta h3{font-size:clamp(25px,2.25vw,35px);letter-spacing:-.042em;line-height:1.1}
+.project-meta span{font-size:11px;line-height:1.5}
+.project-desc{font-size:clamp(17px,1.35vw,20px);line-height:1.65;margin-top:15px;max-width:53ch;color:#4c4e49}
+.project-link{display:inline-flex;align-items:center;gap:12px;margin-top:19px;padding-bottom:5px;border-bottom:1px solid var(--ink);font-size:12px;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
+.project-link:hover{gap:18px}
+.work-foot{margin-top:55px;justify-content:flex-end}
+.hero-photo img,.about-image img{filter:none}
+@media(max-width:830px){
+ .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .project-meta{display:block}
+ .project-meta span{display:block;text-align:left;margin-top:9px}
+ .project-visual{aspect-ratio:1.16}
+}
+@media(max-width:600px){
+ .project-grid{grid-template-columns:1fr;gap:50px}
+ .project-meta h3{font-size:30px}
+ .project-desc{font-size:18px;line-height:1.72}
+ .hero-lead{font-size:18px}
+ .section-intro,.reasons-top p,.process-heading p,.about p:not(.eyebrow),.contact-bottom p{font-size:17px}
+ .offer-contents li,.reason p,.step p,.faqs details p{font-size:16px!important}
+ .hero-art{margin-left:0}
+ .project-visual{aspect-ratio:1.22}
+}
+</style>
 </head>
 <body>
 <a href="#main" class="skip" data-en="Skip to content" data-nl="Ga naar de inhoud">Skip to content</a>
@@ -328,15 +372,7 @@
           </div>
           <p class="hero-note" data-en="One-page websites from €995 excl. VAT. No complicated agency process." data-nl="Onepagers vanaf €995 excl. btw. Zonder ingewikkeld bureautraject.">One-page websites from €995 excl. VAT. No complicated agency process.</p>
         </div>
-        <div class="hero-art" aria-label="Editorial visual for the Rho and Sigma studio">
-          <div class="hero-photo"><img src="assets/images/green.jpg" width="700" height="900" alt="" fetchpriority="high"></div>
-          <span class="art-index" aria-hidden="true">R / S — 001</span>
-          <div class="art-card" aria-hidden="true">
-            <p class="eyebrow">Digital, by design.</p>
-            <strong>Small studio.<br>Big on detail.</strong>
-            <div class="art-card-bottom"><span>Rho &amp; Sigma</span><span>Belgium ↗</span></div>
-          </div>
-        </div>
+        <div class="hero-art" aria-label="Studio photograph"><div class="hero-photo"><img src="assets/images/green.jpg" width="700" height="900" alt="" fetchpriority="high"></div></div>
       </div>
       <div class="ticker"><span data-en="Considered design" data-nl="Doordacht ontwerp">Considered design</span><span aria-hidden="true">✳</span><span data-en="Clear purpose" data-nl="Helder doel">Clear purpose</span><span aria-hidden="true">✳</span><span data-en="A little more you" data-nl="Helemaal jij">A little more you</span></div>
     </div>
@@ -426,7 +462,6 @@
     <div class="wrap about-layout">
       <div class="about-image">
         <img src="assets/images/368ae8c9-cfa8-44fc-9c3e-b29befc956ce.jpg" width="750" height="850" loading="lazy" alt="Portrait of Judith, founder of Rho & Sigma">
-        <span class="image-stamp" data-en="Good design takes a point of view." data-nl="Goed ontwerp vraagt een eigen blik.">Good design takes a point of view.</span>
       </div>
       <div>
         <p class="eyebrow muted" data-en="05 / Behind the studio" data-nl="05 / Achter de studio">05 / Behind the studio</p>
@@ -456,7 +491,6 @@
       <p class="eyebrow" data-en="Have something good in mind?" data-nl="Iets moois in gedachten?">Have something good in mind?</p>
       <h2 id="contact-title"><span data-en="Let's make" data-nl="Laten we iets">Let's make</span><br><em data-en="something good." data-nl="moois maken.">something good.</em></h2>
       <div class="contact-bottom">
-        <p data-en="Tell me a little about your business and what you'd love your website to do. I'll get back to you personally." data-nl="Vertel me wat over je zaak en wat je graag met je website wilt bereiken. Je krijgt persoonlijk antwoord.">Tell me a little about your business and what you'd love your website to do. I'll get back to you personally.</p>
         <a class="contact-mail" href="mailto:hi@rhoandsigma.com?subject=Hello%20Rho%20%26%20Sigma">hi@rhoandsigma.com ↗</a>
       </div>
     </div>
