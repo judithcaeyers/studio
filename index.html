@@ -1,224 +1,503 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f7f6f0">
-<meta name="description" content="Rho & Sigma designs elegant, easy-to-use websites for small businesses. Thoughtful design, practical process, and a website that feels like you.">
-<meta property="og:title" content="Rho & Sigma — Websites for small businesses">
-<meta property="og:description" content="Beautiful, uncomplicated websites for independent businesses.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.rhoandsigma.com/">
-<link rel="canonical" href="https://www.rhoandsigma.com/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
-<title>Rho &amp; Sigma — Websites for small businesses</title>
-<style>
-:root{--paper:#f7f6f0;--ink:#25362f;--muted:#607069;--line:#cad0c6;--citrus:#eaf0a7;--blue:#dce8ec;--peach:#f2e6db;--serif:"Times New Roman",Times,serif;--sans:"Lato",Arial,sans-serif;--wide:1280px}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}h1,h2,h3,p,figure{margin:0}h1,h2,h3{font:400 40px/1.05 var(--serif)}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}img{display:block;max-width:100%}
-.container{width:min(var(--wide),calc(100% - 80px));margin:auto}.eyebrow{font:900 11px/1.35 var(--sans);letter-spacing:.135em;text-transform:uppercase}.muted{color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}:focus-visible{outline:2px solid #467c6d;outline-offset:4px}.skip{position:absolute;top:-90px;left:16px;background:var(--ink);color:white;padding:12px 18px;z-index:99}.skip:focus{top:12px}
-.button{display:inline-flex;align-items:center;justify-content:space-between;gap:28px;background:var(--ink);color:white;padding:17px 21px;font:900 12px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.08em;transition:background .2s}.button:hover{background:#425e51}.arrow{font:400 23px/.6 var(--serif);display:inline-block;transition:transform .2s}.button:hover .arrow,.text-link:hover .arrow{transform:translateX(5px)}.text-link{display:inline-flex;align-items:center;gap:23px;border-bottom:1px solid var(--ink);padding-bottom:9px;font:900 11px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.09em}
-header{position:relative;background:var(--paper);z-index:10}.nav{display:flex;align-items:center;justify-content:space-between;gap:25px;border-bottom:1px solid var(--ink);min-height:81px}.brand{font:400 31px/1 var(--serif);letter-spacing:-.07em;white-space:nowrap}.nav-right{display:flex;align-items:center;gap:22px}.desktop-links{display:flex;gap:25px;align-items:center}.desktop-links a{font:900 11px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase}.desktop-links a:hover{text-decoration:underline;text-underline-offset:5px}.lang{border:1px solid var(--ink);background:transparent;color:var(--ink);min-width:55px;padding:10px;font:900 11px/1 var(--sans);letter-spacing:.08em}.lang:hover{background:var(--citrus)}.burger{display:none;align-items:center;justify-content:center;flex-direction:column;gap:5px;width:39px;height:38px;border:1px solid var(--ink);background:transparent}.burger span{width:18px;height:1px;background:var(--ink)}.mobile-links{display:none}
-.hero{padding:39px 0 0}.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:45px;align-items:stretch;min-height:550px}.hero-copy{display:flex;align-items:flex-start;justify-content:center;flex-direction:column;padding:28px 0}.hero .eyebrow{color:var(--muted);margin-bottom:29px}.hero h1{font-size:clamp(57px,6.15vw,92px);line-height:.97;letter-spacing:-.072em;max-width:750px}.hero h1 em{font-weight:400}.hero-lead{font-size:clamp(16px,1.48vw,19px);line-height:1.69;color:var(--muted);max-width:500px;margin:27px 0 28px}.hero-actions{display:flex;gap:25px;align-items:center;flex-wrap:wrap}.hero-footnote{font-size:12px;line-height:1.5;margin-top:22px;color:var(--muted)}
-.hero-visual{background:var(--blue);display:flex;justify-content:center;align-items:center;padding:40px;min-height:500px;position:relative;overflow:hidden}.hero-visual:before{content:"";position:absolute;width:260px;height:260px;top:-140px;right:-90px;border-radius:50%;border:1px solid #9cbdc3}.preview{position:relative;background:#fcf9f1;width:min(485px,100%);box-shadow:16px 20px 0 rgba(38,67,60,.15);transform:rotate(-2deg);border:1px solid #d0d5c9}.preview-chrome{height:30px;border-bottom:1px solid #e0e1d7;display:flex;gap:5px;align-items:center;padding:0 12px}.preview-chrome i{width:6px;height:6px;border-radius:50%;border:1px solid #9ca7a0}.preview-body{padding:21px 23px 25px}.preview-nav{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:18px}.preview-logo{font:italic 400 29px/1 var(--serif);letter-spacing:-.07em;color:#4c694d}.preview-mini{font:900 8px/1.3 var(--sans);letter-spacing:.09em;text-transform:uppercase;color:#687b67}.preview-inside{display:grid;grid-template-columns:1fr .95fr;gap:15px;align-items:center}.preview-inside h3{font:400 clamp(30px,3.2vw,45px)/1.05 var(--serif);letter-spacing:-.07em;color:#456446}.preview-inside p{font:400 10px/1.5 var(--sans);color:#637363;margin-top:12px}.preview-photo{height:260px;background:#b3c5a5;overflow:hidden}.preview-photo img{width:100%;height:100%;object-fit:cover}.preview-bottom{border-top:1px solid #d5dbd2;margin-top:19px;padding-top:14px;display:flex;justify-content:space-between;gap:10px;font:900 9px/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#647866}.design-note{position:absolute;bottom:16px;left:17px;background:rgba(247,246,240,.95);padding:9px 12px;font:900 10px/1.3 var(--sans);letter-spacing:.07em;text-transform:uppercase}.hero-rule{border-bottom:1px solid var(--line);padding:21px 0;display:flex;justify-content:space-between;gap:25px;font:900 11px/1.5 var(--sans);letter-spacing:.095em;text-transform:uppercase}.hero-rule span:last-child{color:var(--muted)}
-.features{padding:86px 0 91px}.section-head{display:grid;grid-template-columns:1.1fr .9fr;gap:45px;align-items:end;margin-bottom:35px}.section-head h2{font-size:clamp(46px,5.2vw,77px);line-height:1;letter-spacing:-.067em;margin-top:18px;max-width:760px}.section-head p{font-size:16px;color:var(--muted);line-height:1.7;max-width:410px}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}.feature{border-top:1px solid var(--ink);padding-top:20px}.feature .number{font:400 27px/1 var(--serif)}.feature h3{font-size:clamp(29px,3vw,42px);letter-spacing:-.05em;margin:19px 0 12px}.feature p{font:400 15px/1.72 var(--sans);color:var(--muted);max-width:365px}
-.capabilities{padding:83px 0 88px;background:#f1f0e9}.capabilities-head{display:grid;grid-template-columns:1.04fr .96fr;align-items:end;gap:55px;margin-bottom:34px}.capabilities h2{font-size:clamp(46px,5vw,75px);letter-spacing:-.064em;line-height:1.01;margin-top:17px;max-width:780px}.capabilities-head>p{max-width:420px;font:400 16px/1.75 var(--sans);color:var(--muted)}.capabilities-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.capability{background:#fafaf5;padding:30px 34px 31px;min-height:289px;display:flex;flex-direction:column}.capability-booking{background:#e2ece9}.capability-top{display:flex;justify-content:space-between;align-items:center;gap:18px;color:#5e7069}.capability-symbol{font:400 29px/1 var(--serif);color:var(--ink)}.capability h3{font-size:clamp(31px,3.1vw,45px);letter-spacing:-.052em;line-height:1.12;margin:19px 0 13px}.capability>p:not(.capability-foot){font:400 15px/1.7 var(--sans);max-width:495px;color:var(--muted)}.capability-foot{margin-top:auto;padding-top:22px;font:900 10px/1.5 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#65776e}.capability-example{display:flex;gap:7px;flex-direction:column;align-items:flex-start;border-top:1px solid #bdcec5;padding-top:15px;margin-top:20px}.capability-example>span{font:900 10px/1.4 var(--sans);color:#5c7268;letter-spacing:.08em;text-transform:uppercase}.capability-example>a{font:400 25px/1.2 var(--serif);letter-spacing:-.03em;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}.capability-example>a:hover{color:#477b64}.capability-example small{color:var(--muted);font-size:12px;line-height:1.5}.capabilities-bottom{display:flex;align-items:center;justify-content:space-between;gap:27px;margin-top:27px}.capabilities-bottom p{max-width:530px;font:400 14px/1.6 var(--sans);color:var(--muted)}@media(max-width:780px){.capabilities{padding:65px 0 72px}.capabilities-head{display:block;margin-bottom:27px}.capabilities-head>p{margin-top:18px}.capabilities h2{font-size:clamp(44px,8.2vw,68px)}.capability{padding:25px 26px;min-height:0}.capabilities-bottom{align-items:flex-start;flex-direction:column}.capabilities-grid{gap:12px}}@media(max-width:600px){.capabilities-grid{grid-template-columns:1fr}.capability h3{font-size:35px}}.showcase{background:#e8e6ef;padding:78px 0 81px}.showcase-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}.showcase h2{font-size:clamp(46px,5vw,76px);line-height:1;letter-spacing:-.068em;margin-top:17px;max-width:760px}.showcase-head p{font-size:15px;line-height:1.7;color:var(--muted);max-width:350px}.featured-project{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);background:#243639;color:#f7f5ec;margin:1px 0 40px;overflow:hidden;min-height:390px}.featured-visual{position:relative;display:block;min-height:385px;overflow:hidden;background:#343d3d}.featured-visual>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(.96);transition:transform .6s ease}.featured-visual:hover>img{transform:scale(1.025)}.featured-visual:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(16,23,25,.46),rgba(16,23,25,.03) 48%,rgba(16,23,25,.57));pointer-events:none}.featured-visual .featured-name{position:absolute;z-index:1;bottom:25px;left:28px;right:26px;color:#fff;font:400 clamp(45px,5.2vw,75px)/.97 var(--serif);letter-spacing:-.065em}.featured-visual .featured-tag{position:absolute;z-index:1;top:26px;left:28px;color:#f7f5ec;font:900 11px/1.4 var(--sans);text-transform:uppercase;letter-spacing:.1em}.featured-info{padding:clamp(28px,4.2vw,60px);display:flex;align-items:flex-start;justify-content:center;flex-direction:column;gap:21px}.featured-info h3{font:400 clamp(35px,3.6vw,54px)/1.05 var(--serif);letter-spacing:-.06em}.featured-info p:not(.eyebrow){font:400 16px/1.73 var(--sans);max-width:460px;color:#d7e2dc}.featured-info .text-link{margin-top:7px;border-color:#d7e2dc}.featured-subhead{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:19px}.featured-subhead p{font-size:12px;line-height:1.5;color:var(--muted)}@media(max-width:780px){.featured-project{grid-template-columns:1fr;min-height:0;margin-bottom:34px}.featured-visual{min-height:335px}.featured-info{padding:31px 28px 36px}.featured-info h3{font-size:43px}.featured-visual .featured-name{font-size:55px}.featured-subhead{align-items:flex-start;flex-direction:column;gap:8px}}@media(max-width:480px){.featured-visual{min-height:270px}.featured-visual .featured-name{font-size:47px;left:20px;bottom:21px}.featured-visual .featured-tag{top:20px;left:20px}}.studies{display:grid;grid-template-columns:1fr 1fr;gap:23px}.study-display{display:flex;align-items:center;justify-content:center;padding:30px;min-height:340px;background:#dce6d9}.study-display.second{background:#efe5d7}.minisite{background:#f9f5ed;width:min(480px,100%);box-shadow:9px 12px 0 rgba(32,48,43,.12);color:#405c45}.minisite-head{padding:19px 23px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ced8ce}.minisite-head strong{font:400 25px/1 var(--serif);letter-spacing:-.055em}.minisite-head span{font:900 8px/1 var(--sans);letter-spacing:.07em;text-transform:uppercase}.minisite-core{display:grid;grid-template-columns:1.12fr .88fr;gap:14px;align-items:center;padding:21px 23px}.minisite-core h3{font-size:clamp(29px,3.1vw,43px);line-height:1.07;letter-spacing:-.06em}.minisite-core p{margin-top:11px;font:400 10px/1.6 var(--sans)}.minisite-photo{height:190px;overflow:hidden;background:#cad2ba}.minisite-photo img{width:100%;height:100%;object-fit:cover}.minisite.dark{background:#263f3c;color:#f4eadc}.minisite.dark .minisite-head{border-color:#6f847b}.minisite.dark .minisite-photo{display:flex;align-items:center;justify-content:center;background:#65827c}.circle-art{width:125px;height:125px;border:1px solid #f1efe3;border-radius:50%;position:relative}.circle-art:before,.circle-art:after{content:"";position:absolute;inset:19px;border:1px solid #dfeddf;transform:rotate(45deg)}.circle-art:after{inset:35px;border-radius:50%}.study-caption{display:flex;align-items:baseline;justify-content:space-between;gap:15px;padding-top:16px}.study-caption strong{font:400 26px/1.2 var(--serif)}.study-caption span{font:900 10px/1.5 var(--sans);text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.study-note{font-size:12px;color:var(--muted);margin-top:22px;line-height:1.6}
-.process{padding:88px 0 94px}.process-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:34px}.process h2{font-size:clamp(47px,5vw,73px);line-height:1.02;letter-spacing:-.065em;margin-top:17px}.process-head p{max-width:380px;font-size:16px;line-height:1.7;color:var(--muted)}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}.step{border-top:1px solid var(--ink);padding-top:20px}.step .number{font:400 27px/1 var(--serif)}.step h3{font-size:clamp(31px,3vw,40px);letter-spacing:-.05em;margin:19px 0 12px}.step p{font-size:15px;line-height:1.72;color:var(--muted);max-width:360px}
-.about{background:var(--blue);padding:79px 0}.about-grid{display:grid;grid-template-columns:.78fr 1.22fr;align-items:center;gap:63px}.about-art{position:relative;min-height:330px;overflow:hidden;background:#aec7c0;display:flex;align-items:center;justify-content:center}.about-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.about-portrait img{object-position:center 32%}.about-portrait figcaption{bottom:14px;align-self:flex-end;font-size:clamp(27px,3vw,39px);max-width:290px}.about-art figcaption{position:relative;z-index:1;background:rgba(247,246,240,.93);padding:20px 26px;transform:rotate(-4deg);font:italic 400 clamp(31px,3.5vw,50px)/1.03 var(--serif);letter-spacing:-.06em;text-align:center;max-width:330px}.about h2{font-size:clamp(47px,5.1vw,73px);line-height:1;letter-spacing:-.065em;margin:17px 0 21px}.about p{font-size:16px;line-height:1.76;color:var(--muted);max-width:580px;margin-bottom:13px}.about .text-link{margin-top:15px}
-.contact{background:var(--citrus);padding:83px 0 97px}.contact-head{display:flex;justify-content:space-between;gap:20px}.contact h2{font-size:clamp(58px,7.2vw,103px);line-height:.96;letter-spacing:-.074em;margin:30px 0 24px;max-width:950px}.contact p{font-size:18px;line-height:1.6;max-width:550px;color:var(--muted)}.contact-actions{display:flex;gap:27px;align-items:center;flex-wrap:wrap;margin-top:30px}.email{font:400 22px/1.3 var(--serif)}.email:hover{text-decoration:underline;text-underline-offset:5px}footer{padding:26px 0}.footer{display:flex;justify-content:space-between;align-items:center;gap:20px}.footer .brand{font-size:25px}.footer small,.footer a.end-link{font:700 11px/1.5 var(--sans);letter-spacing:.03em;color:var(--muted)}
-@media(max-width:1070px){.hero-grid{gap:25px;min-height:495px}.hero h1{font-size:clamp(55px,6.1vw,76px)}.hero-visual{padding:25px;min-height:460px}.preview-body{padding:17px}.preview-photo{height:230px}.desktop-links{gap:16px}.nav-right{gap:14px}.about-grid{gap:35px}}
-@media(max-width:780px){.container{width:calc(100% - 38px)}.nav{min-height:69px}.brand{font-size:27px}.desktop-links{display:none}.burger{display:flex}.mobile-links{display:grid;max-height:0;visibility:hidden;opacity:0;overflow:hidden;background:#fff;transition:max-height .22s ease,opacity .22s ease}.mobile-links.open{max-height:260px;visibility:visible;opacity:1;padding:8px 19px;border-bottom:1px solid var(--line)}.mobile-links a{border-bottom:1px solid #e3e6df;padding:13px 0;font:900 12px/1.5 var(--sans);letter-spacing:.08em;text-transform:uppercase}.mobile-links a:last-child{border:0}.hero{padding-top:20px}.hero-grid{grid-template-columns:1fr;gap:21px;min-height:0}.hero-copy{padding:21px 0 7px}.hero .eyebrow{margin-bottom:22px}.hero h1{font-size:clamp(52px,10vw,78px)}.hero-lead{margin:22px 0 25px}.hero-visual{min-height:0;padding:29px}.preview-photo{height:205px}.hero-rule{padding:17px 0}.features,.process{padding:67px 0 72px}.section-head,.process-head{display:block;margin-bottom:29px}.section-head h2,.showcase h2,.process h2{font-size:clamp(45px,8.2vw,68px)}.section-head p,.process-head p{margin-top:18px}.feature-grid,.steps{grid-template-columns:1fr;gap:24px}.feature h3,.step h3{margin:14px 0 9px}.showcase{padding:63px 0 69px}.showcase-head{display:block}.showcase-head p{margin-top:18px}.studies{grid-template-columns:1fr}.study-display{min-height:320px}.about{padding:66px 0}.about-grid{grid-template-columns:1fr;gap:28px}.about-art{min-height:290px;max-height:360px}.contact{padding:67px 0 77px}.contact h2{font-size:clamp(55px,9.5vw,81px)}.contact-head{flex-wrap:wrap}}
-@media(max-width:480px){.hero h1{font-size:clamp(49px,11.1vw,63px)}.hero-visual{padding:19px}.preview-body{padding:14px}.preview-logo{font-size:25px}.preview-inside{gap:10px}.preview-inside h3{font-size:29px}.preview-photo{height:172px}.hero-rule{font-size:9px}.study-display{padding:16px;min-height:280px}.minisite-core{padding:14px;gap:11px}.minisite-core h3{font-size:29px}.minisite-photo{height:170px}.minisite-head{padding:16px}.contact h2{font-size:clamp(50px,11vw,69px)}.email{font-size:18px}.footer{flex-wrap:wrap}.footer small{width:100%;order:3}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.arrow,.button,.mobile-links{transition:none}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f9f8f5">
+  <meta name="description" content="Rho & Sigma creates considered, distinctive websites for independent businesses. One-page websites from €500 excl. VAT. Based in Belgium, working everywhere.">
+  <meta property="og:title" content="Rho & Sigma — Good businesses deserve good websites">
+  <meta property="og:description" content="Thoughtfully designed websites for businesses with something to say. One-pagers from €500 excl. VAT.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.rhoandsigma.com/">
+  <link rel="canonical" href="https://www.rhoandsigma.com/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+  <title>Rho &amp; Sigma — Good businesses deserve good websites</title>
+  <style>
+    :root{
+      --paper:#f9f8f5;--white:#fff;--ink:#191a19;--soft:#efeee9;--warm:#e5e4dd;--line:#d7d5cf;--muted:#676963;
+      --serif:"Times New Roman",Times,serif;--sans:"Lato",Arial,sans-serif;--max:1480px;--pad:clamp(22px,4.3vw,80px);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+    body.menu-open{overflow:hidden}
+    h1,h2,h3,h4,p,figure{margin:0}
+    h1,h2,h3{font-family:var(--serif);font-weight:400}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;cursor:pointer}
+    img{display:block;max-width:100%}
+    ::selection{background:#d5d9d1;color:var(--ink)}
+    :focus-visible{outline:2px solid #242c25;outline-offset:4px}
+    [hidden]{display:none!important}
+    .wrap{width:min(var(--max),calc(100% - var(--pad)*2));margin-inline:auto}
+    .eyebrow{font-size:10px;line-height:1.4;letter-spacing:.18em;text-transform:uppercase;font-weight:900}
+    .muted{color:var(--muted)}
+    .serif{font-family:var(--serif)}
+    .rule{border-top:1px solid var(--line)}
+    .skip{position:absolute;left:20px;top:-120px;padding:12px 16px;background:var(--ink);color:white;z-index:200}
+    .skip:focus{top:12px}
+    .action{display:inline-flex;align-items:center;justify-content:space-between;gap:42px;padding:17px 20px;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--ink);background:var(--ink);color:#fff;transition:background .25s,color .25s,transform .25s}
+    .action:hover{background:#363933;transform:translateY(-2px)}
+    .action--outline{background:transparent;color:var(--ink)}
+    .action--outline:hover{background:var(--ink);color:white}
+    .action--light{background:#fff;color:var(--ink);border-color:#fff}
+    .action--light:hover{background:var(--soft)}
+    .arrow{font-family:var(--serif);font-size:24px;font-weight:400;line-height:.7;letter-spacing:0}
+    .underlink{display:inline-flex;gap:28px;align-items:center;padding-bottom:8px;border-bottom:1px solid currentColor;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;transition:gap .2s}
+    .underlink:hover{gap:38px}
+    .underlink .arrow{font-size:21px}
+    .site-header{position:relative;z-index:50;background:var(--paper)}
+    .nav{min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--ink)}
+    .brand{font:400 34px/.9 var(--serif);letter-spacing:-.075em;white-space:nowrap}
+    .brand small{font-size:9px;letter-spacing:.09em;font-family:var(--sans);font-weight:900;text-transform:uppercase;vertical-align:top;margin-left:6px}
+    .nav-menu{display:flex;align-items:center;gap:clamp(18px,2.4vw,38px)}
+    .nav-menu a:not(.nav-cta){font-size:10px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;transition:opacity .2s}
+    .nav-menu a:hover{opacity:.55}
+    .nav-cta{padding:13px 16px;border:1px solid var(--ink);font-size:10px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+    .nav-cta:hover{background:var(--ink);color:white}
+    .locale{border:0;padding:11px 0 11px 8px;background:transparent;color:var(--ink);font-weight:900;letter-spacing:.12em;font-size:10px}
+    .menu-toggle{display:none;width:42px;height:42px;align-items:center;justify-content:center;gap:6px;flex-direction:column;border:1px solid var(--ink);background:var(--paper)}
+    .menu-toggle span{width:20px;height:1px;background:var(--ink);transition:transform .2s}
+    .menu-toggle[aria-expanded="true"] span:first-child{transform:translateY(3.5px) rotate(45deg)}
+    .menu-toggle[aria-expanded="true"] span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+    .mobile-menu{display:none}
+    .hero{padding-top:clamp(38px,5.6vw,84px)}
+    .hero-layout{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:clamp(35px,5vw,95px);align-items:end}
+    .hero-copy{padding:5px 0 clamp(48px,6vw,100px)}
+    .hero-copy .eyebrow{margin-bottom:clamp(36px,5vw,74px)}
+    .hero h1{font-size:clamp(62px,8.4vw,142px);letter-spacing:-.083em;line-height:.91;max-width:1000px}
+    .hero h1 em{font-weight:400;letter-spacing:-.083em}
+    .hero-lead{max-width:520px;margin:clamp(27px,3.7vw,49px) 0 28px;font-size:clamp(16px,1.4vw,19px);line-height:1.65}
+    .hero-actions{display:flex;align-items:center;flex-wrap:wrap;gap:28px}
+    .hero-note{font-size:11px;letter-spacing:.02em;margin-top:26px;color:var(--muted)}
+    .hero-art{position:relative;min-height:580px;align-self:stretch;padding-top:52px}
+    .hero-photo{position:absolute;inset:52px 0 0 2%;overflow:hidden;background:#bdc7bd}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(.28) saturate(.68) contrast(.95);transition:transform .9s}
+    .hero-art:hover .hero-photo img{transform:scale(1.035)}
+    .hero-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.2))}
+    .art-card{position:absolute;bottom:36px;left:-35px;background:var(--paper);border:1px solid var(--ink);width:clamp(190px,18vw,260px);padding:22px 24px 24px;box-shadow:12px 12px 0 rgba(255,255,255,.3)}
+    .art-card strong{font:400 clamp(38px,4vw,56px)/.92 var(--serif);letter-spacing:-.065em;display:block;margin:28px 0 25px}
+    .art-card-bottom{border-top:1px solid var(--line);padding-top:12px;display:flex;justify-content:space-between;font-size:9px;text-transform:uppercase;letter-spacing:.12em;font-weight:900}
+    .art-index{position:absolute;right:17px;top:72px;color:white;mix-blend-mode:difference;font:400 12px/1 var(--serif);letter-spacing:.12em}
+    .ticker{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);display:flex;justify-content:space-between;gap:20px;padding:23px 0;margin-top:0;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:900}
+    .ticker span:nth-child(2){font-family:var(--serif);font-weight:400;letter-spacing:0;font-size:20px;line-height:.4}
+    .section{padding:clamp(88px,11vw,175px) 0}
+    .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.45fr);gap:45px;align-items:end;margin-bottom:clamp(38px,5vw,72px)}
+    .section-title{font-size:clamp(54px,7vw,118px);line-height:.94;letter-spacing:-.076em;margin-top:26px}
+    .section-intro{font-size:15px;line-height:1.75;max-width:370px;color:var(--muted)}
+    .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(16px,2.3vw,34px)}
+    .project{min-width:0}
+    .project-visual{display:block;position:relative;overflow:hidden;aspect-ratio:1.22;background:#d2d0c9}
+    .project-visual img{width:100%;height:100%;object-fit:cover;transition:transform .7s;filter:saturate(.76)}
+    .project:hover .project-visual img{transform:scale(1.035)}
+    .project-tag{position:absolute;top:19px;left:20px;background:var(--paper);padding:10px 12px;text-transform:uppercase;font-size:9px;letter-spacing:.12em;font-weight:900}
+    .project-open{position:absolute;right:20px;bottom:18px;width:42px;height:42px;border-radius:50%;background:var(--paper);display:grid;place-items:center;font:400 24px/1 var(--serif)}
+    .project-visual--dinner{background:#3e2e29;display:flex;align-items:center;justify-content:center;isolation:isolate}
+    .project-visual--dinner:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 70% 10%,#806c59,transparent 40%),linear-gradient(135deg,#46332b,#211a18);z-index:-1}
+    .dinner-frame{display:grid;place-items:center;width:67%;aspect-ratio:.85;border:1px solid rgba(255,242,214,.65);color:#f9f0db;text-align:center;padding:28px 12px;transform:rotate(-5deg);transition:transform .4s}
+    .project:hover .dinner-frame{transform:rotate(-2deg)}
+    .dinner-frame .small{font-size:10px;text-transform:uppercase;letter-spacing:.22em}
+    .dinner-frame .big{font:italic 400 clamp(40px,5vw,88px)/.84 var(--serif);letter-spacing:-.075em;margin:28px 0}
+    .dinner-frame .bottom{font-size:10px;letter-spacing:.14em;text-transform:uppercase}
+    .project-meta{display:flex;gap:20px;align-items:baseline;justify-content:space-between;padding-top:20px;border-top:1px solid var(--ink);margin-top:19px}
+    .project-meta h3{font-size:clamp(32px,3.1vw,50px);letter-spacing:-.065em}
+    .project-meta span{font-size:10px;text-align:right;font-weight:900;letter-spacing:.11em;text-transform:uppercase;color:var(--muted)}
+    .project-desc{font-size:14px;line-height:1.65;color:var(--muted);max-width:490px;margin-top:12px}
+    .work-foot{margin-top:50px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .work-foot p{color:var(--muted);font-size:13px;line-height:1.7;max-width:500px}
+    .offer{background:#1b1d1b;color:#f9f8f5;padding:clamp(85px,9vw,142px) 0}
+    .offer .eyebrow{color:#c2c6be}
+    .offer-head{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.7fr);gap:50px;margin-bottom:clamp(70px,8vw,124px)}
+    .offer h2{font-size:clamp(63px,8vw,135px);line-height:.91;letter-spacing:-.085em;margin-top:28px}
+    .offer-intro{align-self:end;font-size:17px;line-height:1.7;color:#bcbdb8;max-width:390px}
+    .offer-grid{display:grid;grid-template-columns:1fr .8fr;gap:clamp(40px,8vw,135px);border-top:1px solid #747770;padding-top:38px}
+    .offer-title{font:400 clamp(36px,4.5vw,64px)/1 var(--serif);letter-spacing:-.07em}
+    .offer-price{font:400 clamp(76px,10vw,154px)/.91 var(--serif);letter-spacing:-.09em;margin:24px 0 10px}
+    .offer-price small{font:400 12px/1.5 var(--sans);letter-spacing:0;color:#bcbdb8;margin-left:12px}
+    .offer-label{font-size:12px;line-height:1.6;color:#bcbdb8;margin-bottom:31px;max-width:420px}
+    .offer-contents{display:grid;grid-template-columns:1fr 1fr;gap:14px 28px;margin-top:16px}
+    .offer-contents li{list-style:none;border-bottom:1px solid #535650;padding-bottom:13px;font-size:13px;line-height:1.55}
+    .offer-contents li:before{content:"↗";font:400 20px var(--serif);margin-right:12px}
+    .offer-contents ul{display:contents;padding:0;margin:0}
+    .offer-side{padding-top:14px}
+    .offer-side h3{font-size:clamp(36px,4vw,62px);line-height:1.02;letter-spacing:-.07em;margin-bottom:30px}
+    .offer-side p{font-size:15px;line-height:1.8;color:#c9cbc5;margin-bottom:25px}
+    .offer-side .underlink{margin-top:24px}
+    .offer-small{border-top:1px solid #595c56;padding-top:19px;font-size:12px!important;line-height:1.7!important}
+    .reasons{padding:clamp(87px,10vw,155px) 0}
+    .reasons-top{display:grid;grid-template-columns:1fr .9fr;gap:40px;align-items:end;margin-bottom:55px}
+    .reasons h2{font-size:clamp(54px,6.6vw,105px);letter-spacing:-.078em;line-height:.95;margin-top:23px;max-width:900px}
+    .reasons-top p{color:var(--muted);line-height:1.8;font-size:16px;max-width:410px;justify-self:end}
+    .reasons-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+    .reason{border-top:1px solid var(--ink);padding-top:18px}
+    .reason-num{font:400 28px/1 var(--serif)}
+    .reason h3{font-size:clamp(32px,3.2vw,50px);letter-spacing:-.065em;margin:28px 0 16px}
+    .reason p{font-size:14px;line-height:1.7;color:var(--muted);max-width:340px}
+    .process{background:var(--soft);padding:clamp(86px,10vw,155px) 0}
+    .process-heading{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:60px}
+    .process h2{font-size:clamp(54px,7.4vw,115px);line-height:.94;letter-spacing:-.075em;margin-top:25px}
+    .process-heading p{font-size:15px;line-height:1.75;color:var(--muted);max-width:320px}
+    .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:35px}
+    .step{border-top:1px solid var(--ink);padding-top:18px}
+    .step-number{font:400 53px/1 var(--serif);letter-spacing:-.07em}
+    .step h3{font-size:clamp(33px,3vw,48px);letter-spacing:-.066em;margin:35px 0 14px}
+    .step p{font-size:14px;color:var(--muted);line-height:1.75;max-width:340px}
+    .about{padding:clamp(92px,11vw,165px) 0}
+    .about-layout{display:grid;grid-template-columns:1fr 1fr;gap:clamp(50px,10vw,150px);align-items:center}
+    .about-image{position:relative;aspect-ratio:.95;background:#d4d8cf;overflow:hidden}
+    .about-image img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5);transition:transform .7s}
+    .about-image:hover img{transform:scale(1.03)}
+    .about-image .image-stamp{position:absolute;bottom:22px;left:20px;padding:11px 13px;background:var(--paper);font-size:10px;text-transform:uppercase;letter-spacing:.13em;font-weight:900}
+    .about h2{font-size:clamp(59px,7vw,106px);line-height:.94;letter-spacing:-.082em;margin:24px 0 32px}
+    .about p:not(.eyebrow){font-size:15px;line-height:1.78;max-width:530px;color:var(--muted);margin-bottom:20px}
+    .faq{border-top:1px solid var(--ink);padding:80px 0 clamp(100px,11vw,180px)}
+    .faq-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(40px,9vw,120px)}
+    .faq h2{font-size:clamp(57px,6vw,92px);letter-spacing:-.075em;line-height:.97;margin-top:22px}
+    .faqs{border-top:1px solid var(--ink)}
+    .faqs details{border-bottom:1px solid var(--line)}
+    .faqs summary{list-style:none;cursor:pointer;padding:25px 32px 25px 0;position:relative;font-size:15px;font-weight:700;line-height:1.5}
+    .faqs summary::-webkit-details-marker{display:none}
+    .faqs summary:after{content:"+";position:absolute;right:0;top:20px;font:400 28px/1 var(--serif)}
+    .faqs details[open] summary:after{content:"−"}
+    .faqs details p{color:var(--muted);font-size:14px;line-height:1.75;max-width:590px;margin:0 0 26px}
+    .contact{background:#dcded7;padding:clamp(85px,11vw,170px) 0 clamp(70px,8vw,120px)}
+    .contact .eyebrow{margin-bottom:36px}
+    .contact h2{font-size:clamp(72px,12vw,205px);letter-spacing:-.09em;line-height:.85;max-width:1200px}
+    .contact-bottom{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-top:65px}
+    .contact-bottom p{font-size:17px;line-height:1.6;max-width:410px}
+    .contact-mail{display:inline-block;border-bottom:1px solid var(--ink);padding-bottom:8px;font:400 clamp(23px,3vw,43px)/1.15 var(--serif);letter-spacing:-.04em;overflow-wrap:anywhere}
+    .contact-mail:hover{opacity:.55}
+    .footer{background:#1b1d1b;color:#f7f6f1;padding:28px 0}
+    .footer-inner{display:flex;justify-content:space-between;align-items:center;gap:25px}
+    .footer .brand{font-size:28px}
+    .footer p,.footer a:not(.brand){font-size:10px;line-height:1.5;letter-spacing:.09em;text-transform:uppercase;color:#bcbdb8}
+    .footer-links{display:flex;gap:26px;align-items:center}
+    @media(max-width:1100px){
+      .nav-menu{gap:15px}
+      .nav-menu a:not(.nav-cta){font-size:9px}
+      .hero-layout{grid-template-columns:1.15fr .85fr;gap:36px}
+      .hero h1{font-size:clamp(60px,8vw,105px)}
+      .hero-art{min-height:530px}
+      .art-card{left:-16px}
+    }
+    @media(max-width:830px){
+      .nav{min-height:75px}
+      .brand{font-size:30px}
+      .nav-menu{display:none}
+      .header-tools{display:flex;gap:17px;align-items:center}
+      .menu-toggle{display:flex}
+      .mobile-menu{display:flex;flex-direction:column;gap:0;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid var(--ink);padding:18px var(--pad) 32px;box-shadow:0 20px 25px rgba(0,0,0,.1)}
+      .mobile-menu a{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);font:400 35px/1.1 var(--serif);letter-spacing:-.05em}
+      .mobile-menu a:after{content:"↗";font-size:24px}
+      .hero-layout{grid-template-columns:1fr;gap:0}
+      .hero-copy{padding-bottom:52px}
+      .hero-copy .eyebrow{margin-bottom:32px}
+      .hero h1{font-size:clamp(70px,11.5vw,125px);max-width:750px}
+      .hero-art{min-height:490px;margin:0 0 25px 25px}
+      .hero-photo{inset:0}
+      .art-card{bottom:22px;left:-25px}
+      .art-index{top:20px}
+      .section-head,.offer-head,.reasons-top,.process-heading{grid-template-columns:1fr;display:grid;gap:24px}
+      .reasons-top p{justify-self:start}
+      .offer-grid{grid-template-columns:1fr 1fr;gap:40px}
+      .offer-contents{grid-template-columns:1fr}
+      .project-grid{gap:22px}
+      .project-meta{display:block}
+      .project-meta span{display:block;text-align:left;margin-top:11px}
+      .about-layout{gap:42px}
+      .faq-layout{gap:35px}
+      .contact h2{font-size:clamp(75px,12vw,145px)}
+    }
+    @media(max-width:600px){
+      :root{--pad:22px}
+      html{scroll-padding-top:30px}
+      .nav{min-height:70px}
+      .brand{font-size:29px}
+      .hero{padding-top:36px}
+      .hero h1{font-size:clamp(59px,15vw,88px)}
+      .hero-lead{font-size:16px;margin:28px 0}
+      .hero-actions{gap:23px}
+      .hero-art{min-height:420px;margin-left:18px;margin-bottom:25px}
+      .art-card{width:194px;padding:18px 18px 19px;left:-18px}
+      .art-card strong{font-size:39px;margin:24px 0 18px}
+      .ticker{padding:16px 0;flex-wrap:wrap;gap:10px}
+      .ticker span:nth-child(2){display:none}
+      .ticker span{font-size:9px}
+      .section{padding:90px 0}
+      .section-head{gap:18px;margin-bottom:32px}
+      .section-title,.offer h2,.reasons h2,.process h2,.about h2,.faq h2{font-size:clamp(52px,12vw,78px)}
+      .project-grid,.offer-grid,.reasons-grid,.steps,.about-layout,.faq-layout{grid-template-columns:1fr}
+      .project-grid{gap:48px}
+      .project-visual{aspect-ratio:1.16}
+      .project-meta h3{font-size:38px}
+      .dinner-frame .big{font-size:64px}
+      .work-foot{display:block;margin-top:45px}
+      .work-foot .underlink{margin-top:24px}
+      .offer{padding:90px 0}
+      .offer-head{margin-bottom:56px}
+      .offer-intro{font-size:16px}
+      .offer-grid{gap:58px}
+      .offer-price{font-size:100px}
+      .offer-contents{grid-template-columns:1fr 1fr}
+      .offer-contents li{font-size:12px}
+      .reasons{padding:90px 0}
+      .reasons-grid,.steps{gap:45px}
+      .reasons-top{margin-bottom:44px}
+      .reason h3,.step h3{margin-top:19px}
+      .process{padding:90px 0}
+      .process-heading{margin-bottom:42px}
+      .about{padding:90px 0}
+      .about-image{aspect-ratio:1.15}
+      .faq{padding:80px 0 100px}
+      .contact{padding:100px 0}
+      .contact h2{font-size:clamp(67px,14.5vw,98px)}
+      .contact-bottom{align-items:start;flex-direction:column;gap:40px;margin-top:45px}
+      .contact-mail{font-size:29px}
+      .footer-inner{align-items:start;flex-direction:column}
+      .footer-links{gap:15px;flex-wrap:wrap}
+    }
+    @media(max-width:370px){
+      .offer-contents{grid-template-columns:1fr}
+      .hero h1{font-size:57px}
+      .contact-mail{font-size:25px}
+      .hero-actions{align-items:start;flex-direction:column}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+    }
+  </style>
 </head>
 <body>
-<a class="skip" href="#main" data-en="Skip to content" data-nl="Ga naar de inhoud">Skip to content</a>
-<header>
-<div class="container nav">
-<a class="brand" href="#top">Rho &amp; Sigma.</a>
-<div class="nav-right">
-<nav class="desktop-links" aria-label="Main navigation">
-<a href="#what" data-en="What I do" data-nl="Wat ik doe">What I do</a>
-<a href="#looks" data-en="The look" data-nl="De stijl">The look</a>
-<a href="#how" data-en="How it works" data-nl="Werkwijze">How it works</a>
-<a href="#about" data-en="About" data-nl="Over mij">About</a>
-<a href="#contact" data-en="Contact" data-nl="Contact">Contact</a>
-</nav>
-<button id="language" type="button" class="lang" aria-label="Switch to Dutch" title="Switch to Dutch">NL</button>
-<button id="burger" type="button" class="burger" aria-expanded="false" aria-controls="mobile-links" aria-label="Open menu"><span></span><span></span><span></span></button>
-</div>
-</div>
-<nav class="mobile-links" id="mobile-links" aria-label="Mobile navigation" aria-hidden="true">
-<a href="#what" data-en="What I do" data-nl="Wat ik doe">What I do</a>
-<a href="#looks" data-en="The look" data-nl="De stijl">The look</a>
-<a href="#how" data-en="How it works" data-nl="Werkwijze">How it works</a>
-<a href="#about" data-en="About" data-nl="Over mij">About</a>
-<a href="#contact" data-en="Contact" data-nl="Contact">Contact</a>
-</nav>
+<a href="#main" class="skip" data-en="Skip to content" data-nl="Ga naar de inhoud">Skip to content</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a href="#top" class="brand" aria-label="Rho and Sigma, home">rho<span aria-hidden="true">&</span>sigma<small>®</small></a>
+    <nav class="nav-menu" aria-label="Main navigation">
+      <a href="#work" data-en="Work" data-nl="Werk">Work</a>
+      <a href="#offer" data-en="Websites" data-nl="Websites">Websites</a>
+      <a href="#process" data-en="How it works" data-nl="Werkwijze">How it works</a>
+      <a href="#about" data-en="Studio" data-nl="Studio">Studio</a>
+      <a href="#contact" class="nav-cta" data-en="Start a project ↗" data-nl="Start een project ↗">Start a project ↗</a>
+    </nav>
+    <div class="header-tools">
+      <button type="button" class="locale" id="locale" aria-label="Switch to Dutch" title="Switch to Dutch">NL</button>
+      <button type="button" id="menu-toggle" class="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
+    </div>
+  </div>
+  <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
+    <a href="#work" data-en="Work" data-nl="Werk">Work</a>
+    <a href="#offer" data-en="Websites" data-nl="Websites">Websites</a>
+    <a href="#process" data-en="How it works" data-nl="Werkwijze">How it works</a>
+    <a href="#about" data-en="Studio" data-nl="Studio">Studio</a>
+    <a href="#contact" data-en="Start a project" data-nl="Start een project">Start a project</a>
+  </nav>
 </header>
 <main id="main">
-<section id="top" class="hero" aria-labelledby="hero-title">
-<div class="container">
-<div class="hero-grid">
-<div class="hero-copy">
-<p class="eyebrow" data-en="Independent web design studio · Leuven, Belgium" data-nl="Onafhankelijke webdesignstudio · Leuven, België">Independent web design studio · Leuven, Belgium</p>
-<h1 id="hero-title"><span data-en="Beautiful websites" data-nl="Mooie websites">Beautiful websites</span><br><em data-en="for small businesses." data-nl="voor kleine ondernemingen.">for small businesses.</em></h1>
-<p class="hero-lead" data-en="I design and build elegant, easy-to-use websites for independent businesses. A beautiful place online to show what you do and make it easy for customers to find you." data-nl="Ik ontwerp en bouw mooie, gebruiksvriendelijke websites voor zelfstandigen en kleine ondernemingen. Een fijne plek online om te tonen wat je doet en waar klanten je gemakkelijk kunnen vinden.">I design and build elegant, easy-to-use websites for independent businesses. A beautiful place online to show what you do and make it easy for customers to find you.</p>
-<div class="hero-actions"><a class="button" href="mailto:hi@rhoandsigma.com?subject=Let%27s%20talk%20websites"><span data-en="Let's talk websites" data-nl="Vertel me over je website">Let's talk websites</span><span class="arrow" aria-hidden="true">↗</span></a><a class="text-link" href="#how"><span data-en="How it works" data-nl="Hoe werkt het?">How it works</span><span class="arrow" aria-hidden="true">↗</span></a></div>
-<p class="hero-footnote" data-en="Simple to start. Made just for you." data-nl="Makkelijk om te starten. Helemaal op jouw maat.">Simple to start. Made just for you.</p>
-</div>
-<div class="hero-visual">
-<div class="preview" aria-hidden="true">
-<div class="preview-chrome"><i></i><i></i><i></i></div>
-<div class="preview-body">
-<div class="preview-nav"><span class="preview-logo">flor.</span><span class="preview-mini" data-en="flowers · objects · little joys" data-nl="bloemen · objecten · kleine gelukjes">flowers · objects · little joys</span></div>
-<div class="preview-inside"><div><h3 data-en="Flowers for ordinary days." data-nl="Bloemen voor gewone dagen.">Flowers for ordinary days.</h3><p data-en="For the just-because moments." data-nl="Gewoon, omdat het kan.">For the just-because moments.</p></div><div class="preview-photo"><img src="assets/images/flower.jpg" alt="" width="380" height="460" fetchpriority="high"></div></div>
-<div class="preview-bottom"><span data-en="Made with love" data-nl="Met liefde gemaakt">Made with love</span><span data-en="Shop local ↗" data-nl="Koop lokaal ↗">Shop local ↗</span></div>
-</div>
-</div>
-<span class="design-note" data-en="Illustrative website concept" data-nl="Illustratief websiteconcept">Illustrative website concept</span>
-</div>
-</div>
-<div class="hero-rule"><span data-en="Good design. Clear purpose." data-nl="Mooi ontwerp. Duidelijk doel.">Good design. Clear purpose.</span><span data-en="For every screen, and the real world." data-nl="Voor elk scherm en het echte leven.">For every screen, and the real world.</span></div>
-</div>
-</section>
-<section class="features" id="what" aria-labelledby="features-title">
-<div class="container">
-<div class="section-head"><div><p class="eyebrow muted" data-en="The essentials" data-nl="De basis">The essentials</p><h2 id="features-title" data-en="Your website should do you justice." data-nl="Je website moet tonen hoe goed je zaak is.">Your website should do you justice.</h2></div><p data-en="For cafés, shops, makers, studios, local services and anyone with a business worth discovering. You don't need a big agency or a complicated website to make a great first impression." data-nl="Voor cafés, winkels, makers, studio’s, lokale diensten en iedereen met een zaak die ontdekt mag worden. Je hebt geen groot bureau of ingewikkelde website nodig om een sterke eerste indruk te maken.">For cafés, shops, makers, studios, local services and anyone with a business worth discovering. You don't need a big agency or a complicated website to make a great first impression.</p></div>
-<div class="feature-grid">
-<div class="feature"><span class="number">01</span><h3 data-en="Looks like you." data-nl="Helemaal jij.">Looks like you.</h3><p data-en="A considered design with the right colours, typography and little details. A website you feel happy sharing." data-nl="Een doordacht ontwerp met de juiste kleuren, typografie en details. Een website die je met plezier doorstuurt.">A considered design with the right colours, typography and little details. A website you feel happy sharing.</p></div>
-<div class="feature"><span class="number">02</span><h3 data-en="Easy to use." data-nl="Makkelijk in gebruik.">Easy to use.</h3><p data-en="Clear information, comfortable on mobile and an obvious way to get in touch. No unnecessary bells and whistles." data-nl="Heldere informatie, aangenaam op mobiel en een eenvoudige manier om contact op te nemen. Zonder onnodige toeters en bellen.">Clear information, comfortable on mobile and an obvious way to get in touch. No unnecessary bells and whistles.</p></div>
-<div class="feature"><span class="number">03</span><h3 data-en="Ready to launch." data-nl="Klaar om online te gaan.">Ready to launch.</h3><p data-en="From the first layout to the finished site. I'll help you think through the content, domain and launch." data-nl="Van het eerste ontwerp tot een afgewerkte website. Ik denk mee over de inhoud, de domeinnaam en de lancering.">From the first layout to the finished site. I'll help you think through the content, domain and launch.</p></div>
-</div>
-</div>
-</section>
-<section class="capabilities" id="features" aria-labelledby="capabilities-title">
-<div class="container">
-<div class="capabilities-head">
-  <div><p class="eyebrow muted" data-en="A little more than a website" data-nl="Net iets meer dan een website">A little more than a website</p>
-  <h2 id="capabilities-title" data-en="Pretty is good. Useful is even better." data-nl="Mooi is goed. Handig is nog beter.">Pretty is good. Useful is even better.</h2></div>
-  <p data-en="Need a little extra functionality? Your website can help you take bookings, sell products or organise enquiries, without making things complicated." data-nl="Nood aan iets meer functionaliteit? Je website kan reservaties verwerken, producten verkopen of aanvragen organiseren, zonder onnodig ingewikkeld te worden.">Need a little extra functionality? Your website can help you take bookings, sell products or organise enquiries, without making things complicated.</p>
-</div>
-<div class="capabilities-grid">
-  <article class="capability capability-booking">
-    <div class="capability-top"><span class="eyebrow">01 / <span data-en="Bookings" data-nl="Boekingen">Bookings</span></span><span class="capability-symbol" aria-hidden="true">↗</span></div>
-    <h3 data-en="Bookings &amp; reservations" data-nl="Boekingen &amp; reservaties">Bookings &amp; reservations</h3>
-    <p data-en="From a workshop or an event to a table at dinner. Let visitors choose, book and share the details you need." data-nl="Van een workshop of evenement tot een plek aan tafel. Laat bezoekers kiezen, reserveren en de nodige gegevens achterlaten.">From a workshop or an event to a table at dinner. Let visitors choose, book and share the details you need.</p>
-    <div class="capability-example">
-      <span data-en="A real example" data-nl="Een eigen voorbeeld">A real example</span>
-      <a href="https://dinnerclub.be/" target="_blank" rel="noopener noreferrer">Judith's Dinner Club <span aria-hidden="true">↗</span></a>
-      <small data-en="Event reservations, guest details and online payments." data-nl="Eventreservaties, gastgegevens en online betalingen.">Event reservations, guest details and online payments.</small>
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-layout">
+        <div class="hero-copy">
+          <p class="eyebrow" data-en="Independent digital design studio · Leuven, Belgium" data-nl="Onafhankelijke digitale ontwerpstudio · Leuven, België">Independent digital design studio · Leuven, Belgium</p>
+          <h1 id="hero-title"><span data-en="Good businesses" data-nl="Goede zaken">Good businesses</span><br><em data-en="deserve good websites." data-nl="verdienen goede websites.">deserve good websites.</em></h1>
+          <p class="hero-lead" data-en="You put so much into your business. Your website should show it. We design thoughtful, distinctive websites that look the part and make it easy for people to choose you." data-nl="Je steekt zoveel in je zaak. Je website mag dat ook uitstralen. We ontwerpen doordachte websites die er niet alleen goed uitzien, maar het bezoekers ook makkelijk maken om voor jou te kiezen.">You put so much into your business. Your website should show it. We design thoughtful, distinctive websites that look the part and make it easy for people to choose you.</p>
+          <div class="hero-actions">
+            <a class="action" href="#work"><span data-en="Explore our work" data-nl="Bekijk ons werk">Explore our work</span><span class="arrow" aria-hidden="true">↗</span></a>
+            <a class="underlink" href="#offer"><span data-en="The one-page website" data-nl="De onepager">The one-page website</span><span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+          <p class="hero-note" data-en="One-page websites from €500 excl. VAT. No complicated agency process." data-nl="Onepagers vanaf €500 excl. btw. Zonder ingewikkeld bureautraject.">One-page websites from €500 excl. VAT. No complicated agency process.</p>
+        </div>
+        <div class="hero-art" aria-label="Editorial visual for the Rho and Sigma studio">
+          <div class="hero-photo"><img src="assets/images/green.jpg" width="700" height="900" alt="" fetchpriority="high"></div>
+          <span class="art-index" aria-hidden="true">R / S — 001</span>
+          <div class="art-card" aria-hidden="true">
+            <p class="eyebrow">Digital, by design.</p>
+            <strong>Small studio.<br>Big on detail.</strong>
+            <div class="art-card-bottom"><span>Rho &amp; Sigma</span><span>Belgium ↗</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ticker"><span data-en="Considered design" data-nl="Doordacht ontwerp">Considered design</span><span aria-hidden="true">✳</span><span data-en="Clear purpose" data-nl="Helder doel">Clear purpose</span><span aria-hidden="true">✳</span><span data-en="A little more you" data-nl="Helemaal jij">A little more you</span></div>
     </div>
-  </article>
-  <article class="capability">
-    <div class="capability-top"><span class="eyebrow">02 / <span data-en="E-commerce" data-nl="Webshop">E-commerce</span></span><span class="capability-symbol" aria-hidden="true">◌</span></div>
-    <h3 data-en="A small online shop" data-nl="Een kleine webshop">A small online shop</h3>
-    <p data-en="Selling a few products, vouchers or tickets? We can look at a simple shop and checkout that fit your business." data-nl="Een paar producten, cadeaubonnen of tickets verkopen? We bekijken samen een eenvoudige webshop met een betaalflow die bij je zaak past.">Selling a few products, vouchers or tickets? We can look at a simple shop and checkout that fit your business.</p>
-    <p class="capability-foot" data-en="Products · Checkout · Payments" data-nl="Producten · Afrekenen · Betalingen">Products · Checkout · Payments</p>
-  </article>
-  <article class="capability">
-    <div class="capability-top"><span class="eyebrow">03 / <span data-en="Enquiries" data-nl="Aanvragen">Enquiries</span></span><span class="capability-symbol" aria-hidden="true">✳</span></div>
-    <h3 data-en="Forms that make sense" data-nl="Formulieren die werken">Forms that make sense</h3>
-    <p data-en="Quote requests, contact forms or intake questions. Collect the right information from the start and spend less time chasing details." data-nl="Offerteaanvragen, contactformulieren of intakevragen. Verzamel meteen de juiste gegevens en verlies minder tijd met extra mails.">Quote requests, contact forms or intake questions. Collect the right information from the start and spend less time chasing details.</p>
-    <p class="capability-foot" data-en="Contact · Quotes · Requests" data-nl="Contact · Offertes · Aanvragen">Contact · Quotes · Requests</p>
-  </article>
-  <article class="capability">
-    <div class="capability-top"><span class="eyebrow">04 / <span data-en="Extras" data-nl="Extra's">Extras</span></span><span class="capability-symbol" aria-hidden="true">+</span></div>
-    <h3 data-en="The thoughtful extras" data-nl="De slimme extra's">The thoughtful extras</h3>
-    <p data-en="Bilingual pages, photo galleries, menus, FAQs or useful little tools. Just the features your visitors actually need." data-nl="Meertalige pagina’s, fotogalerijen, menu’s, FAQ's of handige kleine tools. Alleen wat jouw bezoekers echt nodig hebben.">Bilingual pages, photo galleries, menus, FAQs or useful little tools. Just the features your visitors actually need.</p>
-    <p class="capability-foot" data-en="Multilingual · Galleries · Custom details" data-nl="Meertalig · Galerijen · Maatwerk">Multilingual · Galleries · Custom details</p>
-  </article>
-</div>
-<div class="capabilities-bottom">
-  <p data-en="Every project starts with what your business needs. We'll decide together which features make sense." data-nl="Elk project vertrekt vanuit wat je zaak nodig heeft. We kiezen samen welke functionaliteiten zinvol zijn.">Every project starts with what your business needs. We'll decide together which features make sense.</p>
-  <a class="text-link" href="mailto:hi@rhoandsigma.com?subject=Website%20with%20extra%20features"><span data-en="Let's discuss your idea" data-nl="Bespreek je idee">Let's discuss your idea</span><span class="arrow" aria-hidden="true">↗</span></a>
-</div>
-</div>
-</section>
-<section class="showcase" id="looks" aria-labelledby="looks-title">
-<div class="container">
-<div class="showcase-head"><div><p class="eyebrow muted" data-en="A little visual taste" data-nl="Een voorsmaakje">A little visual taste</p><h2 id="looks-title" data-en="A different look for every business." data-nl="Een eigen uitstraling voor elke zaak.">A different look for every business.</h2></div><p data-en="Warm and playful, clean and minimal, classic or contemporary. The website should suit your business, not the other way around." data-nl="Warm en speels, rustig en minimalistisch, klassiek of hedendaags. De website moet bij jouw zaak passen, niet andersom.">Warm and playful, clean and minimal, classic or contemporary. The website should suit your business, not the other way around.</p></div>
-<article class="featured-project" aria-labelledby="drs-title">
-<a class="featured-visual" href="https://drs-classics.be/" target="_blank" rel="noopener noreferrer" aria-label="DRS Classics — visit the live website">
-<img src="https://raw.githubusercontent.com/judithcaeyers/classic-car-care/main/src/assets/hero-garage.jpg" alt="Classic BMW inside the DRS Classics workshop" width="1280" height="850" loading="lazy">
-<span class="featured-tag" data-en="Live website / Featured project" data-nl="Live website / Uitgelicht project">Live website / Featured project</span>
-<span class="featured-name">DRS Classics.</span>
-</a>
-<div class="featured-info">
-<p class="eyebrow" style="color:#ccd9d2" data-en="Website design &amp; build" data-nl="Websiteontwerp &amp; ontwikkeling">Website design &amp; build</p>
-<h3 id="drs-title" data-en="A new home for the classics." data-nl="Een nieuwe thuis voor klassiekers.">A new home for the classics.</h3>
-<p data-en="A distinctive website for DRS Classics, a garage in Lembeek specialising in car maintenance, bodywork and classic-car restoration. A timeless look, clear services and a glimpse inside the workshop." data-nl="Een karaktervolle website voor DRS Classics, een garage in Lembeek gespecialiseerd in onderhoud, carrosserie en oldtimerrestauratie. Een tijdloze uitstraling, duidelijke diensten en een blik in het atelier.">A distinctive website for DRS Classics, a garage in Lembeek specialising in car maintenance, bodywork and classic-car restoration. A timeless look, clear services and a glimpse inside the workshop.</p>
-<a href="https://drs-classics.be/" class="text-link" target="_blank" rel="noopener noreferrer"><span data-en="Visit the live website" data-nl="Bekijk de live website">Visit the live website</span><span class="arrow" aria-hidden="true">↗</span></a>
-</div>
-</article>
-<div class="featured-subhead"><span class="eyebrow muted" data-en="More design directions" data-nl="Nog enkele stijlen">More design directions</span><p data-en="Illustrative concepts, not client projects" data-nl="Illustratieve concepten, geen klantenprojecten">Illustrative concepts, not client projects</p></div>
-<div class="studies">
-<div class="study"><div class="study-display"><div class="minisite" aria-hidden="true"><div class="minisite-head"><strong>the flower room</strong><span data-en="about / flowers" data-nl="over ons / bloemen">about / flowers</span></div><div class="minisite-core"><div><h3 data-en="Something lovely, just because." data-nl="Iets moois, zomaar.">Something lovely, just because.</h3><p data-en="Beautiful things grow here." data-nl="Hier groeien mooie dingen.">Beautiful things grow here.</p></div><div class="minisite-photo"><img src="assets/images/flower.jpg" alt="" loading="lazy" width="300" height="360"></div></div></div></div><div class="study-caption"><strong data-en="Warm &amp; playful" data-nl="Warm &amp; speels">Warm &amp; playful</strong><span data-en="Design study 01" data-nl="Ontwerpstudie 01">Design study 01</span></div></div>
-<div class="study"><div class="study-display second"><div class="minisite dark" aria-hidden="true"><div class="minisite-head"><strong>FORM / 01</strong><span data-en="work / studio" data-nl="werk / studio">work / studio</span></div><div class="minisite-core"><div><h3 data-en="Ideas with a little more intention." data-nl="Ideeën met net iets meer aandacht.">Ideas with a little more intention.</h3><p data-en="Independent creative practice." data-nl="Onafhankelijke creatieve praktijk.">Independent creative practice.</p></div><div class="minisite-photo"><div class="circle-art"></div></div></div></div></div><div class="study-caption"><strong data-en="Minimal &amp; considered" data-nl="Minimalistisch &amp; verfijnd">Minimal &amp; considered</strong><span data-en="Design study 02" data-nl="Ontwerpstudie 02">Design study 02</span></div></div>
-</div>
-<p class="study-note" data-en="The two design studies above are illustrative concepts. DRS Classics is a live website. Your business deserves its own look." data-nl="De twee ontwerpstudies hierboven zijn illustratieve concepten. DRS Classics is een live website. Jouw zaak verdient een eigen uitstraling.">These are illustrative design studies, not client projects. Your website will have its own look.</p>
-</div>
-</section>
-<section class="process" id="how" aria-labelledby="how-title">
-<div class="container">
-<div class="process-head"><div><p class="eyebrow muted" data-en="No complicated process" data-nl="Geen ingewikkeld traject">No complicated process</p><h2 id="how-title" data-en="Here's how we make it happen." data-nl="Zo pakken we het aan.">Here's how we make it happen.</h2></div><p data-en="You know your business. I know how to turn it into a website. We keep things practical from first conversation to launch." data-nl="Jij kent je zaak. Ik weet hoe we die vertalen naar een website. Van het eerste gesprek tot de lancering houden we het praktisch.">You know your business. I know how to turn it into a website. We keep things practical from first conversation to launch.</p></div>
-<div class="steps">
-<div class="step"><span class="number">01</span><h3 data-en="We talk." data-nl="We praten.">We talk.</h3><p data-en="Tell me about your business, what you need and the styles you like. You'll receive a clear proposal and price before we start." data-nl="Vertel me over je zaak, wat je nodig hebt en welke stijl je mooi vindt. Je krijgt vooraf een duidelijk voorstel en een prijs.">Tell me about your business, what you need and the styles you like. You'll receive a clear proposal and price before we start.</p></div>
-<div class="step"><span class="number">02</span><h3 data-en="I create." data-nl="Ik ontwerp.">I create.</h3><p data-en="I design and build the site. Then we review it together, and you can share feedback before it goes live." data-nl="Ik ontwerp en bouw de website. Daarna bekijken we hem samen en kun je feedback geven voordat hij online gaat.">I design and build the site. Then we review it together, and you can share feedback before it goes live.</p></div>
-<div class="step"><span class="number">03</span><h3 data-en="You go live." data-nl="Je gaat online.">You go live.</h3><p data-en="Once everything feels right, we launch your new site. Ready for people to discover your business." data-nl="Wanneer alles goed zit, zetten we je nieuwe website online. Klaar om door klanten ontdekt te worden.">Once everything feels right, we launch your new site. Ready for people to discover your business.</p></div>
-</div>
-</div>
-</section>
-<section class="about" id="about" aria-labelledby="about-title">
-<div class="container about-grid">
-<figure class="about-art about-portrait"><img src="assets/images/368ae8c9-cfa8-44fc-9c3e-b29befc956ce.jpg" alt="Portrait of Judith, the designer behind Rho &amp; Sigma" data-en-alt="Portrait of Judith, the designer behind Rho &amp; Sigma" data-nl-alt="Portret van Judith, de ontwerper achter Rho &amp; Sigma" loading="lazy" width="900" height="1100"></figure>
-<div><p class="eyebrow muted" data-en="Behind the studio" data-nl="Achter de studio">Behind the studio</p><h2 id="about-title" data-en="Hi, I'm Judith." data-nl="Hallo, ik ben Judith.">Hi, I'm Judith.</h2><p data-en="I'm a designer with a background in architecture and a soft spot for thoughtful websites. I love good typography, clear layouts and making complicated things feel simple." data-nl="Ik ben ontwerper, met een achtergrond in architectuur en een zwak voor mooie websites. Ik hou van goede typografie, heldere composities en ingewikkelde dingen eenvoudig maken.">I'm a designer with a background in architecture and a soft spot for thoughtful websites. I love good typography, clear layouts and making complicated things feel simple.</p><p data-en="Rho &amp; Sigma is my independent studio in Leuven, Belgium. You'll work directly with me, from our first conversation to the final details." data-nl="Rho &amp; Sigma is mijn onafhankelijke studio in Leuven. Je werkt rechtstreeks met mij samen, van ons eerste gesprek tot de laatste details.">Rho &amp; Sigma is my independent studio in Leuven, Belgium. You'll work directly with me, from our first conversation to the final details.</p><a class="text-link" href="mailto:hi@rhoandsigma.com?subject=Hello%20Judith"><span data-en="Say hello" data-nl="Zeg hallo">Say hello</span><span class="arrow" aria-hidden="true">↗</span></a></div>
-</div>
-</section>
-<section class="contact" id="contact" aria-labelledby="contact-title">
-<div class="container">
-<div class="contact-head"><span class="eyebrow" data-en="Have something in mind?" data-nl="Iets in gedachten?">Have something in mind?</span><span class="eyebrow" data-en="Leuven · Working with businesses everywhere" data-nl="Leuven · Voor ondernemingen overal">Leuven · Working with businesses everywhere</span></div>
-<h2 id="contact-title"><span data-en="Let's make something" data-nl="Laten we iets">Let's make something</span><br><em data-en="really good." data-nl="moois maken.">really good.</em></h2>
-<p data-en="Starting from scratch, or ready for a better website? Tell me a little about your business. I'll take it from there." data-nl="Een nieuwe website nodig of toe aan een betere versie? Vertel me iets over je zaak. Dan bekijken we samen wat mogelijk is.">Starting from scratch, or ready for a better website? Tell me a little about your business. I'll take it from there.</p>
-<div class="contact-actions"><a class="button" href="mailto:hi@rhoandsigma.com?subject=Let%27s%20talk%20websites"><span data-en="Tell me about your website" data-nl="Vertel me over je website">Tell me about your website</span><span class="arrow" aria-hidden="true">↗</span></a><a class="email" href="mailto:hi@rhoandsigma.com">hi@rhoandsigma.com</a></div>
-</div>
-</section>
+  </section>
+
+  <section class="section" id="work" aria-labelledby="work-title">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="eyebrow muted" data-en="01 / Selected work" data-nl="01 / Geselecteerd werk">01 / Selected work</p><h2 class="section-title" id="work-title"><span data-en="Less template." data-nl="Minder sjabloon.">Less template.</span><br><em data-en="More character." data-nl="Meer karakter.">More character.</em></h2></div>
+        <p class="section-intro" data-en="A garage and a dinner club don't need the same website. Good design starts with understanding the business behind the screen." data-nl="Een garage en een dinner club hebben niet dezelfde website nodig. Goed ontwerp begint bij de zaak achter het scherm.">A garage and a dinner club don't need the same website. Good design starts with understanding the business behind the screen.</p>
+      </div>
+      <div class="project-grid">
+        <article class="project">
+          <a href="https://drs-classics.be/" class="project-visual" target="_blank" rel="noopener noreferrer" aria-label="Visit the DRS Classics website">
+            <img src="https://raw.githubusercontent.com/judithcaeyers/classic-car-care/main/src/assets/hero-garage.jpg" loading="lazy" width="1200" height="900" alt="Classic car in the DRS Classics garage">
+            <span class="project-tag" data-en="Live website / Client project" data-nl="Live website / Klantenproject">Live website / Client project</span>
+            <span class="project-open" aria-hidden="true">↗</span>
+          </a>
+          <div class="project-meta"><h3>DRS Classics</h3><span data-en="Web design · Development" data-nl="Webdesign · Ontwikkeling">Web design · Development</span></div>
+          <p class="project-desc" data-en="A timeless digital home for a specialist in classic cars. Built to give the craftsmanship the spotlight it deserves." data-nl="Een tijdloze online thuis voor een specialist in klassieke wagens. Met het vakmanschap precies waar het hoort: in de kijker.">A timeless digital home for a specialist in classic cars. Built to give the craftsmanship the spotlight it deserves.</p>
+        </article>
+        <article class="project">
+          <a href="https://dinnerclub.be/" class="project-visual project-visual--dinner" target="_blank" rel="noopener noreferrer" aria-label="Visit Judith's Dinner Club">
+            <div class="dinner-frame" aria-hidden="true"><span class="small">An evening at the table</span><span class="big">Judith's<br>Dinner Club</span><span class="bottom">Food · People · A little magic</span></div>
+            <span class="project-tag" data-en="Own project / Booking website" data-nl="Eigen project / Reservatiewebsite">Own project / Booking website</span>
+            <span class="project-open" aria-hidden="true">↗</span>
+          </a>
+          <div class="project-meta"><h3>Judith's Dinner Club</h3><span data-en="Digital experience · Bookings" data-nl="Digitale beleving · Reservaties">Digital experience · Bookings</span></div>
+          <p class="project-desc" data-en="A small dinner concept with a digital home of its own. An example of how thoughtful details and a practical booking flow can work together." data-nl="Een kleinschalig dinerconcept met een eigen digitale thuis. Waar een warme uitstraling en een praktische reservatieflow samenkomen.">A small dinner concept with a digital home of its own. An example of how thoughtful details and a practical booking flow can work together.</p>
+        </article>
+      </div>
+      <div class="work-foot">
+        <p data-en="No made-up metrics, no imaginary client reviews. Just real work and a growing portfolio." data-nl="Geen verzonnen cijfers of fictieve reviews. Wel echt werk en een portfolio dat blijft groeien.">No made-up metrics, no imaginary client reviews. Just real work and a growing portfolio.</p>
+        <a href="mailto:hi@rhoandsigma.com?subject=My%20website%20project" class="underlink"><span data-en="Have a project in mind?" data-nl="Een project in gedachten?">Have a project in mind?</span><span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="offer" id="offer" aria-labelledby="offer-title">
+    <div class="wrap">
+      <div class="offer-head">
+        <div><p class="eyebrow" data-en="02 / The offer" data-nl="02 / Het aanbod">02 / The offer</p><h2 id="offer-title"><span data-en="One good page." data-nl="Eén sterke pagina.">One good page.</span><br><em data-en="A better first impression." data-nl="Een betere eerste indruk.">A better first impression.</em></h2></div>
+        <p class="offer-intro" data-en="Not every business needs a giant website. Sometimes one beautifully built page is exactly enough to explain what you do, show your work and get enquiries." data-nl="Niet elke zaak heeft een grote website nodig. Soms volstaat één sterke pagina om je verhaal te vertellen, je werk te tonen en aanvragen binnen te krijgen.">Not every business needs a giant website. Sometimes one beautifully built page is exactly enough to explain what you do, show your work and get enquiries.</p>
+      </div>
+      <div class="offer-grid">
+        <div>
+          <p class="eyebrow" data-en="The one-page website" data-nl="De onepagewebsite">The one-page website</p>
+          <p class="offer-price">€500<span style="font:400 .4em var(--serif);letter-spacing:0">+</span><small data-en="excl. VAT" data-nl="excl. btw">excl. VAT</small></p>
+          <p class="offer-label" data-en="Starting price for a focused one-page site. Exact scope and a fixed quote agreed before we start." data-nl="Startprijs voor een gerichte onepager. De precieze scope en vaste offerte spreken we vooraf af.">Starting price for a focused one-page site. Exact scope and a fixed quote agreed before we start.</p>
+          <a class="action action--light" href="mailto:hi@rhoandsigma.com?subject=I%27d%20love%20a%20one-page%20website"><span data-en="Let's build yours" data-nl="Laten we de jouwe maken">Let's build yours</span><span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+        <div class="offer-side">
+          <h3 data-en="Everything you need. Nothing you don't." data-nl="Alles wat je nodig hebt. Niets overbodig.">Everything you need. Nothing you don't.</h3>
+          <div class="offer-contents"><ul>
+            <li data-en="A distinctive design made for your business" data-nl="Een eigen ontwerp, afgestemd op je zaak">A distinctive design made for your business</li>
+            <li data-en="Works beautifully on mobile" data-nl="Mooi en gebruiksvriendelijk op mobiel">Works beautifully on mobile</li>
+            <li data-en="Clear services, story and contact details" data-nl="Duidelijk aanbod, verhaal en contactgegevens">Clear services, story and contact details</li>
+            <li data-en="Basic search-engine foundations" data-nl="Goede technische basis voor zoekmachines">Basic search-engine foundations</li>
+            <li data-en="A feedback round before launch" data-nl="Een feedbackronde vóór lancering">A feedback round before launch</li>
+            <li data-en="Help with publishing and your domain" data-nl="Hulp bij publicatie en domeinnaam">Help with publishing and your domain</li>
+          </ul></div>
+          <p class="offer-small" style="margin-top:30px" data-en="Need more? Extra pages, online booking, an enquiry form, multiple languages or professional photography can be quoted separately. Hosting and domain costs are separate." data-nl="Meer nodig? Extra pagina's, online reservaties, een aanvraagformulier, meerdere talen of professionele fotografie zijn mogelijk tegen een aparte offerte. Hosting en domeinkosten zijn apart.">Need more? Extra pages, online booking, an enquiry form, multiple languages or professional photography can be quoted separately. Hosting and domain costs are separate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="reasons" aria-labelledby="reasons-title">
+    <div class="wrap">
+      <div class="reasons-top">
+        <div><p class="eyebrow muted" data-en="03 / Why it works" data-nl="03 / Waarom het werkt">03 / Why it works</p><h2 id="reasons-title"><span data-en="Pretty is good." data-nl="Mooi is goed.">Pretty is good.</span><br><em data-en="Useful is better." data-nl="Nuttig is beter.">Useful is better.</em></h2></div>
+        <p data-en="A good website isn't decoration. It should make people understand your business, trust your work and know what to do next." data-nl="Een goede website is geen decoratie. Bezoekers moeten je zaak begrijpen, vertrouwen krijgen en weten wat ze vervolgens kunnen doen.">A good website isn't decoration. It should make people understand your business, trust your work and know what to do next.</p>
+      </div>
+      <div class="reasons-grid">
+        <article class="reason"><span class="reason-num">01</span><h3 data-en="Made to feel like you." data-nl="Helemaal jouw verhaal.">Made to feel like you.</h3><p data-en="Not another interchangeable layout. Typography, imagery and small details that reflect the character of your business." data-nl="Geen inwisselbare template. Typografie, beelden en details die het karakter van je zaak laten spreken.">Not another interchangeable layout. Typography, imagery and small details that reflect the character of your business.</p></article>
+        <article class="reason"><span class="reason-num">02</span><h3 data-en="Easy to find your way." data-nl="Duidelijk van begin tot einde.">Easy to find your way.</h3><p data-en="Your visitors should immediately understand what you offer and how to reach you. The experience matters as much as the aesthetic." data-nl="Bezoekers begrijpen meteen wat je aanbiedt en hoe ze je bereiken. Gebruiksgemak telt evenveel als uitstraling.">Your visitors should immediately understand what you offer and how to reach you. The experience matters as much as the aesthetic.</p></article>
+        <article class="reason"><span class="reason-num">03</span><h3 data-en="Small studio. Direct lines." data-nl="Klein bureau. Korte lijnen.">Small studio. Direct lines.</h3><p data-en="You speak directly with the person designing and building your website. Fewer layers, less fuss, more attention to the result." data-nl="Je spreekt rechtstreeks met de persoon die je website ontwerpt en bouwt. Minder schakels, minder gedoe, meer aandacht voor het resultaat.">You speak directly with the person designing and building your website. Fewer layers, less fuss, more attention to the result.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="process" id="process" aria-labelledby="process-title">
+    <div class="wrap">
+      <div class="process-heading">
+        <div><p class="eyebrow muted" data-en="04 / The process" data-nl="04 / De werkwijze">04 / The process</p><h2 id="process-title"><span data-en="Simple from" data-nl="Eenvoudig van">Simple from</span><br><em data-en="hello to launch." data-nl="hallo tot online.">hello to launch.</em></h2></div>
+        <p data-en="You know your business. We know how to translate it into a website. Here's how we get there together." data-nl="Jij kent je zaak. Wij weten hoe we die vertalen naar een website. Zo pakken we het samen aan.">You know your business. We know how to translate it into a website. Here's how we get there together.</p>
+      </div>
+      <div class="steps">
+        <article class="step"><span class="step-number">01.</span><h3 data-en="Tell us your story." data-nl="Vertel je verhaal.">Tell us your story.</h3><p data-en="A short conversation or briefing. What do you do, who is it for and what should your website achieve? We agree on the scope and price." data-nl="Een kort gesprek of een duidelijke briefing. Wat doe je, voor wie en wat moet de website bereiken? We spreken scope en prijs af.">A short conversation or briefing. What do you do, who is it for and what should your website achieve? We agree on the scope and price.</p></article>
+        <article class="step"><span class="step-number">02.</span><h3 data-en="We make it yours." data-nl="We maken het eigen.">We make it yours.</h3><p data-en="We design and build around your content, look and goals. You'll see the result and have room to give feedback before launch." data-nl="We ontwerpen en bouwen rond jouw inhoud, uitstraling en doelen. Je bekijkt het resultaat en geeft feedback vóór publicatie.">We design and build around your content, look and goals. You'll see the result and have room to give feedback before launch.</p></article>
+        <article class="step"><span class="step-number">03.</span><h3 data-en="Ready for the world." data-nl="Klaar voor de wereld.">Ready for the world.</h3><p data-en="We check desktop and mobile, connect your domain and get your website online. With the essentials explained, not hidden behind jargon." data-nl="We controleren desktop en mobiel, koppelen je domein en zetten je website online. Met heldere uitleg, zonder technisch jargon.">We check desktop and mobile, connect your domain and get your website online. With the essentials explained, not hidden behind jargon.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about" aria-labelledby="about-title">
+    <div class="wrap about-layout">
+      <div class="about-image">
+        <img src="assets/images/tree.jpg" width="750" height="850" loading="lazy" alt="">
+        <span class="image-stamp" data-en="Good design takes a point of view." data-nl="Goed ontwerp vraagt een eigen blik.">Good design takes a point of view.</span>
+      </div>
+      <div>
+        <p class="eyebrow muted" data-en="05 / Behind the studio" data-nl="05 / Achter de studio">05 / Behind the studio</p>
+        <h2 id="about-title"><span data-en="An eye for detail." data-nl="Oog voor detail.">An eye for detail.</span><br><em data-en="A mind for making." data-nl="Zin om te maken.">A mind for making.</em></h2>
+        <p data-en="Hi, I'm Judith. My background is in architecture, where every detail has a reason. Today I bring that same way of thinking to websites, digital tools and the small systems that help independent businesses run better." data-nl="Dag, ik ben Judith. Mijn achtergrond ligt in architectuur, waar elk detail een reden heeft. Vandaag neem ik diezelfde manier van denken mee naar websites, digitale tools en slimme oplossingen die kleine ondernemingen vooruithelpen.">Hi, I'm Judith. My background is in architecture, where every detail has a reason. Today I bring that same way of thinking to websites, digital tools and the small systems that help independent businesses run better.</p>
+        <p data-en="Rho & Sigma is deliberately small. You get a direct conversation, an honest assessment of what you need and a design made with care. Not a complicated agency machine." data-nl="Rho & Sigma is bewust klein. Je krijgt een rechtstreeks gesprek, een eerlijk advies over wat je nodig hebt en een ontwerp waar aandacht in zit. Geen ingewikkelde bureaumachine.">Rho & Sigma is deliberately small. You get a direct conversation, an honest assessment of what you need and a design made with care. Not a complicated agency machine.</p>
+        <a href="#contact" class="underlink"><span data-en="Say hello" data-nl="Zeg eens hallo">Say hello</span><span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" aria-labelledby="faq-title">
+    <div class="wrap faq-layout">
+      <div><p class="eyebrow muted" data-en="06 / Good to know" data-nl="06 / Goed om te weten">06 / Good to know</p><h2 id="faq-title" data-en="A few things you might wonder." data-nl="Misschien vraag je je nog dit af.">A few things you might wonder.</h2></div>
+      <div class="faqs">
+        <details><summary data-en="Is €500 the total price?" data-nl="Is €500 de volledige prijs?">Is €500 the total price?</summary><p data-en="It's the starting price, excluding VAT, for a focused one-page website. Before work starts you'll get a clear quote with the full scope. Domain, hosting and optional extras are separate." data-nl="Het is de startprijs, exclusief btw, voor een gerichte onepager. Voor we starten krijg je een duidelijke offerte met de volledige scope. Domeinnaam, hosting en eventuele extra's zijn apart.">It's the starting price, excluding VAT, for a focused one-page website. Before work starts you'll get a clear quote with the full scope. Domain, hosting and optional extras are separate.</p></details>
+        <details><summary data-en="Do I need to write all the text?" data-nl="Moet ik zelf alle teksten schrijven?">Do I need to write all the text?</summary><p data-en="You know your business best, so we'll need input about your services and story. We can help organise and sharpen the content. Extensive copywriting can be quoted separately." data-nl="Jij kent je zaak het best, dus we hebben input nodig over je aanbod en verhaal. Wij helpen de inhoud structureren en aanscherpen. Uitgebreid copywritingwerk kan apart worden geoffreerd.">You know your business best, so we'll need input about your services and story. We can help organise and sharpen the content. Extensive copywriting can be quoted separately.</p></details>
+        <details><summary data-en="What about photos?" data-nl="Wat met de foto's?">What about photos?</summary><p data-en="Great photography makes a big difference. We can use suitable images you already have or discuss alternatives. For architecture and other visual projects, we can also help arrange a photographer at an additional cost." data-nl="Sterke foto's maken een groot verschil. We gebruiken geschikte beelden die je al hebt of bekijken alternatieven. Voor architectuur en andere visuele projecten kunnen we ook helpen een fotograaf te regelen, tegen bijkomende kost.">Great photography makes a big difference. We can use suitable images you already have or discuss alternatives. For architecture and other visual projects, we can also help arrange a photographer at an additional cost.</p></details>
+        <details><summary data-en="Can my website do more than one page?" data-nl="Kan mijn website meer dan één pagina hebben?">Can my website do more than one page?</summary><p data-en="Absolutely. Extra pages, booking, small shops, multilingual content or smarter enquiry flows are possible. We quote them separately so you only pay for what your business actually needs." data-nl="Zeker. Extra pagina's, reservaties, kleine webshops, meertalige inhoud of slimmere aanvraagflows zijn mogelijk. We offreren ze apart, zodat je alleen betaalt voor wat je zaak echt nodig heeft.">Absolutely. Extra pages, booking, small shops, multilingual content or smarter enquiry flows are possible. We quote them separately so you only pay for what your business actually needs.</p></details>
+        <details><summary data-en="How long does it take?" data-nl="Hoe lang duurt het?">How long does it take?</summary><p data-en="That depends on the scope and how quickly we have the necessary content. We'll agree on a realistic timeline before starting, rather than promising a launch date we can't guarantee." data-nl="Dat hangt af van de scope en hoe snel de nodige inhoud klaar is. We spreken vooraf een realistische planning af, in plaats van een lanceringsdatum te beloven die we niet kunnen garanderen.">That depends on the scope and how quickly we have the necessary content. We'll agree on a realistic timeline before starting, rather than promising a launch date we can't guarantee.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="wrap">
+      <p class="eyebrow" data-en="Have something good in mind?" data-nl="Iets moois in gedachten?">Have something good in mind?</p>
+      <h2 id="contact-title"><span data-en="Let's make" data-nl="Laten we iets">Let's make</span><br><em data-en="something good." data-nl="moois maken.">something good.</em></h2>
+      <div class="contact-bottom">
+        <p data-en="Tell me a little about your business and what you'd love your website to do. I'll get back to you personally." data-nl="Vertel me wat over je zaak en wat je graag met je website wilt bereiken. Je krijgt persoonlijk antwoord.">Tell me a little about your business and what you'd love your website to do. I'll get back to you personally.</p>
+        <a class="contact-mail" href="mailto:hi@rhoandsigma.com?subject=Hello%20Rho%20%26%20Sigma">hi@rhoandsigma.com ↗</a>
+      </div>
+    </div>
+  </section>
 </main>
-<footer><div class="container footer"><a class="brand" href="#top">Rho &amp; Sigma.</a><small>© <span id="year"></span> · <span data-en="Independent web design studio · Leuven, Belgium" data-nl="Onafhankelijke webdesignstudio · Leuven, België">Independent web design studio · Leuven, Belgium</span></small><a class="end-link" href="#top" data-en="Back to top ↑" data-nl="Terug naar boven ↑">Back to top ↑</a></div></footer>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <a class="brand" href="#top">rho<span aria-hidden="true">&</span>sigma.</a>
+    <p>© <span id="year">2026</span> Rho &amp; Sigma · Leuven, Belgium</p>
+    <nav class="footer-links" aria-label="Footer navigation"><a href="#work" data-en="Work" data-nl="Werk">Work</a><a href="#offer" data-en="Websites" data-nl="Websites">Websites</a><a href="mailto:hi@rhoandsigma.com">Email ↗</a><a href="#top" data-en="Back to top ↑" data-nl="Naar boven ↑">Back to top ↑</a></nav>
+  </div>
+</footer>
 <script>
-(function(){
-'use strict';
-var toggle=document.getElementById('language');
-var burger=document.getElementById('burger');
-var menu=document.getElementById('mobile-links');
-var current='en';
-function setMenu(open){menu.classList.toggle('open',open);menu.setAttribute('aria-hidden',String(!open));burger.setAttribute('aria-expanded',String(open));burger.setAttribute('aria-label',open?(current==='nl'?'Sluit het menu':'Close menu'):(current==='nl'?'Open het menu':'Open menu'));}
-function apply(lang){
-current=lang==='nl'?'nl':'en';
-document.documentElement.lang=current==='nl'?'nl-BE':'en';
-document.querySelectorAll('[data-en][data-nl]').forEach(function(el){el.textContent=el.getAttribute('data-'+current);});
-document.querySelectorAll('[data-en-alt][data-nl-alt]').forEach(function(el){el.setAttribute('alt',el.getAttribute('data-'+current+'-alt'));});
-toggle.textContent=current==='nl'?'EN':'NL';
-toggle.setAttribute('aria-label',current==='nl'?'Switch to English':'Switch to Dutch');
-toggle.title=toggle.getAttribute('aria-label');
-document.title=current==='nl'?'Rho & Sigma — Mooie websites voor kleine ondernemingen':'Rho & Sigma — Websites for small businesses';
-var desc=current==='nl'?'Rho & Sigma ontwerpt en bouwt mooie, gebruiksvriendelijke websites voor kleine ondernemingen.':'Rho & Sigma designs elegant, easy-to-use websites for small businesses.';
-document.querySelector('meta[name="description"]').content=desc;
-document.querySelector('meta[property="og:description"]').content=desc;
-document.querySelector('meta[property="og:title"]').content=document.title;
-burger.setAttribute('aria-label',menu.classList.contains('open')?(current==='nl'?'Sluit het menu':'Close menu'):(current==='nl'?'Open het menu':'Open menu'));
-try{localStorage.setItem('rho-sigma-lang',current);}catch(e){}
-}
-toggle.addEventListener('click',function(){apply(current==='nl'?'en':'nl');});
-burger.addEventListener('click',function(){setMenu(!menu.classList.contains('open'));});
-menu.querySelectorAll('a').forEach(function(link){link.addEventListener('click',function(){setMenu(false);});});
-document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false);});
-document.getElementById('year').textContent=String(new Date().getFullYear());
-var initial='en';
-try{var query=new URLSearchParams(location.search).get('lang');var saved=localStorage.getItem('rho-sigma-lang');initial=query==='nl'||query==='en'?query:(saved==='nl'?'nl':'en');}catch(e){}
-apply(initial);
+(function () {
+  "use strict";
+  var langButton = document.getElementById("locale");
+  var menuButton = document.getElementById("menu-toggle");
+  var mobileMenu = document.getElementById("mobile-menu");
+  var language = "en";
+  try {
+    var saved = localStorage.getItem("rho-sigma-language");
+    language = (saved === "en" || saved === "nl") ? saved : (/^nl\b/i.test(navigator.language) ? "nl" : "en");
+  } catch(e) { language = /^nl\b/i.test(navigator.language) ? "nl" : "en"; }
+  function setLanguage(next) {
+    language = next;
+    document.documentElement.lang = next;
+    document.querySelectorAll("[data-en][data-nl]").forEach(function (el) {
+      el.textContent = el.getAttribute("data-" + next);
+    });
+    langButton.textContent = next === "en" ? "NL" : "EN";
+    langButton.setAttribute("aria-label", next === "en" ? "Switch to Dutch" : "Wissel naar Engels");
+    langButton.title = langButton.getAttribute("aria-label");
+    document.title = next === "en" ? "Rho & Sigma — Good businesses deserve good websites" : "Rho & Sigma — Goede zaken verdienen goede websites";
+    document.querySelector('meta[name="description"]').setAttribute("content", next === "en" ? "Rho & Sigma designs distinctive websites for independent businesses. One-page websites from €500 excl. VAT." : "Rho & Sigma ontwerpt karaktervolle websites voor zelfstandigen. Onepagers vanaf €500 excl. btw.");
+    try { localStorage.setItem("rho-sigma-language", next); } catch(e) {}
+  }
+  function setMenu(open) {
+    mobileMenu.hidden = !open;
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    document.body.classList.toggle("menu-open", open);
+  }
+  langButton.addEventListener("click", function () { setLanguage(language === "en" ? "nl" : "en"); });
+  menuButton.addEventListener("click", function () { setMenu(mobileMenu.hidden); });
+  mobileMenu.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () { setMenu(false); });
+  });
+  document.addEventListener("keydown", function (event) { if (event.key === "Escape" && !mobileMenu.hidden) setMenu(false); });
+  window.addEventListener("resize", function () { if (window.innerWidth > 830 && !mobileMenu.hidden) setMenu(false); });
+  document.getElementById("year").textContent = String(new Date().getFullYear());
+  setLanguage(language);
 }());
 </script>
 </body>
