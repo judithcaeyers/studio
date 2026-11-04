@@ -455,7 +455,7 @@
 <footer class="footer">
   <div class="wrap footer-inner">
     <a class="brand" href="#top">rho<span aria-hidden="true">&</span>sigma.</a>
-    <p>© <span id="year">2026</span> Rho &amp; Sigma · Leuven, Belgium</p>
+    <p>© <span id="year">2023</span> Rho &amp; Sigma · Leuven, Belgium</p>
     <nav class="footer-links" aria-label="Footer navigation"><a href="#work" data-en="Work" data-nl="Werk">Work</a><a href="#offer" data-en="Websites" data-nl="Websites">Websites</a><a href="mailto:hi@rhoandsigma.com">Email ↗</a><a href="#top" data-en="Back to top ↑" data-nl="Naar boven ↑">Back to top ↑</a></nav>
   </div>
 </footer>
@@ -496,7 +496,6 @@
   });
   document.addEventListener("keydown", function (event) { if (event.key === "Escape" && !mobileMenu.hidden) setMenu(false); });
   window.addEventListener("resize", function () { if (window.innerWidth > 830 && !mobileMenu.hidden) setMenu(false); });
-  document.getElementById("year").textContent = String(new Date().getFullYear());
   setLanguage(language);
 }());
 </script>
